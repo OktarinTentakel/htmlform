@@ -38,6 +38,18 @@ class InputText extends FormElement{
 	
 	
 	
+	public function setRefill(Array $refiller = array()){
+		if( count($refiller) == 0 )	$refiller = $_POST;
+		
+		if( isset($refiller[$this->name]) && !is_array($refiller[$this->name]) ){
+			$this->text = ''.$refiller[$this->name];
+		}
+		
+		return $this;
+	}
+	
+	
+	
 	//---|functionality----------
 	
 	public function validate(){

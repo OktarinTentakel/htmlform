@@ -48,6 +48,20 @@ class Select extends FormElement{
 	
 	
 	
+	public function setRefill(Array $refiller = array()){
+		if( count($refiller) == 0 )	$refiller = $_POST;
+		
+		if( isset($refiller[$this->name]) && is_array($refiller[$this->name]) ){
+			$this->selectedValues = $refiller[$this->name];
+			$this->selected = array();
+			$this->selectedIndices = array();
+		}
+		
+		return $this;
+	}
+	
+	
+	
 	public function setSelected(Array $selected){
 		$this->selected = $selected;
 		return $this;
@@ -180,7 +194,7 @@ class Select extends FormElement{
 			 '<div class="'.parent::WRAPCLASS.'">'
 				.$label
 				.'<div class="htmlform_widget_div">'
-					.'<select'.$this->printId().$this->printName().' size="'.$this->size.'"'.$this->printMultiple().$this->printCssClasses().$this->printTabindex().'>'
+					.'<select'.$this->printId().$this->printNameArray().' size="'.$this->size.'"'.$this->printMultiple().$this->printCssClasses().$this->printTabindex().'>'
 						.$options
 					.'</select>'
 				.'</div>'

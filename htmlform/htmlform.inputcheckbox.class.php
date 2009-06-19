@@ -46,6 +46,20 @@ class InputCheckbox extends FormElement{
 	
 	
 	
+	public function setRefill(Array $refiller = array()){
+		if( count($refiller) == 0 )	$refiller = $_POST;
+		
+		if( isset($refiller[$this->name]) && is_array($refiller[$this->name]) ){
+			$this->selectedValues = $refiller[$this->name];
+			$this->selected = array();
+			$this->selectedIndices = array();
+		}
+		
+		return $this;
+	}
+	
+	
+	
 	public function setSelected(Array $selected){
 		$this->selected = $selected;
 		return $this;
@@ -149,7 +163,7 @@ class InputCheckbox extends FormElement{
 			$index++;
 			$checkId = $this->masterForm->getId().'_checkbox_'.$value;
 			$options .=
-				 '<input type="checkbox" id="'.$checkId.'"'.$this->printName().$this->printCssClasses().' value="'.$value.'"'.($this->isSelectedOption($index, $value, $text) ? ' checked="checked"' : '').$this->printTabIndex().'/>'
+				 '<input type="checkbox" id="'.$checkId.'"'.$this->printNameArray().$this->printCssClasses().' value="'.$value.'"'.($this->isSelectedOption($index, $value, $text) ? ' checked="checked"' : '').$this->printTabIndex().'/>'
 					.'&nbsp;'.Label::getInline($text, $checkId)->doRender()
 				.((($index % $this->width) == 0) ? '<br/>' : '&nbsp;&nbsp;&nbsp;')
 			;

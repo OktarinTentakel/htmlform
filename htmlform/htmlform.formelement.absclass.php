@@ -158,6 +158,12 @@ abstract class FormElement{
 	
 	
 	
+	protected function printNameArray(){
+		return (($this->name != '') ? ' name="'.$this->name.'[]"' : '');
+	}
+	
+	
+	
 	protected function printCssClasses(){
 		return (($this->cssClasses != '') ? ' class="'.$this->cssClasses.'"' : '');
 	}

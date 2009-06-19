@@ -52,6 +52,13 @@ class FormValidator{
 	
 	
 	
+	public function setMaxLength($maxlength){
+		$this->rules['maxlength'] =  (integer) $maxlength;
+		return $this;
+	}
+	
+	
+	
 	//---|rules----------
 	
 	private function required($required){
@@ -72,6 +79,16 @@ class FormValidator{
 			return strlen($this->values[0]) >= $minlength;
 		} else {
 			return count($this->values) >= $minlength;
+		}
+	}
+	
+	
+	
+	private function maxlength($maxlength){
+		if( count($this->values) == 1 ){
+			return strlen($this->values[0]) <= $maxlength;
+		} else {
+			return count($this->values) <= $maxlength;
 		}
 	}
 	

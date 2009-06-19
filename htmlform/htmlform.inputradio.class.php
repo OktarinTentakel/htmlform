@@ -46,6 +46,20 @@ class InputRadio extends FormElement{
 	
 	
 	
+	public function setRefill(Array $refiller = array()){
+		if( count($refiller) == 0 )	$refiller = $_POST;
+		
+		if( isset($refiller[$this->name]) && !is_array($refiller[$this->name]) ){
+			$this->selectedValue = ''.$refiller[$this->name];
+			$this->selected = null;
+			$this->selectedIndex = null;
+		}
+		
+		return $this;
+	}
+	
+	
+	
 	public function setSelected($selected){
 		$this->selected = "$selected";
 		return $this;

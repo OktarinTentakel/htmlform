@@ -3,6 +3,7 @@
 abstract class FormElement{
 	// ***
 	const WRAPCLASS = 'htmlform_row_div';
+	const WIDGETCLASS = 'htmlform_widget_div';
 	
 	protected $masterForm;
 	protected $masterElement;
@@ -53,6 +54,7 @@ abstract class FormElement{
 	
 	
 	public function setValidator(FormValidator $validator){
+		if( $this->label != '' ) $validator->setFieldName($this->label);
 		$this->validator = $validator;
 		return $this;
 	}
@@ -122,9 +124,11 @@ abstract class FormElement{
 	
 	// >>>
 	public function validate(){
+		if( !is_null($this->validator) ) $this->validator->setMessageLanguage($this->masterForm->getLanguage());
+		
 		if( is_array($this->subElements) ){
 			foreach( $this->subElements as $element ){
-				$this->isValid = $this->isValid && $element->validate();
+				$this->isValid = $this->isValid and $element->validate();
 			}
 		}
 		
@@ -174,6 +178,24 @@ abstract class FormElement{
 		$res = ' tabindex="'.$this->masterForm->getTabIndex().'"';
 		$this->masterForm->incTabIndex();
 		return $res;
+	}
+	
+	
+	
+	public function printMessages(){
+		$msg = '';
+		
+		if( !is_null($this->validator) ){
+			$msg .= $this->validator->printMessageQueue();
+		}
+		
+		if( is_array($this->subElements) ){
+			foreach( $this->subElements as $element ){
+				$msg .= $element->printMessages();
+			}
+		}
+		
+		return $msg;
 	}
 	
 	

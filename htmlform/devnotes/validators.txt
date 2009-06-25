@@ -1,3 +1,4 @@
++++
 required( )	Returns: Boolean
 Makes the element always required.
 
@@ -10,12 +11,15 @@ Makes the element required, depending on the result of the given callback.
 remote( options )	Returns: Boolean
 Requests a resource to check the element for validity.
 
++++
 minlength( length )	Returns: Boolean
 Makes the element require a given minimum length.
 
++++
 maxlength( length )	Returns: Boolean
 Makes the element require a given maxmimum length.
 
++++
 rangelength( range )	Returns: Boolean
 Makes the element require a given value range.
 
@@ -28,9 +32,11 @@ Makes the element require a given maximum.
 range( range )	Returns: Boolean
 Makes the element require a given value range.
 
++++
 email( )	Returns: Boolean
 Makes the element require a valid email
 
++++
 url( )	Returns: Boolean
 Makes the element require a valid url
 

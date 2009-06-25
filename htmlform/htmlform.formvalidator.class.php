@@ -2,11 +2,21 @@
 
 class FormValidator{
 	// ***
+	const MESSAGECLASS = 'htmlform_message_div';
+	
+	private $messageLanguage;
+	private $messageQueue;
+	private $fieldName;
+	
 	private $rules;
 	private $values;
 	private $isValid;
 	
 	private function __construct(){
+		$this->messageLanguage = 'english';
+		$this->messageQueue = array();
+		$this->fieldName = '';
+		
 		$this->rules = array();
 		$this->values = array();
 		$this->isValid = true;
@@ -23,6 +33,20 @@ class FormValidator{
 	
 	
 	//---|setter----------
+	
+	public function setMessageLanguage($language){
+		$this->messageLanguage = $language;
+		return $this;
+	}
+	
+	
+	
+	public function setFieldName($name){
+		$this->fieldName = $name;
+		return $this;
+	}
+	
+	
 	
 	public function setValue($value){
 		$this->values = array("$value");
@@ -46,14 +70,35 @@ class FormValidator{
 	
 	
 	public function setMinLength($minlength){
-		$this->rules['minlength'] =  (integer) $minlength;
+		$this->rules['minlength'] =  (integer)$minlength;
 		return $this;
 	}
 	
 	
 	
 	public function setMaxLength($maxlength){
-		$this->rules['maxlength'] =  (integer) $maxlength;
+		$this->rules['maxlength'] =  (integer)$maxlength;
+		return $this;
+	}
+	
+	
+	
+	public function setRangeLength(Array $range){
+		$this->rules['rangelength'] =  $range;
+		return $this;
+	}
+	
+	
+	
+	public function setEmail(){
+		$this->rules['email'] = true;
+		return $this;
+	}
+	
+	
+	
+	public function setUrl(){
+		$this->rules['url'] = true;
 		return $this;
 	}
 	
@@ -61,7 +106,7 @@ class FormValidator{
 	
 	//---|rules----------
 	
-	private function required($required){
+	private function required($X){
 		$res = false;
 		
 		foreach( $this->values as $val ){
@@ -69,27 +114,150 @@ class FormValidator{
 			if( $res ) break;
 		}
 		
+		if( !$res && ($this->fieldName != '') ){
+			$this->messageQueue[] = str_replace('%name%', $this->fieldName, MSG_REQUIRED);
+		}
+		
 		return $res;
 	}
 	
 	
 	
-	private function minlength($minlength){
+	private function minlength($minlength, $internal = false){
+		$res = false;
+		
 		if( count($this->values) == 1 ){
-			return strlen($this->values[0]) >= $minlength;
+			$res = (strlen($this->values[0]) >= $minlength);
 		} else {
-			return count($this->values) >= $minlength;
+			$res = (count($this->values) >= $minlength);
 		}
+		
+		if( !$res && ($this->fieldName != '') && !$internal ){
+			$this->messageQueue[] = str_replace(array('%name%', '%count%'), array($this->fieldName, $minlength), MSG_MINLENGTH);
+		}
+		
+		return $res;
 	}
 	
 	
 	
-	private function maxlength($maxlength){
+	private function maxlength($maxlength, $internal = false){
+		$res = false;
+		
 		if( count($this->values) == 1 ){
-			return strlen($this->values[0]) <= $maxlength;
+			$res = (strlen($this->values[0]) <= $maxlength);
 		} else {
-			return count($this->values) <= $maxlength;
+			$res = (count($this->values) <= $maxlength);
 		}
+		
+		if( !$res && ($this->fieldName != '') && !$internal ){
+			$this->messageQueue[] = str_replace(array('%name%', '%count%'), array($this->fieldName, $maxlength), MSG_MAXLENGTH);
+		}
+		
+		return $res;
+	}
+	
+	
+	
+	private function rangelength(Array $range){
+		$res = true;
+		
+		if( count($range) >= 2 ){
+			$res = $this->minlength((integer)$range[0], true) && $this->maxlength((integer)$range[1], true);
+			
+			if( !$res && ($this->fieldName != '') ){
+				$this->messageQueue[] = str_replace(
+					array('%name%', '%min%', '%max%'),
+					array($this->fieldName, (integer)$range[0], (integer)$range[1]),
+					MSG_RANGELENGTH
+				);
+			}
+		}		
+		
+		return $res;
+	}
+	
+	
+	
+	private function email($X){
+		$res = true;
+		
+		foreach( $this->values as $email ){
+			//gucken ob @ da und ob Längen stimmen
+			if (!ereg("^[^@]{1,64}@[^@]{1,255}$", $email)) {
+				$res = false;
+			}
+			
+			//in Teilbereiche splitten
+			$email_array = explode("@", $email);
+			$local_array = explode(".", $email_array[0]);
+			
+			for ($i = 0; $i < sizeof($local_array); $i++) {
+				if (!ereg("^(([A-Za-z0-9!#$%&'*+/=?^_`{|}~-][A-Za-z0-9!#$%&'*+/=?^_`{|}~\.-]{0,63})|(\"[^(\\|\")]{0,62}\"))$", $local_array[$i])) {
+					$res = false;
+				}
+			}
+			
+			//Behandlung von IP-Domain
+			if (!ereg("^\[?[0-9\.]+\]?$", $email_array[1])) {
+				$domain_array = explode(".", $email_array[1]);
+				
+				//falsche Anzahl von Bereichen?
+				if (sizeof($domain_array) < 2) {
+					$res = false;
+				}
+				
+				//Bereiche checken
+				for ($i = 0; $i < sizeof($domain_array); $i++) {
+					if (!ereg("^(([A-Za-z0-9][A-Za-z0-9-]{0,61}[A-Za-z0-9])|([A-Za-z0-9]{2,5}))$", $domain_array[$i])) {
+						$res = false;
+					}
+				}
+			}
+		}
+		
+		if( !$res && ($this->fieldName != '') ){
+			$this->messageQueue[] = str_replace('%name%', $this->fieldName, MSG_EMAIL);
+		}
+		
+		return $res;
+	}
+	
+	
+	
+	private function url($X){
+		$res = true;
+	
+		foreach( $this->values as $url ){
+			// Zugriffsart
+			$urlregex = "^(https?|ftp)\:\/\/";
+
+			// optionale Angaben zu User und Passwort
+			$urlregex .= "([a-z0-9+!*(),;?&=\$_.-]+(\:[a-z0-9+!*(),;?&=\$_.-]+)?@)?";
+
+			// Hostname oder IP-Angabe
+			//$urlregex .= "[a-z0-9+\$_-]+(\.[a-z0-9+\$_-]+)*";  // http://x = allowed (ex. http://localhost, http://routerlogin)
+			//$urlregex .= "[a-z0-9+\$_-]+(\.[a-z0-9+\$_-]+)+";  // http://x.x = minimum
+			$urlregex .= "([a-z0-9+\$_-]+\.)*[a-z0-9+\$_-]{2,3}";  // http://x.xx(x) = minimum
+			//use only one of the above
+
+			// optionale Portangabe
+			$urlregex .= "(\:[0-9]{2,5})?";
+			// optionale Pfadangabe
+			$urlregex .= "(\/([a-z0-9+\$_-]\.?)+)*\/?";
+			// optionaler GET-Query
+			$urlregex .= "(\?[a-z+&\$_.-][a-z0-9;:@/&%=+\$_.-]*)?";
+			// optionaler Seitenanker
+			$urlregex .= "(#[a-z_.-][a-z0-9+\$_.-]*)?\$";
+
+			if(!eregi($urlregex, $url)) $res = false;;
+		}
+		
+		if( !$res && ($this->fieldName != '') ){
+			$this->messageQueue[] = str_replace('%name%', $this->fieldName, MSG_URL);
+		}
+		
+		return $res;
 	}
 	
 	
@@ -97,13 +265,29 @@ class FormValidator{
 	//---|functionality----------
 	
 	public function process(){
+		require_once('messages/'.$this->messageLanguage.'.inc.php');
+		
 		if( count($this->values) > 0 ){
 			foreach( $this->rules as $function => $param ){
-				$this->isValid = $this->isValid && $this->$function($param);
+				$this->isValid = $this->isValid and $this->$function($param);
 			}
 		}
 		
 		return $this->isValid;
+	}
+	
+	
+	
+	//---|output----------
+	
+	public function printMessageQueue(){
+		$msg = '';
+		
+		foreach( $this->messageQueue as $m ){
+			$msg .= '<div class="'.self::MESSAGECLASS.'">'.$m.'</div>';
+		}
+		
+		return $msg;
 	}
 }
 

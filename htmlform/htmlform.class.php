@@ -24,12 +24,16 @@ require_once('htmlform.formvalidator.class.php');
 
 class HtmlForm{
 	// ***
+	const CELLCLASS = 'htmlform_cell';
 	const HEADLINECLASS = 'htmlform_formheadline';
 	const EXPLANATIONCLASS = 'htmlform_formexplanation';
+	const MESSAGESCLASS = 'htmlform_messages_div';
+	const MESSAGESTITLECLASS = 'htmlform_messages_title_div';
 	
 	private $xhtml;
 	
 	private $isValid;
+	private $language;
 	
 	private $id;
 	private $action;
@@ -40,11 +44,14 @@ class HtmlForm{
 	private $cells;
 	private $headline;
 	private $explanation;
+	private $messagesTitle;
+	private $showMessages;
 	
 	private function __construct($id){
 		$this->xhtml = false;
 		
-		$this->isValid = true;;
+		$this->isValid = true;
+		$this->language = 'english';
 		
 		$this->id = "$id";
 		$this->action = '';
@@ -55,6 +62,8 @@ class HtmlForm{
 		$this->cells = array(0 => array());
 		$this->headline = '';
 		$this->explanation = '';
+		$this->messagesTitle = '';
+		$this->showMessages = false;
 		
 		return $this;
 	}
@@ -73,6 +82,12 @@ class HtmlForm{
 	
 	public function setXhtml(){
 		$this->xhtml = true;
+	}
+	
+	
+	
+	public function setLanguage($language){
+		$this->language = $language;
 	}
 	
 	
@@ -157,6 +172,14 @@ class HtmlForm{
 	
 	
 	
+	public function showMessages($title = '', $show = true){
+		$this->messagesTitle = "$title";
+		$this->showMessages = $show;
+		return $this;
+	}
+	
+	
+	
 	//---|getter----------
 	
 	public function getId(){
@@ -167,6 +190,12 @@ class HtmlForm{
 	
 	public function getTabIndex(){
 		return $this->tabIndex;
+	}
+	
+	
+	
+	public function getLanguage(){
+		return $this->language;
 	}
 	
 	
@@ -241,6 +270,32 @@ class HtmlForm{
 	
 	
 	
+	public function printMessages(){
+		$msg = '';
+		
+		foreach( $this->cells as $cell ){
+			foreach( $cell as $element ){
+				$msg .= $element->printMessages();
+			}
+		}
+		
+		if( $this->showMessages && $msg != '' ){
+			$title = ($this->messagesTitle != '') ? '<div class="'.self::MESSAGESTITLECLASS.'">'.$this->messagesTitle.'</div>' : '';
+			
+			return 
+				 '<div class="'.self::MESSAGESCLASS.'">'
+					.$title
+					.$msg
+					.$this->printFloatBreak()
+				.'</div>'
+			;
+		} else {
+			return '';
+		}
+	}
+	
+	
+	
 	public function doRender(){
 		$cells = '';
 		for( $i = 0; $i < count($this->cells); $i++ ){
@@ -250,7 +305,7 @@ class HtmlForm{
 			}
 			
 			$cells .=
-				 '<div class="htmlform_cell htmlform_cell_'.($i + 1).'">'
+				 '<div class="'.self::CELLCLASS.' '.self::CELLCLASS.'_'.($i + 1).'">'
 					.$subs
 				.'</div>'
 			;
@@ -259,6 +314,7 @@ class HtmlForm{
 		return
 			 $this->printHeadline()
 			.$this->printExplanation()
+			.$this->printMessages()
 			.'<form id="'.$this->id.'" action="'.$this->action.'" method="'.$this->method.'" accept-charset="'.$this->charset.'"'.(($this->cssClasses != '') ? ' class="'.$this->cssClasses.'"' : '').'>'
 				.$cells
 				.$this->printFloatBreak()

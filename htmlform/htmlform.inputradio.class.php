@@ -149,7 +149,7 @@ class InputRadio extends FormElement{
 		return
 			 '<div class="'.parent::WRAPCLASS.'">'
 				.$label
-				.'<div class="htmlform_widget_div">'
+				.'<div class="'.parent::WIDGETCLASS.'">'
 					.$options
 				.'</div>'
 				.$this->masterForm->printFloatBreak()

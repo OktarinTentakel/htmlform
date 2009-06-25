@@ -73,7 +73,7 @@ class InputText extends FormElement{
 		return
 			 '<div class="'.parent::WRAPCLASS.'">'
 				.$label
-				.'<div class="htmlform_widget_div">'
+				.'<div class="'.parent::WIDGETCLASS.'">'
 					.'<input'.$this->printId().$this->printName().' type="text" value="'.$this->text.'"'.$this->printCssClasses().$this->printTabindex().$this->masterForm->printSlash().'>'
 				.'</div>'
 				.$this->masterForm->printFloatBreak()

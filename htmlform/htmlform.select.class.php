@@ -193,7 +193,7 @@ class Select extends FormElement{
 		return
 			 '<div class="'.parent::WRAPCLASS.'">'
 				.$label
-				.'<div class="htmlform_widget_div">'
+				.'<div class="'.parent::WIDGETCLASS.'">'
 					.'<select'.$this->printId().$this->printNameArray().' size="'.$this->size.'"'.$this->printMultiple().$this->printCssClasses().$this->printTabindex().'>'
 						.$options
 					.'</select>'

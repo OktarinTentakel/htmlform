@@ -2,7 +2,10 @@
 
 require_once('htmlform/htmlform.class.php');
 
-$testForm = HtmlForm::get('form1')->addCssClasses('testform');
+$testForm = HtmlForm::get('form1')
+	->addCssClasses('testform')
+	->showMessages('Fehler:')
+;
 
 $testFieldSet = FieldSet::get()->setLegend('testfieldset');
 
@@ -13,9 +16,14 @@ $testFieldSet->addElement(
 
 $testFieldSet->addElement(
 	InputText::get('testinputtext')
-		->setLabel('testlabel')
-		->setText('testvalue')
+		->setLabel('email')
+		->setText('ich@du.de')
 		->setCssClasses('bordered')
+		->setValidator(
+			FormValidator::get()
+				->setEmail()
+		)
+		->setRefill()
 );
 
 $testFieldSet->addElement(
@@ -31,6 +39,7 @@ $testFieldSet->addElement(
 		->setMultiple()
 		->setSize(3)
 		->setLabel('testmultiselect')
+		->setRefill()
 );
 
 $testForm->addElement($testFieldSet);
@@ -54,32 +63,58 @@ $testForm->addCell();
 $testFieldSet2 = FieldSet::get()->setLegend('testfieldset2');
 $testFieldSet2->addElement(
 	InputText::get('testtextinput2')
-		->setLabel('testinputtext2')
-		->setText('test')
+		->setLabel('zwischen 3 und 10')
+		->setText('testotesto')
 		->setValidator(
 			FormValidator::get()
 				->setRequired()
 				->setMinLength(3)
+				->setMaxLength(10)
 		)
+		->setRefill()
 );
 $testFieldSet2->addElement(
-	InputRadio::get('radios1[]')
+	InputText::get('testtextinput3')
+		->setLabel('zwischen 4 und 6')
+		->setText('testo')
+		->setValidator(
+			FormValidator::get()
+				->setRangeLength(array(4,6))
+		)
+		->setRefill()
+);
+$testFieldSet2->addElement(
+	InputText::get('testtextinput4')
+		->setLabel('url')
+		->setText('http://www.100sonnen.de')
+		->setValidator(
+			FormValidator::get()
+				->setUrl()
+		)
+		->setRefill()
+);
+$testFieldSet2->addElement(
+	InputRadio::get('radios1')
 		->setLabel('radiotest1')
 		->setOptions(array('a' => 'radio1', 'b' => 'radio2', 'c' => 'radio3', 'd' => 'radio4'))
 		->setSelectedValue('d')
 		->setWidth(3)
+		->setRefill()
 );
 $testFieldSet2->addElement(
-	InputCheckbox::get('check1[]')
+	InputCheckbox::get('check1')
 		->setLabel('checktest1')
 		->setOptions(array('a' => 'check1', 'b' => 'check2', 'c' => 'check3', 'd' => 'check4'))
 		->setSelected(array('check2', 'check3'))
+		->setRefill()
 );
 
 $testForm->addElement($testFieldSet2, 2);
 
 $testForm->setHeadline('Dies ist eine Test&uuml;berschrift');
 $testForm->setExplanation('Dies ist eine Testerkl&auml;rung eines HTML-Formulars.');
+
+$testForm->validate();
 
 ?>
 
@@ -103,6 +138,9 @@ $testForm->setExplanation('Dies ist eine Testerkl&auml;rung eines HTML-Formulars
 			
 			.htmlform_formheadline{ font-size:64px; color:red; }
 			.htmlform_formexplanation{ font-size:16px; color:red; font-style:oblique; }
+			.htmlform_messages_div{ border:1px solid black; padding:10px; margin: 10px 0px 5px 0px; background:#fafafa; }
+			.htmlform_messages_title_div, .htmlform_message_div{ color:red; margin-bottom:5px; background:#fafafa; }
+			.htmlform_messages_title_div{ font-weight:bold; }
 			
 			.bordered{ border:1px solid black }
 		</style>
@@ -110,8 +148,5 @@ $testForm->setExplanation('Dies ist eine Testerkl&auml;rung eines HTML-Formulars
 	
 	<body>
 		<?=$testForm->doRender()?>
-		<p>
-			<?=$testForm->validate() ? 'valid' : 'invalid'?>
-		</p>
 	</body>
 </html>

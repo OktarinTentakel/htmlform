@@ -46,20 +46,6 @@ class InputCheckbox extends FormElement{
 	
 	
 	
-	public function setRefill(Array $refiller = array()){
-		if( count($refiller) == 0 )	$refiller = $_POST;
-		
-		if( isset($refiller[$this->name]) && is_array($refiller[$this->name]) ){
-			$this->selectedValues = $refiller[$this->name];
-			$this->selected = array();
-			$this->selectedIndices = array();
-		}
-		
-		return $this;
-	}
-	
-	
-	
 	public function setSelected(Array $selected){
 		$this->selected = $selected;
 		return $this;
@@ -124,6 +110,20 @@ class InputCheckbox extends FormElement{
 	
 	
 	//---|functionality----------
+	
+	public function refill(Array $refiller = array()){
+		if( count($refiller) == 0 )	$refiller = $_POST;
+		
+		if( isset($refiller[$this->name]) && is_array($refiller[$this->name]) ){
+			$this->selectedValues = $refiller[$this->name];
+			$this->selected = array();
+			$this->selectedIndices = array();
+		}
+		
+		return $this;
+	}
+	
+	
 	
 	public function validate(){
 		parent::validate();

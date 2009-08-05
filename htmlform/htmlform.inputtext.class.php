@@ -38,7 +38,9 @@ class InputText extends FormElement{
 	
 	
 	
-	public function setRefill(Array $refiller = array()){
+	//---|functionality----------
+	
+	public function refill(Array $refiller = array()){
 		if( count($refiller) == 0 )	$refiller = $_POST;
 		
 		if( isset($refiller[$this->name]) && !is_array($refiller[$this->name]) ){
@@ -49,8 +51,6 @@ class InputText extends FormElement{
 	}
 	
 	
-	
-	//---|functionality----------
 	
 	public function validate(){
 		parent::validate();

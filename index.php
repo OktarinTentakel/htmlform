@@ -5,6 +5,7 @@ require_once('htmlform/htmlform.class.php');
 $testForm = HtmlForm::get('form1')
 	->addCssClasses('testform')
 	->showMessages('Fehler:')
+	->setLanguage('german')
 ;
 
 $testFieldSet = FieldSet::get()->setLegend('testfieldset');
@@ -23,13 +24,19 @@ $testFieldSet->addElement(
 			FormValidator::get()
 				->setEmail()
 		)
-		->setRefill()
+		->refill()
 );
 
 $testFieldSet->addElement(
 	Select::get('testselectsingle')
-		->setOptions(array('a' => 'test1', 'b' => 'test2', 'c' => 'test3'))
-		->setSelectedSingle('test2')->setLabel('testsingleselect')
+		->setOptions(array('a' => 'test1', 'b' => 'test2', '3' => '333'))
+		->setSelectedSingle('333')
+		->setLabel('Einzelselect nur Zahlen')
+		->setValidator(
+			FormValidator::get()
+				->setDigits()
+		)
+		->refill()
 );
 
 $testFieldSet->addElement(
@@ -39,7 +46,7 @@ $testFieldSet->addElement(
 		->setMultiple()
 		->setSize(3)
 		->setLabel('testmultiselect')
-		->setRefill()
+		->refill()
 );
 
 $testForm->addElement($testFieldSet);
@@ -63,7 +70,7 @@ $testForm->addCell();
 $testFieldSet2 = FieldSet::get()->setLegend('testfieldset2');
 $testFieldSet2->addElement(
 	InputText::get('testtextinput2')
-		->setLabel('zwischen 3 und 10')
+		->setLabel('L&auml;nge zwischen 3 und 10')
 		->setText('testotesto')
 		->setValidator(
 			FormValidator::get()
@@ -71,27 +78,49 @@ $testFieldSet2->addElement(
 				->setMinLength(3)
 				->setMaxLength(10)
 		)
-		->setRefill()
+		->refill()
 );
 $testFieldSet2->addElement(
 	InputText::get('testtextinput3')
-		->setLabel('zwischen 4 und 6')
+		->setLabel('L&auml;nge zwischen 4 und 6')
 		->setText('testo')
 		->setValidator(
 			FormValidator::get()
 				->setRangeLength(array(4,6))
 		)
-		->setRefill()
+		->refill()
+);
+$testFieldSet2->addElement(
+	InputText::get('testtextinput5')
+		->setLabel('zwischen 3 und 10')
+		->setText('4')
+		->setValidator(
+			FormValidator::get()
+				->setMin(3)
+				->setMax(10)
+		)
+		->refill()
+);
+$testFieldSet2->addElement(
+	InputText::get('testtextinput6')
+		->setLabel('zwischen 4 und 6')
+		->setText('5')
+		->setValidator(
+			FormValidator::get()
+				->setRange(array(4, 6))
+		)
+		->refill()
 );
 $testFieldSet2->addElement(
 	InputText::get('testtextinput4')
 		->setLabel('url')
+		->setCssClasses('bordered')
 		->setText('http://www.100sonnen.de')
 		->setValidator(
 			FormValidator::get()
 				->setUrl()
 		)
-		->setRefill()
+		->refill()
 );
 $testFieldSet2->addElement(
 	InputRadio::get('radios1')
@@ -99,14 +128,14 @@ $testFieldSet2->addElement(
 		->setOptions(array('a' => 'radio1', 'b' => 'radio2', 'c' => 'radio3', 'd' => 'radio4'))
 		->setSelectedValue('d')
 		->setWidth(3)
-		->setRefill()
+		->refill()
 );
 $testFieldSet2->addElement(
 	InputCheckbox::get('check1')
 		->setLabel('checktest1')
 		->setOptions(array('a' => 'check1', 'b' => 'check2', 'c' => 'check3', 'd' => 'check4'))
 		->setSelected(array('check2', 'check3'))
-		->setRefill()
+		->refill()
 );
 
 $testForm->addElement($testFieldSet2, 2);
@@ -131,7 +160,7 @@ $testForm->validate();
 			.testform fieldset input[type=radio], .testform fieldset input[type=checkbox]{ width:auto; }
 			.testform .htmlform_cell{ float:left; width:750px; }
 			.testform fieldset .htmlform_row_div{ clear:left; margin-bottom:10px; }
-			.testform fieldset .htmlform_label_div{ float:left; width:150px; }
+			.testform fieldset .htmlform_label_div{ float:left; width:200px; }
 			.testform fieldset .htmlform_widget_div{ float:left; width:300px; }
 			.testform .htmlform_alignblock{ text-align:right; }
 			.testform .htmlform_custom{ margin-bottom:10px; }

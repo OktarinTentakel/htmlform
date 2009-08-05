@@ -90,6 +90,27 @@ class FormValidator{
 	
 	
 	
+	public function setMin($min){
+		$this->rules['min'] = (integer)$min;
+		return $this;
+	}
+	
+	
+	
+	public function setMax($max){
+		$this->rules['max'] = (integer)$max;
+		return $this;
+	}
+	
+	
+	
+	public function setRange(Array $range){
+		$this->rules['range'] = $range;
+		return $this;
+	}
+	
+	
+	
 	public function setEmail(){
 		$this->rules['email'] = true;
 		return $this;
@@ -99,6 +120,13 @@ class FormValidator{
 	
 	public function setUrl(){
 		$this->rules['url'] = true;
+		return $this;
+	}
+	
+	
+	
+	public function setDigits(){
+		$this->rules['digits'] = true;
 		return $this;
 	}
 	
@@ -124,7 +152,7 @@ class FormValidator{
 	
 	
 	private function minlength($minlength, $internal = false){
-		$res = false;
+		$res = true;
 		
 		if( count($this->values) == 1 ){
 			$res = (strlen($this->values[0]) >= $minlength);
@@ -142,7 +170,7 @@ class FormValidator{
 	
 	
 	private function maxlength($maxlength, $internal = false){
-		$res = false;
+		$res = true;
 		
 		if( count($this->values) == 1 ){
 			$res = (strlen($this->values[0]) <= $maxlength);
@@ -170,6 +198,60 @@ class FormValidator{
 					array('%name%', '%min%', '%max%'),
 					array($this->fieldName, (integer)$range[0], (integer)$range[1]),
 					MSG_RANGELENGTH
+				);
+			}
+		}		
+		
+		return $res;
+	}
+	
+	
+	
+	private function min($min, $internal = false){
+		$res = true;
+		
+		foreach( $this->values as $val ){
+			$res = (is_numeric($val) && ($val >= $min));
+			if( !$res ) break;
+		}
+		
+		if( !$res && ($this->fieldName != '') && !$internal ){
+			$this->messageQueue[] = str_replace(array('%name%', '%count%'), array($this->fieldName, $min), MSG_MIN);
+		}
+		
+		return $res;
+	}
+	
+	
+	
+	private function max($max, $internal = false){
+		$res = true;
+		
+		foreach( $this->values as $val ){
+			$res = (is_numeric($val) && ($val <= $max));
+			if( !$res ) break;
+		}
+		
+		if( !$res && ($this->fieldName != '') && !$internal ){
+			$this->messageQueue[] = str_replace(array('%name%', '%count%'), array($this->fieldName, $max), MSG_MAX);
+		}
+		
+		return $res;
+	}
+	
+	
+	
+	private function range($range){
+		$res = true;
+		
+		if( count($range) >= 2 ){
+			$res = $this->min((integer)$range[0], true) && $this->max((integer)$range[1], true);
+			
+			if( !$res && ($this->fieldName != '') ){
+				$this->messageQueue[] = str_replace(
+					array('%name%', '%min%', '%max%'),
+					array($this->fieldName, (integer)$range[0], (integer)$range[1]),
+					MSG_RANGE
 				);
 			}
 		}		
@@ -214,6 +296,8 @@ class FormValidator{
 					}
 				}
 			}
+			
+			if( $res ) break;
 		}
 		
 		if( !$res && ($this->fieldName != '') ){
@@ -227,34 +311,52 @@ class FormValidator{
 	
 	private function url($X){
 		$res = true;
-	
+		
+		// Zugriffsart
+		$urlregex = "^(https?|ftp)\:\/\/";
+
+		// optionale Angaben zu User und Passwort
+		$urlregex .= "([a-z0-9+!*(),;?&=\$_.-]+(\:[a-z0-9+!*(),;?&=\$_.-]+)?@)?";
+
+		// Hostname oder IP-Angabe
+		//$urlregex .= "[a-z0-9+\$_-]+(\.[a-z0-9+\$_-]+)*";  // http://x = allowed (ex. http://localhost, http://routerlogin)
+		//$urlregex .= "[a-z0-9+\$_-]+(\.[a-z0-9+\$_-]+)+";  // http://x.x = minimum
+		$urlregex .= "([a-z0-9+\$_-]+\.)*[a-z0-9+\$_-]{2,3}";  // http://x.xx(x) = minimum
+		//use only one of the above
+
+		// optionale Portangabe
+		$urlregex .= "(\:[0-9]{2,5})?";
+		// optionale Pfadangabe
+		$urlregex .= "(\/([a-z0-9+\$_-]\.?)+)*\/?";
+		// optionaler GET-Query
+		$urlregex .= "(\?[a-z+&\$_.-][a-z0-9;:@/&%=+\$_.-]*)?";
+		// optionaler Seitenanker
+		$urlregex .= "(#[a-z_.-][a-z0-9+\$_.-]*)?\$";
+		
 		foreach( $this->values as $url ){
-			// Zugriffsart
-			$urlregex = "^(https?|ftp)\:\/\/";
-
-			// optionale Angaben zu User und Passwort
-			$urlregex .= "([a-z0-9+!*(),;?&=\$_.-]+(\:[a-z0-9+!*(),;?&=\$_.-]+)?@)?";
-
-			// Hostname oder IP-Angabe
-			//$urlregex .= "[a-z0-9+\$_-]+(\.[a-z0-9+\$_-]+)*";  // http://x = allowed (ex. http://localhost, http://routerlogin)
-			//$urlregex .= "[a-z0-9+\$_-]+(\.[a-z0-9+\$_-]+)+";  // http://x.x = minimum
-			$urlregex .= "([a-z0-9+\$_-]+\.)*[a-z0-9+\$_-]{2,3}";  // http://x.xx(x) = minimum
-			//use only one of the above
-
-			// optionale Portangabe
-			$urlregex .= "(\:[0-9]{2,5})?";
-			// optionale Pfadangabe
-			$urlregex .= "(\/([a-z0-9+\$_-]\.?)+)*\/?";
-			// optionaler GET-Query
-			$urlregex .= "(\?[a-z+&\$_.-][a-z0-9;:@/&%=+\$_.-]*)?";
-			// optionaler Seitenanker
-			$urlregex .= "(#[a-z_.-][a-z0-9+\$_.-]*)?\$";
-
-			if(!eregi($urlregex, $url)) $res = false;;
+			if( !eregi($urlregex, $url) ) $res = false;
+			if( $res ) break;
 		}
 		
 		if( !$res && ($this->fieldName != '') ){
 			$this->messageQueue[] = str_replace('%name%', $this->fieldName, MSG_URL);
+		}
+		
+		return $res;
+	}
+	
+	
+	
+	private function digits(){
+		$res = true;
+		
+		foreach( $this->values as $val ){
+			if( !is_numeric($val) ) $res = false;
+			if( $res ) break;
+		}
+		
+		if( !$res && ($this->fieldName != '') ){
+			$this->messageQueue[] = str_replace('%name%', $this->fieldName, MSG_DIGITS);
 		}
 		
 		return $res;

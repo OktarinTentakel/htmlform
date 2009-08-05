@@ -120,6 +120,14 @@ abstract class FormElement{
 	
 	
 	
+	//---|questions----------
+	
+	public function isValid(){
+		return $this->isValid;
+	}
+	
+	
+	
 	//---|functionality----------
 	
 	// >>>

@@ -82,12 +82,14 @@ class HtmlForm{
 	
 	public function setXhtml(){
 		$this->xhtml = true;
+		return $this;
 	}
 	
 	
 	
 	public function setLanguage($language){
 		$this->language = $language;
+		return $this;
 	}
 	
 	
@@ -196,6 +198,14 @@ class HtmlForm{
 	
 	public function getLanguage(){
 		return $this->language;
+	}
+	
+	
+	
+	//---|questions----------
+	
+	public function isValid(){
+		return $this->isValid;
 	}
 	
 	

@@ -14,7 +14,6 @@ $testFieldSet->addElement(
 	CustomHtml::get()
 		->setHtml('<img src="img/test.jpg" alt="">')
 );
-
 $testFieldSet->addElement(
 	InputText::get('testinputtext')
 		->setLabel('email')
@@ -23,10 +22,10 @@ $testFieldSet->addElement(
 		->setValidator(
 			FormValidator::get()
 				->setEmail()
+				->setCustomCase(true)
 		)
 		->refill()
 );
-
 $testFieldSet->addElement(
 	Select::get('testselectsingle')
 		->setOptions(array('a' => 'test1', 'b' => 'test2', '3' => '333'))
@@ -38,7 +37,6 @@ $testFieldSet->addElement(
 		)
 		->refill()
 );
-
 $testFieldSet->addElement(
 	Select::get('testselectmultiple')
 		->setOptions(array('a' => 'test1', 'b' => 'test2', 'c' => 'test3'))
@@ -46,6 +44,56 @@ $testFieldSet->addElement(
 		->setMultiple()
 		->setSize(3)
 		->setLabel('testmultiselect')
+		->refill()
+);
+$testFieldSet->addElement(
+	InputText::get('datetest')
+		->setLabel('Standarddatum')
+		->setText('1/12/2002')
+		->setValidator(
+			FormValidator::get()
+				->setDate()
+		)
+		->refill()
+);
+$testFieldSet->addElement(
+	InputText::get('dateisotest')
+		->setLabel('ISO-Datum')
+		->setText('2002-12-1')
+		->setValidator(
+			FormValidator::get()
+				->setDateISO()
+		)
+		->refill()
+);
+$testFieldSet->addElement(
+	InputText::get('datedetest')
+		->setLabel('deutsches Datum')
+		->setText('1.12.2002')
+		->setValidator(
+			FormValidator::get()
+				->setDateDE()
+		)
+		->refill()
+);
+$testFieldSet->addElement(
+	InputText::get('numbertest')
+		->setLabel('englische Dezimalzahl')
+		->setText('100.1')
+		->setValidator(
+			FormValidator::get()
+				->setNumber()
+		)
+		->refill()
+);
+$testFieldSet->addElement(
+	InputText::get('numberdetest')
+		->setLabel('deutsche Dezimalzahl')
+		->setText('100,1')
+		->setValidator(
+			FormValidator::get()
+				->setNumberDE()
+		)
 		->refill()
 );
 

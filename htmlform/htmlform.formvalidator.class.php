@@ -62,6 +62,13 @@ class FormValidator{
 	
 	
 	
+	public function setCustomCase($customResult){
+		$this->rules['customcase'] = $customResult;
+		return $this;
+	}
+	
+	
+	
 	public function setRequired(){
 		$this->rules['required'] = true;
 		return $this;
@@ -125,6 +132,41 @@ class FormValidator{
 	
 	
 	
+	public function setDate(){
+		$this->rules['date'] = true;
+		return $this;
+	}
+	
+	
+	
+	public function setDateISO(){
+		$this->rules['dateISO'] = true;
+		return $this;
+	}
+	
+	
+	
+	public function setDateDE(){
+		$this->rules['dateDE'] = true;
+		return $this;
+	}
+	
+	
+	
+	public function setNumber(){
+		$this->rules['number'] = true;
+		return $this;
+	}
+	
+	
+	
+	public function setNumberDE(){
+		$this->rules['numberDE'] = true;
+		return $this;
+	}
+	
+	
+	
 	public function setDigits(){
 		$this->rules['digits'] = true;
 		return $this;
@@ -132,14 +174,39 @@ class FormValidator{
 	
 	
 	
+	public function setCreditcard(){
+		$this->rules['creditcard'] = true;
+		return $this;
+	}
+	
+	
+	
 	//---|rules----------
 	
+	private function customcase($customRes){
+		$res = true;
+		
+		if( is_string($customRes) ){
+			if( $customRes != '' ){
+				$this->messageQueue[] = $customRes;
+				$res = false;
+			}
+		} elseif( ($this->fieldName != '') && (($customRes == false) || ($customRes == null)) ){
+			$this->messageQueue[] = str_replace('%name%', $this->fieldName, MSG_CUSTOMCASE);
+			$res = false;
+		}
+		
+		return $res;
+	}
+	
+	
+	
 	private function required($X){
-		$res = false;
+		$res = true;
 		
 		foreach( $this->values as $val ){
-			$res = ($val != '');
-			if( $res ) break;
+			if( $val == '' ) $res = false;
+			if( !$res ) break;
 		}
 		
 		if( !$res && ($this->fieldName != '') ){
@@ -297,7 +364,7 @@ class FormValidator{
 				}
 			}
 			
-			if( $res ) break;
+			if( !$res ) break;
 		}
 		
 		if( !$res && ($this->fieldName != '') ){
@@ -347,16 +414,150 @@ class FormValidator{
 	
 	
 	
+	private function date(){
+		$res = true;
+		
+		$dateregex = "^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}$";
+		
+		foreach( $this->values as $date ){
+			if( !eregi($dateregex, $date) || ( strtotime($date) === false ) ) $res = false;
+			if( !$res ) break;
+		}
+		
+		if( !$res && ($this->fieldName != '') ){
+			$this->messageQueue[] = str_replace('%name%', $this->fieldName, MSG_DATE);
+		}
+		
+		return $res;
+	}
+	
+	
+	
+	private function dateISO(){
+		$res = true;
+		
+		$dateregex = "^[0-9]{4}\-[0-9]{1,2}\-[0-9]{1,2}$";
+		
+		foreach( $this->values as $date ){
+			$dateArray = explode('-', $date);
+			
+			if(
+				!eregi($dateregex, $date) 
+				|| (strtotime($dateArray[1].'/'.$dateArray[2].'/'.$dateArray[0]) === false)
+			){
+				$res = false;
+			}
+			
+			if( !$res ) break;
+		}
+		
+		if( !$res && ($this->fieldName != '') ){
+			$this->messageQueue[] = str_replace('%name%', $this->fieldName, MSG_DATE_ISO);
+		}
+		
+		return $res;
+	}
+	
+	
+	
+	private function dateDE(){
+		$res = true;
+		
+		$dateregex = "^[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{1,4}$";
+		
+		foreach( $this->values as $date ){
+			$dateArray = explode('.', $date);
+			
+			if( 
+				!eregi($dateregex, $date)
+				|| (strtotime($dateArray[1].'/'.$dateArray[0].'/'.$dateArray[2]) === false)
+			){
+				$res = false;
+			}
+			
+			if( !$res ) break;
+		}
+		
+		if( !$res && ($this->fieldName != '') ){
+			$this->messageQueue[] = str_replace('%name%', $this->fieldName, MSG_DATE_DE);
+		}
+		
+		return $res;
+	}
+	
+	
+	
+	private function number(){
+		$res = true;
+		
+		foreach( $this->values as $number ){
+			if( ($number != (string)(integer)$number) && ($number != (string)(float)$number) ) $res = false;
+			if( !$res ) break;
+		}
+		
+		if( !$res && ($this->fieldName != '') ){
+			$this->messageQueue[] = str_replace('%name%', $this->fieldName, MSG_NUMBER);
+		}
+		
+		return $res;
+	}
+	
+	
+	
+	private function numberDE(){
+		$res = true;
+		
+		foreach( $this->values as $number ){
+			$numberUS = str_replace(',', '.', $number);
+			
+			if( 
+				(strpos($number, '.') !== false)
+				|| ( ($number != (string)(integer)$number) && ($numberUS != (string)(float)$numberUS) ) 
+			){
+				$res = false;
+			}
+			
+			if( !$res ) break;
+		}
+		
+		if( !$res && ($this->fieldName != '') ){
+			$this->messageQueue[] = str_replace('%name%', $this->fieldName, MSG_NUMBER_DE);
+		}
+		
+		return $res;
+	}
+	
+	
+	
 	private function digits(){
 		$res = true;
 		
 		foreach( $this->values as $val ){
 			if( !is_numeric($val) ) $res = false;
-			if( $res ) break;
+			if( !$res ) break;
 		}
 		
 		if( !$res && ($this->fieldName != '') ){
 			$this->messageQueue[] = str_replace('%name%', $this->fieldName, MSG_DIGITS);
+		}
+		
+		return $res;
+	}
+	
+	
+	
+	private function creditcard(){
+		$res = true;
+		
+		$creditcardregex = "^[0-9]{3,4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$";
+		
+		foreach( $this->values as $creditcardnumber ){
+			if( !eregi($creditcardregex, $creditcardnumber) ) $res = false;
+			if( !$res ) break;
+		}
+		
+		if( !$res && ($this->fieldName != '') ){
+			$this->messageQueue[] = str_replace('%name%', $this->fieldName, MSG_CREDITCARD);
 		}
 		
 		return $res;

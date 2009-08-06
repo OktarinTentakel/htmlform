@@ -43,24 +43,31 @@ Makes the element require a valid email
 url( )	Returns: Boolean
 Makes the element require a valid url
 
++++
 date( )	Returns: Boolean
 Makes the element require a date.
 
++++
 dateISO( )	Returns: Boolean
 Makes the element require a ISO date.
 
++++
 dateDE( )	Returns: Boolean
 Makes the element require a german date.
 
++++
 number( )	Returns: Boolean
 Makes the element require a decimal number.
 
++++
 numberDE( )	Returns: Boolean
 Makes the element require a decimal number with german format.
 
++++
 digits( )	Returns: Boolean
 Makes the element require digits only.
 
++++
 creditcard( )	Returns: Boolean
 Makes the element require a creditcard number.
 

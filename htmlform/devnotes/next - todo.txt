@@ -1,4 +1,1 @@
 - index und optionzahlen prüfen
-- multiselect und checkboxen können nicht geleert werden( gucken ob sent der form da, wenn ja dann unterscheiden,
-ansonsten standardverhalten )
-- inputhidden bauen und standardmäßig eines für sent in die form setzen

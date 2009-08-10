@@ -178,18 +178,19 @@ $testFieldSet2->addElement(
 		->setWidth(3)
 		->refill()
 );
-$testFieldSet2->addElement(
-	InputCheckbox::get('check1')
+
+$checkbox1 = InputCheckbox::get('check1')
 		->setLabel('checktest1')
 		->setOptions(array('a' => 'check1', 'b' => 'check2', 'c' => 'check3', 'd' => 'check4'))
-		->setSelected(array('check2', 'check3'))
-		->refill()
-);
+		->setSelected(array('check2', 'check3'));
+$testFieldSet2->addElement($checkbox1);
 
 $testForm->addElement($testFieldSet2, 2);
 
 $testForm->setHeadline('Dies ist eine Test&uuml;berschrift');
 $testForm->setExplanation('Dies ist eine Testerkl&auml;rung eines HTML-Formulars.');
+
+$checkbox1->refill();
 
 $testForm->validate();
 

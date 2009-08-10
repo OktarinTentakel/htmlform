@@ -97,6 +97,10 @@ class InputRadio extends FormElement{
 			$this->selectedValue = ''.$refiller[$this->name];
 			$this->selected = null;
 			$this->selectedIndex = null;
+		} elseif( $this->masterForm != null && isset($refiller[$this->masterForm->getId().'_sent']) ) {
+			$this->selectedValues = null;
+			$this->selected = null;
+			$this->selectedIndices = null;
 		}
 		
 		return $this;

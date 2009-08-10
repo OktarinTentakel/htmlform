@@ -9,6 +9,7 @@ require_once('htmlform.inputcheckbox.class.php');
 require_once('htmlform.inputradio.class.php');
 require_once('htmlform.inputsubmit.class.php');
 require_once('htmlform.inputtext.class.php');
+require_once('htmlform.inputhidden.class.php');
 
 require_once('htmlform.select.class.php');
 
@@ -64,6 +65,11 @@ class HtmlForm{
 		$this->explanation = '';
 		$this->messagesTitle = '';
 		$this->showMessages = false;
+		
+		$this->addElement(
+			InputHidden::get($this->id.'_sent')
+				->setValue('true')
+		);
 		
 		return $this;
 	}

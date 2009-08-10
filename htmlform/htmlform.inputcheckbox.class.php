@@ -118,6 +118,10 @@ class InputCheckbox extends FormElement{
 			$this->selectedValues = $refiller[$this->name];
 			$this->selected = array();
 			$this->selectedIndices = array();
+		} elseif( ($this->masterForm != null) && isset($refiller[$this->masterForm->getId().'_sent']) ) {
+			$this->selectedValues = array();
+			$this->selected = array();
+			$this->selectedIndices = array();
 		}
 		
 		return $this;

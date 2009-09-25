@@ -38,6 +38,14 @@ class InputText extends FormElement{
 	
 	
 	
+	//---|getter----------
+	
+	public function getValue(){
+		return $this->text;
+	}
+	
+	
+	
 	//---|functionality----------
 	
 	public function refill(Array $refiller = array()){

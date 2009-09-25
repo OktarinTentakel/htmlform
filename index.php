@@ -6,6 +6,7 @@ $testForm = HtmlForm::get('form1')
 	->addCssClasses('testform')
 	->showMessages('Fehler:')
 	->setLanguage('german')
+	->useExternalFormDeclaration()
 ;
 
 $testFieldSet = FieldSet::get()->setLegend('testfieldset');
@@ -194,6 +195,8 @@ $checkbox1->refill();
 
 $testForm->validate();
 
+$valSet = $testForm->getValueSet();
+
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -225,6 +228,8 @@ $testForm->validate();
 	</head>
 	
 	<body>
-		<?=$testForm->doRender()?>
+		<form id="form1" action="" method="post" accept-charset="UTF-8" class="testform">
+			<?=$testForm->doRender()?>
+		</form>
 	</body>
 </html>

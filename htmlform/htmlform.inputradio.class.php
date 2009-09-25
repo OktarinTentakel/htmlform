@@ -74,6 +74,14 @@ class InputRadio extends FormElement{
 	
 	
 	
+	//---|getter----------
+	
+	public function getValue(){
+		return is_null($this->selectedValue) ? '' : $this->selectedValue;
+	}
+	
+	
+	
 	//---|questions----------
 	
 	private function isSelectedOption($index, $value, $text){

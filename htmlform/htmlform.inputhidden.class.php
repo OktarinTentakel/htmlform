@@ -37,6 +37,14 @@ class InputHidden extends FormElement{
 	
 	
 	
+	//---|getter----------
+	
+	public function getValue(){
+		return $this->value;
+	}
+	
+	
+	
 	//---|functionality----------
 	
 	public function refill(Array $refiller = array()){

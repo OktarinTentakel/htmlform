@@ -18,6 +18,7 @@ require_once('htmlform.customhtml.class.php');
 require_once('htmlform.fieldset.class.php');
 
 require_once('htmlform.formvalidator.class.php');
+require_once('htmlform.formvalueset.class.php');
 
 
 
@@ -35,6 +36,7 @@ class HtmlForm{
 	
 	private $isValid;
 	private $language;
+	private $usesExternalFormDeclaration;
 	
 	private $id;
 	private $action;
@@ -53,6 +55,7 @@ class HtmlForm{
 		
 		$this->isValid = true;
 		$this->language = 'english';
+		$this->usesExternalFormDeclaration = false;
 		
 		$this->id = "$id";
 		$this->action = '';
@@ -208,10 +211,29 @@ class HtmlForm{
 	
 	
 	
+	public function getValueSet(FormValueSet $addedSet = null){
+		$valueSet = is_null($addedSet) ? new FormValueSet() : $addedSet;
+	
+		foreach( $this->cells as $cell ){
+			foreach( $cell as $element ){
+				$valueSet = $element->getValueSet($valueSet);
+			}
+		}
+		return $valueSet;
+	}
+	
+	
+	
 	//---|questions----------
 	
 	public function isValid(){
 		return $this->isValid;
+	}
+	
+	
+	
+	public function usesExternalFormDeclaration(){
+		return $this->usesExternalFormDeclaration;
 	}
 	
 	
@@ -221,7 +243,7 @@ class HtmlForm{
 	public function validate(){
 		foreach( $this->cells as $cell ){
 			foreach( $cell as $element ){
-				$this->isValid = $this->isValid && $element->validate();
+				$this->isValid = $this->isValid and $element->validate();
 			}
 		}
 		return $this->isValid;
@@ -256,6 +278,14 @@ class HtmlForm{
 	
 	public function addCell(){
 		$this->cells[] = array();
+		return $this;
+	}
+	
+	
+	
+	public function useExternalFormDeclaration(){
+		$this->usesExternalFormDeclaration = true;
+		return $this;
 	}
 	
 	
@@ -286,7 +316,7 @@ class HtmlForm{
 	
 	
 	
-	public function printMessages(){
+	private function printMessages(){
 		$msg = '';
 		
 		foreach( $this->cells as $cell ){
@@ -312,6 +342,19 @@ class HtmlForm{
 	
 	
 	
+	private function printFormDeclaration($formContent){
+		return 	$this->usesExternalFormDeclaration
+							? $formContent
+							: (
+									'<form id="'.$this->id.'" action="'.$this->action.'" method="'.$this->method.'" accept-charset="'.$this->charset.'"'.(($this->cssClasses != '') ? ' class="'.$this->cssClasses.'"' : '').'>'
+									 .$formContent
+								.'</form>'
+								)
+		;
+	}
+	
+	
+	
 	public function doRender(){
 		$cells = '';
 		for( $i = 0; $i < count($this->cells); $i++ ){
@@ -331,10 +374,10 @@ class HtmlForm{
 			 $this->printHeadline()
 			.$this->printExplanation()
 			.$this->printMessages()
-			.'<form id="'.$this->id.'" action="'.$this->action.'" method="'.$this->method.'" accept-charset="'.$this->charset.'"'.(($this->cssClasses != '') ? ' class="'.$this->cssClasses.'"' : '').'>'
-				.$cells
-				.$this->printFloatBreak()
-			.'</form>'
+			.$this->printFormDeclaration(
+				$cells
+			 .$this->printFloatBreak()
+			)
 		;
 	}
 }

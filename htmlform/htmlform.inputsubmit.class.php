@@ -37,6 +37,14 @@ class InputSubmit extends FormElement{
 	
 	
 	
+	//---|getter----------
+	
+	public function getValue(){
+		return isset($_REQUEST[''.$this->name]);
+	}
+	
+	
+	
 	//---|output----------
 	
 	public function doRender(){

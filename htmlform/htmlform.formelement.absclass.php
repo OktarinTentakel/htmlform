@@ -120,6 +120,30 @@ abstract class FormElement{
 	
 	
 	
+	public function getValueSet(FormValueSet $addedSet = null){
+		$valueSet = is_null($addedSet) ? new FormValueSet() : $addedSet;
+		
+		if( !is_null($this->getValue()) ){
+			$valueSet->setValue($this->name, $this->getValue());
+		}
+		
+		if( is_array($this->subElements) ){
+			foreach( $this->subElements as $element ){
+				$valueSet = $element->getValueSet($valueSet);
+			}
+		}
+		
+		return $valueSet;
+	}
+	
+	
+	
+	// ###
+	abstract public function getValue();
+	// ###
+	
+	
+	
 	//---|questions----------
 	
 	public function isValid(){

@@ -38,6 +38,14 @@ class FieldSet extends FormElement{
 	
 	
 	
+	//---|getter----------
+	
+	public function getValue(){
+		return null;
+	}
+	
+	
+	
 	//---|output----------
 	
 	public function doRender(){

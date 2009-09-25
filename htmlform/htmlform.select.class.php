@@ -111,6 +111,23 @@ class Select extends FormElement{
 	
 	
 	
+	//---|getter----------
+	
+	public function getValue(){
+		$values = array();
+		$index = 0;
+		foreach( $this->options as $value => $text ){
+			$index++;
+			if( $this->isSelectedOption($index, $value, $text) ){
+				$values[] = $value;
+			}
+		}
+		
+		return $values;
+	}
+	
+	
+	
 	//---|questions----------
 	
 	private function isSelectedOption($index, $value, $text){

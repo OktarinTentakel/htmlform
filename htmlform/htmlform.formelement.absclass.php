@@ -16,6 +16,7 @@ abstract class FormElement{
 	protected $cssClasses;
 	protected $label;
 	protected $subElements;
+	protected $disabled;
 	
 	protected function __construct($name, $id = ''){
 		$this->masterForm = null;
@@ -29,6 +30,7 @@ abstract class FormElement{
 		$this->cssClasses = '';
 		$this->label = '';
 		$this->subElements = null;
+		$this->disabled = false;
 	}
 	// ***
 	
@@ -77,6 +79,13 @@ abstract class FormElement{
 	
 	public function setLabel($label){
 		$this->label = "$label";
+		return $this;
+	}
+	
+	
+	
+	public function setDisabled(){
+		$this->disabled = true;
 		return $this;
 	}
 	
@@ -210,6 +219,12 @@ abstract class FormElement{
 		$res = ' tabindex="'.$this->masterForm->getTabIndex().'"';
 		$this->masterForm->incTabIndex();
 		return $res;
+	}
+	
+	
+	
+	protected function printDisabled(){
+		return $this->disabled ? ' disabled="disabled"' : '';
 	}
 	
 	

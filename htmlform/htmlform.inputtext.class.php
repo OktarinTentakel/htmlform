@@ -13,10 +13,14 @@ class InputText extends FormElement{
 	// ***
 	private $text;
 	
+	private $readonly;
+	
 	protected function __construct($name, $id = ''){
 		parent::__construct($name, $id);
 		
 		$this->text = '';
+		
+		$this->readonly = false;
 	}
 	
 	
@@ -33,6 +37,13 @@ class InputText extends FormElement{
 	
 	public function setText($text){
 		$this->text = "$text";
+		return $this;
+	}
+	
+	
+	
+	public function setReadonly(){
+		$this->readonly = true;
 		return $this;
 	}
 	
@@ -75,6 +86,12 @@ class InputText extends FormElement{
 	
 	//---|output----------
 	
+	private function printReadonly(){
+		return $this->readonly ? ' readonly="readonly"' : '';
+	}
+	
+	
+	
 	public function doRender(){
 		$label = ($this->label != '') ? Label::get($this)->doRender() : '';
 	
@@ -82,7 +99,7 @@ class InputText extends FormElement{
 			 '<div class="'.parent::WRAPCLASS.'">'
 				.$label
 				.'<div class="'.parent::WIDGETCLASS.'">'
-					.'<input'.$this->printId().$this->printName().' type="text" value="'.$this->text.'"'.$this->printCssClasses().$this->printTabindex().$this->masterForm->printSlash().'>'
+					.'<input'.$this->printId().$this->printName().' type="text" value="'.$this->text.'"'.$this->printCssClasses().$this->printTabindex().$this->printReadonly().$this->printDisabled().$this->masterForm->printSlash().'>'
 				.'</div>'
 				.$this->masterForm->printFloatBreak()
 			.'</div>'

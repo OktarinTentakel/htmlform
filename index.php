@@ -7,6 +7,7 @@ $testForm = HtmlForm::get('form1')
 	->showMessages('Fehler:')
 	->setLanguage('german')
 	->useExternalFormDeclaration()
+	->setPackagePath('/////htmlform///')
 ;
 
 $testFieldSet = FieldSet::get()->setLegend('testfieldset');
@@ -110,6 +111,7 @@ $testAlignBlock->addElement(
 $testAlignBlock->addElement(
 	InputButton::get('cancel', 'cancel')
 		->setCaption('Abbrechen')
+		->setDisabled()
 );
 
 $testForm->addElement($testAlignBlock);
@@ -181,10 +183,34 @@ $testFieldSet2->addElement(
 );
 
 $checkbox1 = InputCheckbox::get('check1')
-		->setLabel('checktest1')
-		->setOptions(array('a' => 'check1', 'b' => 'check2', 'c' => 'check3', 'd' => 'check4'))
-		->setSelected(array('check2', 'check3'));
+	->setLabel('checktest1')
+	->setOptions(array('a' => 'check1', 'b' => 'check2', 'c' => 'check3', 'd' => 'check4'))
+	->setSelected(array('check2', 'check3'));
 $testFieldSet2->addElement($checkbox1);
+
+$testFieldSet2->addElement(
+	JsDateTime::get('cal1', 'cal1')
+		->setLabel('datetimetest1')
+		->setText('12.12.2008')
+		->setReadonly()
+		->setUpAsGermanDate()
+		->setAmPmTime()
+		->setArrowSelection()
+		->showTime()
+		->setJsConfigVars(
+			array(
+				'WeekChar' => 3,
+				'SundayColor' => '#ffffff',
+				'SaturdayColor' => '#ffffff',
+				'WeekDayColor' => '#eeeeee'
+			)
+		)
+		->setValidator(
+			FormValidator::get()
+				->setDateDE()
+		)
+		->refill()
+);
 
 $testForm->addElement($testFieldSet2, 2);
 
@@ -222,6 +248,7 @@ $valSet = $testForm->getValueSet();
 			.htmlform_messages_div{ border:1px solid black; padding:10px; margin: 10px 0px 5px 0px; background:#fafafa; }
 			.htmlform_messages_title_div, .htmlform_message_div{ color:red; margin-bottom:5px; background:#fafafa; }
 			.htmlform_messages_title_div{ font-weight:bold; }
+			.htmlform_jsdatetime_btn{ margin-left:5px; border:0px; }
 			
 			.bordered{ border:1px solid black }
 		</style>

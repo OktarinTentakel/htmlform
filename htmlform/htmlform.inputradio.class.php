@@ -152,7 +152,7 @@ class InputRadio extends FormElement{
 			$index++;
 			$radioId = $this->masterForm->getId().'_radio_'.$value;
 			$options .=
-				 '<input type="radio" id="'.$radioId.'"'.$this->printName().$this->printCssClasses().' value="'.$value.'"'.($this->isSelectedOption($index, $value, $text) ? ' checked="checked"' : '').$this->printTabIndex().$this->masterForm->printSlash().'>'
+				 '<input type="radio" id="'.$radioId.'"'.$this->printName().$this->printCssClasses().' value="'.$value.'"'.($this->isSelectedOption($index, $value, $text) ? ' checked="checked"' : '').$this->printTabIndex().$this->printDisabled().$this->masterForm->printSlash().'>'
 					.'&nbsp;'.Label::getInline($text, $radioId)->doRender()
 				.((($index % $this->width) == 0) ? '<br'.$this->masterForm->printSlash().'>' : '&nbsp;&nbsp;&nbsp;')
 			;

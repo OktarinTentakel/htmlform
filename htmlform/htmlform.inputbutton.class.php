@@ -49,7 +49,7 @@ class InputButton extends FormElement{
 	
 	public function doRender(){
 		return
-			'<input'.$this->printId().$this->printName().' type="button" value="'.$this->caption.'"'.$this->printCssClasses().$this->printTabindex().$this->masterForm->printSlash().'>'
+			'<input'.$this->printId().$this->printName().' type="button" value="'.$this->caption.'"'.$this->printCssClasses().$this->printTabindex().$this->printDisabled().$this->masterForm->printSlash().'>'
 		;
 	}
 }

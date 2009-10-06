@@ -184,7 +184,7 @@ class InputCheckbox extends FormElement{
 			$index++;
 			$checkId = $this->masterForm->getId().'_checkbox_'.$value;
 			$options .=
-				 '<input type="checkbox" id="'.$checkId.'"'.$this->printNameArray().$this->printCssClasses().' value="'.$value.'"'.($this->isSelectedOption($index, $value, $text) ? ' checked="checked"' : '').$this->printTabIndex().'/>'
+				 '<input type="checkbox" id="'.$checkId.'"'.$this->printNameArray().$this->printCssClasses().' value="'.$value.'"'.($this->isSelectedOption($index, $value, $text) ? ' checked="checked"' : '').$this->printTabIndex().$this->printDisabled().$this->masterForm->printSlash().'>'
 					.'&nbsp;'.Label::getInline($text, $checkId)->doRender()
 				.((($index % $this->width) == 0) ? '<br/>' : '&nbsp;&nbsp;&nbsp;')
 			;

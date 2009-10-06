@@ -20,6 +20,8 @@ require_once('htmlform.fieldset.class.php');
 require_once('htmlform.formvalidator.class.php');
 require_once('htmlform.formvalueset.class.php');
 
+require_once('htmlform.jsdatetime.class.php');
+
 
 
 //---|class----------
@@ -31,6 +33,8 @@ class HtmlForm{
 	const EXPLANATIONCLASS = 'htmlform_formexplanation';
 	const MESSAGESCLASS = 'htmlform_messages_div';
 	const MESSAGESTITLECLASS = 'htmlform_messages_title_div';
+	
+	private $packagePath;
 	
 	private $xhtml;
 	
@@ -51,6 +55,8 @@ class HtmlForm{
 	private $showMessages;
 	
 	private function __construct($id){
+		$this->packagePath = '';
+	
 		$this->xhtml = false;
 		
 		$this->isValid = true;
@@ -88,6 +94,14 @@ class HtmlForm{
 	
 	
 	//---|setter----------
+	
+	public function setPackagePath($packagePath){
+		// regEx entfernt alle vorangehenden und nachfolgenden slashes des Pfads
+		$this->packagePath = preg_replace('/^\/+([^\/]+.*[^\/]+)\/+$/', '$1', $packagePath);
+		return $this;
+	}
+	
+	
 	
 	public function setXhtml(){
 		$this->xhtml = true;
@@ -192,6 +206,12 @@ class HtmlForm{
 	
 	
 	//---|getter----------
+	
+	public function getPackagePath(){
+		return $this->packagePath;
+	}
+	
+	
 	
 	public function getId(){
 		return $this->id;

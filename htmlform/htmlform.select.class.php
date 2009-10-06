@@ -215,7 +215,7 @@ class Select extends FormElement{
 			 '<div class="'.parent::WRAPCLASS.'">'
 				.$label
 				.'<div class="'.parent::WIDGETCLASS.'">'
-					.'<select'.$this->printId().$this->printNameArray().' size="'.$this->size.'"'.$this->printMultiple().$this->printCssClasses().$this->printTabindex().'>'
+					.'<select'.$this->printId().$this->printNameArray().' size="'.$this->size.'"'.$this->printMultiple().$this->printCssClasses().$this->printTabindex().$this->printDisabled().'>'
 						.$options
 					.'</select>'
 				.'</div>'

@@ -3,20 +3,17 @@
 //---|includes----------
 
 require_once('htmlform.formelement.absclass.php');
+require_once('htmlform.inputtext.class.php');
 require_once('htmlform.label.class.php');
 
 
 
 //---|class----------
 
-class JsDateTime extends FormElement{
+class JsDateTime extends InputText{
 	// ***
 	const WRAPPERCLASS = 'htmlform_jsdatetime';
 	const BUTTONCLASS = 'htmlform_jsdatetime_btn';
-	
-	private $text;
-	
-	private $readonly;
 	
 	private $jsConfig;
 	private $printJs;
@@ -29,10 +26,6 @@ class JsDateTime extends FormElement{
 	
 	protected function __construct($name, $id){
 		parent::__construct($name, $id);
-		
-		$this->text = '';
-		
-		$this->readonly = false;
 		
 		$this->jsConfig = array();
 		$this->printJs = true;
@@ -55,20 +48,6 @@ class JsDateTime extends FormElement{
 	
 	
 	//---|setter----------
-	
-	public function setText($text){
-		$this->text = "$text";
-		return $this;
-	}
-	
-	
-	
-	public function setReadonly(){
-		$this->readonly = true;
-		return $this;
-	}
-	
-	
 	
 	public function setJsConfig(Array $jsConfig){
 		$this->jsConfig = $jsConfig;
@@ -136,41 +115,8 @@ class JsDateTime extends FormElement{
 	
 	
 	
-	//---|getter----------
-	
-	public function getValue(){
-		return $this->text;
-	}
-	
-	
-	
 	//---|functionality----------
-	
-	public function refill(Array $refiller = array()){
-		if( count($refiller) == 0 )	$refiller = $_POST;
-		
-		if( isset($refiller[$this->name]) && !is_array($refiller[$this->name]) ){
-			$this->text = ''.$refiller[$this->name];
-		}
-		
-		return $this;
-	}
-	
-	
-	
-	public function validate(){
-		parent::validate();
-		
-		if( !is_null($this->validator) ){
-			$this->validator->setValue($this->text);
-			$this->isValid = $this->validator->process();
-		}
-		
-		return $this->isValid;
-	}
-	
-	
-	
+
 	public function suppressJsInclude(){
 		$this->printJs = false;
 		return $this;
@@ -195,13 +141,7 @@ class JsDateTime extends FormElement{
 	
 	
 	//---|output----------
-	
-	private function printReadonly(){
-		return $this->readonly ? ' readonly="readonly"' : '';
-	}
-	
-	
-	
+
 	private function printJsConfig(){
 		// Variablenvorbereitung
 		$packagePath = ($this->masterForm->getPackagePath() == '') ? '' : $this->masterForm->getPackagePath().'/';
@@ -286,6 +226,7 @@ class JsDateTime extends FormElement{
 		$this->cssClasses = self::WRAPPERCLASS.' '.$this->cssClasses;
 	
 		$label = ($this->label != '') ? Label::get($this)->doRender() : '';
+		$wrapClasses = parent::WRAPCLASS.((!$this->isValid && !$this->masterForm->usesReducedErrorMarking()) ? ' '.parent::ERRORCLASS : '');
 		$packagePath = ($this->masterForm->getPackagePath() == '') ? '' : $this->masterForm->getPackagePath().'/';
 		$jsInclude = 
 			$this->printJs
@@ -295,10 +236,10 @@ class JsDateTime extends FormElement{
 	
 		return
 			 $jsInclude
-			.'<div class="'.parent::WRAPCLASS.'">'
+			.'<div class="'.$wrapClasses.'">'
 				.$label
 				.'<div class="'.parent::WIDGETCLASS.'">'
-					.'<input'.$this->printId().$this->printName().' type="text" value="'.$this->text.'"'.$this->printCssClasses().$this->printTabindex().$this->printReadonly().$this->printDisabled().$this->masterForm->printSlash().'>'
+					.'<input'.$this->printId().$this->printName().' type="text" value="'.$this->text.'"'.$this->printSize().$this->printMaxLength().$this->printCssClasses().$this->printTabindex().$this->printReadonly().$this->printDisabled().$this->masterForm->printSlash().'>'
 					.'<a href="javascript:NewCssCal(\''.$this->id.'\', \''.$this->dateFormat.'\', \''.$this->dateSelectionType.'\', \''.$this->displayTime.'\', \''.$this->timeMode.'\', \''.(!$this->showSeconds).'\');">'
 						.'<img class="'.self::BUTTONCLASS.'" src="'.$packagePath.'img/cal.gif">'
 					.'</a>'

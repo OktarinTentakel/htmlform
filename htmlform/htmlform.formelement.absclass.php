@@ -4,6 +4,7 @@ abstract class FormElement{
 	// ***
 	const WRAPCLASS = 'htmlform_row_div';
 	const WIDGETCLASS = 'htmlform_widget_div';
+	const ERRORCLASS = 'htmlform_error';
 	
 	protected $masterForm;
 	protected $masterElement;
@@ -169,7 +170,8 @@ abstract class FormElement{
 		
 		if( is_array($this->subElements) ){
 			foreach( $this->subElements as $element ){
-				$this->isValid = $this->isValid and $element->validate();
+				$elEval = $element->validate();
+				$this->isValid = $this->isValid && $elEval;
 			}
 		}
 		
@@ -210,6 +212,10 @@ abstract class FormElement{
 	
 	
 	protected function printCssClasses(){
+		if( !$this->isValid && $this->masterForm->usesReducedErrorMarking() ){
+			$this->cssClasses .= ' '.self::ERRORCLASS;
+		}
+		
 		return (($this->cssClasses != '') ? ' class="'.$this->cssClasses.'"' : '');
 	}
 	

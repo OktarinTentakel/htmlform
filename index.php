@@ -8,6 +8,8 @@ $testForm = HtmlForm::get('form1')
 	->setLanguage('german')
 	->useExternalFormDeclaration()
 	->setPackagePath('/////htmlform///')
+	->setEnctype('multipart/form-data')
+	->useReducedErrorMarking()
 ;
 
 $testFieldSet = FieldSet::get()->setLegend('testfieldset');
@@ -21,6 +23,8 @@ $testFieldSet->addElement(
 		->setLabel('email')
 		->setText('ich@du.de')
 		->setCssClasses('bordered')
+		->setSize(25)
+		->setMaxLength(10)
 		->setValidator(
 			FormValidator::get()
 				->setEmail()
@@ -97,6 +101,19 @@ $testFieldSet->addElement(
 				->setNumberDE()
 		)
 		->refill()
+);
+$testFieldSet->addElement(
+	InputPassword::get('pass1')
+		->setLabel('passwordtest1')
+		->setText('test')
+		->setMaxLength(8)
+		->refill()
+);
+$testFieldSet->addElement(
+	InputFile::get('file1')
+		->setLabel('filetest1')
+		->setText('test')
+		->setAccept('text/*')
 );
 
 $testForm->addElement($testFieldSet);
@@ -211,6 +228,21 @@ $testFieldSet2->addElement(
 		)
 		->refill()
 );
+$testFieldSet2->addElement(
+	TextArea::get('textarea1')
+		->setLabel('Flie&szlig;text (nur Buchstaben, Leer- und Satzzeichen)')
+		->setText('Hallo Welt!')
+		->setSize(20, 10)
+		->setValidator(
+			FormValidator::get()
+				->setCustomCase(
+					preg_match('/^[a-zA-Z\!\.\,\? ]+$/', isset($_REQUEST['textarea1']) ? $_REQUEST['textarea1'] : 'Hallo Welt!')
+						? ''
+						: 'Keinen Murks in den Flie&szlig;text ey!'
+				)
+		)
+		->refill()
+);
 
 $testForm->addElement($testFieldSet2, 2);
 
@@ -249,6 +281,7 @@ $valSet = $testForm->getValueSet();
 			.htmlform_messages_title_div, .htmlform_message_div{ color:red; margin-bottom:5px; background:#fafafa; }
 			.htmlform_messages_title_div{ font-weight:bold; }
 			.htmlform_jsdatetime_btn{ margin-left:5px; border:0px; }
+			.htmlform_error{ background:#ff0000; }
 			
 			.bordered{ border:1px solid black }
 		</style>

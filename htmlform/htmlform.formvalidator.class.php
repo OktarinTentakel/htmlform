@@ -572,7 +572,7 @@ class FormValidator{
 		
 		if( count($this->values) > 0 ){
 			foreach( $this->rules as $function => $param ){
-				$this->isValid = $this->isValid and $this->$function($param);
+				$this->isValid = $this->isValid && $this->$function($param);
 			}
 		}
 		

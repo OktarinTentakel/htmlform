@@ -9,12 +9,12 @@ require_once('htmlform.label.class.php');
 
 //---|class----------
 
-class InputText extends FormElement{
+class TextArea extends FormElement{
 	// ***
 	protected $text;
 	
-	protected $size;
-	protected $maxLength;
+	protected $cols;
+	protected $rows;
 	
 	protected $readonly;
 	
@@ -23,8 +23,8 @@ class InputText extends FormElement{
 		
 		$this->text = '';
 		
-		$this->size = 0;
-		$this->maxLength = 0;
+		$this->cols = 0;
+		$this->rows = 0;
 		
 		$this->readonly = false;
 	}
@@ -32,7 +32,7 @@ class InputText extends FormElement{
 	
 	
 	public static function get($name, $id = ''){
-		$res = new InputText($name, $id);
+		$res = new TextArea($name, $id);
 		return $res;
 	}
 	// ***
@@ -48,19 +48,27 @@ class InputText extends FormElement{
 	
 	
 	
-	public function setSize($size){
-		if( is_numeric($size) && ($size > 0) ){
-			$this->size = $size;
+	public function setCols($cols){
+		if( is_numeric($cols) && ($cols > 0) ){
+			$this->cols = $cols;
 		}
 		return $this;
 	}
 	
 	
 	
-	public function setMaxLength($maxLength){
-		if( is_numeric($maxLength) && ($maxLength > 0) ){
-			$this->maxLength = $maxLength;
+	public function setRows($rows){
+		if( is_numeric($rows) && ($rows > 0) ){
+			$this->rows = $rows;
 		}
+		return $this;
+	}
+	
+	
+	
+	public function setSize($cols, $rows){
+		$this->setCols($cols);
+		$this->setRows($rows);
 		return $this;
 	}
 	
@@ -110,14 +118,14 @@ class InputText extends FormElement{
 	
 	//---|output----------
 	
-	protected function printSize(){
-		return ($this->size > 0) ? ' size="'.$this->size.'"' : '';
+	protected function printCols(){
+		return ($this->cols > 0) ? ' cols="'.$this->cols.'"' : '';
 	}
 	
 	
 	
-	protected function printMaxLength(){
-		return ($this->maxLength > 0) ? ' maxlength="'.$this->maxLength.'"' : '';
+	protected function printRows(){
+		return ($this->rows > 0) ? ' rows="'.$this->rows.'"' : '';
 	}
 	
 	
@@ -136,7 +144,9 @@ class InputText extends FormElement{
 			 '<div class="'.$wrapClasses.'">'
 				.$label
 				.'<div class="'.parent::WIDGETCLASS.'">'
-					.'<input'.$this->printId().$this->printName().' type="text" value="'.$this->text.'"'.$this->printSize().$this->printMaxLength().$this->printCssClasses().$this->printTabindex().$this->printReadonly().$this->printDisabled().$this->masterForm->printSlash().'>'
+					.'<textarea'.$this->printId().$this->printName().$this->printCols().$this->printRows().$this->printCssClasses().$this->printTabindex().$this->printReadonly().$this->printDisabled().'>'
+						.$this->text
+					.'</textarea>'
 				.'</div>'
 				.$this->masterForm->printFloatBreak()
 			.'</div>'

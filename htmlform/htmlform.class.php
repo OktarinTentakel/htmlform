@@ -10,8 +10,11 @@ require_once('htmlform.inputradio.class.php');
 require_once('htmlform.inputsubmit.class.php');
 require_once('htmlform.inputtext.class.php');
 require_once('htmlform.inputhidden.class.php');
+require_once('htmlform.inputpassword.class.php');
+require_once('htmlform.inputfile.class.php');
 
 require_once('htmlform.select.class.php');
+require_once('htmlform.textarea.class.php');
 
 require_once('htmlform.alignblock.class.php');
 require_once('htmlform.customhtml.class.php');
@@ -46,6 +49,7 @@ class HtmlForm{
 	private $action;
 	private $method;
 	private $charset;
+	private $enctype;
 	private $cssClasses;
 	private $tabIndex;
 	private $cells;
@@ -53,6 +57,7 @@ class HtmlForm{
 	private $explanation;
 	private $messagesTitle;
 	private $showMessages;
+	private $errorsMarkOnlyWidget;
 	
 	private function __construct($id){
 		$this->packagePath = '';
@@ -67,6 +72,7 @@ class HtmlForm{
 		$this->action = '';
 		$this->method = 'post';
 		$this->charset = 'UTF-8';
+		$this->enctype = '';
 		$this->cssClasses = '';
 		$this->tabIndex = 1;
 		$this->cells = array(0 => array());
@@ -74,6 +80,7 @@ class HtmlForm{
 		$this->explanation = '';
 		$this->messagesTitle = '';
 		$this->showMessages = false;
+		$this->errorsMarkOnlyWidget = false;
 		
 		$this->addElement(
 			InputHidden::get($this->id.'_sent')
@@ -112,6 +119,13 @@ class HtmlForm{
 	
 	public function setLanguage($language){
 		$this->language = $language;
+		return $this;
+	}
+	
+	
+	
+	public function useExternalFormDeclaration(){
+		$this->usesExternalFormDeclaration = true;
 		return $this;
 	}
 	
@@ -159,6 +173,15 @@ class HtmlForm{
 	
 	
 	
+	public function setEnctype($enctype){
+		if( preg_match('/^(application|audio|image|multipart|text|video)\/(\*|[a-zA-Z\-]+)$/i', $enctype) ){
+			$this->enctype = $enctype;
+		}
+		return $this;
+	}
+	
+	
+	
 	public function setCssClasses($cssClasses){
 		$this->cssClasses = "$cssClasses";
 		return $this;
@@ -200,6 +223,13 @@ class HtmlForm{
 	public function showMessages($title = '', $show = true){
 		$this->messagesTitle = "$title";
 		$this->showMessages = $show;
+		return $this;
+	}
+	
+	
+	
+	public function useReducedErrorMarking(){
+		$this->errorsMarkOnlyWidgets = true;
 		return $this;
 	}
 	
@@ -258,14 +288,22 @@ class HtmlForm{
 	
 	
 	
+	public function usesReducedErrorMarking(){
+		return $this->errorsMarkOnlyWidgets;
+	}
+	
+	
+	
 	//---|functionality----------
 	
 	public function validate(){
 		foreach( $this->cells as $cell ){
 			foreach( $cell as $element ){
-				$this->isValid = $this->isValid and $element->validate();
+				$elEval = $element->validate();
+				$this->isValid = $this->isValid && $elEval;
 			}
 		}
+
 		return $this->isValid;
 	}
 	
@@ -303,14 +341,19 @@ class HtmlForm{
 	
 	
 	
-	public function useExternalFormDeclaration(){
-		$this->usesExternalFormDeclaration = true;
-		return $this;
+	//---|output----------
+	
+	private function printCssClasses(){
+		return ($this->cssClasses != '') ? ' class="'.$this->cssClasses.'"' : '';
 	}
 	
 	
 	
-	//---|output----------
+	private function printEnctype(){
+		return ($this->enctype != '') ? ' enctype="'.$this->enctype.'"' : '';
+	}
+	
+	
 	
 	public function printSlash(){
 		return ($this->xhtml ? '/' : '');
@@ -366,7 +409,7 @@ class HtmlForm{
 		return 	$this->usesExternalFormDeclaration
 							? $formContent
 							: (
-									'<form id="'.$this->id.'" action="'.$this->action.'" method="'.$this->method.'" accept-charset="'.$this->charset.'"'.(($this->cssClasses != '') ? ' class="'.$this->cssClasses.'"' : '').'>'
+								 '<form id="'.$this->id.'" action="'.$this->action.'" method="'.$this->method.'" accept-charset="'.$this->charset.'"'.$this->printEnctype().$this->printCssClasses().'>'
 									 .$formContent
 								.'</form>'
 								)

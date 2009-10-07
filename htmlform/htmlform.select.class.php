@@ -199,6 +199,7 @@ class Select extends FormElement{
 	
 	public function doRender(){
 		$label = ($this->label != '') ? Label::get($this)->doRender() : '';
+		$wrapClasses = parent::WRAPCLASS.((!$this->isValid && !$this->masterForm->usesReducedErrorMarking()) ? ' '.parent::ERRORCLASS : '');
 		
 		$index = 0;
 		$options = '';
@@ -212,7 +213,7 @@ class Select extends FormElement{
 		}
 	
 		return
-			 '<div class="'.parent::WRAPCLASS.'">'
+			 '<div class="'.$wrapClasses.'">'
 				.$label
 				.'<div class="'.parent::WIDGETCLASS.'">'
 					.'<select'.$this->printId().$this->printNameArray().' size="'.$this->size.'"'.$this->printMultiple().$this->printCssClasses().$this->printTabindex().$this->printDisabled().'>'

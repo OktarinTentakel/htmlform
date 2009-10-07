@@ -1,4 +1,1 @@
-- textarea bauen (inkl. cols und rows)
-- password bauen
-- size und maxlength für texteingaben einbauen
-- file-upload-feld bauen
+- Auswahl und Verarbeitung von Checkboxes und Radiobuttons anhand der Indizes prüfen

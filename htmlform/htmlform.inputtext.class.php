@@ -136,7 +136,20 @@ class InputText extends FormElement{
 			 '<div class="'.$wrapClasses.'">'
 				.$label
 				.'<div class="'.parent::WIDGETCLASS.'">'
-					.'<input'.$this->printId().$this->printName().' type="text" value="'.$this->text.'"'.$this->printSize().$this->printMaxLength().$this->printCssClasses().$this->printTabindex().$this->printReadonly().$this->printDisabled().$this->masterForm->printSlash().'>'
+					.'<input'
+						.$this->printId()
+						.$this->printName()
+						.' type="text"'
+						.' value="'.$this->text.'"'
+						.$this->printSize()
+						.$this->printMaxLength()
+						.$this->printCssClasses()
+						.$this->printJsEventHandler()
+						.$this->printTabindex()
+						.$this->printReadonly()
+						.$this->printDisabled()
+						.$this->masterForm->printSlash()
+					.'>'
 				.'</div>'
 				.$this->masterForm->printFloatBreak()
 			.'</div>'

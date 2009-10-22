@@ -1,5 +1,13 @@
 <?php
 
+//---|includes----------
+
+require_once('htmlform.formelement.absclass.php');
+
+
+
+//--|class----------
+
 class Label extends FormElement{
 	// ***
 	const WRAPCLASS = 'htmlform_label_div';

@@ -16,6 +16,7 @@ abstract class FormElement{
 	protected $name;
 	protected $cssClasses;
 	protected $label;
+	protected $jsEventHandler;
 	protected $subElements;
 	protected $disabled;
 	
@@ -30,6 +31,7 @@ abstract class FormElement{
 		$this->name = "$name";
 		$this->cssClasses = '';
 		$this->label = '';
+		$this->jsEventHandler = '';
 		$this->subElements = null;
 		$this->disabled = false;
 	}
@@ -80,6 +82,13 @@ abstract class FormElement{
 	
 	public function setLabel($label){
 		$this->label = "$label";
+		return $this;
+	}
+	
+	
+	
+	public function setJsEventHandler($handler, $reaction){
+		$this->jsEventHandler = $handler.'="'.$reaction.'"';
 		return $this;
 	}
 	
@@ -213,10 +222,16 @@ abstract class FormElement{
 	
 	protected function printCssClasses(){
 		if( !$this->isValid && $this->masterForm->usesReducedErrorMarking() ){
-			$this->cssClasses .= ' '.self::ERRORCLASS;
+			$this->cssClasses .= ($this->cssClasses == '') ? self::ERRORCLASS : ' '.self::ERRORCLASS;
 		}
 		
 		return (($this->cssClasses != '') ? ' class="'.$this->cssClasses.'"' : '');
+	}
+	
+	
+	
+	protected function printJsEventHandler(){
+		return (($this->jsEventHandler != '') ? ' '.$this->jsEventHandler : '');
 	}
 	
 	

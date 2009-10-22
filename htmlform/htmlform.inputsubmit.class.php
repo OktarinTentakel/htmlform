@@ -49,7 +49,17 @@ class InputSubmit extends FormElement{
 	
 	public function doRender(){
 		return
-			'<input'.$this->printId().$this->printName().' type="submit" value="'.$this->caption.'"'.$this->printCssClasses().$this->printTabindex().$this->printDisabled().$this->masterForm->printSlash().'>'
+			 '<input'
+				 .$this->printId()
+				 .$this->printName()
+				 .' type="submit"'
+				 .' value="'.$this->caption.'"'
+				 .$this->printCssClasses()
+				 .$this->printJsEventHandler()
+				 .$this->printTabindex()
+				 .$this->printDisabled()
+				 .$this->masterForm->printSlash()
+			.'>'
 		;
 	}
 }

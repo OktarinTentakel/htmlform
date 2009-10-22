@@ -231,6 +231,7 @@ $testFieldSet2->addElement(
 $testFieldSet2->addElement(
 	TextArea::get('textarea1')
 		->setLabel('Flie&szlig;text (nur Buchstaben, Leer- und Satzzeichen)')
+		->setJsEventHandler('onclick', 'alert(\'onclick-test\');')
 		->setText('Hallo Welt!')
 		->setSize(20, 10)
 		->setValidator(

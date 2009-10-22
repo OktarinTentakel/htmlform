@@ -153,8 +153,18 @@ class InputRadio extends FormElement{
 			$index++;
 			$radioId = $this->masterForm->getId().'_radio_'.$value;
 			$options .=
-				 '<input type="radio" id="'.$radioId.'"'.$this->printName().$this->printCssClasses().' value="'.$value.'"'.($this->isSelectedOption($index, $value, $text) ? ' checked="checked"' : '').$this->printTabIndex().$this->printDisabled().$this->masterForm->printSlash().'>'
-					.'&nbsp;'.Label::getInline($text, $radioId)->doRender()
+				'<input'
+					.' type="radio"'
+					.' id="'.$radioId.'"'
+					.$this->printName()
+					.$this->printCssClasses()
+					.' value="'.$value.'"'
+					.($this->isSelectedOption($index, $value, $text) ? ' checked="checked"' : '')
+					.$this->printTabIndex()
+					.$this->printDisabled()
+					.$this->masterForm->printSlash()
+				.'>'
+				.'&nbsp;'.Label::getInline($text, $radioId)->doRender()
 				.((($index % $this->width) == 0) ? '<br'.$this->masterForm->printSlash().'>' : '&nbsp;&nbsp;&nbsp;')
 			;
 		}
@@ -162,7 +172,7 @@ class InputRadio extends FormElement{
 		return
 			 '<div class="'.$wrapClasses.'">'
 				.$label
-				.'<div class="'.parent::WIDGETCLASS.'">'
+				.'<div class="'.parent::WIDGETCLASS.'"'.$this->printJsEventHandler().'>'
 					.$options
 				.'</div>'
 				.$this->masterForm->printFloatBreak()

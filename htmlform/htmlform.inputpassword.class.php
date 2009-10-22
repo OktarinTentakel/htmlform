@@ -2,7 +2,6 @@
 
 //---|includes----------
 
-require_once('htmlform.formelement.absclass.php');
 require_once('htmlform.inputtext.class.php');
 require_once('htmlform.label.class.php');
 
@@ -36,7 +35,20 @@ class InputPassword extends InputText{
 			 '<div class="'.$wrapClasses.'">'
 				.$label
 				.'<div class="'.parent::WIDGETCLASS.'">'
-					.'<input'.$this->printId().$this->printName().' type="password" value="'.$this->text.'"'.$this->printSize().$this->printMaxLength().$this->printCssClasses().$this->printTabindex().$this->printReadonly().$this->printDisabled().$this->masterForm->printSlash().'>'
+					.'<input'
+						.$this->printId()
+						.$this->printName()
+						.' type="password"'
+						.' value="'.$this->text.'"'
+						.$this->printSize()
+						.$this->printMaxLength()
+						.$this->printCssClasses()
+						.$this->printJsEventHandler()
+						.$this->printTabindex()
+						.$this->printReadonly()
+						.$this->printDisabled()
+						.$this->masterForm->printSlash()
+					.'>'
 				.'</div>'
 				.$this->masterForm->printFloatBreak()
 			.'</div>'

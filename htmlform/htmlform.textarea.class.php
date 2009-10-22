@@ -144,7 +144,17 @@ class TextArea extends FormElement{
 			 '<div class="'.$wrapClasses.'">'
 				.$label
 				.'<div class="'.parent::WIDGETCLASS.'">'
-					.'<textarea'.$this->printId().$this->printName().$this->printCols().$this->printRows().$this->printCssClasses().$this->printTabindex().$this->printReadonly().$this->printDisabled().'>'
+					.'<textarea'
+						.$this->printId()
+						.$this->printName()
+						.$this->printCols()
+						.$this->printRows()
+						.$this->printCssClasses()
+						.$this->printJsEventHandler()
+						.$this->printTabindex()
+						.$this->printReadonly()
+						.$this->printDisabled()
+					.'>'
 						.$this->text
 					.'</textarea>'
 				.'</div>'

@@ -216,7 +216,16 @@ class Select extends FormElement{
 			 '<div class="'.$wrapClasses.'">'
 				.$label
 				.'<div class="'.parent::WIDGETCLASS.'">'
-					.'<select'.$this->printId().$this->printNameArray().' size="'.$this->size.'"'.$this->printMultiple().$this->printCssClasses().$this->printTabindex().$this->printDisabled().'>'
+					.'<select'
+						.$this->printId()
+						.$this->printNameArray()
+						.' size="'.$this->size.'"'
+						.$this->printMultiple()
+						.$this->printCssClasses()
+						.$this->printJsEventHandler()
+						.$this->printTabindex()
+						.$this->printDisabled()
+					.'>'
 						.$options
 					.'</select>'
 				.'</div>'

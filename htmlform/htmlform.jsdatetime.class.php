@@ -2,7 +2,6 @@
 
 //---|includes----------
 
-require_once('htmlform.formelement.absclass.php');
 require_once('htmlform.inputtext.class.php');
 require_once('htmlform.label.class.php');
 
@@ -238,11 +237,21 @@ class JsDateTime extends InputText{
 			 $jsInclude
 			.'<div class="'.$wrapClasses.'">'
 				.$label
-				.'<div class="'.parent::WIDGETCLASS.'">'
-					.'<input'.$this->printId().$this->printName().' type="text" value="'.$this->text.'"'.$this->printSize().$this->printMaxLength().$this->printCssClasses().$this->printTabindex().$this->printReadonly().$this->printDisabled().$this->masterForm->printSlash().'>'
-					.'<a href="javascript:NewCssCal(\''.$this->id.'\', \''.$this->dateFormat.'\', \''.$this->dateSelectionType.'\', \''.$this->displayTime.'\', \''.$this->timeMode.'\', \''.(!$this->showSeconds).'\');">'
-						.'<img class="'.self::BUTTONCLASS.'" src="'.$packagePath.'img/cal.gif">'
-					.'</a>'
+				.'<div class="'.parent::WIDGETCLASS.'"'.$this->printJsEventHandler().'>'
+					.'<input'
+						.$this->printId()
+						.$this->printName()
+						.' type="text"'
+						.' value="'.$this->text.'"'
+						.$this->printSize()
+						.$this->printMaxLength()
+						.$this->printCssClasses()
+						.$this->printTabindex()
+						.$this->printReadonly()
+						.$this->printDisabled()
+						.$this->masterForm->printSlash()
+					.'>'
+					.'<img class="'.self::BUTTONCLASS.'" src="'.$packagePath.'img/cal.gif" style="cursor:pointer" onclick="NewCssCal(\''.$this->id.'\', \''.$this->dateFormat.'\', \''.$this->dateSelectionType.'\', \''.$this->displayTime.'\', \''.$this->timeMode.'\', \''.(!$this->showSeconds).'\');">'
 				.'</div>'
 				.$this->masterForm->printFloatBreak()
 			.'</div>'

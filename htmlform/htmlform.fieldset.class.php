@@ -55,7 +55,12 @@ class FieldSet extends FormElement{
 		}
 		
 		return
-			 '<fieldset'.$this->printName().$this->printId().$this->printCssClasses().'>'
+			 '<fieldset'
+				 .$this->printName()
+				 .$this->printId()
+				 .$this->printCssClasses()
+				 .$this->printJsEventHandler()
+			 .'>'
 				.(($this->legend != '') ? '<legend>'.$this->legend.'</legend>' : '')
 				.$subs
 				.$this->masterForm->printFloatBreak()

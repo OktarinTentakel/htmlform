@@ -47,7 +47,12 @@ class AlignBlock extends FormElement{
 		}
 		
 		return
-			 '<div'.$this->printName().$this->printId().$this->printCssClasses().'>'
+			 '<div'
+				 .$this->printName()
+				 .$this->printId()
+				 .$this->printCssClasses()
+				 .$this->printJsEventHandler()
+			 .'>'
 				.$subs
 				.$this->masterForm->printFloatBreak()
 			.'</div>'

@@ -61,6 +61,7 @@ abstract class FormElement{
 	public function setValidator(FormValidator $validator){
 		if( $this->label != '' ) $validator->setFieldName($this->label);
 		$this->validator = $validator;
+		$this->isValid = false;
 		return $this;
 	}
 	

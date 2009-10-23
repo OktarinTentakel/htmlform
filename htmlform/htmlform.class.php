@@ -330,6 +330,12 @@ class HtmlForm{
 	
 	
 	
+	public function hasBeenSent(){
+		return (isset($_GET[$this->id.'_sent']) || isset($_POST[$this->id.'_sent']));
+	}
+	
+	
+	
 	//---|functionality----------
 	
 	public function validate(){

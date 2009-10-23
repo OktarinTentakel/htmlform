@@ -1,1 +1,2 @@
 - Auswahl und Verarbeitung von Checkboxes und Radiobuttons anhand der Indizes prüfen
+- Nur-Fließtext-Validator einbauen (+ RegEx-Case?)

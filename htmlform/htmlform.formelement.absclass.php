@@ -101,6 +101,13 @@ abstract class FormElement{
 	
 	
 	
+	public function setUsable($expression){
+		$this->disabled = !$expression;
+		return $this;
+	}
+	
+	
+	
 	//---|getter----------
 	
 	public function getMasterForm(){

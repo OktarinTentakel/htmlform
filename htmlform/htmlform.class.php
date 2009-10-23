@@ -261,6 +261,42 @@ class HtmlForm{
 	
 	
 	
+	public function getElementByName($name, $multiple = false){
+		$res = array();
+		
+		foreach( $this->cells as $cell ){
+			foreach( $cell as $element ){
+				if( $element->getName() == "$name" ){
+					$res[] = $element;
+				}
+				
+				$subElements = $element->getSubElements();
+				if( count($subElements) > 0 ) {
+					foreach( $subElements as $subElement ){
+						if( $subElement->getName() == "$name" ){
+							$res[] = $subElement;
+						}
+					}
+				}
+				
+				// dreckiger Abbruch beider For-Schleifen um Suchdauer zu kappen
+				if( !$multiple && (count($res) > 0) ){
+					break; break;
+				}
+			}
+		}
+		
+		if( count($res) == 0 ){
+			$res = null;
+		} else {
+			$res = $multiple ? $res : $res[0];
+		}
+		
+		return $res;
+	}
+	
+	
+	
 	public function getValueSet(FormValueSet $addedSet = null){
 		$valueSet = is_null($addedSet) ? new FormValueSet() : $addedSet;
 	

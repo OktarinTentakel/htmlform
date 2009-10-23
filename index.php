@@ -145,6 +145,7 @@ $testFieldSet2->addElement(
 				->setRequired()
 				->setMinLength(3)
 				->setMaxLength(10)
+				->setCharacterClass('a-zA-Z')
 		)
 		->refill()
 );

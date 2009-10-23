@@ -17,5 +17,6 @@ define('MSG_NUMBER', '"%name%" has to be a number (can be decimal).');
 define('MSG_NUMBER_DE', '"%name%" has to be a number according to German notation (can be decimal).');
 define('MSG_DIGITS', '"%name%" must only contain digits.');
 define('MSG_CREDITCARD', '"%name%" has to be a valid creditcard number of 15 to 16 Digits, where the digit groups are seperated by &quot;-&quot;.');
+define('MSG_CHARACTERCLASS', '"%name%" contains forbidden characters (not in [%class%]).');
 
 ?>

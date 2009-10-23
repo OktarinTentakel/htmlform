@@ -181,6 +181,13 @@ class FormValidator{
 	
 	
 	
+	public function setCharacterClass($regExCharacterClass){
+		$this->rules['characterclass'] = $regExCharacterClass;
+		return $this;
+	}
+	
+	
+	
 	//---|rules----------
 	
 	private function customcase($customRes){
@@ -414,7 +421,7 @@ class FormValidator{
 	
 	
 	
-	private function date(){
+	private function date($X){
 		$res = true;
 		
 		$dateregex = "^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}$";
@@ -433,7 +440,7 @@ class FormValidator{
 	
 	
 	
-	private function dateISO(){
+	private function dateISO($X){
 		$res = true;
 		
 		$dateregex = "^[0-9]{4}\-[0-9]{1,2}\-[0-9]{1,2}$";
@@ -460,7 +467,7 @@ class FormValidator{
 	
 	
 	
-	private function dateDE(){
+	private function dateDE($X){
 		$res = true;
 		
 		$dateregex = "^[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{1,4}$";
@@ -487,7 +494,7 @@ class FormValidator{
 	
 	
 	
-	private function number(){
+	private function number($X){
 		$res = true;
 		
 		foreach( $this->values as $number ){
@@ -504,7 +511,7 @@ class FormValidator{
 	
 	
 	
-	private function numberDE(){
+	private function numberDE($X){
 		$res = true;
 		
 		foreach( $this->values as $number ){
@@ -529,7 +536,7 @@ class FormValidator{
 	
 	
 	
-	private function digits(){
+	private function digits($X){
 		$res = true;
 		
 		foreach( $this->values as $val ){
@@ -546,18 +553,37 @@ class FormValidator{
 	
 	
 	
-	private function creditcard(){
+	private function creditcard($X){
 		$res = true;
 		
-		$creditcardregex = "^[0-9]{3,4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$";
+		$creditCardRegEx = "^[0-9]{3,4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$";
 		
-		foreach( $this->values as $creditcardnumber ){
-			if( !eregi($creditcardregex, $creditcardnumber) ) $res = false;
+		foreach( $this->values as $creditCardNumber ){
+			if( !eregi($creditCardRegEx, $creditCardNumber) ) $res = false;
 			if( !$res ) break;
 		}
 		
 		if( !$res && ($this->fieldName != '') ){
 			$this->messageQueue[] = str_replace('%name%', $this->fieldName, MSG_CREDITCARD);
+		}
+		
+		return $res;
+	}
+	
+	
+	
+	private function characterclass($class){
+		$res = true;
+		
+		$characterClassRegEx = "^[$class]*$";
+		
+		foreach( $this->values as $value ){
+			if( !eregi($characterClassRegEx, $value) ) $res = false;
+			if( !$res ) break;
+		}
+		
+		if( !$res && ($this->fieldName != '') ){
+			$this->messageQueue[] = str_replace(array('%name%', '%class%'), array($this->fieldName, $class), MSG_CHARACTERCLASS);
 		}
 		
 		return $res;
@@ -572,7 +598,8 @@ class FormValidator{
 		
 		if( count($this->values) > 0 ){
 			foreach( $this->rules as $function => $param ){
-				$this->isValid = $this->isValid && $this->$function($param);
+				$caseValidity = $this->$function($param);
+				$this->isValid = $this->isValid && $caseValidity;
 			}
 		}
 		

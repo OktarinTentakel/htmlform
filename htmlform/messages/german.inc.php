@@ -16,6 +16,7 @@ define('MSG_DATE_DE', '"%name%" muss ein g&uuml;ltiges Datum entsprechend der de
 define('MSG_NUMBER', '"%name%" muss eine Zahl englischer Notation sein (auch dezimal)');
 define('MSG_NUMBER_DE', '"%name%" muss eine Zahl sein (auch dezimal).');
 define('MSG_DIGITS', '"%name%" darf nur Zahlen beinhalten.');
-define('MSG_CREDITCARD', '"%name%" muss eine Kreditkartennummer von 15 bis 16 Zahlen Länge sein, deren Zahlengruppen durch &quot;-&quot; getrennt sind.');
+define('MSG_CREDITCARD', '"%name%" muss eine Kreditkartennummer von 15 bis 16 Zahlen L&auml;nge sein, deren Zahlengruppen durch &quot;-&quot; getrennt sind.');
+define('MSG_CHARACTERCLASS', '"%name%" enth&auml;lt verbotene Zeichen (nicht in [%class%]).');
 
 ?>

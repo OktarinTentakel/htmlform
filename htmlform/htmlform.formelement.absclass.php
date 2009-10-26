@@ -229,11 +229,30 @@ abstract class FormElement{
 	
 	
 	protected function printCssClasses(){
-		if( !$this->isValid && $this->masterForm->usesReducedErrorMarking() ){
+		if( 
+			!$this->isValid 
+			&& $this->masterForm->usesReducedErrorMarking() 
+			&& $this->masterForm->hasBeenSent()
+		){
 			$this->cssClasses .= ($this->cssClasses == '') ? self::ERRORCLASS : ' '.self::ERRORCLASS;
 		}
 		
 		return (($this->cssClasses != '') ? ' class="'.$this->cssClasses.'"' : '');
+	}
+	
+	
+	
+	protected function printWrapperClasses(){
+		return
+			self::WRAPCLASS
+			.(
+				(!$this->isValid 
+				 && !$this->masterForm->usesReducedErrorMarking()
+				 && $this->masterForm->hasBeenSent())
+					? ' '.self::ERRORCLASS 
+					: ''
+			)
+		;
 	}
 	
 	

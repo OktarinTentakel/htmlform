@@ -51,10 +51,9 @@ class InputFile extends InputText{
 	
 	public function doRender(){
 		$label = ($this->label != '') ? Label::get($this)->doRender() : '';
-		$wrapClasses = parent::WRAPCLASS.((!$this->isValid && !$this->masterForm->usesReducedErrorMarking()) ? ' '.parent::ERRORCLASS : '');
 	
 		return
-			 '<div class="'.$wrapClasses.'">'
+			 '<div class="'.$this->printWrapperClasses().'">'
 				.$label
 				.'<div class="'.parent::WIDGETCLASS.'">'
 					.'<input'

@@ -225,7 +225,6 @@ class JsDateTime extends InputText{
 		$this->cssClasses = self::WRAPPERCLASS.' '.$this->cssClasses;
 	
 		$label = ($this->label != '') ? Label::get($this)->doRender() : '';
-		$wrapClasses = parent::WRAPCLASS.((!$this->isValid && !$this->masterForm->usesReducedErrorMarking()) ? ' '.parent::ERRORCLASS : '');
 		$packagePath = ($this->masterForm->getPackagePath() == '') ? '' : $this->masterForm->getPackagePath().'/';
 		$jsInclude = 
 			$this->printJs
@@ -235,7 +234,7 @@ class JsDateTime extends InputText{
 	
 		return
 			 $jsInclude
-			.'<div class="'.$wrapClasses.'">'
+			.'<div class="'.$this->printWrapperClasses().'">'
 				.$label
 				.'<div class="'.parent::WIDGETCLASS.'"'.$this->printJsEventHandler().'>'
 					.'<input'

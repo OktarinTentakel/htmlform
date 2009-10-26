@@ -123,7 +123,7 @@ class Select extends FormElement{
 			}
 		}
 		
-		return count($values == 1) ? $values[0] : $values;
+		return $this->multiple ? $values : $values[0];
 	}
 	
 	

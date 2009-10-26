@@ -123,7 +123,7 @@ class Select extends FormElement{
 			}
 		}
 		
-		return $values;
+		return count($values == 1) ? $values[0] : $values;
 	}
 	
 	

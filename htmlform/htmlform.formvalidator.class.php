@@ -6,6 +6,7 @@ class FormValidator{
 	
 	private $messageLanguage;
 	private $messageQueue;
+	private $customErrorMessage;
 	private $fieldName;
 	
 	private $rules;
@@ -15,6 +16,7 @@ class FormValidator{
 	private function __construct(){
 		$this->messageLanguage = 'english';
 		$this->messageQueue = array();
+		$this->customErrorMessage = '';
 		$this->fieldName = '';
 		
 		$this->rules = array();
@@ -36,6 +38,13 @@ class FormValidator{
 	
 	public function setMessageLanguage($language){
 		$this->messageLanguage = $language;
+		return $this;
+	}
+	
+	
+	
+	public function setErrorMessage($message){
+		$this->customErrorMessage = "$message";
 		return $this;
 	}
 	
@@ -613,8 +622,12 @@ class FormValidator{
 	public function printMessageQueue(){
 		$msg = '';
 		
-		foreach( $this->messageQueue as $m ){
-			$msg .= '<div class="'.self::MESSAGECLASS.'">'.$m.'</div>';
+		if( $this->customErrorMessage == '' ){
+			foreach( $this->messageQueue as $m ){
+				$msg .= '<div class="'.self::MESSAGECLASS.'">'.$m.'</div>';
+			}
+		} else {
+			$msg .= '<div class="'.self::MESSAGECLASS.'">'.$this->customErrorMessage.'</div>';
 		}
 		
 		return $msg;

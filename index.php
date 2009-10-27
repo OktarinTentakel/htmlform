@@ -40,6 +40,7 @@ $testFieldSet->addElement(
 		->setValidator(
 			FormValidator::get()
 				->setDigits()
+				->setErrorMessage('Bitte einen Wert, der nur aus Zahlen besteht w&auml;hlen!')
 		)
 		->refill()
 );

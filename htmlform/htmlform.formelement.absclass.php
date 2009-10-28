@@ -283,16 +283,16 @@ abstract class FormElement{
 	
 	
 	
-	public function printMessages(){
+	public function printMessages($onlyCustomMessages = false){
 		$msg = '';
 		
 		if( !is_null($this->validator) ){
-			$msg .= $this->validator->printMessageQueue();
+			$msg .= $this->validator->printMessageQueue($onlyCustomMessages);
 		}
 		
 		if( is_array($this->subElements) ){
 			foreach( $this->subElements as $element ){
-				$msg .= $element->printMessages();
+				$msg .= $element->printMessages($onlyCustomMessages);
 			}
 		}
 		

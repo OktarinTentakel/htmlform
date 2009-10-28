@@ -57,6 +57,7 @@ class HtmlForm{
 	private $explanation;
 	private $messagesTitle;
 	private $showMessages;
+	private $onlyCustomMessages;
 	private $errorsMarkOnlyWidget;
 	
 	private function __construct($id){
@@ -80,6 +81,7 @@ class HtmlForm{
 		$this->explanation = '';
 		$this->messagesTitle = '';
 		$this->showMessages = false;
+		$this->onlyCustomMessages = false;
 		$this->errorsMarkOnlyWidget = false;
 		
 		$this->addElement(
@@ -223,6 +225,16 @@ class HtmlForm{
 	public function showMessages($title = '', $show = true){
 		$this->messagesTitle = "$title";
 		$this->showMessages = $show;
+		$this->onlyCustomMessages = false;
+		return $this;
+	}
+	
+	
+	
+	public function showCustomMessages($title = '', $show = true){
+		$this->messagesTitle = "$title";
+		$this->showMessages = $show;
+		$this->onlyCustomMessages = true;
 		return $this;
 	}
 	
@@ -424,14 +436,14 @@ class HtmlForm{
 	private function printMessages(){
 		$msg = '';
 		
-		if( $this->hasBeenSent() ){
+		if( $this->hasBeenSent() && $this->showMessages ){
 			foreach( $this->cells as $cell ){
 				foreach( $cell as $element ){
-					$msg .= $element->printMessages();
+					$msg .= $element->printMessages($this->onlyCustomMessages);
 				}
 			}
 			
-			if( $this->showMessages && $msg != '' ){
+			if( $msg != '' ){
 				$title = ($this->messagesTitle != '') ? '<div class="'.self::MESSAGESTITLECLASS.'">'.$this->messagesTitle.'</div>' : '';
 				
 				return 

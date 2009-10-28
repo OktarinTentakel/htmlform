@@ -4,7 +4,8 @@ require_once('htmlform/htmlform.class.php');
 
 $testForm = HtmlForm::get('form1')
 	->addCssClasses('testform')
-	->showMessages('Fehler:')
+	//->showMessages('Fehler:')
+	->showCustomMessages('Fehler:')
 	->setLanguage('german')
 	->useExternalFormDeclaration()
 	->setPackagePath('/////htmlform///')
@@ -55,6 +56,7 @@ $testFieldSet->addElement(
 		->setValidator(
 			FormValidator::get()
 				->setRequired()
+				->setAutoErrorMessagesAsCustom()
 		)
 );
 $testFieldSet->addElement(

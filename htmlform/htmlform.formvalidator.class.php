@@ -7,6 +7,7 @@ class FormValidator{
 	private $messageLanguage;
 	private $messageQueue;
 	private $customErrorMessage;
+	private $forceErrorMessageOutput;
 	private $fieldName;
 	
 	private $rules;
@@ -17,6 +18,7 @@ class FormValidator{
 		$this->messageLanguage = 'english';
 		$this->messageQueue = array();
 		$this->customErrorMessage = '';
+		$this->forceErrorMessageOutput = false;
 		$this->fieldName = '';
 		
 		$this->rules = array();
@@ -45,6 +47,14 @@ class FormValidator{
 	
 	public function setErrorMessage($message){
 		$this->customErrorMessage = "$message";
+		return $this;
+	}
+	
+	
+	
+	public function setAutoErrorMessagesAsCustom(){
+		$this->forceErrorMessageOutput = true;
+		$this->customErrorMessage = '';
 		return $this;
 	}
 	
@@ -618,14 +628,17 @@ class FormValidator{
 	
 	//---|output----------
 	
-	public function printMessageQueue(){
+	public function printMessageQueue($onlyCustomMessages = false){
 		$msg = '';
 		
-		if( $this->customErrorMessage == '' ){
+		$showOnlyAutoErrorMessages = ($this->customErrorMessage == '') && (!$onlyCustomMessages || $this->forceErrorMessageOutput);
+		$showOnlyCustomErrorMessage = ($this->customErrorMessage != '') && !$this->isValid;
+		
+		if( $showOnlyAutoErrorMessages ){
 			foreach( $this->messageQueue as $m ){
 				$msg .= '<div class="'.self::MESSAGECLASS.'">'.$m.'</div>';
 			}
-		} elseif( !$this->isValid ){
+		} elseif( $showOnlyCustomErrorMessage ){
 			$msg .= '<div class="'.self::MESSAGECLASS.'">'.$this->customErrorMessage.'</div>';
 		}
 		

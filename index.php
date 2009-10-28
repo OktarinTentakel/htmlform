@@ -40,18 +40,22 @@ $testFieldSet->addElement(
 		->setValidator(
 			FormValidator::get()
 				->setDigits()
-				->setErrorMessage('Bitte einen Wert, der nur aus Zahlen besteht w&auml;hlen!')
+				->setErrorMessage('Bitte einen Wert w&auml;hlen, der nur aus Zahlen besteht!')
 		)
 		->refill()
 );
 $testFieldSet->addElement(
 	Select::get('testselectmultiple')
 		->setOptions(array('a' => 'test1', 'b' => 'test2', 'c' => 'test3'))
-		->setSelectedIndices(array(1, 3))
+		//->setSelectedIndices(array(1, 3))
 		->setMultiple()
 		->setSize(3)
 		->setLabel('testmultiselect')
 		->refill()
+		->setValidator(
+			FormValidator::get()
+				->setRequired()
+		)
 );
 $testFieldSet->addElement(
 	InputText::get('datetest')

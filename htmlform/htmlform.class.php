@@ -424,24 +424,28 @@ class HtmlForm{
 	private function printMessages(){
 		$msg = '';
 		
-		foreach( $this->cells as $cell ){
-			foreach( $cell as $element ){
-				$msg .= $element->printMessages();
+		if( $this->hasBeenSent() ){
+			foreach( $this->cells as $cell ){
+				foreach( $cell as $element ){
+					$msg .= $element->printMessages();
+				}
 			}
-		}
-		
-		if( $this->showMessages && $msg != '' ){
-			$title = ($this->messagesTitle != '') ? '<div class="'.self::MESSAGESTITLECLASS.'">'.$this->messagesTitle.'</div>' : '';
 			
-			return 
-				 '<div class="'.self::MESSAGESCLASS.'">'
-					.$title
-					.$msg
-					.$this->printFloatBreak()
-				.'</div>'
-			;
+			if( $this->showMessages && $msg != '' ){
+				$title = ($this->messagesTitle != '') ? '<div class="'.self::MESSAGESTITLECLASS.'">'.$this->messagesTitle.'</div>' : '';
+				
+				return 
+					 '<div class="'.self::MESSAGESCLASS.'">'
+						.$title
+						.$msg
+						.$this->printFloatBreak()
+					.'</div>'
+				;
+			} else {
+				return '';
+			}
 		} else {
-			return '';
+			return $msg;
 		}
 	}
 	

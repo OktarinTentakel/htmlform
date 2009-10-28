@@ -123,6 +123,12 @@ abstract class FormElement{
 	
 	
 	
+	public function getValidator(){
+		return $this->validator;
+	}
+	
+	
+	
 	public function getId(){
 		return $this->id;
 	}

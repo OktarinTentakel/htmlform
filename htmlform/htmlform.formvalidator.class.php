@@ -220,9 +220,10 @@ class FormValidator{
 	private function required($X){
 		$res = true;
 		
-		foreach( $this->values as $val ){
-			if( $val == '' ) $res = false;
-			if( !$res ) break;
+		if( count($this->values) == 1 ){
+			$res = !($this->values[0] == '');
+		} else {
+			$res = !(count($this->values) == 0);
 		}
 		
 		if( !$res && ($this->fieldName != '') ){
@@ -605,11 +606,9 @@ class FormValidator{
 	public function process(){
 		require_once('messages/'.$this->messageLanguage.'.inc.php');
 		
-		if( count($this->values) > 0 ){
-			foreach( $this->rules as $function => $param ){
-				$caseValidity = $this->$function($param);
-				$this->isValid = $this->isValid && $caseValidity;
-			}
+		foreach( $this->rules as $function => $param ){
+			$caseValidity = $this->$function($param);
+			$this->isValid = $this->isValid && $caseValidity;
 		}
 		
 		return $this->isValid;
@@ -626,7 +625,7 @@ class FormValidator{
 			foreach( $this->messageQueue as $m ){
 				$msg .= '<div class="'.self::MESSAGECLASS.'">'.$m.'</div>';
 			}
-		} else {
+		} elseif( !$this->isValid ){
 			$msg .= '<div class="'.self::MESSAGECLASS.'">'.$this->customErrorMessage.'</div>';
 		}
 		

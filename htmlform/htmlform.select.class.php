@@ -151,7 +151,7 @@ class Select extends FormElement{
 			$this->selectedValues = $refiller[$this->name];
 			$this->selected = array();
 			$this->selectedIndices = array();
-		} elseif( ($this->masterForm != null) && isset($refiller[$this->masterForm->getId().'_sent']) ) {
+		} elseif( ($this->masterForm != null) && $this->masterForm->hasBeenSent() ) {
 			$this->selectedValues = array();
 			$this->selected = array();
 			$this->selectedIndices = array();

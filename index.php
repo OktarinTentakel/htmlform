@@ -255,6 +255,11 @@ $testFieldSet2->addElement(
 
 $testForm->addElement($testFieldSet2, 2);
 
+$testForm->insertElementAfter('testselectmultiple',
+	CustomHtml::get()
+		->setHtml('<p>Dieser Teil wurde im Nachhinein in das Formular injiziert.</p>')
+);
+
 $testForm->setHeadline('Dies ist eine Test&uuml;berschrift');
 $testForm->setExplanation('Dies ist eine Testerkl&auml;rung eines HTML-Formulars.');
 

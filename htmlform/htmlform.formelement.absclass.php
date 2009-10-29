@@ -1,5 +1,13 @@
 <?php
 
+//--|includes---------
+
+require_once('htmlform.tools.class.php');
+
+
+
+//--|class----------
+
 abstract class FormElement{
 	// ***
 	const WRAPCLASS = 'htmlform_row_div';
@@ -208,6 +216,21 @@ abstract class FormElement{
 		if( is_array($this->subElements) ){
 			$element->setMasterElement($this);
 			$this->subElements[] = $element;
+		}
+		return $this;
+	}
+	
+	
+	
+	public function insertElementAfter($targetElementName, FormElement $element){
+		if( is_array($this->subElements) ){
+			foreach( $this->subElements as $index => $oldElement ){
+				if( $oldElement->getName() == "$targetElementName" ){
+					$element->setMasterElement($this);
+					$this->subElements = HtmlFormTools::array_insert($this->subElements, ($index + 1), $element);
+					break;
+				}
+			}
 		}
 		return $this;
 	}

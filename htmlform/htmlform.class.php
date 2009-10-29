@@ -25,6 +25,8 @@ require_once('htmlform.formvalueset.class.php');
 
 require_once('htmlform.jsdatetime.class.php');
 
+require_once('htmlform.tools.class.php');
+
 
 
 //---|class----------
@@ -374,6 +376,28 @@ class HtmlForm{
 		if( is_array($this->cells[($cell - 1)]) ){
 			$element->setMasterForm($this);
 			$this->cells[($cell - 1)][] = $element;
+		}
+		
+		return $this;
+	}
+	
+	
+	
+	public function insertElementAfter($targetElementName, FormElement $element){
+		foreach( $this->cells as $cellIndex => $cell ){
+			foreach( $cell as $elementIndex => $oldElement ){
+				if( $oldElement->getName() == "$targetElementName" ){
+					$element->setMasterElement($this);
+					$this->cells[$cellIndex] = HtmlFormTools::array_insert($this->cells[$cellIndex], ($elementIndex + 1), $element);
+					break;break;
+				}
+				
+				$subElementNum = count($oldElement->getSubElements());
+				$oldElement->insertElementAfter($targetElementName, $element);
+				if( $subElementNum < count($oldElement->getSubElements()) ){
+					break;break;
+				}
+			}
 		}
 		
 		return $this;

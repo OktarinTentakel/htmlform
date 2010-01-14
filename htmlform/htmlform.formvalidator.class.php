@@ -614,7 +614,9 @@ class FormValidator{
 	//---|functionality----------
 	
 	public function process(){
-		require_once('messages/'.$this->messageLanguage.'.inc.php');
+		if( $this->fieldName != '' ){
+			require_once('messages/'.$this->messageLanguage.'.inc.php');
+		}
 		
 		foreach( $this->rules as $function => $param ){
 			$caseValidity = $this->$function($param);

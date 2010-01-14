@@ -1,3 +1,0 @@
-- Auswahl und Verarbeitung von Checkboxes und Radiobuttons anhand der Indizes prüfen
-- refills überarbeiten
-	-> statt $_POST anhand Method der Form wenn möglich, gucken ob man info ob form abgeschickt noch sinnvoll dazwischen bekommt

@@ -4,8 +4,8 @@ require_once('htmlform/htmlform.class.php');
 
 $testForm = HtmlForm::get('form1')
 	->addCssClasses('testform')
-	//->showMessages('Fehler:')
-	->showCustomMessages('Fehler:')
+	->showMessages('Fehler:')
+	//->showCustomMessages('Fehler:')
 	->setLanguage('german')
 	->useExternalFormDeclaration()
 	->setPackagePath('/////htmlform///')
@@ -48,7 +48,7 @@ $testFieldSet->addElement(
 $testFieldSet->addElement(
 	Select::get('testselectmultiple')
 		->setOptions(array('a' => 'test1', 'b' => 'test2', 'c' => 'test3'))
-		//->setSelectedIndices(array(1, 3))
+		->setSelectedIndices(array(1, 3))
 		->setMultiple()
 		->setSize(3)
 		->setLabel('testmultiselect')
@@ -66,6 +66,7 @@ $testFieldSet->addElement(
 		->setValidator(
 			FormValidator::get()
 				->setDate()
+				->setOptional()
 		)
 		->refill()
 );

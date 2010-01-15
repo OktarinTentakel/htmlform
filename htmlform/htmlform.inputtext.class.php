@@ -5,6 +5,8 @@
 require_once('htmlform.formelement.absclass.php');
 require_once('htmlform.label.class.php');
 
+require_once('htmlform.tools.class.php');
+
 
 
 //---|class----------
@@ -87,7 +89,7 @@ class InputText extends FormElement{
 		if( count($refiller) == 0 )	$refiller = $_POST;
 		
 		if( isset($refiller[$this->name]) && !is_array($refiller[$this->name]) ){
-			$this->text = ''.$refiller[$this->name];
+			$this->text = ''.HtmlFormTools::undoMagicQuotes($refiller[$this->name]);
 		}
 		
 		return $this;
@@ -139,7 +141,7 @@ class InputText extends FormElement{
 						.$this->printId()
 						.$this->printName()
 						.' type="text"'
-						.' value="'.$this->text.'"'
+						.' value="'.HtmlFormTools::auto_htmlspecialchars($this->text, $this->needsUtf8Safety()).'"'
 						.$this->printSize()
 						.$this->printMaxLength()
 						.$this->printCssClasses()

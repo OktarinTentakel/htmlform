@@ -5,6 +5,8 @@
 require_once('htmlform.formelement.absclass.php');
 require_once('htmlform.label.class.php');
 
+require_once('htmlform.tools.class.php');
+
 
 
 //---|class----------
@@ -95,7 +97,7 @@ class TextArea extends FormElement{
 		if( count($refiller) == 0 )	$refiller = $_POST;
 		
 		if( isset($refiller[$this->name]) && !is_array($refiller[$this->name]) ){
-			$this->text = ''.$refiller[$this->name];
+			$this->text = ''.HtmlFormTools::undoMagicQuotes($refiller[$this->name]);
 		}
 		
 		return $this;
@@ -154,7 +156,7 @@ class TextArea extends FormElement{
 						.$this->printReadonly()
 						.$this->printDisabled()
 					.'>'
-						.$this->text
+						.HtmlFormTools::auto_htmlspecialchars($this->text, $this->needsUtf8Safety())
 					.'</textarea>'
 				.'</div>'
 				.$this->masterForm->printFloatBreak()

@@ -1,5 +1,13 @@
 <?php
 
+//--|includes----------
+
+require_once('htmlform.tools.class.php');
+
+
+
+//--|class----------
+
 class FormValidator{
 	// ***
 	const MESSAGECLASS = 'htmlform_message_div';
@@ -14,6 +22,8 @@ class FormValidator{
 	private $values;
 	private $isValid;
 	
+	private $needsUtf8Safety;
+	
 	private function __construct(){
 		$this->messageLanguage = 'english';
 		$this->messageQueue = array();
@@ -24,6 +34,8 @@ class FormValidator{
 		$this->rules = array();
 		$this->values = array();
 		$this->isValid = true;
+		
+		$this->needsUtf8Safety = false;
 	}
 	
 	
@@ -77,6 +89,12 @@ class FormValidator{
 	public function setValues(Array $values){
 		$this->values = $values;
 		return $this;
+	}
+	
+	
+	
+	public function setUtf8Safety(){
+		$this->needsUtf8Safety = true;
 	}
 	
 	
@@ -262,7 +280,7 @@ class FormValidator{
 		$res = true;
 		
 		if( count($this->values) == 1 ){
-			$res = (strlen($this->values[0]) >= $minlength);
+			$res = (HtmlFormTools::auto_strlen($this->values[0], $this->needsUtf8Safety) >= $minlength);
 		} else {
 			$res = (count($this->values) >= $minlength);
 		}
@@ -280,7 +298,7 @@ class FormValidator{
 		$res = true;
 		
 		if( count($this->values) == 1 ){
-			$res = (strlen($this->values[0]) <= $maxlength);
+			$res = (HtmlFormTools::auto_strlen($this->values[0], $this->needsUtf8Safety) <= $maxlength);
 		} else {
 			$res = (count($this->values) <= $maxlength);
 		}
@@ -373,7 +391,7 @@ class FormValidator{
 		
 		foreach( $this->values as $email ){
 			//gucken ob @ da und ob Längen stimmen
-			if (!ereg("^[^@]{1,64}@[^@]{1,255}$", $email)) {
+			if (!HtmlFormTools::auto_preg_match('/^[^@]{1,64}@[^@]{1,255}$/', $email, $this->needsUtf8Safety)) {
 				$res = false;
 			}
 			
@@ -382,13 +400,13 @@ class FormValidator{
 			$local_array = explode(".", $email_array[0]);
 			
 			for ($i = 0; $i < sizeof($local_array); $i++) {
-				if (!ereg("^(([A-Za-z0-9!#$%&'*+/=?^_`{|}~-][A-Za-z0-9!#$%&'*+/=?^_`{|}~\.-]{0,63})|(\"[^(\\|\")]{0,62}\"))$", $local_array[$i])) {
+				if (!HtmlFormTools::auto_preg_match("/^(([A-Za-z0-9!#$%&'*+\/=?^_`{|}~-][A-Za-z0-9!#$%&'*+\/=?^_`{|}~\.-]{0,63})|(\"[^(\\|\")]{0,62}\"))$/", $local_array[$i], $this->needsUtf8Safety)) {
 					$res = false;
 				}
 			}
 			
 			//Behandlung von IP-Domain
-			if (!ereg("^\[?[0-9\.]+\]?$", $email_array[1])) {
+			if (!HtmlFormTools::auto_preg_match('/^\[?[0-9\.]+\]?$/', $email_array[1], $this->needsUtf8Safety)) {
 				$domain_array = explode(".", $email_array[1]);
 				
 				//falsche Anzahl von Bereichen?
@@ -398,7 +416,7 @@ class FormValidator{
 				
 				//Bereiche checken
 				for ($i = 0; $i < sizeof($domain_array); $i++) {
-					if (!ereg("^(([A-Za-z0-9][A-Za-z0-9-]{0,61}[A-Za-z0-9])|([A-Za-z0-9]{2,5}))$", $domain_array[$i])) {
+					if (!HtmlFormTools::auto_preg_match('/^(([A-Za-z0-9][A-Za-z0-9-]{0,61}[A-Za-z0-9])|([A-Za-z0-9]{2,5}))$/', $domain_array[$i], $this->needsUtf8Safety)) {
 						$res = false;
 					}
 				}
@@ -436,12 +454,12 @@ class FormValidator{
 		// optionale Pfadangabe
 		$urlregex .= "(\/([a-z0-9+\$_-]\.?)+)*\/?";
 		// optionaler GET-Query
-		$urlregex .= "(\?[a-z+&\$_.-][a-z0-9;:@/&%=+\$_.-]*)?";
+		$urlregex .= "(\?[a-z+&\$_.-][a-z0-9;:@\/&%=+\$_.-]*)?";
 		// optionaler Seitenanker
 		$urlregex .= "(#[a-z_.-][a-z0-9+\$_.-]*)?\$";
 		
 		foreach( $this->values as $url ){
-			if( !eregi($urlregex, $url) ) $res = false;
+			if( !HtmlFormTools::auto_preg_match('/'.$urlregex.'/i', $url, $this->needsUtf8Safety) ) $res = false;
 			if( $res ) break;
 		}
 		
@@ -457,10 +475,10 @@ class FormValidator{
 	private function date($X){
 		$res = true;
 		
-		$dateregex = "^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}$";
+		$dateregex = '/^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}$/i';
 		
 		foreach( $this->values as $date ){
-			if( !eregi($dateregex, $date) || ( strtotime($date) === false ) ) $res = false;
+			if( !HtmlFormTools::auto_preg_match($dateregex, $date, $this->needsUtf8Safety) || ( strtotime($date) === false ) ) $res = false;
 			if( !$res ) break;
 		}
 		
@@ -476,13 +494,13 @@ class FormValidator{
 	private function dateISO($X){
 		$res = true;
 		
-		$dateregex = "^[0-9]{4}\-[0-9]{1,2}\-[0-9]{1,2}$";
+		$dateregex = '/^[0-9]{4}\-[0-9]{1,2}\-[0-9]{1,2}$/i';
 		
 		foreach( $this->values as $date ){
 			$dateArray = explode('-', $date);
 			
 			if(
-				!eregi($dateregex, $date) 
+				!HtmlFormTools::auto_preg_match($dateregex, $date, $this->needsUtf8Safety) 
 				|| (strtotime($dateArray[1].'/'.$dateArray[2].'/'.$dateArray[0]) === false)
 			){
 				$res = false;
@@ -503,13 +521,13 @@ class FormValidator{
 	private function dateDE($X){
 		$res = true;
 		
-		$dateregex = "^[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{1,4}$";
+		$dateregex = '/^[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{3,4}$/i';
 		
 		foreach( $this->values as $date ){
 			$dateArray = explode('.', $date);
 			
 			if( 
-				!eregi($dateregex, $date)
+				!HtmlFormTools::auto_preg_match($dateregex, $date, $this->needsUtf8Safety)
 				|| (strtotime($dateArray[1].'/'.$dateArray[0].'/'.$dateArray[2]) === false)
 			){
 				$res = false;
@@ -551,7 +569,8 @@ class FormValidator{
 			$numberUS = str_replace(',', '.', $number);
 			
 			if( 
-				(strpos($number, '.') !== false)
+				(HtmlFormTools::auto_strpos($number, '.', $this->needsUtf8Safety) !== false)
+				|| ( HtmlFormTools::auto_strpos($number, ',', $this->needsUtf8Safety) == 0 )
 				|| ( ($number != (string)(integer)$number) && ($numberUS != (string)(float)$numberUS) ) 
 			){
 				$res = false;
@@ -573,7 +592,7 @@ class FormValidator{
 		$res = true;
 		
 		foreach( $this->values as $val ){
-			if( !eregi("^[0-9]+$", $val) ) $res = false;
+			if( !HtmlFormTools::auto_preg_match('/^[0-9]+$/i', $val, $this->needsUtf8Safety) ) $res = false;
 			if( !$res ) break;
 		}
 		
@@ -589,10 +608,10 @@ class FormValidator{
 	private function creditcard($X){
 		$res = true;
 		
-		$creditCardRegEx = "^[0-9]{3,4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$";
+		$creditCardRegEx = '/^[0-9]{3,4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}$/i';
 		
 		foreach( $this->values as $creditCardNumber ){
-			if( !eregi($creditCardRegEx, $creditCardNumber) ) $res = false;
+			if( !HtmlFormTools::auto_preg_match($creditCardRegEx, $creditCardNumber, $this->needsUtf8Safety) ) $res = false;
 			if( !$res ) break;
 		}
 		
@@ -611,7 +630,7 @@ class FormValidator{
 		$characterClassRegEx = "^[$class]*$";
 		
 		foreach( $this->values as $value ){
-			if( !eregi($characterClassRegEx, $value) ) $res = false;
+			if( !HtmlFormTools::auto_preg_match('/'.$characterClassRegEx.'/i', $value, $this->needsUtf8Safety) ) $res = false;
 			if( !$res ) break;
 		}
 		

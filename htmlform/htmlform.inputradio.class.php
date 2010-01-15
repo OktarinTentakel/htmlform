@@ -5,6 +5,8 @@
 require_once('htmlform.formelement.absclass.php');
 require_once('htmlform.label.class.php');
 
+require_once('htmlform.tools.class.php');
+
 
 
 //---|class----------
@@ -102,7 +104,7 @@ class InputRadio extends FormElement{
 		if( count($refiller) == 0 )	$refiller = $_POST;
 		
 		if( isset($refiller[$this->name]) && !is_array($refiller[$this->name]) ){
-			$this->selectedValue = ''.$refiller[$this->name];
+			$this->selectedValue = ''.HtmlFormTools::undoMagicQuotes($refiller[$this->name]);
 			$this->selected = null;
 			$this->selectedIndex = null;
 		} elseif( $this->masterForm != null && $this->masterForm->hasBeenSent() ) {
@@ -157,7 +159,7 @@ class InputRadio extends FormElement{
 					.' id="'.$radioId.'"'
 					.$this->printName()
 					.$this->printCssClasses()
-					.' value="'.$value.'"'
+					.' value="'.HtmlFormTools::auto_htmlspecialchars($value, $this->needsUtf8Safety()).'"'
 					.($this->isSelectedOption($index, $value, $text) ? ' checked="checked"' : '')
 					.$this->printTabIndex()
 					.$this->printDisabled()

@@ -107,8 +107,8 @@ class HtmlForm{
 	//---|setter----------
 	
 	public function setPackagePath($packagePath){
-		// regEx entfernt alle vorangehenden und nachfolgenden slashes des Pfads
-		$this->packagePath = preg_replace('/^\/+([^\/]+.*[^\/]+)\/+$/', '$1', $packagePath);
+		// regEx entfernt alle vorangehenden und nachfolgenden Slashes des Pfads
+		$this->packagePath = HtmlFormTools::auto_preg_replace('/^\/+([^\/]+.*[^\/]+)\/+$/', '$1', $packagePath);
 		return $this;
 	}
 	
@@ -178,7 +178,7 @@ class HtmlForm{
 	
 	
 	public function setEnctype($enctype){
-		if( preg_match('/^(application|audio|image|multipart|text|video)\/(\*|[a-zA-Z\-]+)$/i', $enctype) ){
+		if( HtmlFormTools::auto_preg_match('/^(application|audio|image|multipart|text|video)\/(\*|[a-zA-Z\-]+)$/i', $enctype) ){
 			$this->enctype = $enctype;
 		}
 		return $this;
@@ -328,6 +328,12 @@ class HtmlForm{
 	
 	public function isValid(){
 		return $this->isValid;
+	}
+	
+	
+	
+	public function usesUtf8(){
+		return $this->charset == 'UTF-8';
 	}
 	
 	

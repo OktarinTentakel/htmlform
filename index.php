@@ -2,6 +2,10 @@
 
 require_once('htmlform/htmlform.class.php');
 
+ini_set('default_charset', 'UTF-8');
+ini_set('mbstring.internal_encoding', 'UTF-8');
+ini_set('mbstring.http_output', 'UTF-8');
+
 $testForm = HtmlForm::get('form1')
 	->addCssClasses('testform')
 	->showMessages('Fehler:')
@@ -146,14 +150,14 @@ $testForm->addCell();
 $testFieldSet2 = FieldSet::get()->setLegend('testfieldset2');
 $testFieldSet2->addElement(
 	InputText::get('testtextinput2')
-		->setLabel('L&auml;nge zwischen 3 und 10')
+		->setLabel('Länge zwischen 3 und 10')
 		->setText('testotesto')
 		->setValidator(
 			FormValidator::get()
 				->setRequired()
 				->setMinLength(3)
 				->setMaxLength(10)
-				->setCharacterClass('a-zA-Z')
+				->setCharacterClass('a-zA-ZäöüÄÖÜß')
 		)
 		->refill()
 );
@@ -246,7 +250,7 @@ $testFieldSet2->addElement(
 		->setValidator(
 			FormValidator::get()
 				->setCustomCase(
-					preg_match('/^[a-zA-Z\!\.\,\? ]+$/', isset($_REQUEST['textarea1']) ? $_REQUEST['textarea1'] : 'Hallo Welt!')
+					preg_match('/^[a-zA-ZäöüÄÖÜß!.,? ]+$/u', isset($_REQUEST['textarea1']) ? $_REQUEST['textarea1'] : 'Hallo Welt!')
 						? ''
 						: 'Keinen Murks in den Flie&szlig;text ey!'
 				)

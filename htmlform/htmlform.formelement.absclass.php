@@ -193,11 +193,23 @@ abstract class FormElement{
 	
 	
 	
+	protected function needsUtf8Safety(){
+		return is_null($this->masterForm) ? true : $this->masterForm->usesUtf8();
+	}
+	
+	
+	
 	//---|functionality----------
 	
 	// >>>
 	public function validate(){
-		if( !is_null($this->validator) ) $this->validator->setMessageLanguage($this->masterForm->getLanguage());
+		if( !is_null($this->validator) ){
+			$this->validator->setMessageLanguage($this->masterForm->getLanguage());
+			
+			if( $this->masterForm->usesUtf8() ){
+				$this->validator->setUtf8Safety();
+			}
+		}
 		
 		if( is_array($this->subElements) ){
 			foreach( $this->subElements as $element ){

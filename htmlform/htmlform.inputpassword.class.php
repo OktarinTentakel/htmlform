@@ -5,6 +5,8 @@
 require_once('htmlform.inputtext.class.php');
 require_once('htmlform.label.class.php');
 
+require_once('htmlform.tools.class.php');
+
 
 
 //---|class----------
@@ -38,7 +40,7 @@ class InputPassword extends InputText{
 						.$this->printId()
 						.$this->printName()
 						.' type="password"'
-						.' value="'.$this->text.'"'
+						.' value="'.HtmlFormTools::auto_htmlspecialchars($this->text, $this->needsUtf8Safety()).'"'
 						.$this->printSize()
 						.$this->printMaxLength()
 						.$this->printCssClasses()

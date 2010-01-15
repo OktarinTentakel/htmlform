@@ -62,7 +62,7 @@ class Label extends FormElement{
 		return
 			 ((!$this->inline) ? '<div class="'.self::WRAPCLASS.'">' : '')
 				.'<label '.(($this->for != '') ? 'for="'.$this->for.'"' : '').'>'
-					.$this->caption
+					.HtmlFormTools::auto_htmlspecialchars($this->caption, $this->needsUtf8Safety())
 				.'</label>'
 			.((!$this->inline) ? '</div>' : '')
 		;

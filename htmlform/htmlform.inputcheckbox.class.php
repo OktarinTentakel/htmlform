@@ -5,6 +5,8 @@
 require_once('htmlform.formelement.absclass.php');
 require_once('htmlform.label.class.php');
 
+require_once('htmlform.tools.class.php');
+
 
 
 //---|class----------
@@ -132,7 +134,7 @@ class InputCheckbox extends FormElement{
 		if( count($refiller) == 0 )	$refiller = $_POST;
 		
 		if( isset($refiller[$this->name]) && is_array($refiller[$this->name]) ){
-			$this->selectedValues = $refiller[$this->name];
+			$this->selectedValues = HtmlFormTools::undoMagicQuotes($refiller[$this->name]);
 			$this->selected = array();
 			$this->selectedIndices = array();
 		} elseif( ($this->masterForm != null) && $this->masterForm->hasBeenSent() ) {
@@ -189,7 +191,7 @@ class InputCheckbox extends FormElement{
 					.' id="'.$checkId.'"'
 					.$this->printNameArray()
 					.$this->printCssClasses()
-					.' value="'.$value.'"'
+					.' value="'.HtmlFormTools::auto_htmlspecialchars($value, $this->needsUtf8Safety()).'"'
 					.($this->isSelectedOption($index, $value, $text) ? ' checked="checked"' : '')
 					.$this->printTabIndex()
 					.$this->printDisabled()

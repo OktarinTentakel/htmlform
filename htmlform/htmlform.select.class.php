@@ -5,6 +5,8 @@
 require_once('htmlform.formelement.absclass.php');
 require_once('htmlform.label.class.php');
 
+require_once('htmlform.tools.class.php');
+
 
 
 //---|class----------
@@ -148,7 +150,7 @@ class Select extends FormElement{
 		if( count($refiller) == 0 )	$refiller = $_POST;
 		
 		if( isset($refiller[$this->name]) && is_array($refiller[$this->name]) ){
-			$this->selectedValues = $refiller[$this->name];
+			$this->selectedValues = HtmlFormTools::undoMagicQuotes($refiller[$this->name]);
 			$this->selected = array();
 			$this->selectedIndices = array();
 		} elseif( ($this->masterForm != null) && $this->masterForm->hasBeenSent() ) {
@@ -205,8 +207,11 @@ class Select extends FormElement{
 		foreach( $this->options as $value => $text ){
 			$index++;
 			$options .=
-				 '<option value="'.$value.'"'.($this->isSelectedOption($index, $value, $text) ? ' selected="selected"' : '').'>'
-					."$text"
+				 '<option'
+					.' value="'.HtmlFormTools::auto_htmlspecialchars($value, $this->needsUtf8Safety()).'"'
+					.($this->isSelectedOption($index, $value, $text) ? ' selected="selected"' : '')
+				.'>'
+					.HtmlFormTools::auto_htmlspecialchars($text, $this->needsUtf8Safety())
 				.'</option>'
 			;
 		}

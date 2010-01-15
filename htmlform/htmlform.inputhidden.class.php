@@ -4,6 +4,8 @@
 
 require_once('htmlform.formelement.absclass.php');
 
+require_once('htmlform.tools.class.php');
+
 
 
 //---|class----------
@@ -51,7 +53,7 @@ class InputHidden extends FormElement{
 		if( count($refiller) == 0 )	$refiller = $_POST;
 		
 		if( isset($refiller[$this->name]) && !is_array($refiller[$this->name]) ){
-			$this->value = ''.$refiller[$this->val];
+			$this->value = ''.HtmlFormTools::undoMagicQuotes($refiller[$this->val]);
 		}
 		
 		return $this;
@@ -76,7 +78,13 @@ class InputHidden extends FormElement{
 	
 	public function doRender(){
 		return
-			'<input'.$this->printId().$this->printName().' type="hidden" value="'.$this->value.'"'.$this->masterForm->printSlash().'>'
+			'<input'
+				.$this->printId()
+				.$this->printName()
+				.' type="hidden"'
+				.' value="'.HtmlFormTools::auto_htmlspecialchars($this->value, $this->needsUtf8Safety()).'"'
+				.$this->masterForm->printSlash()
+			.'>'
 		;
 	}
 }

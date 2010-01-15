@@ -5,6 +5,8 @@
 require_once('htmlform.inputtext.class.php');
 require_once('htmlform.label.class.php');
 
+require_once('htmlform.tools.class.php');
+
 
 
 //---|class----------
@@ -170,7 +172,7 @@ class JsDateTime extends InputText{
 		foreach( $monthNames as $name ){
 			$monthNamesString .= '"'.$name.'", ';
 		}
-		$monthNamesString = preg_replace('/(, )$/', '', $monthNamesString).']';
+		$monthNamesString = HtmlFormTools::auto_preg_replace('/(, )$/', '', $monthNamesString, $this->needsUtf8Safety()).']';
 		
 		$weekDayNamesString = array();
 		$weekDayNamesString[0] = '[';
@@ -183,8 +185,8 @@ class JsDateTime extends InputText{
 		foreach( $weekDayNames as $day ){
 			$weekDayNamesString[1] .= '"'.$day.'", ';
 		}
-		$weekDayNamesString[0] = preg_replace('/(, )$/', '', $weekDayNamesString[0]).']';
-		$weekDayNamesString[1] = preg_replace('/(, )$/', '', $weekDayNamesString[1]).']';
+		$weekDayNamesString[0] = HtmlFormTools::auto_preg_replace('/(, )$/', '', $weekDayNamesString[0], $this->needsUtf8Safety()).']';
+		$weekDayNamesString[1] = HtmlFormTools::auto_preg_replace('/(, )$/', '', $weekDayNamesString[1], $this->needsUtf8Safety()).']';
 		
 		// Rückgabekonstruktion
 		return
@@ -241,7 +243,7 @@ class JsDateTime extends InputText{
 						.$this->printId()
 						.$this->printName()
 						.' type="text"'
-						.' value="'.$this->text.'"'
+						.' value="'.HtmlFormTools::auto_htmlspecialchars($this->text, $this->needsUtf8Safety()).'"'
 						.$this->printSize()
 						.$this->printMaxLength()
 						.$this->printCssClasses()

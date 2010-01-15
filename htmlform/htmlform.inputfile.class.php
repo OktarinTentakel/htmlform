@@ -5,6 +5,8 @@
 require_once('htmlform.inputtext.class.php');
 require_once('htmlform.label.class.php');
 
+require_once('htmlform.tools.class.php');
+
 
 
 //---|class----------
@@ -32,7 +34,7 @@ class InputFile extends InputText{
 	//--|setter----------
 	
 	public function setAccept($accept){
-		if( preg_match('/^(application|audio|image|multipart|text|video)\/(\*|[a-zA-Z\-]+)$/i', $accept) ){
+		if( HtmlFormTools::auto_preg_match('/^(application|audio|image|multipart|text|video)\/(\*|[a-zA-Z\-]+)$/i', $accept) ){
 			$this->accept = $accept;
 		}
 		

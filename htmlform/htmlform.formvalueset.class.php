@@ -23,7 +23,13 @@ class FormValueSet {
 	
 	//---|magic----------
 	
-	private function __call($name, Array $args = array()){
+	public function __call($name, Array $args = array()){
+		return isset($this->values["$name"]) ? $this->values["$name"] : null;
+	}
+	
+	
+	
+	public function __get($name){
 		return isset($this->values["$name"]) ? $this->values["$name"] : null;
 	}
 }

@@ -243,7 +243,7 @@ class HtmlForm{
 	
 	
 	public function useReducedErrorMarking(){
-		$this->errorsMarkOnlyWidgets = true;
+		$this->errorsMarkOnlyWidget = true;
 		return $this;
 	}
 	
@@ -345,7 +345,7 @@ class HtmlForm{
 	
 	
 	public function usesReducedErrorMarking(){
-		return $this->errorsMarkOnlyWidgets;
+		return $this->errorsMarkOnlyWidget;
 	}
 	
 	

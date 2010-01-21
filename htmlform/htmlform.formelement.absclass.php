@@ -216,10 +216,10 @@ abstract class FormElement{
 				$elEval = $element->validate();
 				$this->isValid = $this->isValid && $elEval;
 			}
-		}
-		
-		if( is_null($this->getValue()) ){
-			$this->isValid = true;
+			
+			if( is_null($this->getValue()) ){
+				$this->isValid = true;
+			}
 		}
 		
 		return $this->isValid;

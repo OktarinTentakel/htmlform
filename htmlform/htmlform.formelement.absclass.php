@@ -216,10 +216,6 @@ abstract class FormElement{
 				$elEval = $element->validate();
 				$this->isValid = $this->isValid && $elEval;
 			}
-			
-			if( is_null($this->getValue()) ){
-				$this->isValid = true;
-			}
 		}
 		
 		return $this->isValid;
@@ -278,6 +274,7 @@ abstract class FormElement{
 			!$this->isValid 
 			&& $this->masterForm->usesReducedErrorMarking() 
 			&& $this->masterForm->hasBeenSent()
+			&& !is_null($this->getValue())
 		){
 			$this->cssClasses .= ($this->cssClasses == '') ? self::ERRORCLASS : ' '.self::ERRORCLASS;
 		}

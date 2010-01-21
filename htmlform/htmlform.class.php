@@ -38,6 +38,7 @@ class HtmlForm{
 	const EXPLANATIONCLASS = 'htmlform_formexplanation';
 	const MESSAGESCLASS = 'htmlform_messages_div';
 	const MESSAGESTITLECLASS = 'htmlform_messages_title_div';
+	const FLOATBREAKCLASS = 'htmlform_floatbreak';
 	
 	private $packagePath;
 	
@@ -446,7 +447,7 @@ class HtmlForm{
 	
 	
 	public function printFloatBreak(){
-		return '<div style="clear:both; height:0px; margin:0px; padding:0px; font-size:0px;">&nbsp;</div>';
+		return '<div class="'.self::FLOATBREAKCLASS.'" style="clear:both; height:0px; margin:0px; padding:0px; font-size:0px;">&nbsp;</div>';
 	}
 	
 	

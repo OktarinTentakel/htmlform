@@ -33,6 +33,7 @@ require_once('htmlform.tools.class.php');
 
 class HtmlForm{
 	// ***
+	const FORMCLASS = 'htmlform';
 	const CELLCLASS = 'htmlform_cell';
 	const HEADLINECLASS = 'htmlform_formheadline';
 	const EXPLANATIONCLASS = 'htmlform_formexplanation';
@@ -429,7 +430,7 @@ class HtmlForm{
 	//---|output----------
 	
 	private function printCssClasses(){
-		return ($this->cssClasses != '') ? ' class="'.$this->cssClasses.'"' : '';
+		return ' class="'.self::FORMCLASS.(($this->cssClasses != '') ? ' '.$this->cssClasses : '').'"';
 	}
 	
 	

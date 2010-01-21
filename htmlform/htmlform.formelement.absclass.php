@@ -218,6 +218,10 @@ abstract class FormElement{
 			}
 		}
 		
+		if( is_null($this->getValue()) ){
+			$this->isValid = true;
+		}
+		
 		return $this->isValid;
 	}
 	// >>>

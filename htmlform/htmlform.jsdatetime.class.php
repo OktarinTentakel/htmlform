@@ -211,7 +211,7 @@ class JsDateTime extends InputText{
 				.'var CalBgColor = "'.(isset($this->jsConfig['CalBgColor']) ? ''.$this->jsConfig['CalBgColor'] : '').'";'
 				.'var PrecedeZero = '.(isset($this->jsConfig['PrecedeZero']) ? ''.$this->jsConfig['PrecedeZero'] : 'true').';'
 				.'var MondayFirstDay = '.(isset($this->jsConfig['MondayFirstDay']) ? ''.$this->jsConfig['MondayFirstDay'] : 'false').';'
-				.'var UseImageFiles = '.(isset($this->jsConfig['MondayFirstDay']) ? ''.$this->jsConfig['MondayFirstDay'] : 'true').';'
+				.'var UseImageFiles = '.(isset($this->jsConfig['UseImageFiles']) ? ''.$this->jsConfig['UseImageFiles'] : 'true').';'
 				.'var MonthName = '.$monthNamesString.';'
 				.'var WeekDayName1 = '.$weekDayNamesString[0].';'
 				.'var WeekDayName2 = '.$weekDayNamesString[1].';'

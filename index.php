@@ -50,6 +50,16 @@ $testFieldSet->addElement(
 		->refill()
 );
 $testFieldSet->addElement(
+	Select::get('testselectsinglemixed')
+		->setOptions(array('0' => '---', 'b' => 'juhu', 'c' => 'lalala'))
+		->setLabel('Einzelselect Mischwerte')
+		->setValidator(
+			FormValidator::get()
+				->setRequired()
+		)
+		->refill()
+);
+$testFieldSet->addElement(
 	Select::get('testselectmultiple')
 		->setOptions(array('a' => 'test1', 'b' => 'test2', 'c' => 'test3'))
 		->setSelectedIndices(array(1, 3))

@@ -118,11 +118,11 @@ class InputCheckbox extends FormElement{
 	
 	private function isSelectedOption($index, $value, $text){
 		return(
-			(in_array($index, $this->selectedIndices))
+			(in_array($index, $this->selectedIndices, true))
 			||
-			(in_array($value, $this->selectedValues))
+			(in_array($value, $this->selectedValues, true))
 			||
-			(in_array($text, $this->selected))
+			(in_array($text, $this->selected, true))
 		);
 	}
 	

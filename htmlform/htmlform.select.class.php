@@ -14,6 +14,7 @@ require_once('htmlform.tools.class.php');
 class Select extends FormElement{
 	// ***
 	private $options;
+	private $optionCssClasses;
 	private $selected;
 	private $selectedValues;
 	private $selectedIndices;
@@ -24,6 +25,7 @@ class Select extends FormElement{
 		parent::__construct($name, $id);
 		
 		$this->options = array();
+		$this->optionCssClasses = array();
 		$this->selected = array();
 		$this->selectedValues = array();
 		$this->selectedIndices = array();
@@ -45,6 +47,13 @@ class Select extends FormElement{
 	
 	public function setOptions(Array $options){
 		$this->options = $options;
+		return $this;
+	}
+	
+	
+	
+	public function setOptionCssClasses(Array $classes){
+		$this->optionCssClasses = $classes;
 		return $this;
 	}
 	
@@ -210,6 +219,7 @@ class Select extends FormElement{
 			$options .=
 				 '<option'
 					.' value="'.HtmlFormTools::auto_htmlspecialchars($value, $this->needsUtf8Safety()).'"'
+					.((count($this->optionCssClasses) > 0) ? ' class="'.$this->optionCssClasses[(($index - 1) % count($this->optionCssClasses))].'"'  : '')
 					.($this->isSelectedOption($index, $value, $text) ? ' selected="selected"' : '')
 				.'>'
 					.HtmlFormTools::auto_htmlspecialchars($text, $this->needsUtf8Safety())

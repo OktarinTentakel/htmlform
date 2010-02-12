@@ -62,6 +62,7 @@ $testFieldSet->addElement(
 $testFieldSet->addElement(
 	Select::get('testselectmultiple')
 		->setOptions(array('a' => 'test1', 'b' => 'test2', 'c' => 'test3'))
+		->setOptionCssClasses(array('odd', 'even'))
 		->setSelectedIndices(array(1, 3))
 		->setMultiple()
 		->setSize(3)
@@ -224,7 +225,9 @@ $testFieldSet2->addElement(
 
 $checkbox1 = InputCheckbox::get('check1')
 	->setLabel('checktest1')
+	->setCssClasses('test')
 	->setOptions(array('a' => 'check1', 'b' => 'check2', 'c' => 'check3', 'd' => 'check4'))
+	->setOptionCssClasses(array('odd', 'equal', 'even'))
 	->setSelected(array('check2', 'check3'));
 $testFieldSet2->addElement($checkbox1);
 

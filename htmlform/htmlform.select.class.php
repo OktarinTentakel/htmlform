@@ -134,7 +134,11 @@ class Select extends FormElement{
 			}
 		}
 		
-		return $this->multiple ? $values : $values[0];
+		if( $this->multiple ){
+			return $values;
+		} else {
+			return isset($values[0]) ? $values[0] : '';
+		}
 	}
 	
 	

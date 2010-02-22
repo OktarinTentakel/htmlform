@@ -163,6 +163,7 @@ $testFieldSet2->addElement(
 	InputText::get('testtextinput2')
 		->setLabel('Länge zwischen 3 und 10')
 		->setText('testotesto')
+		->setTitle('testtitle')
 		->setValidator(
 			FormValidator::get()
 				->setRequired()

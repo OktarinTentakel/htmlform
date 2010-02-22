@@ -22,6 +22,7 @@ abstract class FormElement{
 	
 	protected $id;
 	protected $name;
+	protected $title;
 	protected $cssClasses;
 	protected $label;
 	protected $jsEventHandler;
@@ -37,6 +38,7 @@ abstract class FormElement{
 		
 		$this->id = "$id";
 		$this->name = "$name";
+		$this->title = '';
 		$this->cssClasses = '';
 		$this->label = '';
 		$this->jsEventHandler = '';
@@ -77,6 +79,13 @@ abstract class FormElement{
 	
 	public function setId($id){
 		$this->id = "$id";
+		return $this;
+	}
+	
+	
+	
+	public function setTitle($title){
+		$this->title = "$title";
 		return $this;
 	}
 	
@@ -145,6 +154,12 @@ abstract class FormElement{
 	
 	public function getName(){
 		return $this->name;
+	}
+	
+	
+	
+	public function getTitle(){
+		return $this->title;
 	}
 	
 	
@@ -259,6 +274,12 @@ abstract class FormElement{
 	
 	protected function printName(){
 		return (($this->name != '') ? ' name="'.$this->name.'"' : '');
+	}
+	
+	
+	
+	protected function printTitle(){
+		return (($this->title != '') ? ' title="'.$this->title.'"' : '');
 	}
 	
 	

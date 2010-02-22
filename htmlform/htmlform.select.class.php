@@ -238,6 +238,7 @@ class Select extends FormElement{
 					.'<select'
 						.$this->printId()
 						.$this->printNameArray()
+						.$this->printTitle()
 						.' size="'.$this->size.'"'
 						.$this->printMultiple()
 						.$this->printCssClasses()

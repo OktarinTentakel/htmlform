@@ -54,6 +54,7 @@ class InputButton extends FormElement{
 				.$this->printName()
 				.' type="button"'
 				.' value="'.$this->caption.'"'
+				.$this->printTitle()
 				.$this->printCssClasses()
 				.$this->printJsEventHandler()
 				.$this->printTabindex()

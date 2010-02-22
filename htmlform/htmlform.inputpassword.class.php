@@ -41,6 +41,7 @@ class InputPassword extends InputText{
 						.$this->printName()
 						.' type="password"'
 						.' value="'.HtmlFormTools::auto_htmlspecialchars($this->text, $this->needsUtf8Safety()).'"'
+						.$this->printTitle()
 						.$this->printSize()
 						.$this->printMaxLength()
 						.$this->printCssClasses()

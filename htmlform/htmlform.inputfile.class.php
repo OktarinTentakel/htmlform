@@ -62,6 +62,7 @@ class InputFile extends InputText{
 						.$this->printId()
 						.$this->printName()
 						.' type="file"'
+						.$this->printTitle()
 						.$this->printAccept()
 						.$this->printSize()
 						.$this->printMaxLength()

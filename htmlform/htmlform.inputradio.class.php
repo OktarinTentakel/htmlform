@@ -161,6 +161,7 @@ class InputRadio extends FormElement{
 					.$this->printCssClasses()
 					.' value="'.HtmlFormTools::auto_htmlspecialchars($value, $this->needsUtf8Safety()).'"'
 					.($this->isSelectedOption($index, $value, $text) ? ' checked="checked"' : '')
+					.$this->printTitle()
 					.$this->printTabIndex()
 					.$this->printDisabled()
 					.$this->masterForm->printSlash()

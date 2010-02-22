@@ -54,6 +54,7 @@ class InputSubmit extends FormElement{
 				 .$this->printName()
 				 .' type="submit"'
 				 .' value="'.$this->caption.'"'
+				 .$this->printTitle()
 				 .$this->printCssClasses()
 				 .$this->printJsEventHandler()
 				 .$this->printTabindex()

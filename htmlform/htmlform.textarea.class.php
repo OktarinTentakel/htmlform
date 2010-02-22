@@ -148,6 +148,7 @@ class TextArea extends FormElement{
 					.'<textarea'
 						.$this->printId()
 						.$this->printName()
+						.$this->printTitle()
 						.$this->printCols()
 						.$this->printRows()
 						.$this->printCssClasses()

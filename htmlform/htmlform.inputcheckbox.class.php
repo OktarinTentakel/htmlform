@@ -202,6 +202,7 @@ class InputCheckbox extends FormElement{
 					.((count($this->optionCssClasses) > 0) ? ' class="'.$this->optionCssClasses[(($index - 1) % count($this->optionCssClasses))].'"'  : $this->printCssClasses())
 					.' value="'.HtmlFormTools::auto_htmlspecialchars($value, $this->needsUtf8Safety()).'"'
 					.($this->isSelectedOption($index, $value, $text) ? ' checked="checked"' : '')
+					.$this->printTitle()
 					.$this->printTabIndex()
 					.$this->printDisabled()
 					.$this->masterForm->printSlash()

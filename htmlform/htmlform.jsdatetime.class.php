@@ -244,6 +244,7 @@ class JsDateTime extends InputText{
 						.$this->printName()
 						.' type="text"'
 						.' value="'.HtmlFormTools::auto_htmlspecialchars($this->text, $this->needsUtf8Safety()).'"'
+						.$this->printTitle()
 						.$this->printSize()
 						.$this->printMaxLength()
 						.$this->printCssClasses()

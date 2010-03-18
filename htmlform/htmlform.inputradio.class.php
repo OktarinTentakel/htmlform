@@ -152,7 +152,7 @@ class InputRadio extends FormElement{
 		$options = '';
 		foreach( $this->options as $value => $text ){
 			$index++;
-			$radioId = $this->masterForm->getId().'_radio_'.$value;
+			$radioId = $this->masterForm->getId().'_radio_'.$this->name.'_'.$value;
 			$options .=
 				'<input'
 					.' type="radio"'

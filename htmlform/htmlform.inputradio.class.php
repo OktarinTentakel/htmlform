@@ -63,7 +63,7 @@ class InputRadio extends FormElement{
 	
 	
 	public function setSelectedIndex($selected){
-		$this->selectedIndices = "$selected";
+		$this->selectedIndex = "$selected";
 		return $this;
 	}
 	
@@ -79,7 +79,15 @@ class InputRadio extends FormElement{
 	//---|getter----------
 	
 	public function getValue(){
-		return is_null($this->selectedValue) ? '' : $this->selectedValue;
+		$index = 0;
+		foreach( $this->options as $value => $text ){
+			$index++;
+			if( $this->isSelectedOption($index, $value, $text) ){
+				return $value;
+			}
+		}
+		
+		return '';
 	}
 	
 	

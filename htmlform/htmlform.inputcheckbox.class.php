@@ -193,7 +193,7 @@ class InputCheckbox extends FormElement{
 		$options = '';
 		foreach( $this->options as $value => $text ){
 			$index++;
-			$checkId = $this->masterForm->getId().'_checkbox_'.$value;
+			$checkId = $this->masterForm->getId().'_checkbox_'.$this->name.'_'.$value;
 			$options .=
 				'<input'
 					.' type="checkbox"'

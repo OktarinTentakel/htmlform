@@ -63,6 +63,7 @@ $testFieldSet->addElement(
 	Select::get('testselectmultiple')
 		->setOptions(array('a' => 'test1', 'b' => 'test2', 'c' => 'test3'))
 		->setOptionCssClasses(array('odd', 'even'))
+		->setOptionTitles(array('eins', 'zwei'))
 		->setSelectedIndices(array(1, 3))
 		->setMultiple()
 		->setSize(3)

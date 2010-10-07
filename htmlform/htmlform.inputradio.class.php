@@ -49,6 +49,7 @@ class InputRadio extends FormElement{
 	
 	
 	public function setSelected($selected){
+		$this->resetSelection();
 		$this->selected = "$selected";
 		return $this;
 	}
@@ -56,6 +57,7 @@ class InputRadio extends FormElement{
 	
 	
 	public function setSelectedValue($selected){
+		$this->resetSelection();
 		$this->selectedValue = "$selected";
 		return $this;
 	}
@@ -63,7 +65,8 @@ class InputRadio extends FormElement{
 	
 	
 	public function setSelectedIndex($selected){
-		$this->selectedIndex = "$selected";
+		$this->resetSelection();
+		$this->selectedIndex = $selected;
 		return $this;
 	}
 	
@@ -87,7 +90,7 @@ class InputRadio extends FormElement{
 			}
 		}
 		
-		return '';
+		return null;
 	}
 	
 	
@@ -108,17 +111,23 @@ class InputRadio extends FormElement{
 	
 	//---|functionality----------
 	
-	public function refill(Array $refiller = array()){
-		if( count($refiller) == 0 )	$refiller = $_POST;
-		
-		if( isset($refiller[$this->name]) && !is_array($refiller[$this->name]) ){
-			$this->selectedValue = ''.HtmlFormTools::undoMagicQuotes($refiller[$this->name]);
-			$this->selected = null;
-			$this->selectedIndex = null;
-		} elseif( $this->masterForm != null && $this->masterForm->hasBeenSent() ) {
-			$this->selectedValues = null;
-			$this->selected = null;
-			$this->selectedIndices = null;
+	public function refill(Array $refiller = array(), $condition = true){
+		if( !is_null($this->masterForm) && !$this->masterForm->hasBeenSent() && empty($refiller) ){
+			$condition = false;
+		}
+	
+		if( $condition ){
+			$refiller = $this->determineRefiller($refiller);
+			
+			if( isset($refiller[$this->name]) && !is_array($refiller[$this->name]) ){
+				$this->selectedValue = ''.HtmlFormTools::undoMagicQuotes($refiller[$this->name]);
+				$this->selected = null;
+				$this->selectedIndex = null;
+			} elseif( $this->masterForm != null && $this->masterForm->hasBeenSent() ) {
+				$this->selectedValues = null;
+				$this->selected = null;
+				$this->selectedIndices = null;
+			}
 		}
 		
 		return $this;
@@ -147,6 +156,14 @@ class InputRadio extends FormElement{
 		} 
 		
 		return $this->isValid;
+	}
+	
+	
+	
+	private function resetSelection(){
+		$this->selectedIndex = null;
+		$this->selectedValue = null;
+		$this->selected = null;
 	}
 	
 	

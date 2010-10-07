@@ -265,6 +265,25 @@ class HtmlForm{
 	
 	
 	
+	public function getMethod($returnAsArray = false){
+		if( !$returnAsArray ){
+			return $this->method;
+		} else {
+			switch( $this->method ){
+				case 'get':
+					return $_GET;
+				break;
+				
+				case 'post':
+				default:
+					return $_POST;
+				break;
+			}
+		}
+	}
+	
+	
+	
 	public function getTabIndex(){
 		return $this->tabIndex;
 	}

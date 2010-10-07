@@ -93,11 +93,17 @@ class TextArea extends FormElement{
 	
 	//---|functionality----------
 	
-	public function refill(Array $refiller = array()){
-		if( count($refiller) == 0 )	$refiller = $_POST;
-		
-		if( isset($refiller[$this->name]) && !is_array($refiller[$this->name]) ){
-			$this->text = ''.HtmlFormTools::undoMagicQuotes($refiller[$this->name]);
+	public function refill(Array $refiller = array(), $condition = true){
+		if( !is_null($this->masterForm) && !$this->masterForm->hasBeenSent() && empty($refiller) ){
+			$condition = false;
+		}
+	
+		if( $condition ){
+			$refiller = $this->determineRefiller($refiller);
+			
+			if( isset($refiller[$this->name]) && !is_array($refiller[$this->name]) ){
+				$this->text = ''.HtmlFormTools::undoMagicQuotes($refiller[$this->name]);
+			}
 		}
 		
 		return $this;

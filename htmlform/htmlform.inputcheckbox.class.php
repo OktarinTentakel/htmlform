@@ -139,17 +139,23 @@ class InputCheckbox extends FormElement{
 	
 	//---|functionality----------
 	
-	public function refill(Array $refiller = array()){
-		if( count($refiller) == 0 )	$refiller = $_POST;
-		
-		if( isset($refiller[$this->name]) && is_array($refiller[$this->name]) ){
-			$this->selectedValues = HtmlFormTools::undoMagicQuotes($refiller[$this->name]);
-			$this->selected = array();
-			$this->selectedIndices = array();
-		} elseif( ($this->masterForm != null) && $this->masterForm->hasBeenSent() ) {
-			$this->selectedValues = array();
-			$this->selected = array();
-			$this->selectedIndices = array();
+	public function refill(Array $refiller = array(), $condition = true){
+		if( !is_null($this->masterForm) && !$this->masterForm->hasBeenSent() && empty($refiller) ){
+			$condition = false;
+		}
+	
+		if( $condition ){
+			$refiller = $this->determineRefiller($refiller);
+			
+			if( isset($refiller[$this->name]) && is_array($refiller[$this->name]) ){
+				$this->selectedValues = HtmlFormTools::undoMagicQuotes($refiller[$this->name]);
+				$this->selected = array();
+				$this->selectedIndices = array();
+			} elseif( ($this->masterForm != null) && $this->masterForm->hasBeenSent() ) {
+				$this->selectedValues = array();
+				$this->selected = array();
+				$this->selectedIndices = array();
+			}
 		}
 		
 		return $this;
@@ -208,7 +214,7 @@ class InputCheckbox extends FormElement{
 					.$this->masterForm->printSlash()
 				.'>'
 				.'&nbsp;'.Label::getInline($text, $checkId)->doRender()
-				.((($index % $this->width) == 0) ? '<br/>' : '&nbsp;&nbsp;&nbsp;')
+				.((($index % $this->width) == 0) ? '<br'.$this->masterForm->printSlash().'>' : '&nbsp;&nbsp;&nbsp;')
 			;
 		}
 	

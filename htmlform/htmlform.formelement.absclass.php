@@ -264,6 +264,20 @@ abstract class FormElement{
 	
 	
 	
+	protected function determineRefiller(Array $refiller = array()){
+		if( empty($refiller) ){
+			if( !is_null($this->masterForm) ){
+				$refiller = $this->masterForm->getMethod(true);
+			} else {
+				$refiller = $_POST;
+			}
+		}
+		
+		return $refiller;
+	}
+	
+	
+	
 	//---|output----------
 	
 	protected function printId(){
@@ -278,14 +292,14 @@ abstract class FormElement{
 	
 	
 	
-	protected function printTitle(){
-		return (($this->title != '') ? ' title="'.$this->title.'"' : '');
+	protected function printNameArray(){
+		return (($this->name != '') ? ' name="'.$this->name.'[]"' : '');
 	}
 	
 	
 	
-	protected function printNameArray(){
-		return (($this->name != '') ? ' name="'.$this->name.'[]"' : '');
+	protected function printTitle(){
+		return (($this->title != '') ? ' title="'.$this->title.'"' : '');
 	}
 	
 	

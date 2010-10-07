@@ -16,6 +16,7 @@ class Select extends FormElement{
 	private $options;
 	private $optionCssClasses;
 	private $optionTitles;
+	private $optGroups;
 	private $selected;
 	private $selectedValues;
 	private $selectedIndices;
@@ -28,6 +29,7 @@ class Select extends FormElement{
 		$this->options = array();
 		$this->optionCssClasses = array();
 		$this->optionTitles = array();
+		$this->optGroups = array();
 		$this->selected = array();
 		$this->selectedValues = array();
 		$this->selectedIndices = array();
@@ -48,7 +50,18 @@ class Select extends FormElement{
 	//---|setter----------
 	
 	public function setOptions(Array $options){
-		$this->options = $options;
+		foreach( $options as $name => $value ){
+			if( is_array($value) ){
+				$this->optGroups["$name"] = array();
+				foreach( $value as $subName => $subValue ){
+					$this->options["$subName"] = "$subValue";
+					$this->optGroups["$name"][] = count($this->options);
+				}
+			} else {
+				$this->options["$name"] = "$value";
+			}
+		}
+		
 		return $this;
 	}
 	
@@ -69,13 +82,20 @@ class Select extends FormElement{
 	
 	
 	public function setSelected(Array $selected){
-		$this->selected = $selected;
+		if( !$this->multiple ){
+			$this->resetSelection();
+			$this->selected = !empty($selected) ? array(''.$selected[0]) : array();
+		} else {
+			$this->selected = $selected;
+		}
+		
 		return $this;
 	}
 	
 	
 	
 	public function setSelectedSingle($selected){
+		if( !$this->multiple ) $this->resetSelection();
 		$this->selected = array("$selected");
 		return $this;
 	}
@@ -83,27 +103,41 @@ class Select extends FormElement{
 	
 	
 	public function setSelectedValues(Array $selected){
-		$this->selectedValues = $selected;
+		if( !$this->multiple ){
+			$this->resetSelection();
+			$this->selectedValues = !empty($selected) ? array(''.$selected[0]) : array();
+		} else {
+			$this->selectedValues = $selected;
+		}
+		
 		return $this;
 	}
 	
 	
 	
 	public function setSelectedValue($selected){
-		$this->selectedValues = array($selected);
+		if( !$this->multiple ) $this->resetSelection();
+		$this->selectedValues = array("$selected");
 		return $this;
 	}
 	
 	
 	
 	public function setSelectedIndices(Array $selected){
-		$this->selectedIndices = $selected;
+		if( !$this->multiple ){
+			$this->resetSelection();
+			$this->selectedIndices = !empty($selected) ? array($selected[0]) : array();
+		} else {
+			$this->selectedIndices = $selected;
+		}
+		
 		return $this;
 	}
 	
 	
 	
 	public function setSelectedIndex($selected){
+		if( !$this->multiple ) $this->resetSelection();
 		$this->selectedIndices = array($selected);
 		return $this;
 	}
@@ -135,18 +169,29 @@ class Select extends FormElement{
 	
 	public function getValue(){
 		$values = array();
+		$defaultValue = null;
 		$index = 0;
+		
 		foreach( $this->options as $value => $text ){
 			$index++;
+			
+			if( $index == 1 ){
+				$defaultValue = $value;
+			}
+			
 			if( $this->isSelectedOption($index, $value, $text) ){
 				$values[] = $value;
 			}
 		}
 		
+		if( (count($values) == 0) && !$this->multiple ){
+			$values[] = $defaultValue;
+		}
+		
 		if( $this->multiple ){
 			return $values;
 		} else {
-			return isset($values[0]) ? $values[0] : '';
+			return $values[0];
 		}
 	}
 	
@@ -168,17 +213,25 @@ class Select extends FormElement{
 	
 	//---|functionality----------
 	
-	public function refill(Array $refiller = array()){
-		if( count($refiller) == 0 )	$refiller = $_POST;
+	public function refill(Array $refiller = array(), $condition = true){
+		if( !is_null($this->masterForm) && !$this->masterForm->hasBeenSent() && empty($refiller) ){
+			$condition = false;
+		}
 		
-		if( isset($refiller[$this->name]) && is_array($refiller[$this->name]) ){
-			$this->selectedValues = HtmlFormTools::undoMagicQuotes($refiller[$this->name]);
-			$this->selected = array();
-			$this->selectedIndices = array();
-		} elseif( ($this->masterForm != null) && $this->masterForm->hasBeenSent() ) {
-			$this->selectedValues = array();
-			$this->selected = array();
-			$this->selectedIndices = array();
+		if( $condition ){
+			$refiller = $this->determineRefiller($refiller);
+			
+			if( isset($refiller[$this->name]) ){
+				$values = HtmlFormTools::undoMagicQuotes($refiller[$this->name]);
+				
+				$this->selectedValues = is_array($refiller[$this->name]) ? $values : array($values);
+				$this->selected = array();
+				$this->selectedIndices = array();
+			} elseif( ($this->masterForm != null) && $this->masterForm->hasBeenSent() ) {
+				$this->selectedValues = array();
+				$this->selected = array();
+				$this->selectedIndices = array();
+			}
 		}
 		
 		return $this;
@@ -213,6 +266,14 @@ class Select extends FormElement{
 	
 	
 	
+	private function resetSelection(){
+		$this->selectedIndices = array();
+		$this->selectedValues = array();
+		$this->selected = array();
+	}
+	
+	
+	
 	//---|output----------
 	
 	private function printMultiple(){
@@ -221,24 +282,63 @@ class Select extends FormElement{
 	
 	
 	
+	private function printOption($index, $value, $text){
+		return
+			'<option'
+				.' value="'.HtmlFormTools::auto_htmlspecialchars($value, $this->needsUtf8Safety()).'"'
+				.((count($this->optionCssClasses) > 0) ? ' class="'.$this->optionCssClasses[(($index - 1) % count($this->optionCssClasses))].'"'  : '')
+				.(((count($this->optionTitles) > 0) && !empty($this->optionTitles[(($index - 1) % count($this->optionTitles))])) ? ' title="'.$this->optionTitles[(($index - 1) % count($this->optionTitles))].'"'  : '')
+				.($this->isSelectedOption($index, $value, $text) ? ' selected="selected"' : '')
+			.'>'
+				.HtmlFormTools::auto_htmlspecialchars($text, $this->needsUtf8Safety())
+			.'</option>'
+		;
+	}
+	
+	
+	
 	public function doRender(){
 		$label = ($this->label != '') ? Label::get($this)->doRender() : '';
 		
 		$index = 0;
+		$optGroups = '';
 		$options = '';
 		foreach( $this->options as $value => $text ){
 			$index++;
+			$isInOptGroup = false;
 			
-			$options .=
-				 '<option'
-					.' value="'.HtmlFormTools::auto_htmlspecialchars($value, $this->needsUtf8Safety()).'"'
-					.((count($this->optionCssClasses) > 0) ? ' class="'.$this->optionCssClasses[(($index - 1) % count($this->optionCssClasses))].'"'  : '')
-					.(((count($this->optionTitles) > 0) && !empty($this->optionTitles[(($index - 1) % count($this->optionTitles))])) ? ' title="'.$this->optionTitles[(($index - 1) % count($this->optionTitles))].'"'  : '')
-					.($this->isSelectedOption($index, $value, $text) ? ' selected="selected"' : '')
-				.'>'
-					.HtmlFormTools::auto_htmlspecialchars($text, $this->needsUtf8Safety())
-				.'</option>'
-			;
+			foreach( $this->optGroups as $optGroupLabel => $optGroupIndices ){
+				$pos = array_search($index, $optGroupIndices);
+				if( $pos !== false ){
+					$isInOptGroup = true;
+				
+					if( count($optGroupIndices) > 1 ){
+						if( $pos == 0 ){
+							$optGroups .=
+								'<optgroup label="'.HtmlFormTools::auto_htmlspecialchars($optGroupLabel, $this->needsUtf8Safety()).'">'
+								.$this->printOption($index, $value, $text)
+							;
+						} elseif( $pos == (count($optGroupIndices)-1) ){
+							$optGroups .=
+								$this->printOption($index, $value, $text)
+								.'</optgroup>'
+							;
+						} else {
+							$optGroups .= $this->printOption($index, $value, $text);
+						}
+					} else {
+						$optGroups .=
+							'<optgroup label="'.HtmlFormTools::auto_htmlspecialchars($optGroupLabel, $this->needsUtf8Safety()).'">'
+							.$this->printOption($index, $value, $text)
+							.'</optgroup>'
+						;
+					}
+				}
+			}
+			
+			if( !$isInOptGroup ){
+				$options .=	$this->printOption($index, $value, $text);
+			}
 		}
 	
 		return
@@ -247,7 +347,7 @@ class Select extends FormElement{
 				.'<div class="'.parent::WIDGETCLASS.'">'
 					.'<select'
 						.$this->printId()
-						.$this->printNameArray()
+						.($this->multiple ? $this->printNameArray() : $this->printName())
 						.$this->printTitle()
 						.' size="'.$this->size.'"'
 						.$this->printMultiple()
@@ -256,6 +356,7 @@ class Select extends FormElement{
 						.$this->printTabindex()
 						.$this->printDisabled()
 					.'>'
+						.$optGroups
 						.$options
 					.'</select>'
 				.'</div>'

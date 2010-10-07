@@ -39,7 +39,7 @@ $testFieldSet->addElement(
 );
 $testFieldSet->addElement(
 	Select::get('testselectsingle')
-		->setOptions(array('a' => 'test1', 'b' => 'test2', '3' => '333'))
+		->setOptions(array('String-Werte' => array('a' => 'test1', 'b' => 'test2'), 'Zahlenwerte' => array('3' => '333'), 'c' => 'test3'))
 		->setSelectedSingle('333')
 		->setLabel('Einzelselect nur Zahlen')
 		->setValidator(
@@ -61,17 +61,18 @@ $testFieldSet->addElement(
 );
 $testFieldSet->addElement(
 	Select::get('testselectmultiple')
+		->setMultiple()
 		->setOptions(array('a' => 'test1', 'b' => 'test2', 'c' => 'test3'))
 		->setOptionCssClasses(array('odd', 'even'))
 		->setOptionTitles(array('eins', 'zwei'))
 		->setSelectedIndices(array(1, 3))
-		->setMultiple()
 		->setSize(3)
 		->setLabel('testmultiselect')
 		->refill()
 		->setValidator(
 			FormValidator::get()
 				->setRequired()
+				->setCharacterClass('ac')
 				->setAutoErrorMessagesAsCustom()
 		)
 );
@@ -230,7 +231,8 @@ $checkbox1 = InputCheckbox::get('check1')
 	->setCssClasses('test')
 	->setOptions(array('a' => 'check1', 'b' => 'check2', 'c' => 'check3', 'd' => 'check4'))
 	->setOptionCssClasses(array('odd', 'equal', 'even'))
-	->setSelected(array('check2', 'check3'));
+	->setSelected(array('check2', 'check3'))
+;
 $testFieldSet2->addElement($checkbox1);
 
 $testFieldSet2->addElement(

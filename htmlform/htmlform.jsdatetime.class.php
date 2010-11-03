@@ -188,7 +188,7 @@ class JsDateTime extends InputText{
 		$weekDayNamesString[0] = HtmlFormTools::auto_preg_replace('/(, )$/', '', $weekDayNamesString[0], $this->needsUtf8Safety()).']';
 		$weekDayNamesString[1] = HtmlFormTools::auto_preg_replace('/(, )$/', '', $weekDayNamesString[1], $this->needsUtf8Safety()).']';
 		
-		// Rückgabekonstruktion
+		// RÃ¼ckgabekonstruktion
 		return
 			 '<script type="text/javascript">'
 				.'var SpanBorderColor = "'.(isset($this->jsConfig['SpanBorderColor']) ? ''.$this->jsConfig['SpanBorderColor'] : '#cdcdcd').'";'

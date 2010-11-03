@@ -8,32 +8,10 @@ require_once('htmlform.formelement.absclass.php');
 
 //---|class----------
 
-/**
- * This formelement fulfills the purpose of being a visual gatherer for other formelements.
- * In general this is a container element used to style a certain form-part differently or to align
- * the widgets in another fashion.
- * 
- * @author Sebastian Schlapkohl
- * @version 0.8 beta
- * @package elements
- */
 class AlignBlock extends FormElement{
-	
-	/**
-	 * css-class for the widget container
-	 * @var String
-	 */
 	const WRAPPERCLASS = 'htmlform_alignblock';
 	
-	
-	
 	// ***
-	/**
-	 * Hidden constructor.
-	 * Get new instances with "get()" instead.
-	 * 
-	 * @param String $id html-id for the element
-	 */
 	protected function __construct($id = ''){
 		parent::__construct('', $id);
 		
@@ -42,13 +20,6 @@ class AlignBlock extends FormElement{
 	
 	
 	
-	/**
-	 * Factory method for AlignBlock, returns new instance.
-	 * Factories are used to make instant chaining possible.
-	 * 
-	 * @param String $id html-id for the element
-	 * @return AlignBlock new AlignBlock-instance
-	 */
 	public static function get($id = ''){
 		$res = new AlignBlock($id);
 		return $res;
@@ -59,11 +30,6 @@ class AlignBlock extends FormElement{
 	
 	//---|getter----------
 	
-	/**
-	 * Since AlignBlock doesn't hold any value, this method will always return null.
-	 * 
-	 * @return null
-	 */
 	public function getValue(){
 		return null;
 	}
@@ -72,13 +38,8 @@ class AlignBlock extends FormElement{
 	
 	//---|output----------
 	
-	/**
-	 * Compiles and returns the html-fragment for the element including all subelements.
-	 * 
-	 * @return String html-fragment for the element
-	 */
 	public function doRender(){
-		$this->cssClasses = self::WRAPPERCLASS.(($this->cssClasses != '') ?' '.$this->cssClasses : '');
+		$this->cssClasses = self::WRAPPERCLASS.' '.$this->cssClasses;
 		
 		$subs = '';
 		foreach( $this->subElements as $se ){

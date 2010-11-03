@@ -8,22 +8,6 @@ require_once('htmlform.tools.class.php');
 
 //--|class----------
 
-/**
- * A FormValidator defines a set of rules a widget-value has to fulfill before being able to be called valid.
- * Validation is an all-or-nothing game. If just one validator fails inside a structure being validated the whole
- * construct is deemed invalid. Keep that in mind when setting up the rules for a validator.
- * 
- * Depending on the nature of a formelement a validator is being provided with either one value or a bunch of values.
- * You don't have to care about this, the validator will handle this for you. Just use the rules as they seem logical
- * and if problems arise, read the description for the rule setter for further details.
- * 
- * If you validate after a form is completely constructed you also won't have to worry about utf-8 or language settings
- * for messages.
- * 
- * @author Sebastian Schlapkohl
- * @version 0.8 beta
- * @package validation
- */
 class FormValidator{
 	// ***
 	const MESSAGECLASS = 'htmlform_message_div';
@@ -51,7 +35,7 @@ class FormValidator{
 		$this->values = array();
 		$this->isValid = true;
 		
-		$this->needsUtf8Safety = true;
+		$this->needsUtf8Safety = false;
 	}
 	
 	
@@ -109,8 +93,8 @@ class FormValidator{
 	
 	
 	
-	public function setUtf8Safety($needed = true){
-		$this->needsUtf8Safety = $needed;
+	public function setUtf8Safety(){
+		$this->needsUtf8Safety = true;
 	}
 	
 	
@@ -406,7 +390,7 @@ class FormValidator{
 		$res = true;
 		
 		foreach( $this->values as $email ){
-			//gucken ob @ da und ob Lï¿½ngen stimmen
+			//gucken ob @ da und ob Längen stimmen
 			if (!HtmlFormTools::auto_preg_match('/^[^@]{1,64}@[^@]{1,255}$/', $email, $this->needsUtf8Safety)) {
 				$res = false;
 			}

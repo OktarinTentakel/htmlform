@@ -15,7 +15,8 @@ require_once('htmlform.formelement.absclass.php');
  * 
  * @author Sebastian Schlapkohl
  * @version 0.8 beta
- * @package elements
+ * @package formelements
+ * @subpackage container-widgets
  */
 class AlignBlock extends FormElement{
 	

@@ -24,7 +24,7 @@ require_once('htmlform.tools.class.php');
  * 
  * @author Sebastian Schlapkohl
  * @version 0.8 beta
- * @package elements
+ * @package formelements
  */
 
 abstract class FormElement{

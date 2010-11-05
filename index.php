@@ -454,6 +454,8 @@ $testFieldSet2->addElement(
 	InputRadio::get('radios1')
 		->setLabel('radiogroup:')
 		->setOptions(array('a' => 'radio1', 'b' => 'radio2', 'c' => 'radio3', 'd' => 'radio4'))
+		->setOptionCssClasses(array('allthesame'))
+		->setOptionTitles(array('one', 'two', 'three', 'four'))
 		->setSelectedValue('d')
 		->setWidth(3)
 		->refill()
@@ -472,6 +474,7 @@ $checkbox1 = InputCheckbox::get('check1')
 	->setCssClasses('nothing')
 	->setOptions(array('a' => 'check1', 'b' => 'check2', 'c' => 'check3', 'd' => 'check4'))
 	->setOptionCssClasses(array('odd', 'equal', 'even'))
+	->setOptionTitles(array('just one for all'))
 	->setSelected(array('check2', 'check3'))
 ;
 $testFieldSet2->addElement($checkbox1);

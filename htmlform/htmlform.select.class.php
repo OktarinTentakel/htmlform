@@ -11,6 +11,16 @@ require_once('htmlform.tools.class.php');
 
 //---|class----------
 
+/**
+ * Wraps a select.
+ * This class implements a select in all its variations, be it as single-select, mulit-select, with or without optgroups.
+ * You name it. It's simply a very percise object-build of a select box.
+ * 
+ * @author Sebastian Schlapkohl
+ * @version 0.8 beta
+ * @package formelements
+ * @subpackage value-widgets
+ */
 class Select extends FormElement{
 	// ***
 	private $options;
@@ -23,6 +33,13 @@ class Select extends FormElement{
 	private $size;
 	private $multiple;
 	
+	/**
+	 * Hidden constructor.
+	 * Get new instances with "get()" instead.
+	 * 
+	 * @param String $name html-name for the element
+	 * @param String $id html-id for the element
+	 */
 	protected function __construct($name, $id = ''){
 		parent::__construct($name, $id);
 		
@@ -39,6 +56,14 @@ class Select extends FormElement{
 	
 	
 	
+	/**
+	 * Factory method for Select, returns new instance.
+	 * Factories are used to make instant chaining possible.
+	 * 
+	 * @param String $name html-name for the element
+	 * @param String $id html-id for the element
+	 * @return Select new Select-instance
+	 */
 	public static function get($name, $id = ''){
 		$res = new Select($name, $id);
 		return $res;
@@ -49,6 +74,15 @@ class Select extends FormElement{
 	
 	//---|setter----------
 	
+	/**
+	 * Sets all available options of the select.
+	 * The options have to be given in the form of an associative array, where keys are the option-values and
+	 * values are the texts for each option.
+	 * array('val1' => 'nice option', 'val2' => 'not so nice option', ...)
+	 * 
+	 * @param Array[String] $options the options for the select
+	 * @return Select method owner
+	 */
 	public function setOptions(Array $options){
 		foreach( $options as $name => $value ){
 			if( is_array($value) ){
@@ -67,6 +101,17 @@ class Select extends FormElement{
 	
 	
 	
+	/**
+	 * Sets css-classes to set for the options.
+	 * This could be used for an even-odd-pattern for example. One specialty of this
+	 * functionality: the classes cycle. If you have 4 options for example and you define
+	 * two classes of "even" and "odd", there will be two subsequent groups of "even" and "odd".
+	 * 
+	 * The order of the classes is that in which the options have been defined.
+	 * 
+	 * @param Array[String] $classes css-classes to apply to the options
+	 * @return Select method owner
+	 */
 	public function setOptionCssClasses(Array $classes){
 		$this->optionCssClasses = $classes;
 		return $this;
@@ -74,6 +119,16 @@ class Select extends FormElement{
 	
 	
 	
+	/**
+	 * Sets html-title to set for the options.
+	 * The same speciality here as with the classes: they cycle, if not enough were defined for all options.
+	 * If you have 4 options and you define two classes, there will be two subsequent groups of of both titles.
+	 * 
+	 * The order of the titles is that in which the options have been defined.
+	 * 
+	 * @param Array[String] $classes html-titles to apply to the options
+	 * @return Select method owner
+	 */
 	public function setOptionTitles(Array $titles){
 		$this->optionTitles = $titles;
 		return $this;
@@ -81,6 +136,12 @@ class Select extends FormElement{
 	
 	
 	
+	/**
+	 * Sets selected options by their text.
+	 * 
+	 * @param Array[String] $selected texts of the selected options
+	 * @return Select method owner
+	 */
 	public function setSelected(Array $selected){
 		if( !$this->multiple ){
 			$this->resetSelection();
@@ -94,6 +155,12 @@ class Select extends FormElement{
 	
 	
 	
+	/**
+	 * Sets a single selected option by its text.
+	 * 
+	 * @param String $selected the text of the selected option
+	 * @return Select method owner
+	 */
 	public function setSelectedSingle($selected){
 		if( !$this->multiple ) $this->resetSelection();
 		$this->selected = array("$selected");
@@ -102,6 +169,12 @@ class Select extends FormElement{
 	
 	
 	
+	/**
+	 * Sets selected options by their values.
+	 * 
+	 * @param Array[String] $selected values of the selected options
+	 * @return Select method owner
+	 */
 	public function setSelectedValues(Array $selected){
 		if( !$this->multiple ){
 			$this->resetSelection();
@@ -115,6 +188,12 @@ class Select extends FormElement{
 	
 	
 	
+	/**
+	 * Sets a single selected option by its value.
+	 * 
+	 * @param String $selected the value of the selected option
+	 * @return Select method owner
+	 */
 	public function setSelectedValue($selected){
 		if( !$this->multiple ) $this->resetSelection();
 		$this->selectedValues = array("$selected");
@@ -123,6 +202,13 @@ class Select extends FormElement{
 	
 	
 	
+	/**
+	 * Sets the selected options by their indizes.
+	 * Indices start with 1.
+	 * 
+	 * @param Array[uint] $selected indices of the selected options
+	 * @return Select method owner
+	 */
 	public function setSelectedIndices(Array $selected){
 		if( !$this->multiple ){
 			$this->resetSelection();
@@ -136,6 +222,13 @@ class Select extends FormElement{
 	
 	
 	
+	/**
+	 * Sets a single selected option by its index.
+	 * Indices start with 1.
+	 * 
+	 * @param uint $selected the index of the selected option
+	 * @return Select method owner
+	 */
 	public function setSelectedIndex($selected){
 		if( !$this->multiple ) $this->resetSelection();
 		$this->selectedIndices = array($selected);
@@ -144,6 +237,12 @@ class Select extends FormElement{
 	
 	
 	
+	/**
+	 * Sets the amount of rows the select should have, especially needed for multi-selects.
+	 * 
+	 * @param uint $size amount of rows
+	 * @return Select method owner
+	 */
 	public function setSize($size){
 		$this->size = (integer) $size;
 		return $this;
@@ -151,6 +250,11 @@ class Select extends FormElement{
 	
 	
 	
+	/**
+	 * Set the select to being a single-select.
+	 * 
+	 * @return Select method owner
+	 */
 	public function setSingle(){
 		$this->multiple = false;
 		return $this;
@@ -158,6 +262,11 @@ class Select extends FormElement{
 	
 	
 	
+	/**
+	 * Set the select to being a multi-select.
+	 * 
+	 * @return Select method owner
+	 */
 	public function setMultiple(){
 		$this->multiple = true;
 		return $this;
@@ -167,6 +276,14 @@ class Select extends FormElement{
 	
 	//---|getter----------
 	
+	/**
+	 * Returns the current value of the element.
+	 * A Select returns either a single string, if it's a single-select or
+	 * and array of string when being multi-selectable. Both are compiled
+	 * from the currently selected options of course.
+	 * 
+	 * @return String/Array[String] the value(s) of (all) currently selected option(s)
+	 */
 	public function getValue(){
 		$values = array();
 		$defaultValue = null;
@@ -213,6 +330,15 @@ class Select extends FormElement{
 	
 	//---|functionality----------
 	
+	/**
+	 * Tries to refill the selected options from existing data.
+	 * This data can eiter be one of the method-arrays dependent on the
+	 * method the surrounding form uses or a supplied array of name-value-pairs.
+	 * 
+	 * @param Array[String] $refiller data to use as the refill source
+	 * @param Boolean $condition expression which defines if the refill will take place or not, to make it conditional so to speak
+	 * @return Select method owner
+	 */
 	public function refill(Array $refiller = array(), $condition = true){
 		if( !is_null($this->masterForm) && !$this->masterForm->hasBeenSent() && empty($refiller) ){
 			$condition = false;
@@ -239,6 +365,13 @@ class Select extends FormElement{
 	
 	
 	
+	/**
+	 * Starts the validation-process for the element.
+	 * Calculates the validity-status, based on the currently selected options, by applying the rules
+	 * of a present validator. If there is none, the element is always valid.
+	 * 
+	 * @return Boolean element is currently valid yes/no
+	 */
 	public function validate(){
 		parent::validate();
 		
@@ -297,6 +430,11 @@ class Select extends FormElement{
 	
 	
 	
+	/**
+	 * Compiles and returns the html-fragment for the element.
+	 * 
+	 * @return String html-fragment for the element
+	 */
 	public function doRender(){
 		$label = ($this->label != '') ? Label::get($this)->doRender() : '';
 		

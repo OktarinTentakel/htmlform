@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Docs For Class TextArea</title>
+<title>Docs For Class InputReset</title>
 <link rel="stylesheet" type="text/css" href="../../media/style.css">
 </head>
 <body>
@@ -114,8 +114,8 @@
     <td>
       <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
 
-<h1>Class: TextArea</h1>
-Source Location: /htmlform.textarea.class.php<br /><br />
+<h1>Class: InputReset</h1>
+Source Location: /htmlform.inputreset.class.php<br /><br />
 
 
 <table width="100%" border="0">
@@ -124,8 +124,10 @@ Source Location: /htmlform.textarea.class.php<br /><br />
 <h3><a href="#class_details">Class Overview</a></h3>
 <pre><a href="../../formelements/FormElement.html">FormElement</a>
    |
-   --TextArea</pre><br />
-<div class="description">Wraps a textarea.</div><br /><br />
+   --<a href="../../formelements/control-widgets/InputButton.html">InputButton</a>
+      |
+      --InputReset</pre><br />
+<div class="description">Wraps a form-reset-button.</div><br /><br />
 <h4>Author(s):</h4>
 <ul>
           <li>Sebastian Schlapkohl</li>
@@ -144,34 +146,14 @@ Source Location: /htmlform.textarea.class.php<br /><br />
         
 </td>
 
-<td valign="top">
-<h3><a href="#class_vars">Variables</a></h3>
-<ul>
-    <li><a href="../../formelements/value-widgets/TextArea.html#var$cols">$cols</a></li>
-    <li><a href="../../formelements/value-widgets/TextArea.html#var$readonly">$readonly</a></li>
-    <li><a href="../../formelements/value-widgets/TextArea.html#var$rows">$rows</a></li>
-    <li><a href="../../formelements/value-widgets/TextArea.html#var$text">$text</a></li>
-  </ul>
-</td>
 
 
 <td valign="top">
 <h3><a href="#class_methods">Methods</a></h3>
 <ul>
-    <li><a href="../../formelements/value-widgets/TextArea.html#method__construct">__construct</a></li>
-    <li><a href="../../formelements/value-widgets/TextArea.html#methoddoRender">doRender</a></li>
-    <li><a href="../../formelements/value-widgets/TextArea.html#methodget">get</a></li>
-    <li><a href="../../formelements/value-widgets/TextArea.html#methodgetValue">getValue</a></li>
-    <li><a href="../../formelements/value-widgets/TextArea.html#methodprintCols">printCols</a></li>
-    <li><a href="../../formelements/value-widgets/TextArea.html#methodprintReadonly">printReadonly</a></li>
-    <li><a href="../../formelements/value-widgets/TextArea.html#methodprintRows">printRows</a></li>
-    <li><a href="../../formelements/value-widgets/TextArea.html#methodrefill">refill</a></li>
-    <li><a href="../../formelements/value-widgets/TextArea.html#methodsetCols">setCols</a></li>
-    <li><a href="../../formelements/value-widgets/TextArea.html#methodsetReadonly">setReadonly</a></li>
-    <li><a href="../../formelements/value-widgets/TextArea.html#methodsetRows">setRows</a></li>
-    <li><a href="../../formelements/value-widgets/TextArea.html#methodsetSize">setSize</a></li>
-    <li><a href="../../formelements/value-widgets/TextArea.html#methodsetText">setText</a></li>
-    <li><a href="../../formelements/value-widgets/TextArea.html#methodvalidate">validate</a></li>
+    <li><a href="../../formelements/control-widgets/InputReset.html#method__construct">__construct</a></li>
+    <li><a href="../../formelements/control-widgets/InputReset.html#methoddoRender">doRender</a></li>
+    <li><a href="../../formelements/control-widgets/InputReset.html#methodget">get</a></li>
   </ul>
 </td>
 
@@ -211,6 +193,17 @@ Source Location: /htmlform.textarea.class.php<br /><br />
 
 <td valign="top">
 <h3>Inherited Variables</h3>
+<div class="tags">
+<h4>Class: <a href="../../formelements/control-widgets/InputButton.html">InputButton</a></h4>
+<dl>
+<dt>
+  <a href="../../formelements/control-widgets/InputButton.html#var$caption">InputButton::$caption</a>
+  </dt>
+<dd>
+   
+</dd>
+</dl>
+</div>
 <div class="tags">
 <h4>Class: <a href="../../formelements/FormElement.html">FormElement</a></h4>
 <dl>
@@ -293,6 +286,39 @@ Source Location: /htmlform.textarea.class.php<br /><br />
 <td valign="top">
 <h3>Inherited Methods</h3>
 <div class="tags">
+<h4>Class: <a href="../../formelements/control-widgets/InputButton.html">InputButton</a></h4>
+<dl>
+    <dt>
+    <a href="../../formelements/control-widgets/InputButton.html#method__construct">InputButton::__construct()</a>
+  </dt>
+  <dd>
+    Hidden constructor.
+  </dd>
+    <dt>
+    <a href="../../formelements/control-widgets/InputButton.html#methoddoRender">InputButton::doRender()</a>
+  </dt>
+  <dd>
+    Compiles and returns the html-fragment for the element.
+  </dd>
+    <dt>
+    <a href="../../formelements/control-widgets/InputButton.html#methodget">InputButton::get()</a>
+  </dt>
+  <dd>
+    Factory method for InputButton, returns new instance.
+  </dd>
+    <dt>
+    <a href="../../formelements/control-widgets/InputButton.html#methodgetValue">InputButton::getValue()</a>
+  </dt>
+  <dd>
+    Since InputButton doesn't hold any value, this method will always return null.
+  </dd>
+    <dt>
+    <a href="../../formelements/control-widgets/InputButton.html#methodsetCaption">InputButton::setCaption()</a>
+  </dt>
+  <dd>
+    Sets the button-caption.
+  </dd>
+  </dl>
 <h4>Class: <a href="../../formelements/FormElement.html">FormElement</a></h4>
 <dl>
     <dt>
@@ -540,7 +566,7 @@ Source Location: /htmlform.textarea.class.php<br /><br />
 <h3>Class Details</h3>
 <div class="tags">
 [line 24]<br />
-Wraps a textarea.<br /><br /><p>This element is made for long, multi-line text entries in contrast to short inputs handled by InputText.  In general both mostly work the same way, with a tad more config-options for the textarea.</p><br /><br /><br />
+Wraps a form-reset-button.<br /><br /><p>Clicking this button resets the form to the state it was in at the last pageload. This widget may be of little  help when developing with HtmlForm, since each form-cycle is a reload, refreshing the reset-state. But there are ways  to make this work, so it's included for means of completion.</p><p>This element is not wrapped into a row, but should be inserted into a container-widget.</p><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
@@ -555,107 +581,6 @@ Wraps a textarea.<br /><br /><p>This element is made for long, multi-line text e
 </div><br /><br />
 <div class="top">[ <a href="#top">Top</a> ]</div><br />
 
-<hr />
-<a name="class_vars"></a>
-<h3>Class Variables</h3>
-<div class="tags">
-	<a name="var$cols"></a>
-	<p></p>
-	<h4>$cols = <span class="value"></span></h4>
-	<p>[line 38]</p>
-  the amount of characters to display horizontally, defines visual width as well<br /><br /><br /><br />
-<h4>Tags:</h4>
-<div class="tags">
-<table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
-  </tr>
-</table>
-</div>
-
-  <br />
-	<div class="tags">
-  <table border="0" cellspacing="0" cellpadding="0">
-    <tr>
-      <td><b>Type:</b>&nbsp;&nbsp;</td>
-      <td>String</td>
-    </tr>
-      </table>
-	</div><br /><br />
-	<div class="top">[ <a href="#top">Top</a> ]</div><br />
-	<a name="var$readonly"></a>
-	<p></p>
-	<h4>$readonly = <span class="value"></span></h4>
-	<p>[line 51]</p>
-  defines if the input is in read-only-state or not<br /><br /><br /><br />
-<h4>Tags:</h4>
-<div class="tags">
-<table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
-  </tr>
-</table>
-</div>
-
-  <br />
-	<div class="tags">
-  <table border="0" cellspacing="0" cellpadding="0">
-    <tr>
-      <td><b>Type:</b>&nbsp;&nbsp;</td>
-      <td>Boolean</td>
-    </tr>
-      </table>
-	</div><br /><br />
-	<div class="top">[ <a href="#top">Top</a> ]</div><br />
-	<a name="var$rows"></a>
-	<p></p>
-	<h4>$rows = <span class="value"></span></h4>
-	<p>[line 44]</p>
-  the amount of lines to display vertically, defines visual height as well<br /><br /><br /><br />
-<h4>Tags:</h4>
-<div class="tags">
-<table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
-  </tr>
-</table>
-</div>
-
-  <br />
-	<div class="tags">
-  <table border="0" cellspacing="0" cellpadding="0">
-    <tr>
-      <td><b>Type:</b>&nbsp;&nbsp;</td>
-      <td>unknown_type</td>
-    </tr>
-      </table>
-	</div><br /><br />
-	<div class="top">[ <a href="#top">Top</a> ]</div><br />
-	<a name="var$text"></a>
-	<p></p>
-	<h4>$text = <span class="value"></span></h4>
-	<p>[line 31]</p>
-  the currently entered text (used for refill mostly, not synchronized to user input)<br /><br /><br /><br />
-<h4>Tags:</h4>
-<div class="tags">
-<table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
-  </tr>
-</table>
-</div>
-
-  <br />
-	<div class="tags">
-  <table border="0" cellspacing="0" cellpadding="0">
-    <tr>
-      <td><b>Type:</b>&nbsp;&nbsp;</td>
-      <td>String</td>
-    </tr>
-      </table>
-	</div><br /><br />
-	<div class="top">[ <a href="#top">Top</a> ]</div><br />
-</div><br />
 
 <hr />
 <a name="class_methods"></a>
@@ -663,23 +588,23 @@ Wraps a textarea.<br /><br /><p>This element is made for long, multi-line text e
 <div class="tags">
   <hr />
 	<a name="methodget"></a>
-	<h3>static method get <span class="smalllinenumber">[line 81]</span></h3>
+	<h3>static method get <span class="smalllinenumber">[line 50]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code>static <a href="../../formelements/value-widgets/TextArea.html">TextArea</a> get(
+		<code>static <a href="../../formelements/control-widgets/InputReset.html">InputReset</a> get(
 String
 $name, [String
 $id = ''])</code>
     </td></tr></table>
     </td></tr></table><br />
 	
-		Factory method for TextArea, returns new instance.<br /><br /><p>Factories are used to make instant chaining possible.</p><br /><br /><br />
+		Factory method for InputReset, returns new instance.<br /><br /><p>Factories are used to make instant chaining possible.</p><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><b>return:</b>&nbsp;&nbsp;</td><td>new TextArea-instance</td>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>new InputReset-instance</td>
   </tr>
   <tr>
     <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
@@ -688,7 +613,7 @@ $id = ''])</code>
 </div>
 <br /><br />
 
-	
+	Overrides <a href="../../formelements/control-widgets/InputButton.html#methodget">InputButton::get()</a> (Factory method for InputButton, returns new instance.)<br /><br />
         <h4>Parameters:</h4>
     <div class="tags">
     <table border="0" cellspacing="0" cellpadding="0">
@@ -709,11 +634,11 @@ $id = ''])</code>
 
   <hr />
 	<a name="method__construct"></a>
-	<h3>constructor __construct <span class="smalllinenumber">[line 60]</span></h3>
+	<h3>constructor __construct <span class="smalllinenumber">[line 34]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code>TextArea __construct(
+		<code>InputReset __construct(
 String
 $name, [String
 $id = ''])</code>
@@ -731,7 +656,7 @@ $id = ''])</code>
 </div>
 <br /><br />
 
-	Overrides <a href="../../formelements/FormElement.html#method__construct">FormElement::__construct()</a> (General abstract, hidden formelement constructor.)<br /><br />
+	Overrides <a href="../../formelements/control-widgets/InputButton.html#method__construct">InputButton::__construct()</a> (Hidden constructor.)<br /><br />
         <h4>Parameters:</h4>
     <div class="tags">
     <table border="0" cellspacing="0" cellpadding="0">
@@ -751,7 +676,7 @@ $id = ''])</code>
   </div>
   <hr />
 	<a name="methoddoRender"></a>
-	<h3>method doRender <span class="smalllinenumber">[line 266]</span></h3>
+	<h3>method doRender <span class="smalllinenumber">[line 65]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -774,382 +699,7 @@ $id = ''])</code>
 </div>
 <br /><br />
 
-	Overrides <a href="../../formelements/FormElement.html#methoddoRender">FormElement::doRender()</a> (Returns the compiled html-code for the element.)<br /><br />
-        <div class="top">[ <a href="#top">Top</a> ]</div>
-  </div>
-  <hr />
-	<a name="methodgetValue"></a>
-	<h3>method getValue <span class="smalllinenumber">[line 171]</span></h3>
-	<div class="function">
-    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
-    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code>String getValue(
-)</code>
-    </td></tr></table>
-    </td></tr></table><br />
-	
-		Returns the current value of the element.<br /><br /><p>In case of a textarea this is always a simple, single string.</p><br /><br /><br />
-<h4>Tags:</h4>
-<div class="tags">
-<table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><b>return:</b>&nbsp;&nbsp;</td><td>current value of element</td>
-  </tr>
-  <tr>
-    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
-  </tr>
-</table>
-</div>
-<br /><br />
-
-	Overrides <a href="../../formelements/FormElement.html#methodgetValue">FormElement::getValue()</a> (Returns the value of the element if there is any.)<br /><br />
-        <div class="top">[ <a href="#top">Top</a> ]</div>
-  </div>
-  <hr />
-	<a name="methodprintCols"></a>
-	<h3>method printCols <span class="smalllinenumber">[line 233]</span></h3>
-	<div class="function">
-    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
-    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code>String printCols(
-)</code>
-    </td></tr></table>
-    </td></tr></table><br />
-	
-		Compiles and returns the html-cols-attribute for the element.<br /><br /><br /><br />
-<h4>Tags:</h4>
-<div class="tags">
-<table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><b>return:</b>&nbsp;&nbsp;</td><td>the html-cols-attribute of the element</td>
-  </tr>
-  <tr>
-    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
-  </tr>
-</table>
-</div>
-<br /><br />
-
-	
-        <div class="top">[ <a href="#top">Top</a> ]</div>
-  </div>
-  <hr />
-	<a name="methodprintReadonly"></a>
-	<h3>method printReadonly <span class="smalllinenumber">[line 255]</span></h3>
-	<div class="function">
-    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
-    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code>String printReadonly(
-)</code>
-    </td></tr></table>
-    </td></tr></table><br />
-	
-		Compiles and returns the html-readonly-attribute for the element.<br /><br /><br /><br />
-<h4>Tags:</h4>
-<div class="tags">
-<table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><b>return:</b>&nbsp;&nbsp;</td><td>the html-readonly-attribute of the element</td>
-  </tr>
-  <tr>
-    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
-  </tr>
-</table>
-</div>
-<br /><br />
-
-	
-        <div class="top">[ <a href="#top">Top</a> ]</div>
-  </div>
-  <hr />
-	<a name="methodprintRows"></a>
-	<h3>method printRows <span class="smalllinenumber">[line 244]</span></h3>
-	<div class="function">
-    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
-    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code>String printRows(
-)</code>
-    </td></tr></table>
-    </td></tr></table><br />
-	
-		Compiles and returns the html-rows-attribute for the element.<br /><br /><br /><br />
-<h4>Tags:</h4>
-<div class="tags">
-<table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><b>return:</b>&nbsp;&nbsp;</td><td>the html-rows-attribute of the element</td>
-  </tr>
-  <tr>
-    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
-  </tr>
-</table>
-</div>
-<br /><br />
-
-	
-        <div class="top">[ <a href="#top">Top</a> ]</div>
-  </div>
-  <hr />
-	<a name="methodrefill"></a>
-	<h3>method refill <span class="smalllinenumber">[line 188]</span></h3>
-	<div class="function">
-    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
-    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code><a href="../../formelements/value-widgets/TextArea.html">TextArea</a> refill(
-[
-$refiller = array()], [Boolean
-$condition = true])</code>
-    </td></tr></table>
-    </td></tr></table><br />
-	
-		Tries to refill the element-value from existing data.<br /><br /><p>This data can eiter be one of the method-arrays dependent on the  method the surrounding form uses or a supplied array of name-value-pairs.</p><br /><br /><br />
-<h4>Tags:</h4>
-<div class="tags">
-<table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
-  </tr>
-  <tr>
-    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
-  </tr>
-</table>
-</div>
-<br /><br />
-
-	
-        <h4>Parameters:</h4>
-    <div class="tags">
-    <table border="0" cellspacing="0" cellpadding="0">
-          <tr>
-        <td class="type">Array[String]&nbsp;&nbsp;</td>
-        <td><b>$refiller</b>&nbsp;&nbsp;</td>
-        <td>data to use as the refill source</td>
-      </tr>
-          <tr>
-        <td class="type">Boolean&nbsp;&nbsp;</td>
-        <td><b>$condition</b>&nbsp;&nbsp;</td>
-        <td>expression which defines if the refill will take place or not, to make it conditional so to speak</td>
-      </tr>
-        </table>
-    </div><br />
-        <div class="top">[ <a href="#top">Top</a> ]</div>
-  </div>
-  <hr />
-	<a name="methodsetCols"></a>
-	<h3>method setCols <span class="smalllinenumber">[line 111]</span></h3>
-	<div class="function">
-    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
-    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code><a href="../../formelements/value-widgets/TextArea.html">TextArea</a> setCols(
-uint
-$cols)</code>
-    </td></tr></table>
-    </td></tr></table><br />
-	
-		Sets the amount of characters to display horizontally, defines visual width as well<br /><br /><br /><br />
-<h4>Tags:</h4>
-<div class="tags">
-<table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
-  </tr>
-  <tr>
-    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
-  </tr>
-</table>
-</div>
-<br /><br />
-
-	
-        <h4>Parameters:</h4>
-    <div class="tags">
-    <table border="0" cellspacing="0" cellpadding="0">
-          <tr>
-        <td class="type">uint&nbsp;&nbsp;</td>
-        <td><b>$cols</b>&nbsp;&nbsp;</td>
-        <td>amount of characters to show horizontally</td>
-      </tr>
-        </table>
-    </div><br />
-        <div class="top">[ <a href="#top">Top</a> ]</div>
-  </div>
-  <hr />
-	<a name="methodsetReadonly"></a>
-	<h3>method setReadonly <span class="smalllinenumber">[line 156]</span></h3>
-	<div class="function">
-    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
-    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code><a href="../../formelements/value-widgets/TextArea.html">TextArea</a> setReadonly(
-)</code>
-    </td></tr></table>
-    </td></tr></table><br />
-	
-		Sets that the element should be read-only.<br /><br /><br /><br />
-<h4>Tags:</h4>
-<div class="tags">
-<table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
-  </tr>
-  <tr>
-    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
-  </tr>
-</table>
-</div>
-<br /><br />
-
-	
-        <div class="top">[ <a href="#top">Top</a> ]</div>
-  </div>
-  <hr />
-	<a name="methodsetRows"></a>
-	<h3>method setRows <span class="smalllinenumber">[line 126]</span></h3>
-	<div class="function">
-    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
-    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code><a href="../../formelements/value-widgets/TextArea.html">TextArea</a> setRows(
-uint
-$rows)</code>
-    </td></tr></table>
-    </td></tr></table><br />
-	
-		Sets the amount of lines to display vertically, defines visual height as well.<br /><br /><br /><br />
-<h4>Tags:</h4>
-<div class="tags">
-<table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
-  </tr>
-  <tr>
-    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
-  </tr>
-</table>
-</div>
-<br /><br />
-
-	
-        <h4>Parameters:</h4>
-    <div class="tags">
-    <table border="0" cellspacing="0" cellpadding="0">
-          <tr>
-        <td class="type">uint&nbsp;&nbsp;</td>
-        <td><b>$rows</b>&nbsp;&nbsp;</td>
-        <td>the amount of lines to show</td>
-      </tr>
-        </table>
-    </div><br />
-        <div class="top">[ <a href="#top">Top</a> ]</div>
-  </div>
-  <hr />
-	<a name="methodsetSize"></a>
-	<h3>method setSize <span class="smalllinenumber">[line 143]</span></h3>
-	<div class="function">
-    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
-    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code><a href="../../formelements/value-widgets/TextArea.html">TextArea</a> setSize(
-uint
-$cols, uint
-$rows)</code>
-    </td></tr></table>
-    </td></tr></table><br />
-	
-		Combination of setCols() and setRows().<br /><br /><p>Sets both characters to display horizontally and lines to show vertically at once.</p><br /><br /><br />
-<h4>Tags:</h4>
-<div class="tags">
-<table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
-  </tr>
-  <tr>
-    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
-  </tr>
-</table>
-</div>
-<br /><br />
-
-	
-        <h4>Parameters:</h4>
-    <div class="tags">
-    <table border="0" cellspacing="0" cellpadding="0">
-          <tr>
-        <td class="type">uint&nbsp;&nbsp;</td>
-        <td><b>$cols</b>&nbsp;&nbsp;</td>
-        <td>amount of characters to show horizontally</td>
-      </tr>
-          <tr>
-        <td class="type">uint&nbsp;&nbsp;</td>
-        <td><b>$rows</b>&nbsp;&nbsp;</td>
-        <td>the amount of lines to show</td>
-      </tr>
-        </table>
-    </div><br />
-        <div class="top">[ <a href="#top">Top</a> ]</div>
-  </div>
-  <hr />
-	<a name="methodsetText"></a>
-	<h3>method setText <span class="smalllinenumber">[line 98]</span></h3>
-	<div class="function">
-    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
-    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code><a href="../../formelements/value-widgets/TextArea.html">TextArea</a> setText(
-String
-$text)</code>
-    </td></tr></table>
-    </td></tr></table><br />
-	
-		Sets the text to start with.<br /><br /><p>This text will be rendered into the html-code.</p><br /><br /><br />
-<h4>Tags:</h4>
-<div class="tags">
-<table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
-  </tr>
-  <tr>
-    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
-  </tr>
-</table>
-</div>
-<br /><br />
-
-	
-        <h4>Parameters:</h4>
-    <div class="tags">
-    <table border="0" cellspacing="0" cellpadding="0">
-          <tr>
-        <td class="type">String&nbsp;&nbsp;</td>
-        <td><b>$text</b>&nbsp;&nbsp;</td>
-        <td>the text to insert into the element</td>
-      </tr>
-        </table>
-    </div><br />
-        <div class="top">[ <a href="#top">Top</a> ]</div>
-  </div>
-  <hr />
-	<a name="methodvalidate"></a>
-	<h3>method validate <span class="smalllinenumber">[line 213]</span></h3>
-	<div class="function">
-    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
-    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code>Boolean validate(
-)</code>
-    </td></tr></table>
-    </td></tr></table><br />
-	
-		Starts the validation-process for the element.<br /><br /><p>Calculates the validity-status, based on the currently entered value, by applying the rules  of a present validator. If there is none, the element is always valid.</p><br /><br /><br />
-<h4>Tags:</h4>
-<div class="tags">
-<table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><b>return:</b>&nbsp;&nbsp;</td><td>element is currently valid yes/no</td>
-  </tr>
-  <tr>
-    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
-  </tr>
-</table>
-</div>
-<br /><br />
-
-	Overrides <a href="../../formelements/FormElement.html#methodvalidate">FormElement::validate()</a> (Starts validation for the element and all subelements according to the rules laid out in the element's validator.)<br /><br />
+	Overrides <a href="../../formelements/control-widgets/InputButton.html#methoddoRender">InputButton::doRender()</a> (Compiles and returns the html-fragment for the element.)<br /><br />
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
 </div><br />
@@ -1157,7 +707,7 @@ $text)</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Mon, 08 Nov 2010 12:54:42 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Mon, 08 Nov 2010 12:54:41 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

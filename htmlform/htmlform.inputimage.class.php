@@ -6,8 +6,19 @@ require_once 'htmlform.inputsubmit.class.php';
 
 
 
-//--|class----------
+//---|class----------
 
+/**
+ * Wraps an image-form-submit-button.
+ * To get click-coordinates use getCoords() after submit. 
+ * 
+ * This element is not wrapped into a row, but should be inserted into a container-widget.
+ * 
+ * @author Sebastian Schlapkohl
+ * @version 0.8 beta
+ * @package formelements
+ * @subpackage control-widgets
+ */
 class InputImage extends InputSubmit {
 	
 	// ***

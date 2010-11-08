@@ -25,9 +25,6 @@
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr valign="top">
     <td width="200" class="menu">
-	<div id="todolist">
-			<p><a href="todolist.html">Todo List</a></p>
-	</div>
       <b>Packages:</b><br />
               <a href="li_formelements.html">formelements</a><br />
               <a href="li_tools.html">tools</a><br />
@@ -48,6 +45,10 @@
 	  </div><br />
 	subpackage <b>control-widgets</b><br>  <div class="package">
 			<a href="formelements/control-widgets/_htmlform.inputbutton.class.php.html">		htmlform.inputbutton.class.php
+		</a><br>
+			<a href="formelements/control-widgets/_htmlform.inputimage.class.php.html">		htmlform.inputimage.class.php
+		</a><br>
+			<a href="formelements/control-widgets/_htmlform.inputreset.class.php.html">		htmlform.inputreset.class.php
 		</a><br>
 			<a href="formelements/control-widgets/_htmlform.inputsubmit.class.php.html">		htmlform.inputsubmit.class.php
 		</a><br>
@@ -94,6 +95,8 @@
 	  </div>
   <div class="package">
 	control-widgets<br />	    &nbsp;&nbsp;		<a href="formelements/control-widgets/InputButton.html">InputButton</a><br />
+	    &nbsp;&nbsp;		<a href="formelements/control-widgets/InputImage.html">InputImage</a><br />
+	    &nbsp;&nbsp;		<a href="formelements/control-widgets/InputReset.html">InputReset</a><br />
 	    &nbsp;&nbsp;		<a href="formelements/control-widgets/InputSubmit.html">InputSubmit</a><br />
 	  </div>
   <div class="package">
@@ -147,6 +150,10 @@
 				<dd>in file htmlform.alignblock.class.php, method <a href="formelements/container-widgets/AlignBlock.html#method__construct">AlignBlock::__construct()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Hidden constructor.</dd>
 							<dt><b>__construct</b></dt>
 				<dd>in file htmlform.inputsubmit.class.php, method <a href="formelements/control-widgets/InputSubmit.html#method__construct">InputSubmit::__construct()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Hidden constructor.</dd>
+							<dt><b>__construct</b></dt>
+				<dd>in file htmlform.inputreset.class.php, method <a href="formelements/control-widgets/InputReset.html#method__construct">InputReset::__construct()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Hidden constructor.</dd>
+							<dt><b>__construct</b></dt>
+				<dd>in file htmlform.inputimage.class.php, method <a href="formelements/control-widgets/InputImage.html#method__construct">InputImage::__construct()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Hidden constructor.</dd>
 							<dt><b>__construct</b></dt>
 				<dd>in file htmlform.inputbutton.class.php, method <a href="formelements/control-widgets/InputButton.html#method__construct">InputButton::__construct()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Hidden constructor.</dd>
 							<dt><b>__construct</b></dt>
@@ -205,6 +212,10 @@
 		<dl>
 							<dt><b>$cssClasses</b></dt>
 				<dd>in file htmlform.formelement.absclass.php, variable <a href="formelements/FormElement.html#var$cssClasses">FormElement::$cssClasses</a><br>&nbsp;&nbsp;&nbsp;&nbsp;The html-class-string of the element.</dd>
+							<dt><b>$caption</b></dt>
+				<dd>in file htmlform.inputsubmit.class.php, variable <a href="formelements/control-widgets/InputSubmit.html#var$caption">InputSubmit::$caption</a><br>&nbsp;&nbsp;&nbsp;&nbsp;the button caption</dd>
+							<dt><b>$caption</b></dt>
+				<dd>in file htmlform.inputbutton.class.php, variable <a href="formelements/control-widgets/InputButton.html#var$caption">InputButton::$caption</a><br>&nbsp;&nbsp;&nbsp;&nbsp;the button-caption</dd>
 							<dt><b>CustomHtml</b></dt>
 				<dd>in file htmlform.customhtml.class.php, class <a href="formelements/special-widgets/CustomHtml.html">CustomHtml</a><br>&nbsp;&nbsp;&nbsp;&nbsp;CustomHtml is a formelement to provide a container for custom html-content to be used inside a form.</dd>
 							<dt><b>$cols</b></dt>
@@ -229,6 +240,10 @@
 				<dd>in file htmlform.alignblock.class.php, method <a href="formelements/container-widgets/AlignBlock.html#methoddoRender">AlignBlock::doRender()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Compiles and returns the html-fragment for the element including all subelements.</dd>
 							<dt><b>doRender</b></dt>
 				<dd>in file htmlform.inputsubmit.class.php, method <a href="formelements/control-widgets/InputSubmit.html#methoddoRender">InputSubmit::doRender()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Compiles and returns the html-fragment for the element.</dd>
+							<dt><b>doRender</b></dt>
+				<dd>in file htmlform.inputreset.class.php, method <a href="formelements/control-widgets/InputReset.html#methoddoRender">InputReset::doRender()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Compiles and returns the html-fragment for the element.</dd>
+							<dt><b>doRender</b></dt>
+				<dd>in file htmlform.inputimage.class.php, method <a href="formelements/control-widgets/InputImage.html#methoddoRender">InputImage::doRender()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Compiles and returns the html-fragment for the element.</dd>
 							<dt><b>doRender</b></dt>
 				<dd>in file htmlform.inputbutton.class.php, method <a href="formelements/control-widgets/InputButton.html#methoddoRender">InputButton::doRender()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Compiles and returns the html-fragment for the element.</dd>
 							<dt><b>doRender</b></dt>
@@ -312,13 +327,21 @@
 							<dt><b>getValue</b></dt>
 				<dd>in file htmlform.alignblock.class.php, method <a href="formelements/container-widgets/AlignBlock.html#methodgetValue">AlignBlock::getValue()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Since AlignBlock doesn't hold any value, this method will always return null.</dd>
 							<dt><b>get</b></dt>
+				<dd>in file htmlform.inputbutton.class.php, method <a href="formelements/control-widgets/InputButton.html#methodget">InputButton::get()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Factory method for InputButton, returns new instance.</dd>
+							<dt><b>get</b></dt>
+				<dd>in file htmlform.inputimage.class.php, method <a href="formelements/control-widgets/InputImage.html#methodget">InputImage::get()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Factory method for InputImage, returns new instance.</dd>
+							<dt><b>get</b></dt>
 				<dd>in file htmlform.inputsubmit.class.php, method <a href="formelements/control-widgets/InputSubmit.html#methodget">InputSubmit::get()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Factory method for InputSubmit, returns new instance.</dd>
 							<dt><b>get</b></dt>
-				<dd>in file htmlform.inputbutton.class.php, method <a href="formelements/control-widgets/InputButton.html#methodget">InputButton::get()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Factory method for InputButton, returns new instance.</dd>
+				<dd>in file htmlform.inputreset.class.php, method <a href="formelements/control-widgets/InputReset.html#methodget">InputReset::get()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Factory method for InputReset, returns new instance.</dd>
+							<dt><b>getCoords</b></dt>
+				<dd>in file htmlform.inputimage.class.php, method <a href="formelements/control-widgets/InputImage.html#methodgetCoords">InputImage::getCoords()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the clicked coordinates on the image-submit button.</dd>
 							<dt><b>getValue</b></dt>
 				<dd>in file htmlform.inputsubmit.class.php, method <a href="formelements/control-widgets/InputSubmit.html#methodgetValue">InputSubmit::getValue()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns if the submit-button was used for the last occurred  form-submit.</dd>
 							<dt><b>getValue</b></dt>
 				<dd>in file htmlform.inputbutton.class.php, method <a href="formelements/control-widgets/InputButton.html#methodgetValue">InputButton::getValue()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Since InputButton doesn't hold any value, this method will always return null.</dd>
+							<dt><b>getValue</b></dt>
+				<dd>in file htmlform.inputimage.class.php, method <a href="formelements/control-widgets/InputImage.html#methodgetValue">InputImage::getValue()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns if the image_submit-button was used for the last occurred  form-submit.</dd>
 							<dt><b>get</b></dt>
 				<dd>in file htmlform.customhtml.class.php, method <a href="formelements/special-widgets/CustomHtml.html#methodget">CustomHtml::get()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Factory method for CustomHtml, returns new instance.</dd>
 							<dt><b>get</b></dt>
@@ -375,6 +398,10 @@
 				<dd>procedural page <a href="formelements/container-widgets/_htmlform.fieldset.class.php.html">htmlform.fieldset.class.php</a></dd>
 							<dt><b>htmlform.inputbutton.class.php</b></dt>
 				<dd>procedural page <a href="formelements/control-widgets/_htmlform.inputbutton.class.php.html">htmlform.inputbutton.class.php</a></dd>
+							<dt><b>htmlform.inputimage.class.php</b></dt>
+				<dd>procedural page <a href="formelements/control-widgets/_htmlform.inputimage.class.php.html">htmlform.inputimage.class.php</a></dd>
+							<dt><b>htmlform.inputreset.class.php</b></dt>
+				<dd>procedural page <a href="formelements/control-widgets/_htmlform.inputreset.class.php.html">htmlform.inputreset.class.php</a></dd>
 							<dt><b>htmlform.inputsubmit.class.php</b></dt>
 				<dd>procedural page <a href="formelements/control-widgets/_htmlform.inputsubmit.class.php.html">htmlform.inputsubmit.class.php</a></dd>
 							<dt><b>htmlform.customhtml.class.php</b></dt>
@@ -417,6 +444,10 @@
 				<dd>in file htmlform.formelement.absclass.php, method <a href="formelements/FormElement.html#methodisValid">FormElement::isValid()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Answers if the element is in a valid state at the moment.</dd>
 							<dt><b>InputButton</b></dt>
 				<dd>in file htmlform.inputbutton.class.php, class <a href="formelements/control-widgets/InputButton.html">InputButton</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Wraps a common form-button.</dd>
+							<dt><b>InputImage</b></dt>
+				<dd>in file htmlform.inputimage.class.php, class <a href="formelements/control-widgets/InputImage.html">InputImage</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Wraps a image-form-submit-button.</dd>
+							<dt><b>InputReset</b></dt>
+				<dd>in file htmlform.inputreset.class.php, class <a href="formelements/control-widgets/InputReset.html">InputReset</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Wraps a form-reset-button.</dd>
 							<dt><b>InputSubmit</b></dt>
 				<dd>in file htmlform.inputsubmit.class.php, class <a href="formelements/control-widgets/InputSubmit.html">InputSubmit</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Wraps a form-submit-button.</dd>
 							<dt><b>InputCheckbox</b></dt>
@@ -580,9 +611,11 @@
 							<dt><b>setLegend</b></dt>
 				<dd>in file htmlform.fieldset.class.php, method <a href="formelements/container-widgets/FieldSet.html#methodsetLegend">FieldSet::setLegend()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the legend/caption the fieldset should display.</dd>
 							<dt><b>setCaption</b></dt>
-				<dd>in file htmlform.inputsubmit.class.php, method <a href="formelements/control-widgets/InputSubmit.html#methodsetCaption">InputSubmit::setCaption()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the button-caption.</dd>
-							<dt><b>setCaption</b></dt>
 				<dd>in file htmlform.inputbutton.class.php, method <a href="formelements/control-widgets/InputButton.html#methodsetCaption">InputButton::setCaption()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the button-caption.</dd>
+							<dt><b>setCaption</b></dt>
+				<dd>in file htmlform.inputsubmit.class.php, method <a href="formelements/control-widgets/InputSubmit.html#methodsetCaption">InputSubmit::setCaption()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the button-caption.</dd>
+							<dt><b>setSrc</b></dt>
+				<dd>in file htmlform.inputimage.class.php, method <a href="formelements/control-widgets/InputImage.html#methodsetSrc">InputImage::setSrc()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the image-source-url for the image of the image-submit.</dd>
 							<dt><b>setHtml</b></dt>
 				<dd>in file htmlform.customhtml.class.php, method <a href="formelements/special-widgets/CustomHtml.html#methodsetHtml">CustomHtml::setHtml()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the html-content to wrap into the element.</dd>
 							<dt><b>setInline</b></dt>
@@ -760,7 +793,7 @@
 	<a href="elementindex_formelements.html#top">top</a><br>
         <div class="credit">
 		    <hr />
-		    Documentation generated on Fri, 05 Nov 2010 17:50:05 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Mon, 08 Nov 2010 12:54:38 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

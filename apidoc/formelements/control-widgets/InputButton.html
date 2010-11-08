@@ -25,9 +25,6 @@
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr valign="top">
     <td width="200" class="menu">
-	<div id="todolist">
-			<p><a href="../../todolist.html">Todo List</a></p>
-	</div>
       <b>Packages:</b><br />
               <a href="../../li_form.html">form</a><br />
               <a href="../../li_formdata.html">formdata</a><br />
@@ -48,6 +45,10 @@
 	  </div><br />
 	subpackage <b>control-widgets</b><br>  <div class="package">
 			<a href="../../formelements/control-widgets/_htmlform.inputbutton.class.php.html">		htmlform.inputbutton.class.php
+		</a><br>
+			<a href="../../formelements/control-widgets/_htmlform.inputimage.class.php.html">		htmlform.inputimage.class.php
+		</a><br>
+			<a href="../../formelements/control-widgets/_htmlform.inputreset.class.php.html">		htmlform.inputreset.class.php
 		</a><br>
 			<a href="../../formelements/control-widgets/_htmlform.inputsubmit.class.php.html">		htmlform.inputsubmit.class.php
 		</a><br>
@@ -94,6 +95,8 @@
 	  </div>
   <div class="package">
 	control-widgets<br />	    &nbsp;&nbsp;		<a href="../../formelements/control-widgets/InputButton.html">InputButton</a><br />
+	    &nbsp;&nbsp;		<a href="../../formelements/control-widgets/InputImage.html">InputImage</a><br />
+	    &nbsp;&nbsp;		<a href="../../formelements/control-widgets/InputReset.html">InputReset</a><br />
 	    &nbsp;&nbsp;		<a href="../../formelements/control-widgets/InputSubmit.html">InputSubmit</a><br />
 	  </div>
   <div class="package">
@@ -141,6 +144,12 @@ Source Location: /htmlform.inputbutton.class.php<br /><br />
         
 </td>
 
+<td valign="top">
+<h3><a href="#class_vars">Variables</a></h3>
+<ul>
+    <li><a href="../../formelements/control-widgets/InputButton.html#var$caption">$caption</a></li>
+  </ul>
+</td>
 
 
 <td valign="top">
@@ -160,6 +169,15 @@ Source Location: /htmlform.inputbutton.class.php<br /><br />
 <table width="100%" border="0"><tr>
 
 
+<td valign="top">
+<h3>Child classes:</h3>
+<div class="tags">
+<dl>
+<dt><a href="../../formelements/control-widgets/InputReset.html">InputReset</a></dt>
+	<dd>Wraps a form-reset-button.</dd>
+</dl>
+</div>
+</td>
 
 <td valign="top">
 <h3>Inherited Constants</h3>
@@ -534,6 +552,35 @@ Wraps a common form-button.<br /><br /><p>By this an input[type=button] is meant
 </div><br /><br />
 <div class="top">[ <a href="#top">Top</a> ]</div><br />
 
+<hr />
+<a name="class_vars"></a>
+<h3>Class Variables</h3>
+<div class="tags">
+	<a name="var$caption"></a>
+	<p></p>
+	<h4>$caption = <span class="value"></span></h4>
+	<p>[line 31]</p>
+  the button-caption<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>String</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+</div><br />
 
 <hr />
 <a name="class_methods"></a>
@@ -541,7 +588,7 @@ Wraps a common form-button.<br /><br /><p>By this an input[type=button] is meant
 <div class="tags">
   <hr />
 	<a name="methodget"></a>
-	<h3>static method get <span class="smalllinenumber">[line 52]</span></h3>
+	<h3>static method get <span class="smalllinenumber">[line 56]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -566,6 +613,12 @@ $id = ''])</code>
 </div>
 <br /><br />
 
+	<p>Overridden in child classes as:<br />
+		<dl>
+	<dt><a href="../../formelements/control-widgets/InputReset.html#methodget">InputReset::get()</a></dt>
+		<dd>Factory method for InputReset, returns new instance.</dd>
+	</dl>
+	</p>
 	
         <h4>Parameters:</h4>
     <div class="tags">
@@ -587,7 +640,7 @@ $id = ''])</code>
 
   <hr />
 	<a name="method__construct"></a>
-	<h3>constructor __construct <span class="smalllinenumber">[line 36]</span></h3>
+	<h3>constructor __construct <span class="smalllinenumber">[line 40]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -609,6 +662,12 @@ $id = ''])</code>
 </div>
 <br /><br />
 
+	<p>Overridden in child classes as:<br />
+		<dl>
+	<dt><a href="../../formelements/control-widgets/InputReset.html#method__construct">InputReset::__construct()</a></dt>
+		<dd>Hidden constructor.</dd>
+	</dl>
+	</p>
 	Overrides <a href="../../formelements/FormElement.html#method__construct">FormElement::__construct()</a> (General abstract, hidden formelement constructor.)<br /><br />
         <h4>Parameters:</h4>
     <div class="tags">
@@ -629,7 +688,7 @@ $id = ''])</code>
   </div>
   <hr />
 	<a name="methoddoRender"></a>
-	<h3>method doRender <span class="smalllinenumber">[line 95]</span></h3>
+	<h3>method doRender <span class="smalllinenumber">[line 99]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -652,12 +711,18 @@ $id = ''])</code>
 </div>
 <br /><br />
 
+	<p>Overridden in child classes as:<br />
+		<dl>
+	<dt><a href="../../formelements/control-widgets/InputReset.html#methoddoRender">InputReset::doRender()</a></dt>
+		<dd>Compiles and returns the html-fragment for the element.</dd>
+	</dl>
+	</p>
 	Overrides <a href="../../formelements/FormElement.html#methoddoRender">FormElement::doRender()</a> (Returns the compiled html-code for the element.)<br /><br />
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
 	<a name="methodgetValue"></a>
-	<h3>method getValue <span class="smalllinenumber">[line 82]</span></h3>
+	<h3>method getValue <span class="smalllinenumber">[line 86]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -682,7 +747,7 @@ $id = ''])</code>
   </div>
   <hr />
 	<a name="methodsetCaption"></a>
-	<h3>method setCaption <span class="smalllinenumber">[line 68]</span></h3>
+	<h3>method setCaption <span class="smalllinenumber">[line 72]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -724,7 +789,7 @@ $caption)</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Fri, 05 Nov 2010 17:50:12 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Mon, 08 Nov 2010 12:54:40 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

@@ -2,10 +2,10 @@
 
 //---|includes----------
 
-require_once('htmlform.formelement.absclass.php');
-require_once('htmlform.label.class.php');
+require_once 'htmlform.formelement.absclass.php';
+require_once 'htmlform.label.class.php';
 
-require_once('htmlform.tools.class.php');
+require_once 'htmlform.tools.class.php';
 
 
 

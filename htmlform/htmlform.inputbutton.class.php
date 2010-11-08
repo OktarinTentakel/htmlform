@@ -2,7 +2,7 @@
 
 //---|includes----------
 
-require_once('htmlform.formelement.absclass.php');
+require_once 'htmlform.formelement.absclass.php';
 
 
 
@@ -24,7 +24,11 @@ require_once('htmlform.formelement.absclass.php');
  */
 class InputButton extends FormElement{
 	// ***
-	private $caption;
+	/**
+	 * the button-caption
+	 * @var String
+	 */
+	protected $caption;
 	
 	/**
 	 * Hidden constructor.

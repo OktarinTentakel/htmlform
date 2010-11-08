@@ -2,7 +2,7 @@
 
 //--|includes---------
 
-require_once('htmlform.tools.class.php');
+require_once 'htmlform.tools.class.php';
 
 
 

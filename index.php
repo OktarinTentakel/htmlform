@@ -290,7 +290,7 @@ $testFieldSet->addElement(
 $testFieldSet->addElement(
 	InputFile::get('file1')
 		->setLabel('file input:')
-		->setText('test')
+		->setText('no file selected')
 		->setAccept('text/*')
 );
 
@@ -314,13 +314,32 @@ $testAlignBlock->addElement(
 );
 
 /**
+ * Add alternative image-submit to align block.
+ * - set image-url
+ * - coords of clicks are shown down below in the result-display of the form
+ */
+$testAlignBlock->addElement(
+	InputImage::get('imgsave', 'imgsave')
+		->setSrc('img/submit.png')
+);
+
+/**
+ * Add reset-button to align block.
+ * - set button caption
+ */
+$testAlignBlock->addElement(
+	InputReset::get('reset', 'reset')
+		->setCaption('reset')
+);
+
+/**
  * Add input button to align block.
  * - set button caption
  * - set the button disabled
  */
 $testAlignBlock->addElement(
-	InputButton::get('cancel', 'cancel')
-		->setCaption('cancel')
+	InputButton::get('btn1', 'btn1')
+		->setCaption('random button')
 		->setDisabled()
 );
 
@@ -581,19 +600,40 @@ $testForm->setExplanation(
  */
 $checkbox1->refill();
 
-/**
- * Start form validation. It knows its validity-state after this.
- */
-$testForm->validate();
+
+
+//--|RESULT-HANDLING----------
 
 /**
- * Retrieve a complete valueset from the form.
- * Uncomment the print_r to see what this is about and how to work with values here.
- * To get a value: $valueSet->nameofwidget. This ist either null (if value is missing, a string value
- * or an array of string for multiples)
+ * Check if form has been sent before validating it, otherwise there's little sense in it.
  */
-$valSet = $testForm->getValueSet();
-// print_r($valSet);
+if($testForm->hasBeenSent()) {
+	/**
+	 * Start form validation. It knows its validity-state after this.
+	 */
+	$testForm->validate();
+	
+	/**
+	 * Retrieve a complete valueset from the form.
+	 * To get a value: $valueSet->nameofwidget. This ist either null (if value is missing, a string value
+	 * or an array of string for multiples)
+	 */
+	$valueSet = $testForm->getValueSet();
+	if( $testForm->isValid() && ($valueSet->save || $valueSet->imgsave) ){
+		$successContainer = 
+			 '<div id="successcontainer">'
+			 	.'<div class="closer" onclick="document.body.removeChild(getElementById(\'successcontainer\'));">&or;</div>'
+			 	.'<div class="text">'
+					.'<h2>Hooray, the form validated! This is what it returned:</h2>'
+					.'<pre>'.print_r($valueSet, true).'</pre>'
+					.($valueSet->imgsave ? '<br>image-submit click-coordinates:<pre>'.print_r($testForm->getElementByName('imgsave')->getCoords(), true).'</pre>' : '')
+				.'</div>'
+			.'</div>'
+		;
+	}
+} else {
+	$successContainer = '';
+}
 
 ?>
 
@@ -661,8 +701,21 @@ $valSet = $testForm->getValueSet();
 				border: 1px solid #37c900;
 			}
 			
-			.testform .htmlform_alignblock input[type=submit], .testform .htmlform_alignblock button{
+			.testform .htmlform_alignblock input[type=submit],
+			.testform .htmlform_alignblock input[type=button],
+			.testform .htmlform_alignblock input[type=reset],
+			.testform .htmlform_alignblock input[type=image] {
 				margin-right: 5px;
+			}
+			
+			.testform .htmlform_alignblock input[type=image]{
+				vertical-align: middle;
+				
+				border: 1px solid #444;
+			}
+			
+			.testform .htmlform_alignblock input[type=image]:hover{
+				border: 1px solid white;
 			}
 			
 			.testform fieldset .htmlform_row_div{
@@ -748,10 +801,59 @@ $valSet = $testForm->getValueSet();
 			#calBorder table {
 				border-spacing: 0px;
 			}
+			
+			#successcontainer {
+				position: fixed;
+			
+				height: 250px;
+				right: 0px;
+				bottom: 0px;
+				left: 0px;
+				
+				border-top: 1px solid #37c900;
+				
+				background-color: #333;
+			}
+			
+			#successcontainer .closer {
+				position: absolute;;
+				
+				height: 20px;
+				top: 0px;
+				left: 0px;
+				right:0px;
+				
+				padding-top: 4px;
+				border-bottom: 1px dotted #37c900;
+				
+				text-align: center;
+				font-size: 14px;
+				font-weight: bold;
+				
+				cursor: pointer;
+			}
+			
+			#successcontainer .closer:hover {
+				background-color: #444;
+			}
+			
+			#successcontainer .text {
+				position: absolute;
+			
+				top: 25px;
+				left: 0px;
+				bottom: 0px;
+				right:0px;
+				
+				padding: 0px 10px 5px 10px;
+				
+				overflow: auto;
+			}
 		</style>
 	</head>
 	
 	<body>
+		<?=$successContainer?>
 		<form id="form1" action="" method="post" accept-charset="UTF-8" class="testform">
 			<?=$testForm->doRender()?>
 		</form>

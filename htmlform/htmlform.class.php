@@ -2,30 +2,32 @@
 
 //---|includes----------
 
-require_once('htmlform.formelement.absclass.php');
+require_once 'htmlform.formelement.absclass.php';
 
-require_once('htmlform.inputbutton.class.php');
-require_once('htmlform.inputcheckbox.class.php');
-require_once('htmlform.inputradio.class.php');
-require_once('htmlform.inputsubmit.class.php');
-require_once('htmlform.inputtext.class.php');
-require_once('htmlform.inputhidden.class.php');
-require_once('htmlform.inputpassword.class.php');
-require_once('htmlform.inputfile.class.php');
+require_once 'htmlform.inputbutton.class.php';
+require_once 'htmlform.inputreset.class.php';
+require_once 'htmlform.inputcheckbox.class.php';
+require_once 'htmlform.inputradio.class.php';
+require_once 'htmlform.inputsubmit.class.php';
+require_once 'htmlform.inputimage.class.php';
+require_once 'htmlform.inputtext.class.php';
+require_once 'htmlform.inputhidden.class.php';
+require_once 'htmlform.inputpassword.class.php';
+require_once 'htmlform.inputfile.class.php';
 
-require_once('htmlform.select.class.php');
-require_once('htmlform.textarea.class.php');
+require_once 'htmlform.select.class.php';
+require_once 'htmlform.textarea.class.php';
 
-require_once('htmlform.alignblock.class.php');
-require_once('htmlform.customhtml.class.php');
-require_once('htmlform.fieldset.class.php');
+require_once 'htmlform.alignblock.class.php';
+require_once 'htmlform.customhtml.class.php';
+require_once 'htmlform.fieldset.class.php';
 
-require_once('htmlform.formvalidator.class.php');
-require_once('htmlform.formvalueset.class.php');
+require_once 'htmlform.formvalidator.class.php';
+require_once 'htmlform.formvalueset.class.php';
 
-require_once('htmlform.jsdatetime.class.php');
+require_once 'htmlform.jsdatetime.class.php';
 
-require_once('htmlform.tools.class.php');
+require_once 'htmlform.tools.class.php';
 
 
 

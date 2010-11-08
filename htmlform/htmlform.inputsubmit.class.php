@@ -2,7 +2,7 @@
 
 //---|includes----------
 
-require_once('htmlform.formelement.absclass.php');
+require_once 'htmlform.formelement.absclass.php';
 
 
 
@@ -13,7 +13,6 @@ require_once('htmlform.formelement.absclass.php');
  * 
  * This element is not wrapped into a row, but should be inserted into a container-widget.
  * 
- * @todo implement input[type=image] based on this class
  * @author Sebastian Schlapkohl
  * @version 0.8 beta
  * @package formelements
@@ -21,7 +20,11 @@ require_once('htmlform.formelement.absclass.php');
  */
 class InputSubmit extends FormElement{
 	// ***
-	private $caption;
+	/**
+	 * the button caption
+	 * @var String
+	 */
+	protected $caption;
 	
 	/**
 	 * Hidden constructor.

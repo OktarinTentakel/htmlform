@@ -355,8 +355,6 @@ class HtmlForm{
 	 * @return HtmlForm method owner
 	 */
 	public function setCells($cellCount){
-		$this->cells = array();
-		
 		if( count($this->cells) < $cellCount ){
 			for( $i = count($this->cells); $i < (integer) $cellCount; $i++ ){
 				$this->cells[] = array();

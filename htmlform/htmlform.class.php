@@ -349,14 +349,24 @@ class HtmlForm{
 	 * This can serve the purpose of applying different styles to each cell for example, or to group widgets for easier
 	 * javascript-manipulation.
 	 * 
+	 * This method doesn't recreate all cells but expands or contracts existing ones.
+	 *
 	 * @param uint $cellCount amount of cells to create
 	 * @return HtmlForm method owner
 	 */
 	public function setCells($cellCount){
 		$this->cells = array();
-		for( $i = 0; $i < (integer) $cellCount; $i++ ){
-			$this->cells[] = array();
+		
+		if( count($this->cells) < $cellCount ){
+			for( $i = count($this->cells); $i < (integer) $cellCount; $i++ ){
+				$this->cells[] = array();
+			}
+		} elseif( count($this->cells) > $cellCount ){
+			for( $i = (integer) $cellCount; $i < count($this->cells); $i++ ){
+				unset($this->cells[$i]);
+			}
 		}
+		
 		return $this;
 	}
 	

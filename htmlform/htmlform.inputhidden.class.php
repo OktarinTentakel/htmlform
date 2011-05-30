@@ -104,7 +104,7 @@ class InputHidden extends FormElement{
 			$refiller = $this->determineRefiller($refiller);
 			
 			if( isset($refiller[$this->name]) && !is_array($refiller[$this->name]) ){
-				$this->value = ''.HtmlFormTools::undoMagicQuotes($refiller[$this->val]);
+				$this->value = ''.HtmlFormTools::undoMagicQuotes($refiller[$this->name]);
 			}
 		}
 		

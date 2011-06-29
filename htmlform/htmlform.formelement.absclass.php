@@ -543,6 +543,7 @@ abstract class FormElement{
 			foreach( $this->subElements as $index => $oldElement ){
 				if( $oldElement->getName() == "$targetElementName" ){
 					$element->setMasterElement($this);
+					$element->setMasterForm($this->masterForm);
 					$this->subElements = HtmlFormTools::array_insert($this->subElements, ($index + 1), $element);
 					break;
 				}

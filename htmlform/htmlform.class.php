@@ -736,6 +736,7 @@ class HtmlForm{
 			foreach( $cell as $elementIndex => $oldElement ){
 				if( $oldElement->getName() == "$targetElementName" ){
 					$element->setMasterElement($this);
+					$element->setMasterForm($this);
 					$this->cells[$cellIndex] = HtmlFormTools::array_insert($this->cells[$cellIndex], ($elementIndex + 1), $element);
 					break;break;
 				}

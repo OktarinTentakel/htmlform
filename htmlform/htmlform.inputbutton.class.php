@@ -18,7 +18,7 @@ require_once 'htmlform.formelement.absclass.php';
  * Be sure to set a javascript-handler, otherwise the buttons won't really do anything.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.8 beta
+ * @version 0.85 beta
  * @package formelements
  * @subpackage control-widgets
  */

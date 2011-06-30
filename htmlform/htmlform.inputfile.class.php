@@ -19,7 +19,7 @@ require_once 'htmlform.tools.class.php';
  * Refills won't work on this element, due to security restrictions of the browsers.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.8 beta
+ * @version 0.85 beta
  * @package formelements
  * @subpackage value-widgets
  */

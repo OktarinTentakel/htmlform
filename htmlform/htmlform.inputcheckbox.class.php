@@ -24,7 +24,7 @@ require_once 'htmlform.tools.class.php';
  * themselves, by using the appropriate methods.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.8 beta
+ * @version 0.85 beta
  * @package formelements
  * @subpackage value-widgets
  */

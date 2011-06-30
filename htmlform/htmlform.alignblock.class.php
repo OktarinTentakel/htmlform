@@ -14,7 +14,7 @@ require_once 'htmlform.formelement.absclass.php';
  * the widgets in another fashion.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.8 beta
+ * @version 0.85 beta
  * @package formelements
  * @subpackage container-widgets
  */

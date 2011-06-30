@@ -14,7 +14,7 @@ require_once 'htmlform.formelement.absclass.php';
  * This element is not wrapped into a row, but should be inserted into a container-widget.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.8 beta
+ * @version 0.85 beta
  * @package formelements
  * @subpackage control-widgets
  */

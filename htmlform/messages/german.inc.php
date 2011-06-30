@@ -4,13 +4,14 @@
  * German error-message-dictionary.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.8 beta
+ * @version 0.85 beta
  * @package validation
  * @subpackage dictionaries
  */
 
 define('MSG_CUSTOMCASE', '"%name%" ist nicht valide.');
 define('MSG_REQUIRED', '"%name%" wird ben&ouml;tigt.');
+define('MSG_NOTEMPTY', '"%name%" muss einen nicht-leeren Wert haben.');
 define('MSG_MINLENGTH', '"%name%" ben&ouml;tigt eine Mindestanzahl von %count% Zeichen oder Optionen.');
 define('MSG_MAXLENGTH', '"%name%" hat eine Obergrenze von %count% Zeichen oder Optionen.');
 define('MSG_RANGELENGTH', '"%name%" hat eine Mindestanzahl von %min% und eine Obergrenze von %max% Zeichen oder Optionen.');

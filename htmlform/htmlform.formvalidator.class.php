@@ -21,7 +21,7 @@ require_once 'htmlform.tools.class.php';
  * for messages.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.8 beta
+ * @version 0.85 beta
  * @package validation
  */
 class FormValidator{
@@ -200,7 +200,7 @@ class FormValidator{
 	
 	
 	/**
-	 * Adds a rule to the validator's ruleset - The widget needs to have a non-empty value.
+	 * Adds a rule to the validator's ruleset - The widget needs to have a value.
 	 * Either this means that the value can't be an empty string or that the amount
 	 * of values mustn't be 0.
 	 * 
@@ -208,6 +208,20 @@ class FormValidator{
 	 */
 	public function setRequired(){
 		$this->rules['required'] = true;
+		return $this;
+	}
+	
+	
+	
+	/**
+	 * Adds a rule to the validator's ruleset - The widget needs to have a non-empty value.
+	 * Either this means that the value can't be an empty string or one consisting of whitespace
+	 * or that the amount of values mustn't be 0.
+	 * 
+	 * @return FormValidator method owner
+	 */
+	public function setNotEmpty(){
+		$this->rules['notempty'] = true;
 		return $this;
 	}
 	
@@ -484,6 +498,24 @@ class FormValidator{
 		
 		if( !$res && ($this->fieldName != '') ){
 			$this->messageQueue[] = str_replace('%name%', $this->fieldName, MSG_REQUIRED);
+		}
+		
+		return $res;
+	}
+	
+	
+	
+	private function notempty($X){
+		$res = true;
+		
+		if( count($this->values) == 1 ){
+			$res = !(trim($this->values[0]) == '');
+		} else {
+			$res = !(count($this->values) == 0);
+		}
+		
+		if( !$res && ($this->fieldName != '') ){
+			$this->messageQueue[] = str_replace('%name%', $this->fieldName, MSG_NOTEMPTY);
 		}
 		
 		return $res;

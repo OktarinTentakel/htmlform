@@ -49,7 +49,7 @@ require_once 'htmlform.tools.class.php';
  * For an extensive example see the index.php included in the full package.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.8 beta
+ * @version 0.85 beta
  * @package form
  */
 

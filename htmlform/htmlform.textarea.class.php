@@ -17,7 +17,7 @@ require_once 'htmlform.tools.class.php';
  * In general both mostly work the same way, with a tad more config-options for the textarea.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.8 beta
+ * @version 0.85 beta
  * @package formelements
  * @subpackage value-widgets
  */

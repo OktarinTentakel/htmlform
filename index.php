@@ -13,7 +13,7 @@
  * I can tell by the code and by having quite some wrappers in my time :P
  * 
  * @author Sebastian Schlapkohl
- * @version RC1
+ * @version 0.85 beta
  */
 
 /**
@@ -557,6 +557,7 @@ $testFieldSet2->addElement(
 		->setSize(20, 10)
 		->setValidator(
 			FormValidator::get()
+				->setNotEmpty()
 				->setCustomCase(
 					preg_match('/^[a-zA-ZäöüÄÖÜß!.,? ]+$/u', isset($_REQUEST['textarea1']) ? $_REQUEST['textarea1'] : 'Hallo Welt!')
 						? ''
@@ -607,6 +608,7 @@ $checkbox1->refill();
 /**
  * Check if form has been sent before validating it, otherwise there's little sense in it.
  */
+$successContainer = '';
 if($testForm->hasBeenSent()) {
 	/**
 	 * Start form validation. It knows its validity-state after this.
@@ -631,8 +633,6 @@ if($testForm->hasBeenSent()) {
 			.'</div>'
 		;
 	}
-} else {
-	$successContainer = '';
 }
 
 ?>

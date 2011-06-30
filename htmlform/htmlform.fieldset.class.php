@@ -14,7 +14,7 @@ require_once 'htmlform.formelement.absclass.php';
  * It behaves exactly like the raw html pendant.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.8 beta
+ * @version 0.85 beta
  * @package formelements
  * @subpackage container-widgets
  */

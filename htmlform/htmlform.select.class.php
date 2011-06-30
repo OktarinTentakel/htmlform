@@ -17,7 +17,7 @@ require_once 'htmlform.tools.class.php';
  * You name it. It's simply a very percise object-build of a select box.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.8 beta
+ * @version 0.85 beta
  * @package formelements
  * @subpackage value-widgets
  */

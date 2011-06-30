@@ -18,7 +18,7 @@ require_once 'htmlform.tools.class.php';
  * copy and paste with javascript for god tier.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.8 beta
+ * @version 0.85 beta
  * @package formelements
  * @subpackage value-widgets
  */

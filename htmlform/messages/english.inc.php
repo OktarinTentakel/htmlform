@@ -4,13 +4,14 @@
  * English error-message-dictionary.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.8 beta
+ * @version 0.85 beta
  * @package validation
  * @subpackage dictionaries
  */
 
 define('MSG_CUSTOMCASE', '"%name%" has an invalid form.');
 define('MSG_REQUIRED', '"%name%" is required.');
+define('MSG_NOTEMPTY', '"%name%" has to be non-empty.');
 define('MSG_MINLENGTH', '"%name%" has a minimum size of %count% characters or options.');
 define('MSG_MAXLENGTH', '"%name%" has a maximum size of %count% characters or options.');
 define('MSG_RANGELENGTH', '"%name%" has a minimum size of %min% and a maximum size of %max% characters or options.');

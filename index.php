@@ -103,13 +103,17 @@ $testFieldSet->addElement(
  * - add options to choose from (optgroup => [value => text])
  * - select a entry by text as default
  * - set a validator (must be a simple digit-number, has custom error message)
+ * - set "none" as a value to be considered empty, so that chosing the default validates
  * - refill from default refiller (get/post)
  */
 $testFieldSet->addElement(
 	Select::get('testselectsingle')
-		->setLabel('single select (must select number):')
+		->setLabel('single select (must select number or nothing):')
 		->setOptions(
 			array(
+				'default' => array(
+					'none' => '---'
+				),
 				'strings' => array(
 					'a' => 'test1', 'b' => 'test2'
 				),
@@ -121,7 +125,8 @@ $testFieldSet->addElement(
 		->setValidator(
 			FormValidator::get()
 				->setDigits()
-				->setErrorMessage('Please choose a "only digit"-value.')
+				->setOptional(array('none'))
+				->setErrorMessage('Please choose an "only digit"-value or none.')
 		)
 		->refill()
 );
@@ -551,13 +556,13 @@ $testFieldSet2->addElement(
  */
 $testFieldSet2->addElement(
 	TextArea::get('textarea1')
-		->setLabel('textarea (only normal chars, umlauts and punctuation):')
+		->setLabel('textarea (only normal chars, umlauts and punctuation, not empty, single number zero is considered empty):')
 		->setJsEventHandler('onclick', 'alert(\'onclick-test\');')
 		->setText('Hello world!')
 		->setSize(20, 10)
 		->setValidator(
 			FormValidator::get()
-				->setNotEmpty()
+				->setNotEmpty(array(0))
 				->setCustomCase(
 					preg_match('/^[a-zA-ZäöüÄÖÜß!.,? ]+$/u', isset($_REQUEST['textarea1']) ? $_REQUEST['textarea1'] : 'Hallo Welt!')
 						? ''

@@ -218,10 +218,11 @@ class FormValidator{
 	 * Either this means that the value can't be an empty string or one consisting of whitespace
 	 * or that the amount of values mustn't be 0.
 	 * 
+	 * @param Array $additionalEmptyValues array of additional widget values to be considered empty besides an empty string
 	 * @return FormValidator method owner
 	 */
-	public function setNotEmpty(){
-		$this->rules['notempty'] = true;
+	public function setNotEmpty(Array $additionalEmptyValues = array()){
+		$this->rules['notempty'] = $additionalEmptyValues;
 		return $this;
 	}
 	
@@ -231,10 +232,11 @@ class FormValidator{
 	 * Adds a rule to the validator's ruleset - The widget's value becomes optional, either its not set at all, or it get
 	 * validated by all other present rules.
 	 * 
+	 * @param Array $additionalEmptyValues array of additional widget values to be considered empty besides an empty string
 	 * @return FormValidator method owner
 	 */
-	public function setOptional(){
-		$this->rules['optional'] = true;
+	public function setOptional(Array $additionalEmptyValues = array()){
+		$this->rules['optional'] = $additionalEmptyValues;
 		return $this;
 	}
 	
@@ -505,11 +507,16 @@ class FormValidator{
 	
 	
 	
-	private function notempty($X){
+	private function notempty($additionalEmptyValues){
 		$res = true;
 		
+		$emptyValues = array('');
+		foreach( $additionalEmptyValues as $additionalEmptyValue ){
+			$emptyValues[] = "$additionalEmptyValue";
+		}
+		
 		if( count($this->values) == 1 ){
-			$res = !(trim($this->values[0]) == '');
+			$res = !in_array(trim($this->values[0]), $emptyValues);
 		} else {
 			$res = !(count($this->values) == 0);
 		}
@@ -898,9 +905,14 @@ class FormValidator{
 	
 	//--|questions---------
 	
-	private function hasValuesToValidate(){
+	private function hasValuesToValidate(Array $additionalEmptyValues = array()){
+		$emptyValues = array('');
+		foreach( $additionalEmptyValues as $additionalEmptyValue ){
+			$emptyValues[] = "$additionalEmptyValue";
+		}
+	
 		foreach( $this->values as $val ){
-			if( "$val" != "" ){
+			if( !in_array("$val", $emptyValues) ){
 				return true;
 			}
 		}
@@ -919,7 +931,7 @@ class FormValidator{
 	 * @return Boolean value(s) is/are valid yes/no
 	 */
 	public function process(){
-		if( !(!$this->hasValuesToValidate() && isset($this->rules['optional'])) ){	
+		if( !isset($this->rules['optional']) || $this->hasValuesToValidate($this->rules['optional']) ){	
 			if( $this->fieldName != '' ){
 				require_once('messages/'.$this->messageLanguage.'.inc.php');
 			}

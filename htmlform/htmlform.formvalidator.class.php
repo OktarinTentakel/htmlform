@@ -67,7 +67,7 @@ class FormValidator{
 	 * 
 	 * @return FormValidator new FormValidator-instance
 	 */
-	public function get(){
+	public static function get(){
 		$res = new FormValidator();
 		return $res;
 	}

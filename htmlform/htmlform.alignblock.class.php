@@ -14,7 +14,7 @@ require_once 'htmlform.formelement.absclass.php';
  * the widgets in another fashion.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.85 beta
+ * @version 0.95 beta
  * @package formelements
  * @subpackage container-widgets
  */
@@ -91,7 +91,7 @@ class AlignBlock extends FormElement{
 				 .$this->printName()
 				 .$this->printId()
 				 .$this->printCssClasses()
-				 .$this->printJsEventHandler()
+				 .$this->printJavascriptEventHandler()
 			 .'>'
 				.$subs
 				.$this->masterForm->printFloatBreak()

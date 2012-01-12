@@ -18,7 +18,7 @@ require_once 'htmlform.formelement.absclass.php';
  * Be sure to set a javascript-handler, otherwise the buttons won't really do anything.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.85 beta
+ * @version 0.95 beta
  * @package formelements
  * @subpackage control-widgets
  */
@@ -105,7 +105,7 @@ class InputButton extends FormElement{
 				.' value="'.$this->caption.'"'
 				.$this->printTitle()
 				.$this->printCssClasses()
-				.$this->printJsEventHandler()
+				.$this->printJavascriptEventHandler()
 				.$this->printTabindex()
 				.$this->printDisabled()
 				.$this->masterForm->printSlash()

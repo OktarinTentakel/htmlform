@@ -5,7 +5,7 @@
  * Especially houses method-overwrites for utf-8 security in this case.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.85 beta
+ * @version 0.95 beta
  * @package tools
  */
 class HtmlFormTools {
@@ -64,6 +64,11 @@ class HtmlFormTools {
 	
 	
 	
+	/**
+	 * Returns if at least the minimal UTF-8-environment is set for PHP.
+	 * 
+	 * @return Boolean yes/no answer
+	 */
 	private static function utf8EnvironmentSet(){
 		return (
 			(ini_get('default_charset') == 'UTF-8')

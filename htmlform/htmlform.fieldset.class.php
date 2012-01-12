@@ -14,7 +14,7 @@ require_once 'htmlform.formelement.absclass.php';
  * It behaves exactly like the raw html pendant.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.85 beta
+ * @version 0.95 beta
  * @package formelements
  * @subpackage container-widgets
  */
@@ -98,7 +98,7 @@ class FieldSet extends FormElement{
 				 .$this->printName()
 				 .$this->printId()
 				 .$this->printCssClasses()
-				 .$this->printJsEventHandler()
+				 .$this->printJavascriptEventHandler()
 			 .'>'
 				.(($this->legend != '') ? '<legend>'.$this->legend.'</legend>' : '')
 				.$subs

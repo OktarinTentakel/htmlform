@@ -21,7 +21,7 @@
  * By this all voodoo-knowledge about when which widget returns what should be obsolete.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.85 beta
+ * @version 0.95 beta
  * @package formdata
  */
 class FormValueSet {

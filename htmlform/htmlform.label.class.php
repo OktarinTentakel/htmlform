@@ -20,7 +20,7 @@ require_once 'htmlform.formelement.absclass.php';
  * the a value-bearing-element. If you implement one yourself, be sure to also use Label.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.85 beta
+ * @version 0.95 beta
  * @package formelements
  * @subpackage special-widgets
  */

@@ -17,7 +17,7 @@ require_once 'htmlform.inputbutton.class.php';
  * This element is not wrapped into a row, but should be inserted into a container-widget.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.85 beta
+ * @version 0.95 beta
  * @package formelements
  * @subpackage control-widgets
  */
@@ -71,7 +71,7 @@ class InputReset extends InputButton {
 				.' value="'.$this->caption.'"'
 				.$this->printTitle()
 				.$this->printCssClasses()
-				.$this->printJsEventHandler()
+				.$this->printJavascriptEventHandler()
 				.$this->printTabindex()
 				.$this->printDisabled()
 				.$this->masterForm->printSlash()

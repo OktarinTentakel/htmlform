@@ -19,7 +19,7 @@ require_once 'htmlform.tools.class.php';
  * Refills won't work on this element, due to security restrictions of the browsers.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.85 beta
+ * @version 0.95 beta
  * @package formelements
  * @subpackage value-widgets
  */
@@ -78,6 +78,30 @@ class InputFile extends InputText{
 	
 	
 	
+	//---|getter----------
+	
+	/**
+	 * Returns the current value of the element.
+	 * In case of the file input, the value contains the a filename, if a file has successfully been transferrred
+	 * to the server. In any other case the value stays an empty string.
+	 *
+	 * @return String filename of uploaded file or empty string
+	 */
+	public function getValue(){
+		if(
+			isset($_FILES[$this->name]['tmp_name'])
+			&& (strlen($_FILES[$this->name]['tmp_name']) > 0)
+			&& ($_FILES[$this->name]['size'] > 0)
+			&& ($_FILES[$filedataName]['error'] == UPLOAD_ERR_OK)
+		){
+			return $_FILES[$this->name]['name'];
+		} else {
+			return '';
+		}
+	}
+	
+	
+	
 	//---|output----------
 	
 	private function printAccept(){
@@ -107,7 +131,7 @@ class InputFile extends InputText{
 						.$this->printSize()
 						.$this->printMaxLength()
 						.$this->printCssClasses()
-						.$this->printJsEventHandler()
+						.$this->printJavascriptEventHandler()
 						.$this->printTabindex()
 						.$this->printReadonly()
 						.$this->printDisabled()

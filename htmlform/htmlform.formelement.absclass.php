@@ -23,7 +23,7 @@ require_once 'htmlform.tools.class.php';
  * elements and do use them!
  * 
  * @author Sebastian Schlapkohl
- * @version 0.85 beta
+ * @version 0.95 beta
  * @package formelements
  */
 
@@ -200,6 +200,7 @@ abstract class FormElement{
 	 */
 	public function setValidator(FormValidator $validator){
 		if( $this->label != '' ) $validator->setFieldName($this->label);
+		if( $this->name != '' ) $validator->setDataName($this->name);
 		$this->validator = $validator;
 		$this->isValid = false;
 		return $this;
@@ -275,7 +276,7 @@ abstract class FormElement{
 	 * @param String $reaction the javascript-code to execute if handler fires
 	 * @return FormElement method owner
 	 */
-	public function setJsEventHandler($handler, $reaction){
+	public function setJavascriptEventHandler($handler, $reaction){
 		$this->jsEventHandler = $handler.'="'.$reaction.'"';
 		return $this;
 	}
@@ -549,6 +550,7 @@ abstract class FormElement{
 				}
 			}
 		}
+		
 		return $this;
 	}
 	
@@ -560,10 +562,10 @@ abstract class FormElement{
 	 * by the method of the masterform. If that fails the refiller defaults to $_POST.
 	 * For internal use. Doesn't need to be overwritten or extended.
 	 * 
-	 * @param array $refiller predetermined refill source for element
+	 * @param Array[String]|null $refiller predetermined refill source for element
 	 * @return Array[String] refill source for element
 	 */
-	protected function determineRefiller(Array $refiller = array()){
+	protected function determineRefiller($refiller = array()){
 		if( empty($refiller) ){
 			if( !is_null($this->masterForm) ){
 				$refiller = $this->masterForm->getMethod(true);
@@ -670,7 +672,7 @@ abstract class FormElement{
 	 * 
 	 * @return String compiled attribute-string
 	 */
-	protected function printJsEventHandler(){
+	protected function printJavascriptEventHandler(){
 		return (($this->jsEventHandler != '') ? ' '.$this->jsEventHandler : '');
 	}
 	
@@ -721,6 +723,22 @@ abstract class FormElement{
 		}
 		
 		return $msg;
+	}
+	
+	
+	
+	/**
+	 * Grabs the compiled JS-validation-code for the element from its validator, if present and returns
+	 * the code as a string.
+	 * 
+	 * @return String JS-code to validate the element's values on the fly
+	 */
+	public function printJavascriptValidationCode(){
+		if( is_null($this->masterForm) || (!is_null($this->masterForm) && !$this->masterForm->javascriptValidationIsSuppressed()) ){
+			return !is_null($this->validator) ? $this->validator->printJavascriptValidationCode() : '';
+		} else {
+			return '';
+		}
 	}
 	
 	

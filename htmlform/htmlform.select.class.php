@@ -17,7 +17,7 @@ require_once 'htmlform.tools.class.php';
  * You name it. It's simply a very percise object-build of a select box.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.85 beta
+ * @version 0.95 beta
  * @package formelements
  * @subpackage value-widgets
  */
@@ -335,11 +335,11 @@ class Select extends FormElement{
 	 * This data can eiter be one of the method-arrays dependent on the
 	 * method the surrounding form uses or a supplied array of name-value-pairs.
 	 * 
-	 * @param Array[String] $refiller data to use as the refill source
+	 * @param Array[String]|null $refiller data to use as the refill source
 	 * @param Boolean $condition expression which defines if the refill will take place or not, to make it conditional so to speak
 	 * @return Select method owner
 	 */
-	public function refill(Array $refiller = array(), $condition = true){
+	public function refill($refiller = array(), $condition = true){
 		if( !is_null($this->masterForm) && !$this->masterForm->hasBeenSent() && empty($refiller) ){
 			$condition = false;
 		}
@@ -490,7 +490,7 @@ class Select extends FormElement{
 						.' size="'.$this->size.'"'
 						.$this->printMultiple()
 						.$this->printCssClasses()
-						.$this->printJsEventHandler()
+						.$this->printJavascriptEventHandler()
 						.$this->printTabindex()
 						.$this->printDisabled()
 					.'>'
@@ -500,6 +500,7 @@ class Select extends FormElement{
 				.'</div>'
 				.$this->masterForm->printFloatBreak()
 			.'</div>'
+			.$this->printJavascriptValidationCode()
 		;
 	}
 }

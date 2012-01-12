@@ -13,7 +13,7 @@
  * I can tell by the code and by having quite some wrappers in my time :P
  * 
  * @author Sebastian Schlapkohl
- * @version 0.85 beta
+ * @version 0.95 beta
  */
 
 /**
@@ -93,8 +93,9 @@ $testFieldSet->addElement(
 			FormValidator::get()
 				->setEmail()
 				->setCustomCase(true)
+				->activateJavascriptValidation('input:text[name=testinputtext]')
 		)
-		->refill()
+		->refill(null, true)
 );
 
 /**
@@ -127,8 +128,9 @@ $testFieldSet->addElement(
 				->setDigits()
 				->setOptional(array('none'))
 				->setErrorMessage('Please choose an "only digit"-value or none.')
+				->activateJavascriptValidation()
 		)
-		->refill()
+		->refill(array())
 );
 
 /**
@@ -140,11 +142,12 @@ $testFieldSet->addElement(
  */
 $testFieldSet->addElement(
 	Select::get('testselectsinglemixed')
-		->setLabel('single select (must have a selection)')
+		->setLabel('single select (must have a selection):')
 		->setOptions(array('' => '---', 'b' => 'hey', 'c' => 'you'))
 		->setValidator(
 			FormValidator::get()
 				->setRequired()
+				->activateJavascriptValidation()
 		)
 		->refill()
 );
@@ -175,6 +178,7 @@ $testFieldSet->addElement(
 				->setRequired()
 				->setCharacterClass('ac')
 				->setAutoErrorMessagesAsCustom()
+				->activateJavascriptValidation()
 		)
 		->refill()
 );
@@ -189,11 +193,50 @@ $testFieldSet->addElement(
 $testFieldSet->addElement(
 	InputText::get('datetest')
 		->setLabel('standard text input (must be a standard date, is optional):')
-		->setText('1/12/2002')
+		->setText('1/13/2002')
 		->setValidator(
 			FormValidator::get()
 				->setDate()
 				->setOptional()
+				->activateJavascriptValidation()
+		)
+		->refill()
+);
+
+/**
+ * Create a standard text input and add it to the fieldset.
+ * - add a label
+ * - set valid standard time as default value
+ * - set validator (must be standard time)
+ * - refill from default refiller (get/post)
+ */
+$testFieldSet->addElement(
+	InputText::get('timetest')
+		->setLabel('standard text input (must be a standard time):')
+		->setText('1:30am')
+		->setValidator(
+			FormValidator::get()
+				->setTime()
+				->activateJavascriptValidation()
+		)
+		->refill()
+);
+
+/**
+* Create a standard text input and add it to the fieldset.
+* - add a label
+* - set valid standard datetime as default value
+* - set validator (must be standard datetime)
+* - refill from default refiller (get/post)
+*/
+$testFieldSet->addElement(
+	InputText::get('datetimetest')
+		->setLabel('standard text input (must be a standard datetime):')
+		->setText('12/1/2012 12:30:59 pm')
+		->setValidator(
+			FormValidator::get()
+				->setDateTime()
+				->activateJavascriptValidation()
 		)
 		->refill()
 );
@@ -212,6 +255,7 @@ $testFieldSet->addElement(
 		->setValidator(
 			FormValidator::get()
 				->setDateISO()
+				->activateJavascriptValidation()
 		)
 		->refill()
 );
@@ -219,17 +263,94 @@ $testFieldSet->addElement(
 /**
  * Create a standard text input and add it to the fieldset.
  * - add a label
- * - set a valid german date as default text
- * - set validator (must be german date)
+ * - set valid iso-time as default value
+ * - set validator (must be iso-time)
+ * - refill from default refiller (get/post)
+ */
+$testFieldSet->addElement(
+	InputText::get('timeisotest')
+		->setLabel('standard text input (must be an iso-time):')
+		->setText('23:59:59')
+		->setValidator(
+			FormValidator::get()
+				->setTimeISO()
+				->activateJavascriptValidation()
+		)
+		->refill()
+);
+
+/**
+ * Create a standard text input and add it to the fieldset.
+ * - add a label
+ * - set valid iso-datetime as default value
+ * - set validator (must be iso-datetime)
+ * - refill from default refiller (get/post)
+ */
+$testFieldSet->addElement(
+	InputText::get('datetimeisotest')
+		->setLabel('standard text input (must be an iso-datetime):')
+		->setText('2012-12-13T13:13:13')
+		->setValidator(
+			FormValidator::get()
+				->setDateTimeISO()
+				->activateJavascriptValidation()
+		)
+		->refill()
+);
+
+/**
+ * Create a standard text input and add it to the fieldset.
+ * - add a label
+ * - set a valid German date as default text
+ * - set validator (must be German date)
  * - refill from default refiller (get/post)
  */
 $testFieldSet->addElement(
 	InputText::get('datedetest')
-		->setLabel('standard text input (must be german date)')
+		->setLabel('standard text input (must be German date)')
 		->setText('1.12.2002')
 		->setValidator(
 			FormValidator::get()
 				->setDateDE()
+				->activateJavascriptValidation()
+		)
+		->refill()
+);
+
+/**
+ * Create a standard text input and add it to the fieldset.
+ * - add a label
+ * - set valid German time as default value
+ * - set validator (must be German time)
+ * - refill from default refiller (get/post)
+ */
+$testFieldSet->addElement(
+	InputText::get('timedetest')
+		->setLabel('standard text input (must be a German time):')
+		->setText('13:13h')
+		->setValidator(
+			FormValidator::get()
+				->setTimeDE()
+				->activateJavascriptValidation()
+		)
+		->refill()
+);
+
+/**
+ * Create a standard text input and add it to the fieldset.
+ * - add a label
+ * - set valid German time as default value
+ * - set validator (must be German time)
+ * - refill from default refiller (get/post)
+ */
+$testFieldSet->addElement(
+	InputText::get('datetimedetest')
+		->setLabel('standard text input (must be a German datetime):')
+		->setText('13.12.2012 12:30:59')
+		->setValidator(
+			FormValidator::get()
+				->setDateTimeDE()
+				->activateJavascriptValidation()
 		)
 		->refill()
 );
@@ -248,6 +369,7 @@ $testFieldSet->addElement(
 		->setValidator(
 			FormValidator::get()
 				->setNumber()
+				->activateJavascriptValidation()
 		)
 		->refill()
 );
@@ -255,17 +377,18 @@ $testFieldSet->addElement(
 /**
  * Create a standard text input and add it to the fieldset.
  * - add a label
- * - set a valid german decimal number as default text
- * - set validator (must be german decimal number)
+ * - set a valid German decimal number as default text
+ * - set validator (must be German decimal number)
  * - refill from default refiller (get/post)
  */
 $testFieldSet->addElement(
 	InputText::get('numberdetest')
-		->setLabel('standard text input (must be german decimal number):')
+		->setLabel('standard text input (must be German decimal number):')
 		->setText('100,1')
 		->setValidator(
 			FormValidator::get()
 				->setNumberDE()
+				->activateJavascriptValidation()
 		)
 		->refill()
 );
@@ -387,6 +510,7 @@ $testFieldSet2->addElement(
 				->setMinLength(3)
 				->setMaxLength(10)
 				->setCharacterClass('a-zA-ZäöüÄÖÜß')
+				->activateJavascriptValidation()
 		)
 		->refill()
 );
@@ -405,6 +529,7 @@ $testFieldSet2->addElement(
 		->setValidator(
 			FormValidator::get()
 				->setRangeLength(array(4,6))
+				->activateJavascriptValidation()
 		)
 		->refill()
 );
@@ -424,6 +549,7 @@ $testFieldSet2->addElement(
 			FormValidator::get()
 				->setMin(3)
 				->setMax(10)
+				->activateJavascriptValidation()
 		)
 		->refill()
 );
@@ -442,6 +568,7 @@ $testFieldSet2->addElement(
 		->setValidator(
 			FormValidator::get()
 				->setRange(array(4, 6))
+				->activateJavascriptValidation()
 		)
 		->refill()
 );
@@ -462,6 +589,7 @@ $testFieldSet2->addElement(
 		->setValidator(
 			FormValidator::get()
 				->setUrl()
+				->activateJavascriptValidation()
 		)
 		->refill()
 );
@@ -508,17 +636,17 @@ $testFieldSet2->addElement($checkbox1);
  * - add a label
  * - set a valid date text value
  * - set text readonly, to prevent direct editing
- * - set widget up for german dates
+ * - set widget up for German dates
  * - set time format to am/pm-notation
  * - set navigation by arrows
  * - set up time display
  * - set config-values for javascript(3 chars for weekdays, color for sundays, color for saturdays, color for weekdays)
- * - set validator (must be german date)
+ * - set validator (must be German date)
  * - refill from default refiller (get/post)
  */
 $testFieldSet2->addElement(
 	JsDateTime::get('cal1', 'cal1')
-		->setLabel('datetime (german date):')
+		->setLabel('datetime (German date):')
 		->setText('12.12.2008')
 		->setReadonly()
 		->setUpAsGermanDate()
@@ -541,6 +669,7 @@ $testFieldSet2->addElement(
 		->setValidator(
 			FormValidator::get()
 				->setDateDE()
+				->activateJavascriptValidation()
 		)
 		->refill()
 );
@@ -557,17 +686,25 @@ $testFieldSet2->addElement(
 $testFieldSet2->addElement(
 	TextArea::get('textarea1')
 		->setLabel('textarea (only normal chars, umlauts and punctuation, not empty, single number zero is considered empty):')
-		->setJsEventHandler('onclick', 'alert(\'onclick-test\');')
+		->setJavascriptEventHandler('onclick', 'alert(\'onclick-test\');')
 		->setText('Hello world!')
 		->setSize(20, 10)
 		->setValidator(
 			FormValidator::get()
 				->setNotEmpty(array(0))
-				->setCustomCase(
+				->setCustomCase(array(
 					preg_match('/^[a-zA-ZäöüÄÖÜß!.,? ]+$/u', isset($_REQUEST['textarea1']) ? $_REQUEST['textarea1'] : 'Hallo Welt!')
 						? ''
 						: 'Keinen Murks in den Flie&szlig;text ey!'
-				)
+					,
+					"
+						res = /^[a-zA-ZäöüÄÖÜß!.,? ]+$/.test($(this).val())
+							? ''
+							: 'Keinen Murks in den Flie&szlig;text ey!'
+						;
+					"
+				))
+				->activateJavascriptValidation()
 		)
 		->refill()
 );
@@ -598,6 +735,19 @@ $testForm->setExplanation(
 	.'Expand viewport to see flow of form cells.<br>'
 	.'Have a look at the source to discover the options and default solutions used here.'
 );
+
+
+/**
+ * Prepare Javascript-Validation.
+ */
+if( isset($_GET['nojsvalidation']) && ($_GET['nojsvalidation'] == 'true') ){
+	$testForm->suppressJavascriptValidation();
+}
+
+$testForm
+	->prepareJavascriptValidation()
+	->suppressJqueryInclude()
+;
 
 /**
  * Late refill for checkbox group, to show, that timing for refill is relevant. A checkboxgroup can not be refilled to
@@ -642,14 +792,16 @@ if($testForm->hasBeenSent()) {
 
 ?>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!doctype html>
 
 <html>
 	<head>
 		<title>HtmlForm Testcase Scenario</title>
 		<style type="text/css" media="screen">
 			html, body {
-				color: white;
+				margin: 0;
+			
+				color: #fff;
 				background-color: #333;
 				
 				font-family: arial, sens-serif;
@@ -659,7 +811,8 @@ if($testForm->hasBeenSent()) {
 			
 			
 			.testform{
-				padding: 10px;
+				padding: 18px;
+				padding-top: 2px;
 			}
 			
 			.testform fieldset{
@@ -720,7 +873,7 @@ if($testForm->hasBeenSent()) {
 			}
 			
 			.testform .htmlform_alignblock input[type=image]:hover{
-				border: 1px solid white;
+				border: 1px solid #fff;
 			}
 			
 			.testform fieldset .htmlform_row_div{
@@ -754,7 +907,7 @@ if($testForm->hasBeenSent()) {
 			.htmlform_formheadline{
 				margin-left: 10px;
 				
-				color: white;
+				color: #fff;
 				
 				font-size: 64px;
 			}
@@ -800,7 +953,7 @@ if($testForm->hasBeenSent()) {
 			
 			
 			.bordered{
-				border:1px solid black;
+				border:1px solid #000;
 			}
 			
 			#calBorder table {
@@ -854,12 +1007,38 @@ if($testForm->hasBeenSent()) {
 				
 				overflow: auto;
 			}
+			
+			#functions {
+				height: 10px;
+				
+				padding: 3px 10px;
+				
+				text-align: right;
+			}
+			
+			#functions a {
+				color: #ccc;
+				
+				text-decoration: none;
+			}
+			
+			#functions a:hover {
+				color: #fff;
+			}
 		</style>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
 	</head>
 	
 	<body>
 		<?=$successContainer?>
-		<form id="form1" action="" method="post" accept-charset="UTF-8" class="testform">
+		<div id="functions">
+			<?php if( isset($_GET['nojsvalidation']) && ($_GET['nojsvalidation'] == 'true') ){ ?>
+				<a href="<?=$_SERVER['PHP_SELF']?>">activate JavaScript-validation</a>
+			<?php } else { ?>
+				<a href="<?=$_SERVER['PHP_SELF']?>?nojsvalidation=true">deactivate JavaScript-validation</a>
+			<?php } ?>
+		</div>
+		<form id="form1" method="post" accept-charset="UTF-8" class="testform" enctype="multipart/form-data">
 			<?=$testForm->doRender()?>
 		</form>
 	</body>

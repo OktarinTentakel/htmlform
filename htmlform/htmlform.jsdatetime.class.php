@@ -52,7 +52,7 @@ require_once 'htmlform.tools.class.php';
  * var WeekDayName2=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
  * 
  * @author Sebastian Schlapkohl
- * @version 0.85 beta
+ * @version 0.95 beta
  * @package formelements
  * @subpackage value-widgets
  */
@@ -253,6 +253,20 @@ class JsDateTime extends InputText{
 	
 	
 	/**
+	 * Configures the picker to offer the selection of a standard American date.
+	 * Date-parts will be separated by a forward slash here.
+	 *
+	 * @return JsDateTime method owner
+	 */
+	public function setUpAsAmericanDate(){
+		$this->dateFormat = 'mmddyyyy';
+		$this->jsConfig['DateSeparator'] = '/';
+		return $this;
+	}
+	
+	
+	
+	/**
 	 * Configures the picker to offer the selection of a standard iso-date.
 	 * Date-parts will be separated by a dash here.
 	 * 
@@ -382,7 +396,7 @@ class JsDateTime extends InputText{
 			 $jsInclude
 			.'<div class="'.$this->printWrapperClasses().'">'
 				.$label
-				.'<div class="'.parent::WIDGETCLASS.'"'.$this->printJsEventHandler().'>'
+				.'<div class="'.parent::WIDGETCLASS.'"'.$this->printJavascriptEventHandler().'>'
 					.'<input'
 						.$this->printId()
 						.$this->printName()
@@ -397,10 +411,18 @@ class JsDateTime extends InputText{
 						.$this->printDisabled()
 						.$this->masterForm->printSlash()
 					.'>'
-					.'<img class="'.self::BUTTONCLASS.'" src="'.$packagePath.'img/cal.gif" style="cursor:pointer" onclick="NewCssCal(\''.$this->id.'\', \''.$this->dateFormat.'\', \''.$this->dateSelectionType.'\', \''.$this->displayTime.'\', \''.$this->timeMode.'\', \''.(!$this->showSeconds).'\');">'
+					.'<img'
+						.' class="'.self::BUTTONCLASS.'"'
+						.' src="'.$packagePath.'img/cal.gif"'
+						.' style="cursor:pointer"'
+						.' onclick="NewCssCal(\''.$this->id.'\', \''.$this->dateFormat.'\', \''.$this->dateSelectionType.'\', \''.$this->displayTime.'\', \''.$this->timeMode.'\', \''.(!$this->showSeconds).'\');"'
+						.' alt="datetimepicker"'
+						.$this->masterForm->printSlash()
+					.'>'
 				.'</div>'
 				.$this->masterForm->printFloatBreak()
 			.'</div>'
+			.$this->printJavascriptValidationCode()
 		;
 	}
 }

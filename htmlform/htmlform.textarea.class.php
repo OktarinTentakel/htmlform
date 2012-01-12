@@ -17,7 +17,7 @@ require_once 'htmlform.tools.class.php';
  * In general both mostly work the same way, with a tad more config-options for the textarea.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.85 beta
+ * @version 0.95 beta
  * @package formelements
  * @subpackage value-widgets
  */
@@ -181,11 +181,11 @@ class TextArea extends FormElement{
 	 * This data can eiter be one of the method-arrays dependent on the
 	 * method the surrounding form uses or a supplied array of name-value-pairs.
 	 * 
-	 * @param Array[String] $refiller data to use as the refill source
+	 * @param Array[String]|null $refiller data to use as the refill source
 	 * @param Boolean $condition expression which defines if the refill will take place or not, to make it conditional so to speak
 	 * @return TextArea method owner
 	 */
-	public function refill(Array $refiller = array(), $condition = true){
+	public function refill($refiller = array(), $condition = true){
 		if( !is_null($this->masterForm) && !$this->masterForm->hasBeenSent() && empty($refiller) ){
 			$condition = false;
 		}
@@ -277,7 +277,7 @@ class TextArea extends FormElement{
 						.$this->printCols()
 						.$this->printRows()
 						.$this->printCssClasses()
-						.$this->printJsEventHandler()
+						.$this->printJavascriptEventHandler()
 						.$this->printTabindex()
 						.$this->printReadonly()
 						.$this->printDisabled()
@@ -287,6 +287,7 @@ class TextArea extends FormElement{
 				.'</div>'
 				.$this->masterForm->printFloatBreak()
 			.'</div>'
+			.$this->printJavascriptValidationCode()
 		;
 	}
 }

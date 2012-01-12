@@ -15,7 +15,7 @@ require_once 'htmlform.formelement.absclass.php';
  * into a HtmlForm.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.85 beta
+ * @version 0.95 beta
  * @package formelements
  * @subpackage special-widgets
  */

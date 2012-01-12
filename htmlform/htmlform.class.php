@@ -46,10 +46,13 @@ require_once 'htmlform.tools.class.php';
  * The features of this framework include validation, auto-masking, utf-8-handling, auto-tabindices, error display,
  * and intelligent html-preformat to easily style later, unified result and value-handling, xhtml-rendering and much more.
  * 
+ * Additionally HtmlForm also provides all its validation capabilites as on the fly functionality based on jQuery, individually
+ * configurable for each element.
+ * 
  * For an extensive example see the index.php included in the full package.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.85 beta
+ * @version 0.95 beta
  * @package form
  */
 
@@ -123,6 +126,10 @@ class HtmlForm{
 	private $onlyCustomMessages;
 	private $errorsMarkOnlyWidget;
 	
+	private $prepareJsEnvironment;
+	private $suppressJavascriptValidation;
+	private $suppressJqueryInclude;
+	
 	private function __construct($id){
 		$this->packagePath = '';
 	
@@ -146,6 +153,10 @@ class HtmlForm{
 		$this->showMessages = false;
 		$this->onlyCustomMessages = false;
 		$this->errorsMarkOnlyWidget = false;
+		
+		$this->prepareJsEnvironment = false;
+		$this->suppressJavascriptValidation = false;
+		$this->suppressJqueryInclude = false;
 		
 		$this->addElement(
 			InputHidden::get($this->id.'_sent')
@@ -454,6 +465,54 @@ class HtmlForm{
 	
 	
 	
+	/**
+	 * Tells the form to prepare everything concerning Javascript to use the jQuery-based
+	 * Javascript-validation for form elements with activated JS-validation.
+	 * 
+	 * At least one form per page should do this, to be able to use JS-validation. You can leave this
+	 * out for additional forms, but leaving it won't hurt dramatically either.
+	 * 
+	 * The method includes an own version of jQuery, which is protected by an own namespace and a
+	 * JS-environment, docked to a HTMLFORM global-JS-variable.
+	 * 
+	 * @return HtmlForm method owner
+	 */
+	public function prepareJavascriptValidation(){
+		$this->prepareJsEnvironment = true;
+		return $this;
+	}
+	
+	
+	
+	/**
+	 * Deactivates the execution of all JS-validation, no matter if any elements have this activated, or the form was
+	 * told to prepare for it. No JS-environment will be printed and no validation code for elements will be printed.
+	 * 
+	 * @return HtmlForm method owner
+	 */
+	public function suppressJavascriptValidation(){
+		$this->suppressJavascriptValidation = true;
+		return $this;
+	}
+	
+	
+	
+	/**
+	 * Suppresses the inclusion of HtmlForm's own jQuery version and thereby sets the forms to rely on an already
+	 * included, compatible, external version. HtmlForm relies on $ being present in that case.
+	 * 
+	 * Use this method to prevent double includes for more or less identical jQuery-versions, which may already
+	 * be part of the site.
+	 * 
+	 * @return HtmlForm method owner
+	 */
+	public function suppressJqueryInclude(){
+		$this->suppressJqueryInclude = true;
+		return $this;
+	}
+	
+	
+	
 	//---|getter----------
 	
 	/**
@@ -666,6 +725,17 @@ class HtmlForm{
 	
 	
 	
+	/**
+	 * Answers if the form actively suppresses possibly set JS-validation in it.
+	 * 
+	 * @return Boolean yes/no answer
+	 */
+	public function javascriptValidationIsSuppressed(){
+		return $this->suppressJavascriptValidation;
+	}
+	
+	
+	
 	//---|functionality----------
 	
 	/**
@@ -836,26 +906,22 @@ class HtmlForm{
 	private function printMessages(){
 		$msg = '';
 		
-		if( $this->hasBeenSent() && $this->showMessages ){
+		if( $this->showMessages ){
 			foreach( $this->cells as $cell ){
 				foreach( $cell as $element ){
 					$msg .= $element->printMessages($this->onlyCustomMessages);
 				}
 			}
 			
-			if( $msg != '' ){
-				$title = ($this->messagesTitle != '') ? '<div class="'.self::MESSAGESTITLECLASS.'">'.$this->messagesTitle.'</div>' : '';
-				
-				return 
-					 '<div class="'.self::MESSAGESCLASS.'">'
-						.$title
-						.$msg
-						.$this->printFloatBreak()
-					.'</div>'
-				;
-			} else {
-				return '';
-			}
+			$title = ($this->messagesTitle != '') ? '<div class="'.self::MESSAGESTITLECLASS.'">'.$this->messagesTitle.'</div>' : '';
+			
+			return 
+				 '<div class="'.self::MESSAGESCLASS.'" style="display:'.(($this->hasBeenSent() && ($msg != '')) ? 'block' : 'none').';">'
+					.$title
+					.$msg
+					.$this->printFloatBreak()
+				.'</div>'
+			;
 		} else {
 			return $msg;
 		}
@@ -864,14 +930,111 @@ class HtmlForm{
 	
 	
 	private function printFormDeclaration($formContent){
-		return 	$this->usesExternalFormDeclaration
-							? $formContent
-							: (
-								 '<form id="'.$this->id.'" action="'.$this->action.'" method="'.$this->method.'" accept-charset="'.$this->charset.'"'.$this->printEnctype().$this->printCssClasses().'>'
-									 .$formContent
-								.'</form>'
-								)
+		return
+			$this->usesExternalFormDeclaration
+			? $formContent
+			: (
+				 '<form id="'.$this->id.'" '.(($this->action != '') ? 'action="'.$this->action.'" ' : '').'method="'.$this->method.'" accept-charset="'.$this->charset.'"'.$this->printEnctype().$this->printCssClasses().'>'
+					.$formContent
+				.'</form>'
+			)
 		;
+	}
+	
+	
+	
+	private function printJsEnvironment(){
+		if( $this->prepareJsEnvironment && !$this->suppressJavascriptValidation ){
+			$jsEnvironment = '';
+			
+			// own jQuery include
+			if( !$this->suppressJqueryInclude ){
+				$jsEnvironment .= "
+					<script type=\"text/javascript\">
+						".file_get_contents('js/jquery.min.js')."
+						var \$htmlform = jQuery.noConflict();
+					</script>
+				";
+			}
+			
+			// HtmlForm's own JS-environment
+			$jsEnvironment .= "
+				<script type=\"text/javascript\">
+					if( window.HTMLFORM === undefined ){
+						window['HTMLFORM'] = {
+							jquery : (window.\$htmlform !== undefined) ? window.\$htmlform : ((window.\$ !== undefined) ? window.\$ : null),
+							data : {
+								getAsObj : function(\$form){
+									var fields = \$form.serializeArray();
+									var targetObj = {};
+									var currentFieldIsArray = false;
+									
+									for( var i = 0; i < fields.length; i++ ){
+										currentFieldIsArray = false;
+										if( fields[i].name.indexOf('[]') != -1 ){
+											fields[i].name = fields[i].name.slice(0, fields[i].name.indexOf('[]'));
+											currentFieldIsArray = true;
+										}
+										
+										if( targetObj[fields[i].name] === undefined ){
+											if( !currentFieldIsArray ){
+												targetObj[fields[i].name] = fields[i].value;
+											} else {
+												targetObj[fields[i].name] = [fields[i].value];
+											}
+										} else if( !HTMLFORM.jquery.isArray(targetObj[fields[i].name]) ){
+											targetObj[fields[i].name] = [targetObj[fields[i].name], fields[i].value];
+										} else {
+											targetObj[fields[i].name].push(fields[i].value);
+										}
+									}
+									
+									return targetObj;
+								}
+							},
+							validation : {
+								markError : function(\$widgets, res){
+									\$widgets.each(function(){
+										if( !res && !HTMLFORM.jquery(this).hasClass('".FormElement::ERRORCLASS."') ){
+											HTMLFORM.jquery(this).addClass('".FormElement::ERRORCLASS."');
+										} else if( res ){
+											HTMLFORM.jquery(this).removeClass('".FormElement::ERRORCLASS."');
+										}
+									
+										HTMLFORM.jquery(this).closest('.".FormElement::WIDGETCLASS."').each(function(){
+											if( !res && ".($this->errorsMarkOnlyWidget ? 'false' : 'true')." ){
+												if( !HTMLFORM.jquery(this).hasClass('".FormElement::ERRORCLASS."') ){
+													HTMLFORM.jquery(this).addClass('".FormElement::ERRORCLASS."');
+												}
+											} else if( res ){
+												HTMLFORM.jquery(this).removeClass('".FormElement::ERRORCLASS."');
+											}
+										});
+									});
+								},
+								handleErrorMessage : function(id, msg){
+									HTMLFORM.jquery('.".self::MESSAGESCLASS."')
+										.append('<div class=\"".FormValidator::MESSAGECLASS." msg_'+id+'\">'+msg+'<\/div>')
+										.show()
+									;
+								},
+								removeErrorMessages : function(id){ 
+									HTMLFORM.jquery('.".self::MESSAGESCLASS."'+(id ? ' > .msg_'+id : '')).remove();
+									
+									if( HTMLFORM.jquery('.".self::MESSAGESCLASS." > .".FormValidator::MESSAGECLASS."').length == 0 ){
+										HTMLFORM.jquery('.".self::MESSAGESCLASS."').hide();
+									}
+								}
+							}
+						};
+					}
+				</script>
+			";
+			
+			return $jsEnvironment;
+		} else {
+			return '';
+		}
 	}
 	
 	
@@ -898,7 +1061,8 @@ class HtmlForm{
 		}
 	
 		return
-			 $this->printHeadline()
+			 $this->printJsEnvironment()
+			.$this->printHeadline()
 			.$this->printExplanation()
 			.$this->printMessages()
 			.$this->printFormDeclaration(

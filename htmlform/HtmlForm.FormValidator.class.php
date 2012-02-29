@@ -21,7 +21,7 @@ require_once 'HtmlFormTools.class.php';
  * for messages.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.95 beta
+ * @version 0.99 beta
  * @package validation
  */
 class FormValidator {

@@ -17,7 +17,7 @@ require_once 'HtmlForm.FormElement.InputButton.class.php';
  * This element is not wrapped into a row, but should be inserted into a container-widget.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.95 beta
+ * @version 0.99 beta
  * @package formelements
  * @subpackage control-widgets
  */

@@ -13,7 +13,7 @@
  * I can tell by the code and by having seen quite some wrappers in my time :P
  * 
  * @author Sebastian Schlapkohl
- * @version 0.95 beta
+ * @version 0.99 beta
  */
 
 /**

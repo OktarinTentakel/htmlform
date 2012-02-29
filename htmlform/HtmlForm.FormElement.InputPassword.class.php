@@ -2,10 +2,10 @@
 
 //---|includes----------
 
-require_once 'htmlform.inputtext.class.php';
-require_once 'htmlform.label.class.php';
+require_once 'HtmlForm.FormElement.InputText.class.php';
+require_once 'HtmlForm.FormElement.Label.class.php';
 
-require_once 'htmlform.tools.class.php';
+require_once 'HtmlFormTools.class.php';
 
 
 

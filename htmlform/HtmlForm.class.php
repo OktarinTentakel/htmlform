@@ -2,32 +2,32 @@
 
 //---|includes----------
 
-require_once 'htmlform.formelement.absclass.php';
+require_once 'HtmlForm.FormElement.absclass.php';
 
-require_once 'htmlform.inputbutton.class.php';
-require_once 'htmlform.inputreset.class.php';
-require_once 'htmlform.inputcheckbox.class.php';
-require_once 'htmlform.inputradio.class.php';
-require_once 'htmlform.inputsubmit.class.php';
-require_once 'htmlform.inputimage.class.php';
-require_once 'htmlform.inputtext.class.php';
-require_once 'htmlform.inputhidden.class.php';
-require_once 'htmlform.inputpassword.class.php';
-require_once 'htmlform.inputfile.class.php';
+require_once 'HtmlForm.FormElement.InputButton.class.php';
+require_once 'HtmlForm.FormElement.InputReset.class.php';
+require_once 'HtmlForm.FormElement.InputCheckbox.class.php';
+require_once 'HtmlForm.FormElement.InputRadio.class.php';
+require_once 'HtmlForm.FormElement.InputSubmit.class.php';
+require_once 'HtmlForm.FormElement.InputImage.class.php';
+require_once 'HtmlForm.FormElement.InputText.class.php';
+require_once 'HtmlForm.FormElement.InputHidden.class.php';
+require_once 'HtmlForm.FormElement.InputPassword.class.php';
+require_once 'HtmlForm.FormElement.InputFile.class.php';
 
-require_once 'htmlform.select.class.php';
-require_once 'htmlform.textarea.class.php';
+require_once 'HtmlForm.FormElement.Select.class.php';
+require_once 'HtmlForm.FormElement.TextArea.class.php';
 
-require_once 'htmlform.alignblock.class.php';
-require_once 'htmlform.customhtml.class.php';
-require_once 'htmlform.fieldset.class.php';
+require_once 'HtmlForm.FormElement.AlignBlock.class.php';
+require_once 'HtmlForm.FormElement.CustomHtml.class.php';
+require_once 'HtmlForm.FormElement.FieldSet.class.php';
 
-require_once 'htmlform.formvalidator.class.php';
-require_once 'htmlform.formvalueset.class.php';
+require_once 'HtmlForm.FormElement.JsDateTime.class.php';
 
-require_once 'htmlform.jsdatetime.class.php';
+require_once 'HtmlForm.FormValidator.class.php';
+require_once 'HtmlForm.FormValueset.class.php';
 
-require_once 'htmlform.tools.class.php';
+require_once 'HtmlFormTools.class.php';
 
 
 

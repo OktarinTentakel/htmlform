@@ -2,7 +2,7 @@
 
 //---|includes----------
 
-require_once 'htmlform.inputsubmit.class.php';
+require_once 'HtmlForm.FormElement.InputSubmit.class.php';
 
 
 

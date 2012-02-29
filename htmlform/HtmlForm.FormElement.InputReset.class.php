@@ -2,7 +2,7 @@
 
 //---|includes----------
 
-require_once 'htmlform.inputbutton.class.php';
+require_once 'HtmlForm.FormElement.InputButton.class.php';
 
 
 

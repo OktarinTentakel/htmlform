@@ -10,7 +10,7 @@
  * and tryouts, half showcase half test, but it's not very complicated to integrate the framework into
  * your workflows and write a nice wrapper or two.
  * 
- * I can tell by the code and by having quite some wrappers in my time :P
+ * I can tell by the code and by having seen quite some wrappers in my time :P
  * 
  * @author Sebastian Schlapkohl
  * @version 0.95 beta
@@ -19,7 +19,7 @@
 /**
  * Bind the main class to make whole framework usable and known
  */
-require_once('htmlform/htmlform.class.php');
+require_once('htmlform/HtmlForm.class.php');
 
 /**
  * Prepare php-output for utf-8. these are the minimum settings, to make utf-8-mode discoverable

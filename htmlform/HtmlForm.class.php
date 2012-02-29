@@ -25,7 +25,7 @@ require_once 'HtmlForm.FormElement.FieldSet.class.php';
 require_once 'HtmlForm.FormElement.JsDateTime.class.php';
 
 require_once 'HtmlForm.FormValidator.class.php';
-require_once 'HtmlForm.FormValueset.class.php';
+require_once 'HtmlForm.FormValueSet.class.php';
 
 require_once 'HtmlFormTools.class.php';
 

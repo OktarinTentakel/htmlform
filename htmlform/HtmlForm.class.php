@@ -327,6 +327,19 @@ class HtmlForm{
 	
 	
 	/**
+	 * Set the encoding to the most common setting, which is multipart/form-data. This setting is needed
+	 * if you include file inputs in your form, otherwise the files will not be transferred to the server.
+	 *
+	 * @return HtmlForm method owner
+	 */
+	public function setMultipartFormData(){
+		$this->enctype = 'multipart/form-data';
+		return $this;
+	}
+	
+	
+	
+	/**
 	 * Sets the html-class-attribute for the form as a whole.
 	 * Use exactly the same notation you would use in html.
 	 * 

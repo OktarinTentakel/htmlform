@@ -122,7 +122,7 @@ $testFieldSet->addElement(
 					'3' => '333'), 'c' => '444.4'
 				)
 			)
-		->setSelectedSingle('333')
+		->setSelected('333')
 		->setValidator(
 			FormValidator::get()
 				->setDigits()
@@ -168,11 +168,12 @@ $testFieldSet->addElement(
 	Select::get('testselectmultiple')
 		->setLabel('multi select (must have selection, values must be "a" or "c"):')
 		->setMultiple()
-		->setOptions(array('a' => 'test1', 'b' => 'test2', 'c' => 'test3'))
+		->setOptions(array('a' => 'test1', 'b' => 'test2', 'c' => 'test3', 'd' => 'testdisabled'))
 		->setOptionCssClasses(array('odd', 'even'))
 		->setOptionTitles(array('eins', 'zwei'))
-		->setSelectedIndices(array(1, 3))
-		->setSize(3)
+		->setSelected(array(1, 3))
+		->setDisabled('d')
+		->setSize(4)
 		->setValidator(
 			FormValidator::get()
 				->setRequired()
@@ -605,10 +606,11 @@ $testFieldSet2->addElement(
 $testFieldSet2->addElement(
 	InputRadio::get('radios1')
 		->setLabel('radiogroup:')
-		->setOptions(array('a' => 'radio1', 'b' => 'radio2', 'c' => 'radio3', 'd' => 'radio4'))
+		->setOptions(array('a' => 'radio1', 'b' => 'radio2', 'c' => 'radio3', 'd' => 'radio4', 'e' => 'radio5', 'f' => 'radio6'))
 		->setOptionCssClasses(array('allthesame'))
 		->setOptionTitles(array('one', 'two', 'three', 'four'))
-		->setSelectedValue('d')
+		->setSelected('d')
+		->setDisabled(array('e', 'f'))
 		->setWidth(3)
 		->refill()
 );
@@ -624,10 +626,11 @@ $testFieldSet2->addElement(
 $checkbox1 = InputCheckbox::get('check1')
 	->setLabel('checkboxgroup:')
 	->setCssClasses('nothing')
-	->setOptions(array('a' => 'check1', 'b' => 'check2', 'c' => 'check3', 'd' => 'check4'))
+	->setOptions(array('a' => 'check1', 'b' => 'check2', 'c' => 'check3', 'd' => 'check4', 'e' => 'check5'))
 	->setOptionCssClasses(array('odd', 'equal', 'even'))
 	->setOptionTitles(array('just one for all'))
 	->setSelected(array('check2', 'check3'))
+	->setDisabled('check5')
 ;
 $testFieldSet2->addElement($checkbox1);
 

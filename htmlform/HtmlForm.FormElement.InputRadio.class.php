@@ -32,8 +32,7 @@ class InputRadio extends FormElement{
 	private $optionCssClasses;
 	private $optionTitles;
 	private $selected;
-	private $selectedValue;
-	private $selectedIndex;
+	private $subDisabled;
 	private $width;
 	
 	/**
@@ -49,8 +48,7 @@ class InputRadio extends FormElement{
 		$this->optionCssClasses = array();
 		$this->optionTitles = array();
 		$this->selected = null;
-		$this->selectedValue = null;
-		$this->selectedIndex = null;
+		$this->subDisabled = array();
 		$this->width = 1;
 	}
 	
@@ -131,38 +129,10 @@ class InputRadio extends FormElement{
 	 * @return InputRadio method owner
 	 */
 	public function setSelected($selected){
-		$this->resetSelection();
-		$this->selected = "$selected";
-		return $this;
-	}
-	
-	
-	
-	/**
-	 * Sets the selected option by its value.
-	 * 
-	 * @param String $selected the value of the selected option
-	 * @return InputRadio method owner
-	 */
-	public function setSelectedValue($selected){
-		$this->resetSelection();
-		$this->selectedValue = "$selected";
-		return $this;
-	}
-	
-	
-	
-	/**
-	 * Sets the selected option by its index.
-	 * Indices start with 1.
-	 * 
-	 * @param uint $selected the index of the selected option
-	 * @return InputRadio method owner
-	 */
-	public function setSelectedIndex($selected){
-		$this->resetSelection();
-		$this->selectedIndex = $selected;
-		return $this;
+		if( !is_array($selected) ){
+			$this->selected = "$selected";
+			return $this;
+		}
 	}
 	
 	
@@ -176,6 +146,27 @@ class InputRadio extends FormElement{
 	 */
 	public function setWidth($width){
 		$this->width = (integer) $width;
+		return $this;
+	}
+
+
+
+	/**
+	 * Set the element disabled, or set single options disabled.
+	 * 
+	 * @param OPTIONAL * $subDisabled single/multiple indices/values/texts to disable, multiple values must be enclosed in an array
+	 * 
+	 * @return FormElement method owner
+	 */
+	public function setDisabled(){
+		$params = func_get_arg(0);
+
+		if( $params === false ){
+			$this->disabled = true;
+		} else {
+			$this->subDisabled =  is_array($params) ? $params : array("$params");
+		}
+		
 		return $this;
 	}
 	
@@ -207,11 +198,23 @@ class InputRadio extends FormElement{
 	
 	private function isSelectedOption($index, $value, $text){
 		return(
-			($index == $this->selectedIndex)
+			($index === $this->selected)
 			||
-			($value == $this->selectedValue)
+			($value === $this->selected)
 			||
-			($text == $this->selected)
+			($text === $this->selected)
+		);
+	}
+
+
+
+	private function isDisabledOption($index, $value, $text){
+		return(
+			(in_array($index, $this->subDisabled, true))
+			||
+			(in_array("$value", $this->subDisabled, true))
+			||
+			(in_array("$text", $this->subDisabled, true))
 		);
 	}
 	
@@ -237,13 +240,9 @@ class InputRadio extends FormElement{
 			$refiller = $this->determineRefiller($refiller);
 			
 			if( isset($refiller[$this->name]) && !is_array($refiller[$this->name]) ){
-				$this->selectedValue = ''.HtmlFormTools::undoMagicQuotes($refiller[$this->name]);
-				$this->selected = null;
-				$this->selectedIndex = null;
+				$this->setSelected(''.HtmlFormTools::undoMagicQuotes($refiller[$this->name]));
 			} elseif( $this->masterForm != null && $this->masterForm->hasBeenSent() ) {
-				$this->selectedValues = null;
 				$this->selected = null;
-				$this->selectedIndices = null;
 			}
 		}
 		
@@ -263,31 +262,23 @@ class InputRadio extends FormElement{
 		parent::validate();
 		
 		if( !is_null($this->validator) ){
-			$val = '';
-			
-			if( !is_null($this->selectedIndex) ){
-				$val = $this->options[$this->selectedIndex-1];
-			} elseif( !is_null($this->selectedValue) ){
-				$val = $this->selectedValue;
-			} elseif( !is_null($this->selected) ){
-				if( $tmp = array_search($this->selected, $this->options) ){
-					$val =  $tmp;
+			$vals = '';
+
+			if( is_int($this->selected) && isset($this->options[$this->selected-1]) ){
+				$vals = $this->options[$this->selected-1];
+			} else {
+				if( $val = array_search($this->selected, $this->options) ){
+					$vals =  $val;
+				} elseif( isset($this->options[$this->selected]) ){
+					$vals = $this->selected;
 				}
 			}
 			
-			$this->validator->setValue($val);
+			$this->validator->setValues($val);
 			$this->isValid = $this->validator->process();
-		} 
+		}
 		
 		return $this->isValid;
-	}
-	
-	
-	
-	private function resetSelection(){
-		$this->selectedIndex = null;
-		$this->selectedValue = null;
-		$this->selected = null;
 	}
 	
 	
@@ -317,7 +308,7 @@ class InputRadio extends FormElement{
 					.((count($this->optionCssClasses) > 0) ? ' class="'.$this->optionCssClasses[(($index - 1) % count($this->optionCssClasses))].'"'  : $this->printCssClasses())
 					.(((count($this->optionTitles) > 0) && !empty($this->optionTitles[(($index - 1) % count($this->optionTitles))])) ? ' title="'.$this->optionTitles[(($index - 1) % count($this->optionTitles))].'"'  : '')
 					.$this->printTabIndex()
-					.$this->printDisabled()
+					.($this->isDisabledOption($index, $value, $text) ? ' disabled="disabled"' : $this->printDisabled())
 					.$this->masterForm->printSlash()
 				.'>'
 				.'&nbsp;'.Label::getInline($text, $radioId)->doRender()

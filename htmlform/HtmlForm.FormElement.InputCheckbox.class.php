@@ -35,8 +35,7 @@ class InputCheckbox extends FormElement{
 	private $optionCssClasses;
 	private $optionTitles;
 	private $selected;
-	private $selectedValues;
-	private $selectedIndices;
+	private $subDisabled;
 	private $width;
 	
 	/**
@@ -52,8 +51,7 @@ class InputCheckbox extends FormElement{
 		$this->optionCssClasses = array();
 		$this->optionTitles = array();
 		$this->selected = array();
-		$this->selectedValues = array();
-		$this->selectedIndices = array();
+		$this->subDisabled = array();
 		$this->width = 1;
 	}
 	
@@ -124,84 +122,22 @@ class InputCheckbox extends FormElement{
 		$this->optionTitles = $titles;
 		return $this;
 	}
-	
-	
-	
+
+
+
 	/**
-	 * Sets selected options by their text.
+	 * Sets selected single/multiple options by index/value/text.
 	 * 
-	 * @param Array[String] $selected texts of the selected options
+	 * @param * $selected single index/value/text or array of indices/values/texts to select
 	 * @return InputCheckbox method owner
 	 */
-	public function setSelected(Array $selected){
+	public function setSelected($selected){
+		if( !is_array($selected) ){
+			$selected = array("$selected");
+		}
+
 		$this->selected = $selected;
-		return $this;
-	}
-	
-	
-	
-	/**
-	 * Sets a single selected option by its text.
-	 * 
-	 * @param String $selected the text of the selected option
-	 * @return InputCheckbox method owner
-	 */
-	public function setSelectedSingle($selected){
-		$this->selected = array("$selected");
-		return $this;
-	}
-	
-	
-	
-	/**
-	 * Sets selected options by their values.
-	 * 
-	 * @param Array[String] $selected values of the selected options
-	 * @return InputCheckbox method owner
-	 */
-	public function setSelectedValues(Array $selected){
-		$this->selectedValues = $selected;
-		return $this;
-	}
-	
-	
-	
-	/**
-	 * Sets a single selected option by its value.
-	 * 
-	 * @param String $selected the value of the selected option
-	 * @return InputCheckbox method owner
-	 */
-	public function setSelectedValue($selected){
-		$this->selectedValues = array($selected);
-		return $this;
-	}
-	
-	
-	
-	/**
-	 * Sets the selected options by their indizes.
-	 * Indices start with 1.
-	 * 
-	 * @param Array[uint] $selected indices of the selected options
-	 * @return InputCheckbox method owner
-	 */
-	public function setSelectedIndices(Array $selected){
-		$this->selectedIndices = $selected;
-		return $this;
-	}
-	
-	
-	
-	/**
-	 * Sets a single selected option by its index.
-	 * Indices start with 1.
-	 * 
-	 * @param uint $selected the index of the selected option
-	 * @return InputCheckbox method owner
-	 */
-	public function setSelectedIndex($selected){
-		$this->selectedIndices = array($selected);
+		
 		return $this;
 	}
 	
@@ -216,6 +152,27 @@ class InputCheckbox extends FormElement{
 	 */
 	public function setWidth($width){
 		$this->width = (integer) $width;
+		return $this;
+	}
+
+
+
+	/**
+	 * Set the element disabled, or set single options disabled.
+	 * 
+	 * @param OPTIONAL * $subDisabled single/multiple indices/values/texts to disable, multiple values must be enclosed in an array
+	 * 
+	 * @return FormElement method owner
+	 */
+	public function setDisabled(){
+		$params = func_get_arg(0);
+
+		if( $params === false ){
+			$this->disabled = true;
+		} else {
+			$this->subDisabled =  is_array($params) ? $params : array("$params");
+		}
+		
 		return $this;
 	}
 	
@@ -246,14 +203,26 @@ class InputCheckbox extends FormElement{
 	
 	
 	//---|questions----------
-	
+
 	private function isSelectedOption($index, $value, $text){
 		return(
-			(in_array($index, $this->selectedIndices))
+			(in_array($index, $this->selected, true))
 			||
-			(in_array("$value", $this->selectedValues))
+			(in_array("$value", $this->selected, true))
 			||
-			(in_array("$text", $this->selected))
+			(in_array("$text", $this->selected, true))
+		);
+	}
+
+
+
+	private function isDisabledOption($index, $value, $text){
+		return(
+			(in_array($index, $this->subDisabled, true))
+			||
+			(in_array("$value", $this->subDisabled, true))
+			||
+			(in_array("$text", $this->subDisabled, true))
 		);
 	}
 	
@@ -278,14 +247,11 @@ class InputCheckbox extends FormElement{
 		if( $condition ){
 			$refiller = $this->determineRefiller($refiller);
 			
-			if( isset($refiller[$this->name]) && is_array($refiller[$this->name]) ){
-				$this->selectedValues = HtmlFormTools::undoMagicQuotes($refiller[$this->name]);
-				$this->selected = array();
-				$this->selectedIndices = array();
+			if( isset($refiller[$this->name]) ){
+				$values = HtmlFormTools::undoMagicQuotes($refiller[$this->name]);
+				$this->setSelected(is_array($refiller[$this->name]) ? $values : array($values));
 			} elseif( ($this->masterForm != null) && $this->masterForm->hasBeenSent() ) {
-				$this->selectedValues = array();
 				$this->selected = array();
-				$this->selectedIndices = array();
 			}
 		}
 		
@@ -306,20 +272,22 @@ class InputCheckbox extends FormElement{
 		
 		if( !is_null($this->validator) ){
 			$vals = array();
-			
-			foreach( $this->selectedIndices as $index ){
-				$vals[] = $this->options[$index-1];
-			}
-			
-			$vals = array_merge($vals, $this->selectedValues);
-			
-			foreach( $this->selected as $text ){
-				if( $tmp = array_search($text, $this->options) ){
-					$vals[] =  $tmp;
+
+			foreach( $this->selected as $selected ){
+				if( is_int($selected) && isset($this->options[$index-1]) ){
+					$vals[] = $this->options[$index-1];
+				} else {
+					$selected = "$selected";
+
+					if( $val = array_search($selected, $this->options) ){
+						$vals[] =  $val;
+					} elseif( isset($this->options[$selected]) ){
+						$vals[] = $selected;
+					}
 				}
 			}
 			
-			$this->validator->setValues($vals);
+			$this->validator->setValues(array_unique($vals));
 			$this->isValid = $this->validator->process();
 		}
 		
@@ -353,7 +321,7 @@ class InputCheckbox extends FormElement{
 					.((count($this->optionCssClasses) > 0) ? ' class="'.$this->optionCssClasses[(($index - 1) % count($this->optionCssClasses))].'"'  : $this->printCssClasses())
 					.(((count($this->optionTitles) > 0) && !empty($this->optionTitles[(($index - 1) % count($this->optionTitles))])) ? ' title="'.$this->optionTitles[(($index - 1) % count($this->optionTitles))].'"'  : '')
 					.$this->printTabIndex()
-					.$this->printDisabled()
+					.($this->isDisabledOption($index, $value, $text) ? ' disabled="disabled"' : $this->printDisabled())
 					.$this->masterForm->printSlash()
 				.'>'
 				.'&nbsp;'.Label::getInline($text, $checkId)->doRender()

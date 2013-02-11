@@ -5,7 +5,7 @@
  * Especially houses method-overwrites for utf-8 security in this case.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.99 beta
+ * @version 0.999 beta
  * @package tools
  */
 class HtmlFormTools {

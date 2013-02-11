@@ -4,7 +4,7 @@
  * English error-message-dictionary.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.99 beta
+ * @version 0.999 beta
  * @package validation
  * @subpackage dictionaries
  */

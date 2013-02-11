@@ -52,7 +52,7 @@ require_once 'HtmlFormTools.class.php';
  * var WeekDayName2=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
  * 
  * @author Sebastian Schlapkohl
- * @version 0.99 beta
+ * @version 0.999 beta
  * @package formelements
  * @subpackage value-widgets
  */

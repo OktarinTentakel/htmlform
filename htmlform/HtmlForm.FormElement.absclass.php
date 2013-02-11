@@ -23,7 +23,7 @@ require_once 'HtmlFormTools.class.php';
  * elements and do use them!
  * 
  * @author Sebastian Schlapkohl
- * @version 0.99 beta
+ * @version 0.999 beta
  * @package formelements
  */
 

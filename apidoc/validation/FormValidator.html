@@ -1,0 +1,1515 @@
+<html>
+<head>
+<title>Docs For Class FormValidator</title>
+<link rel="stylesheet" type="text/css" href="../media/style.css">
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
+  <tr>
+    <td class="header_top">validation</td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+  <tr>
+    <td class="header_menu">
+        
+                                                                                                                    
+                              		  [ <a href="../classtrees_validation.html" class="menu">class tree: validation</a> ]
+		  [ <a href="../elementindex_validation.html" class="menu">index: validation</a> ]
+		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
+    </td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="200" class="menu">
+      <b>Packages:</b><br />
+              <a href="../li_form.html">form</a><br />
+              <a href="../li_formdata.html">formdata</a><br />
+              <a href="../li_formelements.html">formelements</a><br />
+              <a href="../li_tools.html">tools</a><br />
+              <a href="../li_validation.html">validation</a><br />
+            <br /><br />
+                        <b>Files:</b><br />
+      	  <div class="package">
+			<a href="../validation/_HtmlForm.FormValidator.class.php.html">		HtmlForm.FormValidator.class.php
+		</a><br>
+	  </div><br />
+      
+      
+            <b>Classes:</b><br />
+        <div class="package">
+		    		<a href="../validation/FormValidator.html">FormValidator</a><br />
+	  </div>
+                </td>
+    <td>
+      <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
+
+<h1>Class: FormValidator</h1>
+Source Location: /HtmlForm.FormValidator.class.php<br /><br />
+
+
+<table width="100%" border="0">
+<tr><td valign="top">
+
+<h3><a href="#class_details">Class Overview</a></h3>
+<pre></pre><br />
+<div class="description">A FormValidator defines a set of rules a widget-value has to fulfill before being able to be called valid.</div><br /><br />
+<h4>Author(s):</h4>
+<ul>
+          <li>Sebastian Schlapkohl</li>
+            </ul>
+
+
+
+
+        
+    
+<h4>Version:</h4>
+<ul>
+  <li>0.99 beta</li>
+</ul>
+
+        
+</td>
+
+
+<td valign="top">
+<h3><a href="#class_consts">Constants</a></h3>
+<ul>
+    <li><a href="../validation/FormValidator.html#constMESSAGECLASS">MESSAGECLASS</a></li>
+  </ul>
+</td>
+
+<td valign="top">
+<h3><a href="#class_methods">Methods</a></h3>
+<ul>
+    <li><a href="../validation/FormValidator.html#methodactivateJavascriptValidation">activateJavascriptValidation</a></li>
+    <li><a href="../validation/FormValidator.html#methodget">get</a></li>
+    <li><a href="../validation/FormValidator.html#methodprintJavascriptValidationCode">printJavascriptValidationCode</a></li>
+    <li><a href="../validation/FormValidator.html#methodprintMessageQueue">printMessageQueue</a></li>
+    <li><a href="../validation/FormValidator.html#methodprocess">process</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetAutoErrorMessagesAsCustom">setAutoErrorMessagesAsCustom</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetCharacterClass">setCharacterClass</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetCreditcard">setCreditcard</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetCustomCase">setCustomCase</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetDataName">setDataName</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetDate">setDate</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetDateDE">setDateDE</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetDateISO">setDateISO</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetDateTime">setDateTime</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetDateTimeDE">setDateTimeDE</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetDateTimeISO">setDateTimeISO</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetDigits">setDigits</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetEmail">setEmail</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetErrorMessage">setErrorMessage</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetFieldName">setFieldName</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetMax">setMax</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetMaxLength">setMaxLength</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetMessageLanguage">setMessageLanguage</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetMin">setMin</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetMinLength">setMinLength</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetNotEmpty">setNotEmpty</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetNumber">setNumber</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetNumberDE">setNumberDE</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetOptional">setOptional</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetRange">setRange</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetRangeLength">setRangeLength</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetRequired">setRequired</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetTime">setTime</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetTimeDE">setTimeDE</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetTimeISO">setTimeISO</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetUrl">setUrl</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetUtf8Safety">setUtf8Safety</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetValue">setValue</a></li>
+    <li><a href="../validation/FormValidator.html#methodsetValues">setValues</a></li>
+  </ul>
+</td>
+
+</tr></table>
+<hr />
+
+<table width="100%" border="0"><tr>
+
+
+
+
+
+
+</tr></table>
+<hr />
+
+<a name="class_details"></a>
+<h3>Class Details</h3>
+<div class="tags">
+[line 27]<br />
+A FormValidator defines a set of rules a widget-value has to fulfill before being able to be called valid.<br /><br /><p>Validation is an all-or-nothing game. If just one validator fails inside a structure being validated the whole  construct is deemed invalid. Keep that in mind when setting up the rules for a validator.</p><p>Depending on the nature of a formelement a validator is being provided with either one value or a bunch of values.  You don't have to care about this, the validator will handle this for you. Just use the rules as they seem logical  and if problems arise, read the description for the rule setter for further details.</p><p>If you validate after a form is completely constructed you also won't have to worry about utf-8 or language settings  for messages.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>author:</b>&nbsp;&nbsp;</td><td>Sebastian Schlapkohl</td>
+  </tr>
+  <tr>
+    <td><b>version:</b>&nbsp;&nbsp;</td><td>0.99 beta</td>
+  </tr>
+</table>
+</div>
+</div><br /><br />
+<div class="top">[ <a href="#top">Top</a> ]</div><br />
+
+
+<hr />
+<a name="class_methods"></a>
+<h3>Class Methods</h3>
+<div class="tags">
+  <hr />
+	<a name="methodget"></a>
+	<h3>static method get <span class="smalllinenumber">[line 82]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static <a href="../validation/FormValidator.html">FormValidator</a> get(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Factory method for FormValidator, returns new instance.<br /><br /><p>Factories are used to make instant chaining possible.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>new FormValidator-instance</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+
+  <hr />
+	<a name="methodactivateJavascriptValidation"></a>
+	<h3>method activateJavascriptValidation <span class="smalllinenumber">[line 2175]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> activateJavascriptValidation(
+[String|null
+$selector = null], [String|null
+$errorSelector = null])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Prepares the validator for output of JS-valiation-code later on.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">String|null&nbsp;&nbsp;</td>
+        <td><b>$selector</b>&nbsp;&nbsp;</td>
+        <td>jQuery-selector to specifically select elements to drag values from, normally the selector will be constructed by html-name-attribute</td>
+      </tr>
+          <tr>
+        <td class="type">String|null&nbsp;&nbsp;</td>
+        <td><b>$errorSelector</b>&nbsp;&nbsp;</td>
+        <td>jQuery-selector to specifically select elements to error-mark in case of a failed validation, normally identical to selector</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodprintJavascriptValidationCode"></a>
+	<h3>method printJavascriptValidationCode <span class="smalllinenumber">[line 2238]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>String printJavascriptValidationCode(
+[Boolean
+$prepareMessages = true])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Compiles and returns the JS-validation-code for this validator, to be printed beneath the validated form elements  in the source later on. This code contains a sequence of single tests, that will be executed on every update of the  connected elements, which validate the value(s) one by one.<br /><br /><p>At the moment, there is no smart procedure to reuse code parts in several validations. Each fragment is specifically and  autonomously constructed for each validator.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>the JS-code to insert into the form-rendering, that validates the values of this validator according to its rules on the fly</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">Boolean&nbsp;&nbsp;</td>
+        <td><b>$prepareMessages</b>&nbsp;&nbsp;</td>
+        <td>defines if language messages shall be required, only has to be the case once, deactivating this is simply a question of performance</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodprintMessageQueue"></a>
+	<h3>method printMessageQueue <span class="smalllinenumber">[line 2207]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>String printMessageQueue(
+[Boolean
+$onlyCustomMessages = false])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Return all aggregated error messages of the validator.<br /><br /><p>This method will only return something wortwhile after process() has been called, since before that  there are no messages queued.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>all compiled messages of the validator</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">Boolean&nbsp;&nbsp;</td>
+        <td><b>$onlyCustomMessages</b>&nbsp;&nbsp;</td>
+        <td>sets if all standard messages should be used or only custom ones</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodprocess"></a>
+	<h3>method process <span class="smalllinenumber">[line 2150]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>Boolean process(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Starts the validation if the given values accourding to all set rules of the validator.<br /><br /><p>Normally called automatically by the widget the values originate from.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>value(s) is/are valid yes/no</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetAutoErrorMessagesAsCustom"></a>
+	<h3>method setAutoErrorMessagesAsCustom <span class="smalllinenumber">[line 130]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setAutoErrorMessagesAsCustom(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Tells the validator to treat standard messages as custom in the context of this validator.<br /><br /><p>This method has the purpose to use standard messages selectively in a form where standard  messages are disabled by default.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetCharacterClass"></a>
+	<h3>method setCharacterClass <span class="smalllinenumber">[line 584]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setCharacterClass(
+String
+$regExCharacterClass)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Adds a rule to the validator's ruleset - The widget's value must only consist of characters defined in a given  regex-character-class.<br /><br /><p>a-zA-Z0-9äüöÄÜÖß for example</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">String&nbsp;&nbsp;</td>
+        <td><b>$regExCharacterClass</b>&nbsp;&nbsp;</td>
+        <td>the regex-character class to check against</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetCreditcard"></a>
+	<h3>method setCreditcard <span class="smalllinenumber">[line 569]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setCreditcard(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Adds a rule to the validator's ruleset -	The widget's value has have the form of a valid creditcard-number.<br /><br /><p>(1)234-1234-1234-1234</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetCustomCase"></a>
+	<h3>method setCustomCase <span class="smalllinenumber">[line 236]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setCustomCase(
+Boolean/String/Array
+$customResult)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Adds a rule to the validator's ruleset - Includes a predefined validation-result into the ruleset.<br /><br /><p>The result may have two characteristics:  Eiter it's a boolean value, simply telling the validator if the test has succeeded  or failed. Or it's a string, with an empty string being a successful test and a  non-empty string being a failed test, where the string is the error message to display.  This is not a custom message, but rather an override for the standard message, which is  rather nondescript for custom cases.</p><p>You can also provide an Array, where the first element is the PHP-expression, while the second element  must be valid JS-code to return the validation result from. The JS-validation-code has to set the var res  (don't redeclare the var) to the result of the validation.</p><p>You can even set this handler up for async validation by not setting res, but instead calling customCaseAsyncFinalize(res)  at the end of the async request. Here two examples for special-JS-code:</p><p>sequential:  -&gt;setCustomCase(array(true, 'res = $('body .class_'+$(this).val()).length &gt; 0;'))</p><p>async:  -&gt;setCustomCase(array(true, '$.getJSON('/service:validation/something', {a:'b'}, function(data){ customCaseAsyncFinalize(data.res) });'))</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">Boolean/String/Array&nbsp;&nbsp;</td>
+        <td><b>$customResult</b>&nbsp;&nbsp;</td>
+        <td>the precalculated result of the custom case</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetDataName"></a>
+	<h3>method setDataName <span class="smalllinenumber">[line 160]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setDataName(
+
+$dataName)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Tells the validator the name of the element's data in the submit-resultset.<br /><br /><p>This is normally identical to the html-name-attribute's value of the rendered element.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$dataName</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetDate"></a>
+	<h3>method setDate <span class="smalllinenumber">[line 412]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setDate(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Adds a rule to the validator's ruleset - The widget's value must be a standard american date.<br /><br /><p>(d)d/(m)m/yyyy</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetDateDE"></a>
+	<h3>method setDateDE <span class="smalllinenumber">[line 490]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setDateDE(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Adds a rule to the validator's ruleset - The widget's value must be a standard german date.<br /><br /><p>(d)d.(m)m.yyyy</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetDateISO"></a>
+	<h3>method setDateISO <span class="smalllinenumber">[line 451]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setDateISO(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Adds a rule to the validator's ruleset - The widget's value must be a standard iso-date.<br /><br /><p>yyyy-mm-dd</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetDateTime"></a>
+	<h3>method setDateTime <span class="smalllinenumber">[line 438]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setDateTime(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Adds a rule to the validator's ruleset - The widget's value must be standard american datetime.<br /><br /><p>Either dd/mm/yyyy + (h)h:mm(:ss)am|pm</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetDateTimeDE"></a>
+	<h3>method setDateTimeDE <span class="smalllinenumber">[line 516]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setDateTimeDE(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Adds a rule to the validator's ruleset - The widget's value must be a standard german datetime.<br /><br /><p>(d)d.(m)m.yyyy hh:mm:ss(h)</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetDateTimeISO"></a>
+	<h3>method setDateTimeISO <span class="smalllinenumber">[line 477]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setDateTimeISO(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Adds a rule to the validator's ruleset - The widget's value must be standard iso-datetime.<br /><br /><p>yyyy-mm-dd(T| )hh:mm:ss</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetDigits"></a>
+	<h3>method setDigits <span class="smalllinenumber">[line 556]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setDigits(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Adds a rule to the validator's ruleset -	The number-representation of the widget's value must be only  digits without any other characters.<br /><br /><p>1234567890</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetEmail"></a>
+	<h3>method setEmail <span class="smalllinenumber">[line 384]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setEmail(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Adds a rule to the validator's ruleset - The widget's value must be a valid eMail-address.<br /><br /><p>This is no run-of-the-mill check, but quite elaborate.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetErrorMessage"></a>
+	<h3>method setErrorMessage <span class="smalllinenumber">[line 116]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setErrorMessage(
+String
+$message)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Sets a custom error message for the validator, overwriting all standard messages from  the dictionaries.<br /><br /><p>Use this to further describe special error cases, to aid your users.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">String&nbsp;&nbsp;</td>
+        <td><b>$message</b>&nbsp;&nbsp;</td>
+        <td>the message to display in case of a validation error</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetFieldName"></a>
+	<h3>method setFieldName <span class="smalllinenumber">[line 147]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setFieldName(
+String
+$name)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Tells the validator the name of the element in validates.<br /><br /><p>In most cases this is the value of the widget's label.  This information is necessary for standard-message-display and normally provided  automatically when inserting a validator into an element.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">String&nbsp;&nbsp;</td>
+        <td><b>$name</b>&nbsp;&nbsp;</td>
+        <td>the description of the widget the validator validates</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetMax"></a>
+	<h3>method setMax <span class="smalllinenumber">[line 355]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setMax(
+int
+$max)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Adds a rule to the validator's ruleset - The number-representation of the widget's value can  only have a maximum numeric value.<br /><br /><p>For multiple values this rule will check each value individually.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">int&nbsp;&nbsp;</td>
+        <td><b>$max</b>&nbsp;&nbsp;</td>
+        <td>the maximum numeric value</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetMaxLength"></a>
+	<h3>method setMaxLength <span class="smalllinenumber">[line 309]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setMaxLength(
+uint
+$maxlength)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Adds a rule to the validator's ruleset - The string-representation of the widget's value may only  have a certain length.<br /><br /><p>For multiple values this method uses the amount of values.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">uint&nbsp;&nbsp;</td>
+        <td><b>$maxlength</b>&nbsp;&nbsp;</td>
+        <td>the maximum length the value can have</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetMessageLanguage"></a>
+	<h3>method setMessageLanguage <span class="smalllinenumber">[line 101]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setMessageLanguage(
+String
+$language)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Sets the language for all validation-error-messages take from message dictionaries.<br /><br /><p>The available languages and their names are defined by the dictionaries present  in /messages.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>see:</b>&nbsp;&nbsp;</td><td>messages/english.inc.php</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">String&nbsp;&nbsp;</td>
+        <td><b>$language</b>&nbsp;&nbsp;</td>
+        <td>the name of the language to use</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetMin"></a>
+	<h3>method setMin <span class="smalllinenumber">[line 340]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setMin(
+int
+$min)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Adds a rule to the validator's ruleset - The number-representation of the widget's value must  have a minimum numeric value.<br /><br /><p>For multiple values this rule will check each value individually.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">int&nbsp;&nbsp;</td>
+        <td><b>$min</b>&nbsp;&nbsp;</td>
+        <td>the minimum numeric value</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetMinLength"></a>
+	<h3>method setMinLength <span class="smalllinenumber">[line 294]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setMinLength(
+uint
+$minlength)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Adds a rule to the validator's ruleset - The string-representation of the widget's value needs  to have a certain length.<br /><br /><p>For multiple values this method uses the amount of values.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">uint&nbsp;&nbsp;</td>
+        <td><b>$minlength</b>&nbsp;&nbsp;</td>
+        <td>the minimum length the value has to have</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetNotEmpty"></a>
+	<h3>method setNotEmpty <span class="smalllinenumber">[line 265]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setNotEmpty(
+[
+$additionalEmptyValues = array()])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Adds a rule to the validator's ruleset - The widget needs to have a non-empty value.<br /><br /><p>Either this means that the value can't be an empty string or one consisting of whitespace  or that the amount of values mustn't be 0.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">Array&nbsp;&nbsp;</td>
+        <td><b>$additionalEmptyValues</b>&nbsp;&nbsp;</td>
+        <td>array of additional widget values to be considered empty besides an empty string</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetNumber"></a>
+	<h3>method setNumber <span class="smalllinenumber">[line 529]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setNumber(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Adds a rule to the validator's ruleset - The widget's value must be a standard english decimal number.<br /><br /><p>123(.456)</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetNumberDE"></a>
+	<h3>method setNumberDE <span class="smalllinenumber">[line 542]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setNumberDE(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Adds a rule to the validator's ruleset - The widget's value must be a standard german decimal number.<br /><br /><p>123(,456)</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetOptional"></a>
+	<h3>method setOptional <span class="smalllinenumber">[line 279]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setOptional(
+[
+$additionalEmptyValues = array()])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Adds a rule to the validator's ruleset - The widget's value becomes optional, either its not set at all, or it get  validated by all other present rules.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">Array&nbsp;&nbsp;</td>
+        <td><b>$additionalEmptyValues</b>&nbsp;&nbsp;</td>
+        <td>array of additional widget values to be considered empty besides an empty string</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetRange"></a>
+	<h3>method setRange <span class="smalllinenumber">[line 371]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setRange(
+
+$range)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Adds a rule to the validator's ruleset - The number-representation of the widget's value  must have a minimum and can only be of a maximum numeric value.<br /><br /><p>In general this is a shortcut for setMin()+setMax().  For multiple values this rule will check each value individually.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">Array[int]&nbsp;&nbsp;</td>
+        <td><b>$range</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetRangeLength"></a>
+	<h3>method setRangeLength <span class="smalllinenumber">[line 325]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setRangeLength(
+
+$range)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Adds a rule to the validator's ruleset - The string-representation of the widget's value must have  a minimum length and must not exceed a maximum length.<br /><br /><p>In general this is a shortcut for setMinLength()+setMaxLength().  For multiple values this method uses the amount of values.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">Array[uint]&nbsp;&nbsp;</td>
+        <td><b>$range</b>&nbsp;&nbsp;</td>
+        <td>first element is min, second is max</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetRequired"></a>
+	<h3>method setRequired <span class="smalllinenumber">[line 250]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setRequired(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Adds a rule to the validator's ruleset - The widget needs to have a value.<br /><br /><p>Either this means that the value can't be an empty string or that the amount  of values mustn't be 0.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetTime"></a>
+	<h3>method setTime <span class="smalllinenumber">[line 425]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setTime(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Adds a rule to the validator's ruleset - The widget's value must be standard american time.<br /><br /><p>(h)h:mm(:ss)am|pm</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetTimeDE"></a>
+	<h3>method setTimeDE <span class="smalllinenumber">[line 503]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setTimeDE(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Adds a rule to the validator's ruleset - The widget's value must be a standard german time.<br /><br /><p>hh:mm:ss(h)</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetTimeISO"></a>
+	<h3>method setTimeISO <span class="smalllinenumber">[line 464]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setTimeISO(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Adds a rule to the validator's ruleset - The widget's value must be standard iso-time.<br /><br /><p>hh:mm:ss</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetUrl"></a>
+	<h3>method setUrl <span class="smalllinenumber">[line 399]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setUrl(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Adds a rule to the validator's ruleset - The widget's value must be a valid url.<br /><br /><p>This is no run-of-the-mill check, but quite elaborate.  Url has to look something like this.  [http(s)/ftp][subdomain/domain][domain/tld]([tld])([port])([query])([anchor])</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetUtf8Safety"></a>
+	<h3>method setUtf8Safety <span class="smalllinenumber">[line 204]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setUtf8Safety(
+[Boolean
+$needed = true])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Tells the validator to treat all validated values as utf-8-encoded or vice versa.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">Boolean&nbsp;&nbsp;</td>
+        <td><b>$needed</b>&nbsp;&nbsp;</td>
+        <td>multibyte-security needed yes/no</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetValue"></a>
+	<h3>method setValue <span class="smalllinenumber">[line 177]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setValue(
+String
+$value)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Set the value the validator should validate.<br /><br /><p>Used for widgets with single values.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">String&nbsp;&nbsp;</td>
+        <td><b>$value</b>&nbsp;&nbsp;</td>
+        <td>current value of the connected widget</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetValues"></a>
+	<h3>method setValues <span class="smalllinenumber">[line 191]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../validation/FormValidator.html">FormValidator</a> setValues(
+
+$values)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Set the values the validator should validate.<br /><br /><p>Used for widgets with multiple values.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">array&nbsp;&nbsp;</td>
+        <td><b>$values</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+</div><br />
+
+<hr />
+<a name="class_consts"></a>
+<h3>Class Constants</h3>
+<div class="tags">
+	<a name="constMESSAGECLASS"></a>
+	<p></p>
+	<h4>MESSAGECLASS = <span class="value">&nbsp;'htmlform_message_div'</span></h4>
+	<p>[line 33]</p>
+  css-class for individual validation-error-messages<br /><br />
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+</div><br />
+
+        <div class="credit">
+		    <hr />
+		    Documentation generated on Mon, 11 Feb 2013 17:52:14 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+	      </div>
+      </td></tr></table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

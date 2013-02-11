@@ -21,7 +21,7 @@ require_once 'HtmlFormTools.class.php';
  * themselves, by using the appropriate methods.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.99 beta
+ * @version 0.999 beta
  * @package formelements
  * @subpackage value-widgets
  */

@@ -18,7 +18,7 @@ require_once 'HtmlFormTools.class.php';
  * copy and paste with javascript for god tier.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.99 beta
+ * @version 0.999 beta
  * @package formelements
  * @subpackage value-widgets
  */

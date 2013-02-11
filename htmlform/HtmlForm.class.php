@@ -52,7 +52,7 @@ require_once 'HtmlFormTools.class.php';
  * For an extensive example see the index.php included in the full package.
  * 
  * @author Sebastian Schlapkohl
- * @version 0.99 beta
+ * @version 0.999 beta
  * @package form
  */
 

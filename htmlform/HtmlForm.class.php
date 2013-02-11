@@ -1027,6 +1027,10 @@ class HtmlForm{
 								}
 							}
 						};
+
+						HTMLFORM.jquery('#".$this->id."').submit(function(){
+							return HTMLFORM.jquery('#".$this->id." script').prev('.".FormElement::WRAPCLASS."').find('.".FormElement::ERRORCLASS."').length == 0;
+						});
 					}
 				</script>
 			";

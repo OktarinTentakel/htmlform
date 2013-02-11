@@ -50,7 +50,7 @@ $testForm = HtmlForm::get('form1')
 	->setLanguage('english')
 	->useExternalFormDeclaration()
 	->setPackagePath('/////htmlform///')
-	->setEnctype('multipart/form-data')
+	->setMultipartFormData()
 	->useReducedErrorMarking()
 ;
 

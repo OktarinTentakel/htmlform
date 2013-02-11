@@ -735,6 +735,11 @@ abstract class FormElement{
 	 */
 	public function printJavascriptValidationCode(){
 		if( is_null($this->masterForm) || (!is_null($this->masterForm) && !$this->masterForm->javascriptValidationIsSuppressed()) ){
+			if( !is_null($this->validator) && !is_null($this->masterForm) ){
+				$this->validator->setMessageLanguage($this->masterForm->getLanguage());
+				$this->validator->setUtf8Safety($this->masterForm->usesUtf8());
+			}
+		
 			return !is_null($this->validator) ? $this->validator->printJavascriptValidationCode() : '';
 		} else {
 			return '';

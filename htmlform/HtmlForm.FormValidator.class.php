@@ -2169,11 +2169,10 @@ class FormValidator {
 	 * 
 	 * @param String|null $selector jQuery-selector to specifically select elements to drag values from, normally the selector will be constructed by html-name-attribute
 	 * @param String|null $errorSelector jQuery-selector to specifically select elements to error-mark in case of a failed validation, normally identical to selector
-	 * @param Boolean $prepareMessages defines if language messages shall be required, only has to be the case once, deactivating this is simply a question of performance
 	 * 
 	 * @return FormValidator method owner
 	 */
-	public function activateJavascriptValidation($selector = null, $errorSelector = null, $prepareMessages = true){
+	public function activateJavascriptValidation($selector = null, $errorSelector = null){
 		$this->usesJavascriptValidation = true;
 		
 		if( !is_null($selector) && ($this->selector == '') ){
@@ -2182,10 +2181,6 @@ class FormValidator {
 		
 		if( !is_null($errorSelector) ){
 			$this->errorSelector = "$errorSelector";
-		}
-		
-		if( $prepareMessages ){
-			require_once 'messages/'.$this->messageLanguage.'.inc.php';
 		}
 
 		return $this;
@@ -2235,10 +2230,16 @@ class FormValidator {
 	 * 
 	 * At the moment, there is no smart procedure to reuse code parts in several validations. Each fragment is specifically and
 	 * autonomously constructed for each validator.
+	 *
+	 * @param Boolean $prepareMessages defines if language messages shall be required, only has to be the case once, deactivating this is simply a question of performance
 	 * 
 	 * @return String the JS-code to insert into the form-rendering, that validates the values of this validator according to its rules on the fly
 	 */
-	public function printJavascriptValidationCode(){
+	public function printJavascriptValidationCode($prepareMessages = true){
+		if( $prepareMessages ){
+			require_once 'messages/'.$this->messageLanguage.'.inc.php';
+		}
+	
 		if( $this->usesJavascriptValidation ){
 			$optionalValueJsArray = '[\'\'';
 			if( isset($this->rules['optional']) ){

@@ -62,11 +62,12 @@ class InputPassword extends InputText{
 	 */
 	public function doRender(){
 		$label = ($this->label != '') ? Label::get($this)->doRender() : '';
+		$javascriptValidationCode = $this->printJavascriptValidationCode();
 	
 		return
 			 '<div class="'.$this->printWrapperClasses().'">'
 				.$label
-				.'<div class="'.parent::WIDGETCLASS.'">'
+				.'<div class="'.parent::WIDGETCLASS.(!empty($printJavascriptValidationCode) ? ' '.parent::JSENABLEDCLASS : '').'">'
 					.'<input'
 						.$this->printId()
 						.$this->printName()
@@ -85,7 +86,7 @@ class InputPassword extends InputText{
 				.'</div>'
 				.$this->masterForm->printFloatBreak()
 			.'</div>'
-			.$this->printJavascriptValidationCode()
+			.$javascriptValidationCode
 		;
 	}
 }

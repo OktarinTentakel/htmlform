@@ -129,8 +129,8 @@ class InputRadio extends FormElement{
 	 * @return InputRadio method owner
 	 */
 	public function setSelected($selected){
-		if( !is_array($selected) ){
-			$this->selected = "$selected";
+		if( !is_int($selected) || is_string($selected) ){
+			$this->selected = $selected;
 			return $this;
 		}
 	}
@@ -154,7 +154,7 @@ class InputRadio extends FormElement{
 	/**
 	 * Set the element disabled, or set single options disabled.
 	 * 
-	 * @param OPTIONAL * $subDisabled single/multiple indices/values/texts to disable, multiple values must be enclosed in an array
+	 * @param OPTIONAL * $subDisabled single/multiple indices/values to disable, multiple values must be enclosed in an array
 	 * 
 	 * @return FormElement method owner
 	 */
@@ -164,7 +164,7 @@ class InputRadio extends FormElement{
 		if( $params === false ){
 			$this->disabled = true;
 		} else {
-			$this->subDisabled =  is_array($params) ? $params : array("$params");
+			$this->subDisabled =  is_array($params) ? $params : array($params);
 		}
 		
 		return $this;
@@ -196,25 +196,21 @@ class InputRadio extends FormElement{
 	
 	//---|questions----------
 	
-	private function isSelectedOption($index, $value, $text){
+	private function isSelectedOption($index, $value){
 		return(
 			($index === $this->selected)
 			||
-			($value === $this->selected)
-			||
-			($text === $this->selected)
+			("$value" === $this->selected)
 		);
 	}
 
 
 
-	private function isDisabledOption($index, $value, $text){
+	private function isDisabledOption($index, $value){
 		return(
 			(in_array($index, $this->subDisabled, true))
 			||
 			(in_array("$value", $this->subDisabled, true))
-			||
-			(in_array("$text", $this->subDisabled, true))
 		);
 	}
 	
@@ -263,13 +259,12 @@ class InputRadio extends FormElement{
 		
 		if( !is_null($this->validator) ){
 			$vals = '';
+			$valArray = array_keys($this->options);
 
-			if( is_int($this->selected) && isset($this->options[$this->selected-1]) ){
-				$vals = $this->options[$this->selected-1];
+			if( is_int($this->selected) && isset($valArray[$this->selected-1]) ){
+				$vals = $valArray[$this->selected-1];
 			} else {
-				if( $val = array_search($this->selected, $this->options) ){
-					$vals =  $val;
-				} elseif( isset($this->options[$this->selected]) ){
+				if( isset($this->options[$this->selected]) ){
 					$vals = $this->selected;
 				}
 			}
@@ -315,16 +310,18 @@ class InputRadio extends FormElement{
 				.((($index % $this->width) == 0) ? '<br'.$this->masterForm->printSlash().'>' : '&nbsp;&nbsp;&nbsp;')
 			;
 		}
+
+		$printJavascriptValidationCode = $this->printJavascriptValidationCode();
 	
 		return
 			 '<div class="'.$this->printWrapperClasses().'">'
 				.$label
-				.'<div class="'.parent::WIDGETCLASS.'"'.$this->printJavascriptEventHandler().'>'
+				.'<div class="'.parent::WIDGETCLASS.(!empty($printJavascriptValidationCode) ? ' '.parent::JSENABLEDCLASS : '').'"'.$this->printJavascriptEventHandler().'>'
 					.$options
 				.'</div>'
 				.$this->masterForm->printFloatBreak()
 			.'</div>'
-			.$this->printJavascriptValidationCode()
+			.$printJavascriptValidationCode
 		;
 	}
 }

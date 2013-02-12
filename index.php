@@ -102,7 +102,7 @@ $testFieldSet->addElement(
  * Create a standard single select and add it to the fieldset.
  * - add a label
  * - add options to choose from (optgroup => [value => text])
- * - select a entry by text as default
+ * - select a entry by value as default
  * - set a validator (must be a simple digit-number, has custom error message)
  * - set "none" as a value to be considered empty, so that chosing the default validates
  * - refill from default refiller (get/post)
@@ -119,10 +119,12 @@ $testFieldSet->addElement(
 					'a' => 'test1', 'b' => 'test2'
 				),
 				'numbers' => array(
-					'3' => '333'), 'c' => '444.4'
-				)
+					'3' => '333'
+				),
+				'c' => '444.4'
 			)
-		->setSelected('333')
+		)
+		->setSelected('3')
 		->setValidator(
 			FormValidator::get()
 				->setDigits()
@@ -159,7 +161,8 @@ $testFieldSet->addElement(
  * - set options (value => text)
  * - set css classes for options (they cycle if less then number of options)
  * - set titles for options (not quite standard, but practical, they also cycle)
- * - set several options selected as default by index starting with 1
+ * - set several options selected as default by index
+ * - disable an option by single value
  * - set select height
  * - set validator (must have selection, values of options must be "a" or "c", set all standard messages as custom here)
  * - refill from default refiller (get/post)
@@ -600,6 +603,7 @@ $testFieldSet2->addElement(
  * - add a label
  * - set selectable options (value => labeltext)
  * - set default selection
+ * - set options disabled by several values
  * - set width of radiogroup (amount of radiobutton-cols)
  * - refill from default refiller (get/post)
  */
@@ -620,6 +624,7 @@ $testFieldSet2->addElement(
  * - add a label
  * - set random css-class to prove that it isn't rendered (makes no sense for composita)
  * - set selectable options (value => labeltext)
+ * - disable single option by index
  * - set css-classes for options (cycle if number smaller than option count)
  * - set default selection
  */
@@ -629,8 +634,8 @@ $checkbox1 = InputCheckbox::get('check1')
 	->setOptions(array('a' => 'check1', 'b' => 'check2', 'c' => 'check3', 'd' => 'check4', 'e' => 'check5'))
 	->setOptionCssClasses(array('odd', 'equal', 'even'))
 	->setOptionTitles(array('just one for all'))
-	->setSelected(array('check2', 'check3'))
-	->setDisabled('check5')
+	->setSelected(array('b', 'c'))
+	->setDisabled(5)
 ;
 $testFieldSet2->addElement($checkbox1);
 

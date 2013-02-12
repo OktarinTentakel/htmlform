@@ -1042,7 +1042,29 @@ class HtmlForm{
 						};
 
 						HTMLFORM.jquery('#".$this->id."').submit(function(){
-							return HTMLFORM.jquery('#".$this->id." script').prev('.".FormElement::WRAPCLASS."').find('.".FormElement::ERRORCLASS."').length == 0;
+							var \$jsEnabledWidgets = HTMLFORM.jquery('#".$this->id." .".FormElement::JSENABLEDCLASS."');
+							\$jsEnabledWidgets.each(function(){ $(this).find('[name]').blur(); });
+
+							var stillHasErrors = false;
+							\$jsEnabledWidgets.each(function(){
+								if(
+									(\$(this).find('.".FormElement::ERRORCLASS."').length > 0)
+									|| (\$(this).parent('.".FormElement::WRAPCLASS.".".FormElement::ERRORCLASS."').length > 0)
+								){
+									stillHasErrors = true;
+								}
+
+								if( stillHasErrors ){
+									return false;
+								}
+							});
+							
+							var \$messages = HTMLFORM.jquery('.".self::MESSAGESCLASS."');
+							if( stillHasErrors && (\$messages.length > 0) ){
+								HTMLFORM.jquery('html, body').animate({scrollTop : \$messages.offset().top - 10}, 200, 'swing');
+							}
+
+							return !stillHasErrors;
 						});
 					}
 				</script>

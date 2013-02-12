@@ -265,11 +265,12 @@ class TextArea extends FormElement{
 	 */
 	public function doRender(){
 		$label = ($this->label != '') ? Label::get($this)->doRender() : '';
+		$printJavascriptValidationCode = $this->printJavascriptValidationCode();
 	
 		return
 			 '<div class="'.$this->printWrapperClasses().'">'
 				.$label
-				.'<div class="'.parent::WIDGETCLASS.'">'
+				.'<div class="'.parent::WIDGETCLASS.(!empty($printJavascriptValidationCode) ? ' '.parent::JSENABLEDCLASS : '').'">'
 					.'<textarea'
 						.$this->printId()
 						.$this->printName()
@@ -287,7 +288,7 @@ class TextArea extends FormElement{
 				.'</div>'
 				.$this->masterForm->printFloatBreak()
 			.'</div>'
-			.$this->printJavascriptValidationCode()
+			.$printJavascriptValidationCode
 		;
 	}
 }

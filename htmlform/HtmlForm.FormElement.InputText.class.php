@@ -250,11 +250,12 @@ class InputText extends FormElement{
 	 */
 	public function doRender(){
 		$label = ($this->label != '') ? Label::get($this)->doRender() : '';
+		$printJavascriptValidationCode = $this->printJavascriptValidationCode();
 	
 		return
 			'<div class="'.$this->printWrapperClasses().'">'
 				.$label
-				.'<div class="'.parent::WIDGETCLASS.'">'
+				.'<div class="'.parent::WIDGETCLASS.(!empty($printJavascriptValidationCode) ? ' '.parent::JSENABLEDCLASS : '').'">'
 					.'<input'
 						.$this->printId()
 						.$this->printName()
@@ -273,7 +274,7 @@ class InputText extends FormElement{
 				.'</div>'
 				.$this->masterForm->printFloatBreak()
 			.'</div>'
-			.$this->printJavascriptValidationCode()
+			.$printJavascriptValidationCode
 		;
 	}
 }

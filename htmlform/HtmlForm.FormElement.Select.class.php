@@ -135,18 +135,18 @@ class Select extends FormElement{
 	
 	
 	/**
-	 * Sets selected single/multiple options by index/value/text.
+	 * Sets selected single/multiple options by index/value.
 	 * 
-	 * @param * $selected single index/value/text or array of indices/values/texts to select
+	 * @param * $selected single index/value or array of indices/values to select
 	 * @return Select method owner
 	 */
 	public function setSelected($selected){
 		if( !is_array($selected) ){
-			$selected = array("$selected");
+			$selected = array($selected);
 		}
 
 		if( !$this->multiple ){
-			$this->selected = !empty($selected) ? array(''.$selected[0]) : array();
+			$this->selected = !empty($selected) ? array($selected[0]) : array();
 		} else {
 			$this->selected = $selected;
 		}
@@ -196,7 +196,7 @@ class Select extends FormElement{
 	/**
 	 * Set the element disabled, or set single options disabled.
 	 * 
-	 * @param OPTIONAL * $subDisabled single/multiple indices/values/texts to disable, multiple values must be enclosed in an array
+	 * @param OPTIONAL * $subDisabled single/multiple indices/values to disable, multiple values must be enclosed in an array
 	 * 
 	 * @return FormElement method owner
 	 */
@@ -206,7 +206,7 @@ class Select extends FormElement{
 		if( $params === false ){
 			$this->disabled = true;
 		} else {
-			$this->subDisabled =  is_array($params) ? $params : array("$params");
+			$this->subDisabled =  is_array($params) ? $params : array($params);
 		}
 		
 		return $this;
@@ -236,7 +236,7 @@ class Select extends FormElement{
 				$defaultValue = $value;
 			}
 			
-			if( $this->isSelectedOption($index, $value, $text) ){
+			if( $this->isSelectedOption($index, $value) ){
 				$values[] = $value;
 			}
 		}
@@ -256,25 +256,21 @@ class Select extends FormElement{
 	
 	//---|questions----------
 	
-	private function isSelectedOption($index, $value, $text){
+	private function isSelectedOption($index, $value){
 		return(
 			(in_array($index, $this->selected, true))
 			||
 			(in_array("$value", $this->selected, true))
-			||
-			(in_array("$text", $this->selected, true))
 		);
 	}
 
 
 
-	private function isDisabledOption($index, $value, $text){
+	private function isDisabledOption($index, $value){
 		return(
 			(in_array($index, $this->subDisabled, true))
 			||
 			(in_array("$value", $this->subDisabled, true))
-			||
-			(in_array("$text", $this->subDisabled, true))
 		);
 	}
 	
@@ -324,16 +320,15 @@ class Select extends FormElement{
 		
 		if( !is_null($this->validator) ){
 			$vals = array();
+			$valArray = array_keys($this->options);
 
 			foreach( $this->selected as $selected ){
-				if( is_int($selected) && isset($this->options[$index-1]) ){
-					$vals[] = $this->options[$index-1];
+				if( is_int($selected) && isset($valArray[$selected-1]) ){
+					$vals[] = $valArray[$selected-1];
 				} else {
 					$selected = "$selected";
 
-					if( $val = array_search($selected, $this->options) ){
-						$vals[] =  $val;
-					} elseif( isset($this->options[$selected]) ){
+					if( isset($this->options[$selected]) ){
 						$vals[] = $selected;
 					}
 				}
@@ -362,8 +357,8 @@ class Select extends FormElement{
 				.' value="'.HtmlFormTools::auto_htmlspecialchars($value, $this->needsUtf8Safety()).'"'
 				.((count($this->optionCssClasses) > 0) ? ' class="'.$this->optionCssClasses[(($index - 1) % count($this->optionCssClasses))].'"'  : '')
 				.(((count($this->optionTitles) > 0) && !empty($this->optionTitles[(($index - 1) % count($this->optionTitles))])) ? ' title="'.$this->optionTitles[(($index - 1) % count($this->optionTitles))].'"'  : '')
-				.($this->isSelectedOption($index, $value, $text) ? ' selected="selected"' : '')
-				.($this->isDisabledOption($index, $value, $text) ? ' disabled="disabled"' : '')
+				.($this->isSelectedOption($index, $value) ? ' selected="selected"' : '')
+				.($this->isDisabledOption($index, $value) ? ' disabled="disabled"' : '')
 			.'>'
 				.HtmlFormTools::auto_htmlspecialchars($text, $this->needsUtf8Safety())
 			.'</option>'
@@ -420,11 +415,13 @@ class Select extends FormElement{
 				$options .=	$this->printOption($index, $value, $text);
 			}
 		}
+
+		$printJavascriptValidationCode = $this->printJavascriptValidationCode();
 	
 		return
 			 '<div class="'.$this->printWrapperClasses().'">'
 				.$label
-				.'<div class="'.parent::WIDGETCLASS.'">'
+				.'<div class="'.parent::WIDGETCLASS.(!empty($printJavascriptValidationCode) ? ' '.parent::JSENABLEDCLASS : '').'">'
 					.'<select'
 						.$this->printId()
 						.($this->multiple ? $this->printNameArray() : $this->printName())
@@ -442,7 +439,7 @@ class Select extends FormElement{
 				.'</div>'
 				.$this->masterForm->printFloatBreak()
 			.'</div>'
-			.$this->printJavascriptValidationCode()
+			.$printJavascriptValidationCode
 		;
 	}
 }

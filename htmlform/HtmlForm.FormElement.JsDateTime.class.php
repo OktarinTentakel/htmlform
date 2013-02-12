@@ -391,12 +391,14 @@ class JsDateTime extends InputText{
 				? $this->printJsConfig().'<script src="'.$packagePath.'js/datetimepicker_css.js" type="text/javascript"></script>'
 				: ''
 		;
+
+		$printJavascriptValidationCode = $this->printJavascriptValidationCode();
 	
 		return
 			 $jsInclude
 			.'<div class="'.$this->printWrapperClasses().'">'
 				.$label
-				.'<div class="'.parent::WIDGETCLASS.'"'.$this->printJavascriptEventHandler().'>'
+				.'<div class="'.parent::WIDGETCLASS.(!empty($printJavascriptValidationCode) ? ' '.parent::JSENABLEDCLASS : '').'"'.$this->printJavascriptEventHandler().'>'
 					.'<input'
 						.$this->printId()
 						.$this->printName()
@@ -422,7 +424,7 @@ class JsDateTime extends InputText{
 				.'</div>'
 				.$this->masterForm->printFloatBreak()
 			.'</div>'
-			.$this->printJavascriptValidationCode()
+			.$printJavascriptValidationCode
 		;
 	}
 }

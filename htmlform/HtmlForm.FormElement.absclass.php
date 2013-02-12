@@ -46,6 +46,12 @@ abstract class FormElement{
 	 * @var String
 	 */
 	const ERRORCLASS = 'htmlform_error';
+
+	/**
+	 * css-class for marking an element as enabled for js-validation
+	 * @var String
+	 */
+	const JSENABLEDCLASS = 'htmlform_jsenabled';
 	
 	
 	

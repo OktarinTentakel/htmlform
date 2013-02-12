@@ -152,7 +152,6 @@ class InputHidden extends FormElement{
 				.' value="'.HtmlFormTools::auto_htmlspecialchars($this->value, $this->needsUtf8Safety()).'"'
 				.$this->masterForm->printSlash()
 			.'>'
-			.$this->printJavascriptValidationCode()
 		;
 	}
 }

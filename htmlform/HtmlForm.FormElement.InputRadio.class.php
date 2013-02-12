@@ -129,7 +129,7 @@ class InputRadio extends FormElement{
 	 * @return InputRadio method owner
 	 */
 	public function setSelected($selected){
-		if( !is_int($selected) || is_string($selected) ){
+		if( is_int($selected) || is_string($selected) ){
 			$this->selected = $selected;
 			return $this;
 		}

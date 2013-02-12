@@ -102,7 +102,8 @@ $testFieldSet->addElement(
  * Create a standard single select and add it to the fieldset.
  * - add a label
  * - add options to choose from (optgroup => [value => text])
- * - select a entry by value as default
+ * - select an entry by single value as default
+ * - disable an entry by single index
  * - set a validator (must be a simple digit-number, has custom error message)
  * - set "none" as a value to be considered empty, so that chosing the default validates
  * - refill from default refiller (get/post)
@@ -116,15 +117,17 @@ $testFieldSet->addElement(
 					'none' => '---'
 				),
 				'strings' => array(
-					'a' => 'test1', 'b' => 'test2'
+					'a' => 'test1',
+					'b' => 'test2'
 				),
 				'numbers' => array(
-					'3' => '333'
+					'2' => '333'
 				),
 				'c' => '444.4'
 			)
 		)
-		->setSelected('3')
+		->setSelected('2')
+		->setDisabled(2)
 		->setValidator(
 			FormValidator::get()
 				->setDigits()
@@ -161,8 +164,8 @@ $testFieldSet->addElement(
  * - set options (value => text)
  * - set css classes for options (they cycle if less then number of options)
  * - set titles for options (not quite standard, but practical, they also cycle)
- * - set several options selected as default by index
- * - disable an option by single value
+ * - set several options selected as default by mixed values
+ * - disable options by mixed array
  * - set select height
  * - set validator (must have selection, values of options must be "a" or "c", set all standard messages as custom here)
  * - refill from default refiller (get/post)
@@ -171,12 +174,18 @@ $testFieldSet->addElement(
 	Select::get('testselectmultiple')
 		->setLabel('multi select (must have selection, values must be "a" or "c"):')
 		->setMultiple()
-		->setOptions(array('a' => 'test1', 'b' => 'test2', 'c' => 'test3', 'd' => 'testdisabled'))
+		->setOptions(array(
+			'a' => 'test1',
+			'1' => 'test2',
+			'c' => 'test3',
+			'3' => 'testdisabled',
+			'42' => 'testdisabled2'
+		))
 		->setOptionCssClasses(array('odd', 'even'))
 		->setOptionTitles(array('eins', 'zwei'))
-		->setSelected(array(1, 3))
-		->setDisabled('d')
-		->setSize(4)
+		->setSelected(array(1, 'c'))
+		->setDisabled(array('3', 5))
+		->setSize(5)
 		->setValidator(
 			FormValidator::get()
 				->setRequired()

@@ -1,0 +1,483 @@
+<html>
+<head>
+<title>Docs For Class HtmlFormTools</title>
+<link rel="stylesheet" type="text/css" href="../media/style.css">
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
+  <tr>
+    <td class="header_top">tools</td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+  <tr>
+    <td class="header_menu">
+        
+                                                                                                
+                                                  		  [ <a href="../classtrees_tools.html" class="menu">class tree: tools</a> ]
+		  [ <a href="../elementindex_tools.html" class="menu">index: tools</a> ]
+		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
+    </td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="200" class="menu">
+      <b>Packages:</b><br />
+              <a href="../li_form.html">form</a><br />
+              <a href="../li_formdata.html">formdata</a><br />
+              <a href="../li_formelements.html">formelements</a><br />
+              <a href="../li_tools.html">tools</a><br />
+              <a href="../li_validation.html">validation</a><br />
+            <br /><br />
+                        <b>Files:</b><br />
+      	  <div class="package">
+			<a href="../tools/_HtmlFormTools.class.php.html">		HtmlFormTools.class.php
+		</a><br>
+	  </div><br />
+      
+      
+            <b>Classes:</b><br />
+        <div class="package">
+		    		<a href="../tools/HtmlFormTools.html">HtmlFormTools</a><br />
+	  </div>
+                </td>
+    <td>
+      <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
+
+<h1>Class: HtmlFormTools</h1>
+Source Location: /HtmlFormTools.class.php<br /><br />
+
+
+<table width="100%" border="0">
+<tr><td valign="top">
+
+<h3><a href="#class_details">Class Overview</a></h3>
+<pre></pre><br />
+<div class="description">Static helper class for all kinds of random functionality.</div><br /><br />
+<h4>Author(s):</h4>
+<ul>
+          <li>Sebastian Schlapkohl</li>
+            </ul>
+
+
+
+
+        
+    
+<h4>Version:</h4>
+<ul>
+  <li>0.999 beta</li>
+</ul>
+
+        
+</td>
+
+
+
+<td valign="top">
+<h3><a href="#class_methods">Methods</a></h3>
+<ul>
+    <li><a href="../tools/HtmlFormTools.html#methodarray_insert">array_insert</a></li>
+    <li><a href="../tools/HtmlFormTools.html#methodauto_htmlspecialchars">auto_htmlspecialchars</a></li>
+    <li><a href="../tools/HtmlFormTools.html#methodauto_preg_match">auto_preg_match</a></li>
+    <li><a href="../tools/HtmlFormTools.html#methodauto_preg_replace">auto_preg_replace</a></li>
+    <li><a href="../tools/HtmlFormTools.html#methodauto_strlen">auto_strlen</a></li>
+    <li><a href="../tools/HtmlFormTools.html#methodauto_strpos">auto_strpos</a></li>
+    <li><a href="../tools/HtmlFormTools.html#methodundoMagicQuotes">undoMagicQuotes</a></li>
+  </ul>
+</td>
+
+</tr></table>
+<hr />
+
+<table width="100%" border="0"><tr>
+
+
+
+
+
+
+</tr></table>
+<hr />
+
+<a name="class_details"></a>
+<h3>Class Details</h3>
+<div class="tags">
+[line 11]<br />
+Static helper class for all kinds of random functionality.<br /><br /><p>Especially houses method-overwrites for utf-8 security in this case.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>author:</b>&nbsp;&nbsp;</td><td>Sebastian Schlapkohl</td>
+  </tr>
+  <tr>
+    <td><b>version:</b>&nbsp;&nbsp;</td><td>0.999 beta</td>
+  </tr>
+</table>
+</div>
+</div><br /><br />
+<div class="top">[ <a href="#top">Top</a> ]</div><br />
+
+
+<hr />
+<a name="class_methods"></a>
+<h3>Class Methods</h3>
+<div class="tags">
+  <hr />
+	<a name="methodarray_insert"></a>
+	<h3>static method array_insert <span class="smalllinenumber">[line 21]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static Array array_insert(
+
+$array, uint
+$index, *
+$value)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Insert a value into an existing array at a specific index, pushing all following values back.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>the array with the included value</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">Array&nbsp;&nbsp;</td>
+        <td><b>$array</b>&nbsp;&nbsp;</td>
+        <td>the array to insert the value into</td>
+      </tr>
+          <tr>
+        <td class="type">uint&nbsp;&nbsp;</td>
+        <td><b>$index</b>&nbsp;&nbsp;</td>
+        <td>array-index at which to include</td>
+      </tr>
+          <tr>
+        <td class="type">*&nbsp;&nbsp;</td>
+        <td><b>$value</b>&nbsp;&nbsp;</td>
+        <td>value to insert at index</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodauto_htmlspecialchars"></a>
+	<h3>static method auto_htmlspecialchars <span class="smalllinenumber">[line 153]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static String auto_htmlspecialchars(
+String
+$string, [Boolean
+$needsUtf8 = false])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Override-method for htmlspecialchars that handles utf-8-multibyte-security.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>string with replacements</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">String&nbsp;&nbsp;</td>
+        <td><b>$string</b>&nbsp;&nbsp;</td>
+        <td>string to treat</td>
+      </tr>
+          <tr>
+        <td class="type">Boolean&nbsp;&nbsp;</td>
+        <td><b>$needsUtf8</b>&nbsp;&nbsp;</td>
+        <td>determines if utf-8 is active</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodauto_preg_match"></a>
+	<h3>static method auto_preg_match <span class="smalllinenumber">[line 125]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static Boolean auto_preg_match(
+String
+$pattern, String
+$string, [Boolean
+$needsBinarySafety = false])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Override-method for preg_match that handles utf-8-multibyte-security.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>pattern fits yes/no</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">String&nbsp;&nbsp;</td>
+        <td><b>$pattern</b>&nbsp;&nbsp;</td>
+        <td>regex-pattern to use for match</td>
+      </tr>
+          <tr>
+        <td class="type">String&nbsp;&nbsp;</td>
+        <td><b>$string</b>&nbsp;&nbsp;</td>
+        <td>string to match pattern against</td>
+      </tr>
+          <tr>
+        <td class="type">Boolean&nbsp;&nbsp;</td>
+        <td><b>$needsBinarySafety</b>&nbsp;&nbsp;</td>
+        <td>determines if utf-8 is active</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodauto_preg_replace"></a>
+	<h3>static method auto_preg_replace <span class="smalllinenumber">[line 140]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static String auto_preg_replace(
+String
+$pattern, String
+$replacement, String
+$string, [Boolean
+$needsBinarySafety = false])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Override-method for preg_replace that handles utf-8-multibyte-security.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>result with replacements</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">String&nbsp;&nbsp;</td>
+        <td><b>$pattern</b>&nbsp;&nbsp;</td>
+        <td>regex-pattern to use for replacement</td>
+      </tr>
+          <tr>
+        <td class="type">String&nbsp;&nbsp;</td>
+        <td><b>$replacement</b>&nbsp;&nbsp;</td>
+        <td>the string to replace the matches</td>
+      </tr>
+          <tr>
+        <td class="type">String&nbsp;&nbsp;</td>
+        <td><b>$string</b>&nbsp;&nbsp;</td>
+        <td>the string to search and replace in</td>
+      </tr>
+          <tr>
+        <td class="type">Boolean&nbsp;&nbsp;</td>
+        <td><b>$needsBinarySafety</b>&nbsp;&nbsp;</td>
+        <td>determines if utf-8 is active</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodauto_strlen"></a>
+	<h3>static method auto_strlen <span class="smalllinenumber">[line 89]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static uint auto_strlen(
+String
+$string, [Boolean
+$needsBinarySafety = false])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Override-method for strlen that handles utf-8-multibyte-security.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>length of string</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">String&nbsp;&nbsp;</td>
+        <td><b>$string</b>&nbsp;&nbsp;</td>
+        <td>string to be measured</td>
+      </tr>
+          <tr>
+        <td class="type">Boolean&nbsp;&nbsp;</td>
+        <td><b>$needsBinarySafety</b>&nbsp;&nbsp;</td>
+        <td>determines if utf-8 is active</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodauto_strpos"></a>
+	<h3>static method auto_strpos <span class="smalllinenumber">[line 107]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static uint/Boolean auto_strpos(
+String
+$haystack, String
+$needle, [Boolean
+$needsBinarySafety = false])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Override-method for strpos that handles utf-8-multibyte-security.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>position of needle or false</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">String&nbsp;&nbsp;</td>
+        <td><b>$haystack</b>&nbsp;&nbsp;</td>
+        <td>string to be used</td>
+      </tr>
+          <tr>
+        <td class="type">String&nbsp;&nbsp;</td>
+        <td><b>$needle</b>&nbsp;&nbsp;</td>
+        <td>string to be sought for</td>
+      </tr>
+          <tr>
+        <td class="type">Boolean&nbsp;&nbsp;</td>
+        <td><b>$needsBinarySafety</b>&nbsp;&nbsp;</td>
+        <td>determines if utf-8 is active</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodundoMagicQuotes"></a>
+	<h3>static method undoMagicQuotes <span class="smalllinenumber">[line 51]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static String/Array undoMagicQuotes(
+[String/Array
+$data = null])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Counteracts the effect of magic quotes if they are activated.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>cleansed data</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">String/Array&nbsp;&nbsp;</td>
+        <td><b>$data</b>&nbsp;&nbsp;</td>
+        <td>data to remove magic quotes from</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+
+</div><br />
+
+
+        <div class="credit">
+		    <hr />
+		    Documentation generated on Tue, 12 Feb 2013 13:49:45 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+	      </div>
+      </td></tr></table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

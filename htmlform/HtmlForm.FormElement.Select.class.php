@@ -23,14 +23,14 @@ require_once 'HtmlFormTools.class.php';
  */
 class Select extends FormElement{
 	// ***
-	private $options;
-	private $optionCssClasses;
-	private $optionTitles;
-	private $optGroups;
-	private $selected;
-	private $subDisabled;
-	private $size;
-	private $multiple;
+	protected $options;
+	protected $optionCssClasses;
+	protected $optionTitles;
+	protected $optGroups;
+	protected $selected;
+	protected $subDisabled;
+	protected $size;
+	protected $multiple;
 	
 	/**
 	 * Hidden constructor.
@@ -256,7 +256,7 @@ class Select extends FormElement{
 	
 	//---|questions----------
 	
-	private function isSelectedOption($index, $value){
+	protected function isSelectedOption($index, $value){
 		return(
 			(in_array($index, $this->selected, true))
 			||
@@ -266,7 +266,7 @@ class Select extends FormElement{
 
 
 
-	private function isDisabledOption($index, $value){
+	protected function isDisabledOption($index, $value){
 		return(
 			(in_array($index, $this->subDisabled, true))
 			||

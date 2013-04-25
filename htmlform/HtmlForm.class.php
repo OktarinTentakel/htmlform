@@ -16,6 +16,7 @@ require_once 'HtmlForm.FormElement.InputPassword.class.php';
 require_once 'HtmlForm.FormElement.InputFile.class.php';
 
 require_once 'HtmlForm.FormElement.Select.class.php';
+require_once 'HtmlForm.FormElement.SelectList.class.php';
 require_once 'HtmlForm.FormElement.TextArea.class.php';
 
 require_once 'HtmlForm.FormElement.AlignBlock.class.php';
@@ -69,6 +70,18 @@ class HtmlForm{
 	 * @var String
 	 */
 	const CELLCLASS = 'htmlform_cell';
+	
+	/**
+	 * css-class for first HtmlForm-cell
+	 * @var String
+	 */
+	const CELLCLASS_FIRST = 'htmlform_cell_first';
+	
+	/**
+	 * css-class for last HtmlForm-cell
+	 * @var String
+	 */
+	const CELLCLASS_LAST = 'htmlform_cell_last';
 	
 	/**
 	 * css-class for the form headline
@@ -1092,8 +1105,18 @@ class HtmlForm{
 				$subs .= $el->doRender();
 			}
 			
+			$positionClass =
+				($i == 0)
+				? ' '.self::CELLCLASS_FIRST
+				: (
+					($i == count($this->cells) - 1)
+					? ' '.self::CELLCLASS_LAST
+					: ''
+				)
+			;
+			
 			$cells .=
-				 '<div class="'.self::CELLCLASS.' '.self::CELLCLASS.'_'.($i + 1).'">'
+				 '<div class="'.self::CELLCLASS.' '.self::CELLCLASS.'_'.($i + 1).$positionClass.'">'
 					.$subs
 				.'</div>'
 			;

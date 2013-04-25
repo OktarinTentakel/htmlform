@@ -139,6 +139,46 @@ $testFieldSet->addElement(
 );
 
 /**
+* Create a standard single select list and add it to the fieldset.
+* - add a label
+* - add options to choose from (optgroup => [value => text])
+* - select an entry by single value as default
+* - disable an entry by single index
+* - set a validator (must be a simple digit-number, has custom error message)
+* - set "none" as a value to be considered empty, so that chosing the default validates
+* - refill from default refiller (get/post)
+*/
+$testFieldSet->addElement(
+SelectList::get('testselectlistsingle')
+	->setLabel('single select list (must select number or nothing):')
+	->setOptions(
+		array(
+			'default' => array(
+				'none' => '---'
+			),
+			'strings' => array(
+				'a' => 'test1',
+				'b' => 'test2'
+			),
+			'numbers' => array(
+				'2' => '333'
+			),
+			'c' => '444.4'
+		)
+	)
+	->setSelected('2')
+	->setDisabled(2)
+	->setValidator(
+		FormValidator::get()
+			->setDigits()
+			->setOptional(array('none'))
+			->setErrorMessage('Please choose an "only digit"-value or none.')
+			->activateJavascriptValidation()
+	)
+	->refill(array())
+);
+
+/**
  * Create a single select with a "none"-default and add it to the fieldset.
  * - add a label
  * - set options (value => text)
@@ -194,6 +234,46 @@ $testFieldSet->addElement(
 				->activateJavascriptValidation()
 		)
 		->refill()
+);
+
+/**
+* Create a multiple select list and add it to the fieldset.
+* - add label
+* - set as multiple select
+* - set options (value => text)
+* - set css classes for options (they cycle if less then number of options)
+* - set titles for options (not quite standard, but practical, they also cycle)
+* - set several options selected as default by mixed values
+* - disable options by mixed array
+* - set select height
+* - set validator (must have selection, values of options must be "a" or "c", set all standard messages as custom here)
+* - refill from default refiller (get/post)
+*/
+$testFieldSet->addElement(
+SelectList::get('testselectlistmultiple')
+	->setLabel('multi select list (must have selection, values must be "a" or "c"):')
+	->addCssClasses('windowed')
+	->setMultiple()
+	->setOptions(array(
+		'a' => 'test1',
+		'1' => 'test2',
+		'c' => 'test3',
+		'3' => 'testdisabled',
+		'42' => 'testdisabled2'
+	))
+	->setOptionCssClasses(array('odd', 'even'))
+	->setOptionTitles(array('eins', 'zwei'))
+	->setSelected(array(1, 'c'))
+	->setDisabled(array('3', 5))
+	->setSize(5)
+	->setValidator(
+		FormValidator::get()
+			->setRequired()
+			->setCharacterClass('ac')
+			->setAutoErrorMessagesAsCustom()
+			->activateJavascriptValidation()
+	)
+	->refill()
 );
 
 /**
@@ -734,7 +814,7 @@ $testForm->addElement($testFieldSet2, 2);
 /**
  * Create a custom html-content a append it in the middle of the form after a specific widget.
  */
-$testForm->insertElementAfter('testselectmultiple',
+$testForm->insertElementAfter('testselectlistmultiple',
 	CustomHtml::get()
 		->setHtml(
 			 '<p style="font-size:larger; margin-top:25px; margin-bottom:25px; background-color: #444;">'
@@ -845,20 +925,40 @@ if($testForm->hasBeenSent()) {
 				color: #ccc;
 			}
 			
-			.testform fieldset input, .testform fieldset select{
+			.testform fieldset input, .testform fieldset select, .select {
 				width: 250px;
+			}
+			
+			.testform fieldset .select.windowed {
+				height: 60px;
+				overflow: auto;
+			}
+			
+			.testform fieldset .select.windowed .option,
+			.testform fieldset .select.windowed label {
+				height: 20px;
 			}
 			
 			.testform fieldset input[type=radio], .testform fieldset input[type=checkbox]{
 				width: auto;
 			}
 			
-			.testform fieldset select option.odd{
+			.testform fieldset select option.odd,
+			.testform fieldset .select .option.odd {
 				background-color: #afa;
 			}
 			
-			.testform fieldset select option.even{
+			.testform fieldset .select .option.odd label {
+				color: #000;
+			}
+			
+			.testform fieldset select option.even,
+			.testform fieldset .select .option.even {
 				background-color:#dfd;
+			}
+			
+			.testform fieldset .select .option.even label {
+				color: #000;
 			}
 			
 			.testform .htmlform_cell{
@@ -918,6 +1018,10 @@ if($testForm->hasBeenSent()) {
 			.testform .htmlform_custom{
 				margin-bottom: 10px;
 			}
+			
+			/*.testform .select .optgroup {
+				background-color: 
+			}*/
 			
 			
 			

@@ -1882,31 +1882,31 @@ class FormValidator {
 			return $res;
 		} else {
 			return "
-					var datetimeDeDate = function(){
-						var res = true;
-						".$this->dateDE(null, true, true)."
-						return res;
-					};
-					
-					var datetimeDeTime = function(){
-						var res = true;
-						".$this->timeDE(null, true, true)."
-						return res;
-					};
-					
-					res = datetimeDeDate() && datetimeDeTime();
-					
-					if( !res && ".$this->exprToJsBool(defined('MSG_DATETIME_DE'))." ){
-						if( \$label.length > 0 ){
-							lastMsg = '".MSG_DATETIME_DE."';
-							
-							$.each([['%name%', labelTxt]], function(index, value){
-								var rex = new RegExp(value[0], 'g');
-								lastMsg = lastMsg.replace(rex, value[1]);
-							});
-						}
+				var datetimeDeDate = function(){
+					var res = true;
+					".$this->dateDE(null, true, true)."
+					return res;
+				};
+				
+				var datetimeDeTime = function(){
+					var res = true;
+					".$this->timeDE(null, true, true)."
+					return res;
+				};
+				
+				res = datetimeDeDate() && datetimeDeTime();
+				
+				if( !res && ".$this->exprToJsBool(defined('MSG_DATETIME_DE'))." ){
+					if( \$label.length > 0 ){
+						lastMsg = '".MSG_DATETIME_DE."';
+						
+						$.each([['%name%', labelTxt]], function(index, value){
+							var rex = new RegExp(value[0], 'g');
+							lastMsg = lastMsg.replace(rex, value[1]);
+						});
 					}
-				";
+				}
+			";
 		}
 	}
 	

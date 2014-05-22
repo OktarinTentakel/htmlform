@@ -110,7 +110,7 @@ class JsDateTime extends InputText{
 	 * @param String $id html-id for the element
 	 * @return JsDateTime new JsDateTime-instance
 	 */
-	public static function get($name, $id){
+	public static function get($name, $id = ''){
 		$res = new JsDateTime($name, $id);
 		return $res;
 	}

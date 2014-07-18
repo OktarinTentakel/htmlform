@@ -69,7 +69,7 @@ Source Location: /HtmlForm.class.php<br /><br />
     
 <h4>Version:</h4>
 <ul>
-  <li>0.999 beta</li>
+  <li>1.0</li>
 </ul>
 
         
@@ -80,6 +80,8 @@ Source Location: /HtmlForm.class.php<br /><br />
 <h3><a href="#class_consts">Constants</a></h3>
 <ul>
     <li><a href="../form/HtmlForm.html#constCELLCLASS">CELLCLASS</a></li>
+    <li><a href="../form/HtmlForm.html#constCELLCLASS_FIRST">CELLCLASS_FIRST</a></li>
+    <li><a href="../form/HtmlForm.html#constCELLCLASS_LAST">CELLCLASS_LAST</a></li>
     <li><a href="../form/HtmlForm.html#constEXPLANATIONCLASS">EXPLANATIONCLASS</a></li>
     <li><a href="../form/HtmlForm.html#constFLOATBREAKCLASS">FLOATBREAKCLASS</a></li>
     <li><a href="../form/HtmlForm.html#constFORMCLASS">FORMCLASS</a></li>
@@ -156,7 +158,7 @@ Source Location: /HtmlForm.class.php<br /><br />
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 59]<br />
+[line 60]<br />
 Main class for the whole HtmlForm-Framework, representing a Form itself.<br /><br /><p>To minimize the hassle of using this framework this is the only file that needs to be included into  a project to make the whole framework known. All needed information and classes follow with this one.</p><p>To understand what you're doing: HtmlForm handles normal html4 data-input forms completely as php5-Objects, including  all possible widgets and functionality. So by instantiating this class you actually create a form, in which you may insert  everything you need for processing your data.</p><p>The features of this framework include validation, auto-masking, utf-8-handling, auto-tabindices, error display,  and intelligent html-preformat to easily style later, unified result and value-handling, xhtml-rendering and much more.</p><p>Additionally HtmlForm also provides all its validation capabilites as on the fly functionality based on jQuery, individually  configurable for each element.</p><p>For an extensive example see the index.php included in the full package.</p><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -165,7 +167,7 @@ Main class for the whole HtmlForm-Framework, representing a Form itself.<br /><b
     <td><b>author:</b>&nbsp;&nbsp;</td><td>Sebastian Schlapkohl</td>
   </tr>
   <tr>
-    <td><b>version:</b>&nbsp;&nbsp;</td><td>0.999 beta</td>
+    <td><b>version:</b>&nbsp;&nbsp;</td><td>1.0</td>
   </tr>
 </table>
 </div>
@@ -179,7 +181,7 @@ Main class for the whole HtmlForm-Framework, representing a Form itself.<br /><b
 <div class="tags">
   <hr />
 	<a name="methodget"></a>
-	<h3>static method get <span class="smalllinenumber">[line 178]</span></h3>
+	<h3>static method get <span class="smalllinenumber">[line 191]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -219,7 +221,7 @@ $id)</code>
 
   <hr />
 	<a name="methodaddCell"></a>
-	<h3>method addCell <span class="smalllinenumber">[line 859]</span></h3>
+	<h3>method addCell <span class="smalllinenumber">[line 872]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -250,7 +252,7 @@ $id)</code>
   </div>
   <hr />
 	<a name="methodaddCssClasses"></a>
-	<h3>method addCssClasses <span class="smalllinenumber">[line 781]</span></h3>
+	<h3>method addCssClasses <span class="smalllinenumber">[line 794]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -289,7 +291,7 @@ $cssClasses)</code>
   </div>
   <hr />
 	<a name="methodaddElement"></a>
-	<h3>method addElement <span class="smalllinenumber">[line 798]</span></h3>
+	<h3>method addElement <span class="smalllinenumber">[line 811]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -334,7 +336,7 @@ $cell = 1])</code>
   </div>
   <hr />
 	<a name="methoddoRender"></a>
-	<h3>method doRender <span class="smalllinenumber">[line 1087]</span></h3>
+	<h3>method doRender <span class="smalllinenumber">[line 1100]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -362,7 +364,7 @@ $cell = 1])</code>
   </div>
   <hr />
 	<a name="methodgetElementByName"></a>
-	<h3>method getElementByName <span class="smalllinenumber">[line 612]</span></h3>
+	<h3>method getElementByName <span class="smalllinenumber">[line 625]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -407,7 +409,7 @@ $multiple = false])</code>
   </div>
   <hr />
 	<a name="methodgetId"></a>
-	<h3>method getId <span class="smalllinenumber">[line 548]</span></h3>
+	<h3>method getId <span class="smalllinenumber">[line 561]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -435,7 +437,7 @@ $multiple = false])</code>
   </div>
   <hr />
 	<a name="methodgetLanguage"></a>
-	<h3>method getLanguage <span class="smalllinenumber">[line 596]</span></h3>
+	<h3>method getLanguage <span class="smalllinenumber">[line 609]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -463,7 +465,7 @@ $multiple = false])</code>
   </div>
   <hr />
 	<a name="methodgetMethod"></a>
-	<h3>method getMethod <span class="smalllinenumber">[line 561]</span></h3>
+	<h3>method getMethod <span class="smalllinenumber">[line 574]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -502,7 +504,7 @@ $returnAsArray = false])</code>
   </div>
   <hr />
 	<a name="methodgetPackagePath"></a>
-	<h3>method getPackagePath <span class="smalllinenumber">[line 537]</span></h3>
+	<h3>method getPackagePath <span class="smalllinenumber">[line 550]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -533,7 +535,7 @@ $returnAsArray = false])</code>
   </div>
   <hr />
 	<a name="methodgetTabIndex"></a>
-	<h3>method getTabIndex <span class="smalllinenumber">[line 585]</span></h3>
+	<h3>method getTabIndex <span class="smalllinenumber">[line 598]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -561,7 +563,7 @@ $returnAsArray = false])</code>
   </div>
   <hr />
 	<a name="methodgetValueSet"></a>
-	<h3>method getValueSet <span class="smalllinenumber">[line 658]</span></h3>
+	<h3>method getValueSet <span class="smalllinenumber">[line 671]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -603,7 +605,7 @@ $addedSet = null])</code>
   </div>
   <hr />
 	<a name="methodhasBeenSent"></a>
-	<h3>method hasBeenSent <span class="smalllinenumber">[line 732]</span></h3>
+	<h3>method hasBeenSent <span class="smalllinenumber">[line 745]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -631,7 +633,7 @@ $addedSet = null])</code>
   </div>
   <hr />
 	<a name="methodincTabIndex"></a>
-	<h3>method incTabIndex <span class="smalllinenumber">[line 846]</span></h3>
+	<h3>method incTabIndex <span class="smalllinenumber">[line 859]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -659,7 +661,7 @@ $addedSet = null])</code>
   </div>
   <hr />
 	<a name="methodinsertElementAfter"></a>
-	<h3>method insertElementAfter <span class="smalllinenumber">[line 817]</span></h3>
+	<h3>method insertElementAfter <span class="smalllinenumber">[line 830]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -704,7 +706,7 @@ $element)</code>
   </div>
   <hr />
 	<a name="methodisValid"></a>
-	<h3>method isValid <span class="smalllinenumber">[line 680]</span></h3>
+	<h3>method isValid <span class="smalllinenumber">[line 693]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -732,7 +734,7 @@ $element)</code>
   </div>
   <hr />
 	<a name="methodjavascriptValidationIsSuppressed"></a>
-	<h3>method javascriptValidationIsSuppressed <span class="smalllinenumber">[line 746]</span></h3>
+	<h3>method javascriptValidationIsSuppressed <span class="smalllinenumber">[line 759]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -760,7 +762,7 @@ $element)</code>
   </div>
   <hr />
 	<a name="methodprepareJavascriptValidation"></a>
-	<h3>method prepareJavascriptValidation <span class="smalllinenumber">[line 493]</span></h3>
+	<h3>method prepareJavascriptValidation <span class="smalllinenumber">[line 506]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -788,7 +790,7 @@ $element)</code>
   </div>
   <hr />
 	<a name="methodprintFloatBreak"></a>
-	<h3>method printFloatBreak <span class="smalllinenumber">[line 901]</span></h3>
+	<h3>method printFloatBreak <span class="smalllinenumber">[line 914]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -816,7 +818,7 @@ $element)</code>
   </div>
   <hr />
 	<a name="methodprintSlash"></a>
-	<h3>method printSlash <span class="smalllinenumber">[line 886]</span></h3>
+	<h3>method printSlash <span class="smalllinenumber">[line 899]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -844,7 +846,7 @@ $element)</code>
   </div>
   <hr />
 	<a name="methodsetAction"></a>
-	<h3>method setAction <span class="smalllinenumber">[line 250]</span></h3>
+	<h3>method setAction <span class="smalllinenumber">[line 263]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -883,7 +885,7 @@ $action)</code>
   </div>
   <hr />
 	<a name="methodsetCells"></a>
-	<h3>method setCells <span class="smalllinenumber">[line 381]</span></h3>
+	<h3>method setCells <span class="smalllinenumber">[line 394]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -922,7 +924,7 @@ $cellCount)</code>
   </div>
   <hr />
 	<a name="methodsetCharsetLatin"></a>
-	<h3>method setCharsetLatin <span class="smalllinenumber">[line 302]</span></h3>
+	<h3>method setCharsetLatin <span class="smalllinenumber">[line 315]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -950,7 +952,7 @@ $cellCount)</code>
   </div>
   <hr />
 	<a name="methodsetCharsetUtf8"></a>
-	<h3>method setCharsetUtf8 <span class="smalllinenumber">[line 289]</span></h3>
+	<h3>method setCharsetUtf8 <span class="smalllinenumber">[line 302]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -978,7 +980,7 @@ $cellCount)</code>
   </div>
   <hr />
 	<a name="methodsetCssClasses"></a>
-	<h3>method setCssClasses <span class="smalllinenumber">[line 349]</span></h3>
+	<h3>method setCssClasses <span class="smalllinenumber">[line 362]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1017,7 +1019,7 @@ $cssClasses)</code>
   </div>
   <hr />
 	<a name="methodsetEnctype"></a>
-	<h3>method setEnctype <span class="smalllinenumber">[line 320]</span></h3>
+	<h3>method setEnctype <span class="smalllinenumber">[line 333]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1056,7 +1058,7 @@ $enctype)</code>
   </div>
   <hr />
 	<a name="methodsetExplanation"></a>
-	<h3>method setExplanation <span class="smalllinenumber">[line 421]</span></h3>
+	<h3>method setExplanation <span class="smalllinenumber">[line 434]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1095,7 +1097,7 @@ $explanation)</code>
   </div>
   <hr />
 	<a name="methodsetHeadline"></a>
-	<h3>method setHeadline <span class="smalllinenumber">[line 405]</span></h3>
+	<h3>method setHeadline <span class="smalllinenumber">[line 418]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1134,7 +1136,7 @@ $headline)</code>
   </div>
   <hr />
 	<a name="methodsetLanguage"></a>
-	<h3>method setLanguage <span class="smalllinenumber">[line 222]</span></h3>
+	<h3>method setLanguage <span class="smalllinenumber">[line 235]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1173,7 +1175,7 @@ $language)</code>
   </div>
   <hr />
 	<a name="methodsetMethodGet"></a>
-	<h3>method setMethodGet <span class="smalllinenumber">[line 274]</span></h3>
+	<h3>method setMethodGet <span class="smalllinenumber">[line 287]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1201,7 +1203,7 @@ $language)</code>
   </div>
   <hr />
 	<a name="methodsetMethodPost"></a>
-	<h3>method setMethodPost <span class="smalllinenumber">[line 262]</span></h3>
+	<h3>method setMethodPost <span class="smalllinenumber">[line 275]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1229,7 +1231,7 @@ $language)</code>
   </div>
   <hr />
 	<a name="methodsetMultipartFormData"></a>
-	<h3>method setMultipartFormData <span class="smalllinenumber">[line 335]</span></h3>
+	<h3>method setMultipartFormData <span class="smalllinenumber">[line 348]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1257,7 +1259,7 @@ $language)</code>
   </div>
   <hr />
 	<a name="methodsetPackagePath"></a>
-	<h3>method setPackagePath <span class="smalllinenumber">[line 195]</span></h3>
+	<h3>method setPackagePath <span class="smalllinenumber">[line 208]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1296,7 +1298,7 @@ $packagePath)</code>
   </div>
   <hr />
 	<a name="methodsetTabIndex"></a>
-	<h3>method setTabIndex <span class="smalllinenumber">[line 364]</span></h3>
+	<h3>method setTabIndex <span class="smalllinenumber">[line 377]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1335,7 +1337,7 @@ $tabIndex)</code>
   </div>
   <hr />
 	<a name="methodsetXhtml"></a>
-	<h3>method setXhtml <span class="smalllinenumber">[line 208]</span></h3>
+	<h3>method setXhtml <span class="smalllinenumber">[line 221]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1363,7 +1365,7 @@ $tabIndex)</code>
   </div>
   <hr />
 	<a name="methodshowCustomMessages"></a>
-	<h3>method showCustomMessages <span class="smalllinenumber">[line 457]</span></h3>
+	<h3>method showCustomMessages <span class="smalllinenumber">[line 470]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1408,7 +1410,7 @@ $show = true])</code>
   </div>
   <hr />
 	<a name="methodshowMessages"></a>
-	<h3>method showMessages <span class="smalllinenumber">[line 437]</span></h3>
+	<h3>method showMessages <span class="smalllinenumber">[line 450]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1453,7 +1455,7 @@ $show = true])</code>
   </div>
   <hr />
 	<a name="methodsuppressJavascriptValidation"></a>
-	<h3>method suppressJavascriptValidation <span class="smalllinenumber">[line 506]</span></h3>
+	<h3>method suppressJavascriptValidation <span class="smalllinenumber">[line 519]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1481,7 +1483,7 @@ $show = true])</code>
   </div>
   <hr />
 	<a name="methodsuppressJqueryInclude"></a>
-	<h3>method suppressJqueryInclude <span class="smalllinenumber">[line 522]</span></h3>
+	<h3>method suppressJqueryInclude <span class="smalllinenumber">[line 535]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1509,7 +1511,7 @@ $show = true])</code>
   </div>
   <hr />
 	<a name="methoduseExternalFormDeclaration"></a>
-	<h3>method useExternalFormDeclaration <span class="smalllinenumber">[line 236]</span></h3>
+	<h3>method useExternalFormDeclaration <span class="smalllinenumber">[line 249]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1537,7 +1539,7 @@ $show = true])</code>
   </div>
   <hr />
 	<a name="methoduseReducedErrorMarking"></a>
-	<h3>method useReducedErrorMarking <span class="smalllinenumber">[line 474]</span></h3>
+	<h3>method useReducedErrorMarking <span class="smalllinenumber">[line 487]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1565,7 +1567,7 @@ $show = true])</code>
   </div>
   <hr />
 	<a name="methodusesExternalFormDeclaration"></a>
-	<h3>method usesExternalFormDeclaration <span class="smalllinenumber">[line 705]</span></h3>
+	<h3>method usesExternalFormDeclaration <span class="smalllinenumber">[line 718]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1596,7 +1598,7 @@ $show = true])</code>
   </div>
   <hr />
 	<a name="methodusesReducedErrorMarking"></a>
-	<h3>method usesReducedErrorMarking <span class="smalllinenumber">[line 718]</span></h3>
+	<h3>method usesReducedErrorMarking <span class="smalllinenumber">[line 731]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1627,7 +1629,7 @@ $show = true])</code>
   </div>
   <hr />
 	<a name="methodusesUtf8"></a>
-	<h3>method usesUtf8 <span class="smalllinenumber">[line 692]</span></h3>
+	<h3>method usesUtf8 <span class="smalllinenumber">[line 705]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1658,7 +1660,7 @@ $show = true])</code>
   </div>
   <hr />
 	<a name="methodvalidate"></a>
-	<h3>method validate <span class="smalllinenumber">[line 760]</span></h3>
+	<h3>method validate <span class="smalllinenumber">[line 773]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1693,49 +1695,63 @@ $show = true])</code>
 	<a name="constCELLCLASS"></a>
 	<p></p>
 	<h4>CELLCLASS = <span class="value">&nbsp;'htmlform_cell'</span></h4>
-	<p>[line 71]</p>
+	<p>[line 72]</p>
   css-class for HtmlForm-cells<br /><br />
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="constCELLCLASS_FIRST"></a>
+	<p></p>
+	<h4>CELLCLASS_FIRST = <span class="value">&nbsp;'htmlform_cell_first'</span></h4>
+	<p>[line 78]</p>
+  css-class for first HtmlForm-cell<br /><br />
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="constCELLCLASS_LAST"></a>
+	<p></p>
+	<h4>CELLCLASS_LAST = <span class="value">&nbsp;'htmlform_cell_last'</span></h4>
+	<p>[line 84]</p>
+  css-class for last HtmlForm-cell<br /><br />
   <br />
 	<div class="top">[ <a href="#top">Top</a> ]</div><br />
 	<a name="constEXPLANATIONCLASS"></a>
 	<p></p>
 	<h4>EXPLANATIONCLASS = <span class="value">&nbsp;'htmlform_formexplanation'</span></h4>
-	<p>[line 83]</p>
+	<p>[line 96]</p>
   css-class for the form explanation<br /><br />
   <br />
 	<div class="top">[ <a href="#top">Top</a> ]</div><br />
 	<a name="constFLOATBREAKCLASS"></a>
 	<p></p>
 	<h4>FLOATBREAKCLASS = <span class="value">&nbsp;'htmlform_floatbreak'</span></h4>
-	<p>[line 101]</p>
+	<p>[line 114]</p>
   css-class for float-breaking construct used between widgets of a form<br /><br />
   <br />
 	<div class="top">[ <a href="#top">Top</a> ]</div><br />
 	<a name="constFORMCLASS"></a>
 	<p></p>
 	<h4>FORMCLASS = <span class="value">&nbsp;'htmlform'</span></h4>
-	<p>[line 65]</p>
+	<p>[line 66]</p>
   css-class for HtmlForm-forms<br /><br />
   <br />
 	<div class="top">[ <a href="#top">Top</a> ]</div><br />
 	<a name="constHEADLINECLASS"></a>
 	<p></p>
 	<h4>HEADLINECLASS = <span class="value">&nbsp;'htmlform_formheadline'</span></h4>
-	<p>[line 77]</p>
+	<p>[line 90]</p>
   css-class for the form headline<br /><br />
   <br />
 	<div class="top">[ <a href="#top">Top</a> ]</div><br />
 	<a name="constMESSAGESCLASS"></a>
 	<p></p>
 	<h4>MESSAGESCLASS = <span class="value">&nbsp;'htmlform_messages_div'</span></h4>
-	<p>[line 89]</p>
+	<p>[line 102]</p>
   css-class for form messages<br /><br />
   <br />
 	<div class="top">[ <a href="#top">Top</a> ]</div><br />
 	<a name="constMESSAGESTITLECLASS"></a>
 	<p></p>
 	<h4>MESSAGESTITLECLASS = <span class="value">&nbsp;'htmlform_messages_title_div'</span></h4>
-	<p>[line 95]</p>
+	<p>[line 108]</p>
   css-class for title of form messages<br /><br />
   <br />
 	<div class="top">[ <a href="#top">Top</a> ]</div><br />
@@ -1743,7 +1759,7 @@ $show = true])</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 12 Feb 2013 13:49:40 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Fri, 18 Jul 2014 16:31:56 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

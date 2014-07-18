@@ -69,7 +69,7 @@ Source Location: /HtmlForm.FormValidator.class.php<br /><br />
     
 <h4>Version:</h4>
 <ul>
-  <li>0.999 beta</li>
+  <li>1.0</li>
 </ul>
 
         
@@ -88,6 +88,7 @@ Source Location: /HtmlForm.FormValidator.class.php<br /><br />
 <ul>
     <li><a href="../validation/FormValidator.html#methodactivateJavascriptValidation">activateJavascriptValidation</a></li>
     <li><a href="../validation/FormValidator.html#methodget">get</a></li>
+    <li><a href="../validation/FormValidator.html#methodhasRule">hasRule</a></li>
     <li><a href="../validation/FormValidator.html#methodprintJavascriptValidationCode">printJavascriptValidationCode</a></li>
     <li><a href="../validation/FormValidator.html#methodprintMessageQueue">printMessageQueue</a></li>
     <li><a href="../validation/FormValidator.html#methodprocess">process</a></li>
@@ -153,7 +154,7 @@ A FormValidator defines a set of rules a widget-value has to fulfill before bein
     <td><b>author:</b>&nbsp;&nbsp;</td><td>Sebastian Schlapkohl</td>
   </tr>
   <tr>
-    <td><b>version:</b>&nbsp;&nbsp;</td><td>0.999 beta</td>
+    <td><b>version:</b>&nbsp;&nbsp;</td><td>1.0</td>
   </tr>
 </table>
 </div>
@@ -196,7 +197,7 @@ A FormValidator defines a set of rules a widget-value has to fulfill before bein
 
   <hr />
 	<a name="methodactivateJavascriptValidation"></a>
-	<h3>method activateJavascriptValidation <span class="smalllinenumber">[line 2175]</span></h3>
+	<h3>method activateJavascriptValidation <span class="smalllinenumber">[line 2191]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -240,8 +241,50 @@ $errorSelector = null])</code>
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
+	<a name="methodhasRule"></a>
+	<h3>method hasRule <span class="smalllinenumber">[line 2142]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void hasRule(
+
+$ruleName, [
+$ruleValue = null])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		<br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$ruleName</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$ruleValue</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
 	<a name="methodprintJavascriptValidationCode"></a>
-	<h3>method printJavascriptValidationCode <span class="smalllinenumber">[line 2238]</span></h3>
+	<h3>method printJavascriptValidationCode <span class="smalllinenumber">[line 2254]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -280,7 +323,7 @@ $prepareMessages = true])</code>
   </div>
   <hr />
 	<a name="methodprintMessageQueue"></a>
-	<h3>method printMessageQueue <span class="smalllinenumber">[line 2207]</span></h3>
+	<h3>method printMessageQueue <span class="smalllinenumber">[line 2223]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -319,7 +362,7 @@ $onlyCustomMessages = false])</code>
   </div>
   <hr />
 	<a name="methodprocess"></a>
-	<h3>method process <span class="smalllinenumber">[line 2150]</span></h3>
+	<h3>method process <span class="smalllinenumber">[line 2166]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1504,7 +1547,7 @@ $values)</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 12 Feb 2013 13:49:44 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Fri, 18 Jul 2014 16:32:01 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

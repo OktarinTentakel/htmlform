@@ -76,6 +76,8 @@
 		</a><br>
 			<a href="../../formelements/value-widgets/_HtmlForm.FormElement.Select.class.php.html">		HtmlForm.FormElement.Select.class.php
 		</a><br>
+			<a href="../../formelements/value-widgets/_HtmlForm.FormElement.SelectList.class.php.html">		HtmlForm.FormElement.SelectList.class.php
+		</a><br>
 			<a href="../../formelements/value-widgets/_HtmlForm.FormElement.TextArea.class.php.html">		HtmlForm.FormElement.TextArea.class.php
 		</a><br>
 	  </div><br />
@@ -108,6 +110,7 @@
 	    &nbsp;&nbsp;		<a href="../../formelements/value-widgets/InputText.html">InputText</a><br />
 	    &nbsp;&nbsp;		<a href="../../formelements/value-widgets/JsDateTime.html">JsDateTime</a><br />
 	    &nbsp;&nbsp;		<a href="../../formelements/value-widgets/Select.html">Select</a><br />
+	    &nbsp;&nbsp;		<a href="../../formelements/value-widgets/SelectList.html">SelectList</a><br />
 	    &nbsp;&nbsp;		<a href="../../formelements/value-widgets/TextArea.html">TextArea</a><br />
 	  </div>
                 </td>
@@ -138,12 +141,25 @@ Source Location: /HtmlForm.FormElement.Select.class.php<br /><br />
     
 <h4>Version:</h4>
 <ul>
-  <li>0.999 beta</li>
+  <li>1.0</li>
 </ul>
 
         
 </td>
 
+<td valign="top">
+<h3><a href="#class_vars">Variables</a></h3>
+<ul>
+    <li><a href="../../formelements/value-widgets/Select.html#var$multiple">$multiple</a></li>
+    <li><a href="../../formelements/value-widgets/Select.html#var$optGroups">$optGroups</a></li>
+    <li><a href="../../formelements/value-widgets/Select.html#var$optionCssClasses">$optionCssClasses</a></li>
+    <li><a href="../../formelements/value-widgets/Select.html#var$options">$options</a></li>
+    <li><a href="../../formelements/value-widgets/Select.html#var$optionTitles">$optionTitles</a></li>
+    <li><a href="../../formelements/value-widgets/Select.html#var$selected">$selected</a></li>
+    <li><a href="../../formelements/value-widgets/Select.html#var$size">$size</a></li>
+    <li><a href="../../formelements/value-widgets/Select.html#var$subDisabled">$subDisabled</a></li>
+  </ul>
+</td>
 
 
 <td valign="top">
@@ -153,6 +169,8 @@ Source Location: /HtmlForm.FormElement.Select.class.php<br /><br />
     <li><a href="../../formelements/value-widgets/Select.html#methoddoRender">doRender</a></li>
     <li><a href="../../formelements/value-widgets/Select.html#methodget">get</a></li>
     <li><a href="../../formelements/value-widgets/Select.html#methodgetValue">getValue</a></li>
+    <li><a href="../../formelements/value-widgets/Select.html#methodisDisabledOption">isDisabledOption</a></li>
+    <li><a href="../../formelements/value-widgets/Select.html#methodisSelectedOption">isSelectedOption</a></li>
     <li><a href="../../formelements/value-widgets/Select.html#methodrefill">refill</a></li>
     <li><a href="../../formelements/value-widgets/Select.html#methodsetDisabled">setDisabled</a></li>
     <li><a href="../../formelements/value-widgets/Select.html#methodsetMultiple">setMultiple</a></li>
@@ -172,6 +190,15 @@ Source Location: /HtmlForm.FormElement.Select.class.php<br /><br />
 <table width="100%" border="0"><tr>
 
 
+<td valign="top">
+<h3>Child classes:</h3>
+<div class="tags">
+<dl>
+<dt><a href="../../formelements/value-widgets/SelectList.html">SelectList</a></dt>
+	<dd>Constitutes a Select-replacement made of a list of labeled radiobuttons/checkboxes.</dd>
+</dl>
+</div>
+</td>
 
 <td valign="top">
 <h3>Inherited Constants</h3>
@@ -186,6 +213,24 @@ Source Location: /HtmlForm.FormElement.Select.class.php<br /><br />
 </dd>
 <dt>
   <a href="../../formelements/FormElement.html#constJSENABLEDCLASS">FormElement::JSENABLEDCLASS</a>
+</dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../../formelements/FormElement.html#constMANDATORYCLASS">FormElement::MANDATORYCLASS</a>
+</dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../../formelements/FormElement.html#constOPTIONALCLASS">FormElement::OPTIONALCLASS</a>
+</dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../../formelements/FormElement.html#constUNVALIDATEDCLASS">FormElement::UNVALIDATEDCLASS</a>
 </dt>
 <dd>
    
@@ -404,7 +449,7 @@ Source Location: /HtmlForm.FormElement.Select.class.php<br /><br />
     <a href="../../formelements/FormElement.html#methodprintCssClasses">FormElement::printCssClasses()</a>
   </dt>
   <dd>
-    Comiles the html-class-attribute-string of the element.
+    Compiles the html-class-attribute-string of the element.
   </dd>
     <dt>
     <a href="../../formelements/FormElement.html#methodprintDisabled">FormElement::printDisabled()</a>
@@ -551,13 +596,210 @@ Wraps a select.<br /><br /><p>This class implements a select in all its variatio
     <td><b>author:</b>&nbsp;&nbsp;</td><td>Sebastian Schlapkohl</td>
   </tr>
   <tr>
-    <td><b>version:</b>&nbsp;&nbsp;</td><td>0.999 beta</td>
+    <td><b>version:</b>&nbsp;&nbsp;</td><td>1.0</td>
   </tr>
 </table>
 </div>
 </div><br /><br />
 <div class="top">[ <a href="#top">Top</a> ]</div><br />
 
+<hr />
+<a name="class_vars"></a>
+<h3>Class Variables</h3>
+<div class="tags">
+	<a name="var$multiple"></a>
+	<p></p>
+	<h4>$multiple = <span class="value"></span></h4>
+	<p>[line 33]</p>
+  <br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>mixed</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$optGroups"></a>
+	<p></p>
+	<h4>$optGroups = <span class="value"></span></h4>
+	<p>[line 29]</p>
+  <br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>mixed</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$optionCssClasses"></a>
+	<p></p>
+	<h4>$optionCssClasses = <span class="value"></span></h4>
+	<p>[line 27]</p>
+  <br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>mixed</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$options"></a>
+	<p></p>
+	<h4>$options = <span class="value"></span></h4>
+	<p>[line 26]</p>
+  <br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>mixed</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$optionTitles"></a>
+	<p></p>
+	<h4>$optionTitles = <span class="value"></span></h4>
+	<p>[line 28]</p>
+  <br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>mixed</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$selected"></a>
+	<p></p>
+	<h4>$selected = <span class="value"></span></h4>
+	<p>[line 30]</p>
+  <br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>mixed</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$size"></a>
+	<p></p>
+	<h4>$size = <span class="value"></span></h4>
+	<p>[line 32]</p>
+  <br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>mixed</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$subDisabled"></a>
+	<p></p>
+	<h4>$subDisabled = <span class="value"></span></h4>
+	<p>[line 31]</p>
+  <br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>mixed</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+</div><br />
 
 <hr />
 <a name="class_methods"></a>
@@ -590,6 +832,12 @@ $id = ''])</code>
 </div>
 <br /><br />
 
+	<p>Overridden in child classes as:<br />
+		<dl>
+	<dt><a href="../../formelements/value-widgets/SelectList.html#methodget">SelectList::get()</a></dt>
+		<dd>Factory method for SelectList, returns new instance.</dd>
+	</dl>
+	</p>
 	
         <h4>Parameters:</h4>
     <div class="tags">
@@ -676,6 +924,12 @@ $id = ''])</code>
 </div>
 <br /><br />
 
+	<p>Overridden in child classes as:<br />
+		<dl>
+	<dt><a href="../../formelements/value-widgets/SelectList.html#methoddoRender">SelectList::doRender()</a></dt>
+		<dd>Compiles and returns the html-fragment for the element.</dd>
+	</dl>
+	</p>
 	Overrides <a href="../../formelements/FormElement.html#methoddoRender">FormElement::doRender()</a> (Returns the compiled html-code for the element.)<br /><br />
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
@@ -705,6 +959,90 @@ $id = ''])</code>
 <br /><br />
 
 	Overrides <a href="../../formelements/FormElement.html#methodgetValue">FormElement::getValue()</a> (Returns the value of the element if there is any.)<br /><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodisDisabledOption"></a>
+	<h3>method isDisabledOption <span class="smalllinenumber">[line 269]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void isDisabledOption(
+
+$index, 
+$value)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		<br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$index</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$value</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodisSelectedOption"></a>
+	<h3>method isSelectedOption <span class="smalllinenumber">[line 259]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void isSelectedOption(
+
+$index, 
+$value)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		<br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$index</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$value</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
@@ -1081,7 +1419,7 @@ $size)</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 12 Feb 2013 13:49:44 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Fri, 18 Jul 2014 16:32:00 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

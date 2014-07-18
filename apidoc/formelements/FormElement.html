@@ -76,6 +76,8 @@
 		</a><br>
 			<a href="../formelements/value-widgets/_HtmlForm.FormElement.Select.class.php.html">		HtmlForm.FormElement.Select.class.php
 		</a><br>
+			<a href="../formelements/value-widgets/_HtmlForm.FormElement.SelectList.class.php.html">		HtmlForm.FormElement.SelectList.class.php
+		</a><br>
 			<a href="../formelements/value-widgets/_HtmlForm.FormElement.TextArea.class.php.html">		HtmlForm.FormElement.TextArea.class.php
 		</a><br>
 	  </div><br />
@@ -108,6 +110,7 @@
 	    &nbsp;&nbsp;		<a href="../formelements/value-widgets/InputText.html">InputText</a><br />
 	    &nbsp;&nbsp;		<a href="../formelements/value-widgets/JsDateTime.html">JsDateTime</a><br />
 	    &nbsp;&nbsp;		<a href="../formelements/value-widgets/Select.html">Select</a><br />
+	    &nbsp;&nbsp;		<a href="../formelements/value-widgets/SelectList.html">SelectList</a><br />
 	    &nbsp;&nbsp;		<a href="../formelements/value-widgets/TextArea.html">TextArea</a><br />
 	  </div>
                 </td>
@@ -136,7 +139,7 @@ Source Location: /HtmlForm.FormElement.absclass.php<br /><br />
         
 <h4>Version:</h4>
 <ul>
-  <li>0.999 beta</li>
+  <li>1.0</li>
 </ul>
 
         
@@ -165,6 +168,9 @@ Source Location: /HtmlForm.FormElement.absclass.php<br /><br />
 <ul>
     <li><a href="../formelements/FormElement.html#constERRORCLASS">ERRORCLASS</a></li>
     <li><a href="../formelements/FormElement.html#constJSENABLEDCLASS">JSENABLEDCLASS</a></li>
+    <li><a href="../formelements/FormElement.html#constMANDATORYCLASS">MANDATORYCLASS</a></li>
+    <li><a href="../formelements/FormElement.html#constOPTIONALCLASS">OPTIONALCLASS</a></li>
+    <li><a href="../formelements/FormElement.html#constUNVALIDATEDCLASS">UNVALIDATEDCLASS</a></li>
     <li><a href="../formelements/FormElement.html#constWIDGETCLASS">WIDGETCLASS</a></li>
     <li><a href="../formelements/FormElement.html#constWRAPCLASS">WRAPCLASS</a></li>
   </ul>
@@ -294,7 +300,7 @@ Abstract parent class for all widgets / elements contained in a form-object.<br 
     <td><b>author:</b>&nbsp;&nbsp;</td><td>Sebastian Schlapkohl</td>
   </tr>
   <tr>
-    <td><b>version:</b>&nbsp;&nbsp;</td><td>0.999 beta</td>
+    <td><b>version:</b>&nbsp;&nbsp;</td><td>1.0</td>
   </tr>
   <tr>
     <td><b>abstract:</b>&nbsp;&nbsp;</td><td></td>
@@ -311,7 +317,7 @@ Abstract parent class for all widgets / elements contained in a form-object.<br 
 	<a name="var$cssClasses"></a>
 	<p></p>
 	<h4>$cssClasses = <span class="value"></span></h4>
-	<p>[line 107]</p>
+	<p>[line 126]</p>
   The html-class-string of the element.<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -335,7 +341,7 @@ Abstract parent class for all widgets / elements contained in a form-object.<br 
 	<a name="var$disabled"></a>
 	<p></p>
 	<h4>$disabled = <span class="value"></span></h4>
-	<p>[line 131]</p>
+	<p>[line 150]</p>
   The html-enabled-state of the element.<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -359,7 +365,7 @@ Abstract parent class for all widgets / elements contained in a form-object.<br 
 	<a name="var$id"></a>
 	<p></p>
 	<h4>$id = <span class="value"></span></h4>
-	<p>[line 89]</p>
+	<p>[line 108]</p>
   The html-id of the element.<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -383,7 +389,7 @@ Abstract parent class for all widgets / elements contained in a form-object.<br 
 	<a name="var$isValid"></a>
 	<p></p>
 	<h4>$isValid = <span class="value"></span></h4>
-	<p>[line 82]</p>
+	<p>[line 101]</p>
   The validity status of the element.<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -407,7 +413,7 @@ Abstract parent class for all widgets / elements contained in a form-object.<br 
 	<a name="var$jsEventHandler"></a>
 	<p></p>
 	<h4>$jsEventHandler = <span class="value"></span></h4>
-	<p>[line 119]</p>
+	<p>[line 138]</p>
   Complete attribute string for a standard javascript-tag-eventhandler such as &quot;onclick&quot;.<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -431,7 +437,7 @@ Abstract parent class for all widgets / elements contained in a form-object.<br 
 	<a name="var$label"></a>
 	<p></p>
 	<h4>$label = <span class="value"></span></h4>
-	<p>[line 113]</p>
+	<p>[line 132]</p>
   The text of the element label.<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -455,7 +461,7 @@ Abstract parent class for all widgets / elements contained in a form-object.<br 
 	<a name="var$masterElement"></a>
 	<p></p>
 	<h4>$masterElement = <span class="value"></span></h4>
-	<p>[line 69]</p>
+	<p>[line 88]</p>
   The element into which the element has been inserted, if this was the case.<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -479,7 +485,7 @@ Abstract parent class for all widgets / elements contained in a form-object.<br 
 	<a name="var$masterForm"></a>
 	<p></p>
 	<h4>$masterForm = <span class="value"></span></h4>
-	<p>[line 63]</p>
+	<p>[line 82]</p>
   The form to which the element belongs.<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -503,7 +509,7 @@ Abstract parent class for all widgets / elements contained in a form-object.<br 
 	<a name="var$name"></a>
 	<p></p>
 	<h4>$name = <span class="value"></span></h4>
-	<p>[line 95]</p>
+	<p>[line 114]</p>
   The html-name of the element.<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -527,7 +533,7 @@ Abstract parent class for all widgets / elements contained in a form-object.<br 
 	<a name="var$subElements"></a>
 	<p></p>
 	<h4>$subElements = <span class="value"></span></h4>
-	<p>[line 125]</p>
+	<p>[line 144]</p>
   The subelements of the element if the element has container character.<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -551,7 +557,7 @@ Abstract parent class for all widgets / elements contained in a form-object.<br 
 	<a name="var$title"></a>
 	<p></p>
 	<h4>$title = <span class="value"></span></h4>
-	<p>[line 101]</p>
+	<p>[line 120]</p>
   The html-title of the element.<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -575,7 +581,7 @@ Abstract parent class for all widgets / elements contained in a form-object.<br 
 	<a name="var$validator"></a>
 	<p></p>
 	<h4>$validator = <span class="value"></span></h4>
-	<p>[line 76]</p>
+	<p>[line 95]</p>
   The validator to validate the values of the element according to its rules.<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -605,7 +611,7 @@ Abstract parent class for all widgets / elements contained in a form-object.<br 
 
   <hr />
 	<a name="method__construct"></a>
-	<h3>constructor __construct <span class="smalllinenumber">[line 141]</span></h3>
+	<h3>constructor __construct <span class="smalllinenumber">[line 160]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -717,7 +723,7 @@ $id = ''])</code>
   </div>
   <hr />
 	<a name="methodaddCssClasses"></a>
-	<h3>method addCssClasses <span class="smalllinenumber">[line 513]</span></h3>
+	<h3>method addCssClasses <span class="smalllinenumber">[line 532]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -756,7 +762,7 @@ $cssClasses)</code>
   </div>
   <hr />
 	<a name="methodaddElement"></a>
-	<h3>method addElement <span class="smalllinenumber">[line 527]</span></h3>
+	<h3>method addElement <span class="smalllinenumber">[line 546]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -795,7 +801,7 @@ $element)</code>
   </div>
   <hr />
 	<a name="methoddetermineRefiller"></a>
-	<h3>method determineRefiller <span class="smalllinenumber">[line 574]</span></h3>
+	<h3>method determineRefiller <span class="smalllinenumber">[line 593]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -834,7 +840,7 @@ $refiller = array()])</code>
   </div>
   <hr />
 	<a name="methoddoRender"></a>
-	<h3>method doRender <span class="smalllinenumber">[line 763]</span></h3>
+	<h3>method doRender <span class="smalllinenumber">[line 799]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -923,6 +929,10 @@ $refiller = array()])</code>
 		<dd>Compiles and returns the html-fragment for the element.</dd>
 	</dl>
 		<dl>
+	<dt><a href="../formelements/value-widgets/SelectList.html#methoddoRender">SelectList::doRender()</a></dt>
+		<dd>Compiles and returns the html-fragment for the element.</dd>
+	</dl>
+		<dl>
 	<dt><a href="../formelements/value-widgets/TextArea.html#methoddoRender">TextArea::doRender()</a></dt>
 		<dd>Compiles and returns the html-fragment for the element.</dd>
 	</dl>
@@ -932,7 +942,7 @@ $refiller = array()])</code>
   </div>
   <hr />
 	<a name="methodgetId"></a>
-	<h3>method getId <span class="smalllinenumber">[line 357]</span></h3>
+	<h3>method getId <span class="smalllinenumber">[line 376]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -960,7 +970,7 @@ $refiller = array()])</code>
   </div>
   <hr />
 	<a name="methodgetLabel"></a>
-	<h3>method getLabel <span class="smalllinenumber">[line 390]</span></h3>
+	<h3>method getLabel <span class="smalllinenumber">[line 409]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -988,7 +998,7 @@ $refiller = array()])</code>
   </div>
   <hr />
 	<a name="methodgetMasterElement"></a>
-	<h3>method getMasterElement <span class="smalllinenumber">[line 335]</span></h3>
+	<h3>method getMasterElement <span class="smalllinenumber">[line 354]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1016,7 +1026,7 @@ $refiller = array()])</code>
   </div>
   <hr />
 	<a name="methodgetMasterForm"></a>
-	<h3>method getMasterForm <span class="smalllinenumber">[line 324]</span></h3>
+	<h3>method getMasterForm <span class="smalllinenumber">[line 343]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1044,7 +1054,7 @@ $refiller = array()])</code>
   </div>
   <hr />
 	<a name="methodgetName"></a>
-	<h3>method getName <span class="smalllinenumber">[line 368]</span></h3>
+	<h3>method getName <span class="smalllinenumber">[line 387]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1072,7 +1082,7 @@ $refiller = array()])</code>
   </div>
   <hr />
 	<a name="methodgetSubElements"></a>
-	<h3>method getSubElements <span class="smalllinenumber">[line 401]</span></h3>
+	<h3>method getSubElements <span class="smalllinenumber">[line 420]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1100,7 +1110,7 @@ $refiller = array()])</code>
   </div>
   <hr />
 	<a name="methodgetTitle"></a>
-	<h3>method getTitle <span class="smalllinenumber">[line 379]</span></h3>
+	<h3>method getTitle <span class="smalllinenumber">[line 398]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1128,7 +1138,7 @@ $refiller = array()])</code>
   </div>
   <hr />
 	<a name="methodgetValidator"></a>
-	<h3>method getValidator <span class="smalllinenumber">[line 346]</span></h3>
+	<h3>method getValidator <span class="smalllinenumber">[line 365]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1156,7 +1166,7 @@ $refiller = array()])</code>
   </div>
   <hr />
 	<a name="methodgetValue"></a>
-	<h3>method getValue <span class="smalllinenumber">[line 439]</span></h3>
+	<h3>method getValue <span class="smalllinenumber">[line 458]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1245,7 +1255,7 @@ $refiller = array()])</code>
   </div>
   <hr />
 	<a name="methodgetValueSet"></a>
-	<h3>method getValueSet <span class="smalllinenumber">[line 414]</span></h3>
+	<h3>method getValueSet <span class="smalllinenumber">[line 433]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1287,7 +1297,7 @@ $addedSet = null])</code>
   </div>
   <hr />
 	<a name="methodinsertElementAfter"></a>
-	<h3>method insertElementAfter <span class="smalllinenumber">[line 548]</span></h3>
+	<h3>method insertElementAfter <span class="smalllinenumber">[line 567]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1332,7 +1342,7 @@ $element)</code>
   </div>
   <hr />
 	<a name="methodisValid"></a>
-	<h3>method isValid <span class="smalllinenumber">[line 453]</span></h3>
+	<h3>method isValid <span class="smalllinenumber">[line 472]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1360,7 +1370,7 @@ $element)</code>
   </div>
   <hr />
 	<a name="methodneedsUtf8Safety"></a>
-	<h3>method needsUtf8Safety <span class="smalllinenumber">[line 466]</span></h3>
+	<h3>method needsUtf8Safety <span class="smalllinenumber">[line 485]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1388,7 +1398,7 @@ $element)</code>
   </div>
   <hr />
 	<a name="methodprintCssClasses"></a>
-	<h3>method printCssClasses <span class="smalllinenumber">[line 640]</span></h3>
+	<h3>method printCssClasses <span class="smalllinenumber">[line 659]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1397,7 +1407,7 @@ $element)</code>
     </td></tr></table>
     </td></tr></table><br />
 	
-		Comiles the html-class-attribute-string of the element.<br /><br /><p>Auto-includes an error-class if element is found invalid.</p><br /><br /><br />
+		Compiles the html-class-attribute-string of the element.<br /><br /><p>Auto-includes an error-class if element is found invalid.</p><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
@@ -1416,7 +1426,7 @@ $element)</code>
   </div>
   <hr />
 	<a name="methodprintDisabled"></a>
-	<h3>method printDisabled <span class="smalllinenumber">[line 705]</span></h3>
+	<h3>method printDisabled <span class="smalllinenumber">[line 741]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1444,7 +1454,7 @@ $element)</code>
   </div>
   <hr />
 	<a name="methodprintId"></a>
-	<h3>method printId <span class="smalllinenumber">[line 595]</span></h3>
+	<h3>method printId <span class="smalllinenumber">[line 614]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1472,7 +1482,7 @@ $element)</code>
   </div>
   <hr />
 	<a name="methodprintJavascriptEventHandler"></a>
-	<h3>method printJavascriptEventHandler <span class="smalllinenumber">[line 681]</span></h3>
+	<h3>method printJavascriptEventHandler <span class="smalllinenumber">[line 717]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1500,7 +1510,7 @@ $element)</code>
   </div>
   <hr />
 	<a name="methodprintJavascriptValidationCode"></a>
-	<h3>method printJavascriptValidationCode <span class="smalllinenumber">[line 742]</span></h3>
+	<h3>method printJavascriptValidationCode <span class="smalllinenumber">[line 778]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1528,7 +1538,7 @@ $element)</code>
   </div>
   <hr />
 	<a name="methodprintMessages"></a>
-	<h3>method printMessages <span class="smalllinenumber">[line 718]</span></h3>
+	<h3>method printMessages <span class="smalllinenumber">[line 754]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1567,7 +1577,7 @@ $onlyCustomMessages = false])</code>
   </div>
   <hr />
 	<a name="methodprintName"></a>
-	<h3>method printName <span class="smalllinenumber">[line 606]</span></h3>
+	<h3>method printName <span class="smalllinenumber">[line 625]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1595,7 +1605,7 @@ $onlyCustomMessages = false])</code>
   </div>
   <hr />
 	<a name="methodprintNameArray"></a>
-	<h3>method printNameArray <span class="smalllinenumber">[line 617]</span></h3>
+	<h3>method printNameArray <span class="smalllinenumber">[line 636]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1623,7 +1633,7 @@ $onlyCustomMessages = false])</code>
   </div>
   <hr />
 	<a name="methodprintTabIndex"></a>
-	<h3>method printTabIndex <span class="smalllinenumber">[line 692]</span></h3>
+	<h3>method printTabIndex <span class="smalllinenumber">[line 728]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1651,7 +1661,7 @@ $onlyCustomMessages = false])</code>
   </div>
   <hr />
 	<a name="methodprintTitle"></a>
-	<h3>method printTitle <span class="smalllinenumber">[line 628]</span></h3>
+	<h3>method printTitle <span class="smalllinenumber">[line 647]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1679,7 +1689,7 @@ $onlyCustomMessages = false])</code>
   </div>
   <hr />
 	<a name="methodprintWrapperClasses"></a>
-	<h3>method printWrapperClasses <span class="smalllinenumber">[line 661]</span></h3>
+	<h3>method printWrapperClasses <span class="smalllinenumber">[line 680]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1707,7 +1717,7 @@ $onlyCustomMessages = false])</code>
   </div>
   <hr />
 	<a name="methodsetCssClasses"></a>
-	<h3>method setCssClasses <span class="smalllinenumber">[line 250]</span></h3>
+	<h3>method setCssClasses <span class="smalllinenumber">[line 269]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1746,7 +1756,7 @@ $cssClasses)</code>
   </div>
   <hr />
 	<a name="methodsetDisabled"></a>
-	<h3>method setDisabled <span class="smalllinenumber">[line 297]</span></h3>
+	<h3>method setDisabled <span class="smalllinenumber">[line 316]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1788,7 +1798,7 @@ $cssClasses)</code>
   </div>
   <hr />
 	<a name="methodsetId"></a>
-	<h3>method setId <span class="smalllinenumber">[line 223]</span></h3>
+	<h3>method setId <span class="smalllinenumber">[line 242]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1827,7 +1837,7 @@ $id)</code>
   </div>
   <hr />
 	<a name="methodsetJavascriptEventHandler"></a>
-	<h3>method setJavascriptEventHandler <span class="smalllinenumber">[line 285]</span></h3>
+	<h3>method setJavascriptEventHandler <span class="smalllinenumber">[line 304]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1872,7 +1882,7 @@ $reaction)</code>
   </div>
   <hr />
 	<a name="methodsetLabel"></a>
-	<h3>method setLabel <span class="smalllinenumber">[line 266]</span></h3>
+	<h3>method setLabel <span class="smalllinenumber">[line 285]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1914,7 +1924,7 @@ $label)</code>
   </div>
   <hr />
 	<a name="methodsetMasterElement"></a>
-	<h3>method setMasterElement <span class="smalllinenumber">[line 190]</span></h3>
+	<h3>method setMasterElement <span class="smalllinenumber">[line 209]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1953,7 +1963,7 @@ $master)</code>
   </div>
   <hr />
 	<a name="methodsetMasterForm"></a>
-	<h3>method setMasterForm <span class="smalllinenumber">[line 171]</span></h3>
+	<h3>method setMasterForm <span class="smalllinenumber">[line 190]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1992,7 +2002,7 @@ $master)</code>
   </div>
   <hr />
 	<a name="methodsetTitle"></a>
-	<h3>method setTitle <span class="smalllinenumber">[line 236]</span></h3>
+	<h3>method setTitle <span class="smalllinenumber">[line 255]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2031,7 +2041,7 @@ $title)</code>
   </div>
   <hr />
 	<a name="methodsetUsable"></a>
-	<h3>method setUsable <span class="smalllinenumber">[line 310]</span></h3>
+	<h3>method setUsable <span class="smalllinenumber">[line 329]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2070,7 +2080,7 @@ $expression)</code>
   </div>
   <hr />
 	<a name="methodsetValidator"></a>
-	<h3>method setValidator <span class="smalllinenumber">[line 207]</span></h3>
+	<h3>method setValidator <span class="smalllinenumber">[line 226]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2112,7 +2122,7 @@ $validator)</code>
   </div>
   <hr />
 	<a name="methodvalidate"></a>
-	<h3>method validate <span class="smalllinenumber">[line 486]</span></h3>
+	<h3>method validate <span class="smalllinenumber">[line 505]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2180,8 +2190,29 @@ $validator)</code>
 	<a name="constJSENABLEDCLASS"></a>
 	<p></p>
 	<h4>JSENABLEDCLASS = <span class="value">&nbsp;'htmlform_jsenabled'</span></h4>
-	<p>[line 54]</p>
+	<p>[line 73]</p>
   css-class for marking an element as enabled for js-validation<br /><br />
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="constMANDATORYCLASS"></a>
+	<p></p>
+	<h4>MANDATORYCLASS = <span class="value">&nbsp;'htmlform_mandatory'</span></h4>
+	<p>[line 55]</p>
+  css-class for marking an element as mandatory, if it is defined as such by a validator<br /><br />
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="constOPTIONALCLASS"></a>
+	<p></p>
+	<h4>OPTIONALCLASS = <span class="value">&nbsp;'htmlform_optional'</span></h4>
+	<p>[line 61]</p>
+  css-class for marking an element as optional, if it is defined as such by a validator<br /><br />
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="constUNVALIDATEDCLASS"></a>
+	<p></p>
+	<h4>UNVALIDATEDCLASS = <span class="value">&nbsp;'htmlform_unvalidated'</span></h4>
+	<p>[line 67]</p>
+  css-class for marking an element as being unvalidated, if it is missing a validator<br /><br />
   <br />
 	<div class="top">[ <a href="#top">Top</a> ]</div><br />
 	<a name="constWIDGETCLASS"></a>
@@ -2202,7 +2233,7 @@ $validator)</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 12 Feb 2013 13:49:41 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Fri, 18 Jul 2014 16:31:57 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

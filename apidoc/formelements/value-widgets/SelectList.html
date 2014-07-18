@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Docs For Class Label</title>
+<title>Docs For Class SelectList</title>
 <link rel="stylesheet" type="text/css" href="../../media/style.css">
 </head>
 <body>
@@ -117,8 +117,8 @@
     <td>
       <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
 
-<h1>Class: Label</h1>
-Source Location: /HtmlForm.FormElement.Label.class.php<br /><br />
+<h1>Class: SelectList</h1>
+Source Location: /HtmlForm.FormElement.SelectList.class.php<br /><br />
 
 
 <table width="100%" border="0">
@@ -127,8 +127,10 @@ Source Location: /HtmlForm.FormElement.Label.class.php<br /><br />
 <h3><a href="#class_details">Class Overview</a></h3>
 <pre><a href="../../formelements/FormElement.html">FormElement</a>
    |
-   --Label</pre><br />
-<div class="description">Wraps a label for the use in the direct vicinity of a formelement.</div><br /><br />
+   --<a href="../../formelements/value-widgets/Select.html">Select</a>
+      |
+      --SelectList</pre><br />
+<div class="description">Constitutes a Select-replacement made of a list of labeled radiobuttons/checkboxes.</div><br /><br />
 <h4>Author(s):</h4>
 <ul>
           <li>Sebastian Schlapkohl</li>
@@ -151,19 +153,17 @@ Source Location: /HtmlForm.FormElement.Label.class.php<br /><br />
 <td valign="top">
 <h3><a href="#class_consts">Constants</a></h3>
 <ul>
-    <li><a href="../../formelements/special-widgets/Label.html#constWRAPCLASS">WRAPCLASS</a></li>
+    <li><a href="../../formelements/value-widgets/SelectList.html#constOPTGROUP_CLASS">OPTGROUP_CLASS</a></li>
+    <li><a href="../../formelements/value-widgets/SelectList.html#constOPTION_CLASS">OPTION_CLASS</a></li>
+    <li><a href="../../formelements/value-widgets/SelectList.html#constSELECT_CLASS">SELECT_CLASS</a></li>
   </ul>
 </td>
 
 <td valign="top">
 <h3><a href="#class_methods">Methods</a></h3>
 <ul>
-    <li><a href="../../formelements/special-widgets/Label.html#method__construct">__construct</a></li>
-    <li><a href="../../formelements/special-widgets/Label.html#methoddoRender">doRender</a></li>
-    <li><a href="../../formelements/special-widgets/Label.html#methodget">get</a></li>
-    <li><a href="../../formelements/special-widgets/Label.html#methodgetInline">getInline</a></li>
-    <li><a href="../../formelements/special-widgets/Label.html#methodgetValue">getValue</a></li>
-    <li><a href="../../formelements/special-widgets/Label.html#methodsetInline">setInline</a></li>
+    <li><a href="../../formelements/value-widgets/SelectList.html#methoddoRender">doRender</a></li>
+    <li><a href="../../formelements/value-widgets/SelectList.html#methodget">get</a></li>
   </ul>
 </td>
 
@@ -227,6 +227,59 @@ Source Location: /HtmlForm.FormElement.Label.class.php<br /><br />
 
 <td valign="top">
 <h3>Inherited Variables</h3>
+<div class="tags">
+<h4>Class: <a href="../../formelements/value-widgets/Select.html">Select</a></h4>
+<dl>
+<dt>
+  <a href="../../formelements/value-widgets/Select.html#var$multiple">Select::$multiple</a>
+  </dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../../formelements/value-widgets/Select.html#var$optGroups">Select::$optGroups</a>
+  </dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../../formelements/value-widgets/Select.html#var$optionCssClasses">Select::$optionCssClasses</a>
+  </dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../../formelements/value-widgets/Select.html#var$options">Select::$options</a>
+  </dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../../formelements/value-widgets/Select.html#var$optionTitles">Select::$optionTitles</a>
+  </dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../../formelements/value-widgets/Select.html#var$selected">Select::$selected</a>
+  </dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../../formelements/value-widgets/Select.html#var$size">Select::$size</a>
+  </dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../../formelements/value-widgets/Select.html#var$subDisabled">Select::$subDisabled</a>
+  </dt>
+<dd>
+   
+</dd>
+</dl>
+</div>
 <div class="tags">
 <h4>Class: <a href="../../formelements/FormElement.html">FormElement</a></h4>
 <dl>
@@ -309,6 +362,105 @@ Source Location: /HtmlForm.FormElement.Label.class.php<br /><br />
 <td valign="top">
 <h3>Inherited Methods</h3>
 <div class="tags">
+<h4>Class: <a href="../../formelements/value-widgets/Select.html">Select</a></h4>
+<dl>
+    <dt>
+    <a href="../../formelements/value-widgets/Select.html#method__construct">Select::__construct()</a>
+  </dt>
+  <dd>
+    Hidden constructor.
+  </dd>
+    <dt>
+    <a href="../../formelements/value-widgets/Select.html#methoddoRender">Select::doRender()</a>
+  </dt>
+  <dd>
+    Compiles and returns the html-fragment for the element.
+  </dd>
+    <dt>
+    <a href="../../formelements/value-widgets/Select.html#methodget">Select::get()</a>
+  </dt>
+  <dd>
+    Factory method for Select, returns new instance.
+  </dd>
+    <dt>
+    <a href="../../formelements/value-widgets/Select.html#methodgetValue">Select::getValue()</a>
+  </dt>
+  <dd>
+    Returns the current value of the element.
+  </dd>
+    <dt>
+    <a href="../../formelements/value-widgets/Select.html#methodisDisabledOption">Select::isDisabledOption()</a>
+  </dt>
+  <dd>
+    
+  </dd>
+    <dt>
+    <a href="../../formelements/value-widgets/Select.html#methodisSelectedOption">Select::isSelectedOption()</a>
+  </dt>
+  <dd>
+    
+  </dd>
+    <dt>
+    <a href="../../formelements/value-widgets/Select.html#methodrefill">Select::refill()</a>
+  </dt>
+  <dd>
+    Tries to refill the selected options from existing data.
+  </dd>
+    <dt>
+    <a href="../../formelements/value-widgets/Select.html#methodsetDisabled">Select::setDisabled()</a>
+  </dt>
+  <dd>
+    Set the element disabled, or set single options disabled.
+  </dd>
+    <dt>
+    <a href="../../formelements/value-widgets/Select.html#methodsetMultiple">Select::setMultiple()</a>
+  </dt>
+  <dd>
+    Set the select to being a multi-select.
+  </dd>
+    <dt>
+    <a href="../../formelements/value-widgets/Select.html#methodsetOptionCssClasses">Select::setOptionCssClasses()</a>
+  </dt>
+  <dd>
+    Sets css-classes to set for the options.
+  </dd>
+    <dt>
+    <a href="../../formelements/value-widgets/Select.html#methodsetOptions">Select::setOptions()</a>
+  </dt>
+  <dd>
+    Sets all available options of the select.
+  </dd>
+    <dt>
+    <a href="../../formelements/value-widgets/Select.html#methodsetOptionTitles">Select::setOptionTitles()</a>
+  </dt>
+  <dd>
+    Sets html-title to set for the options.
+  </dd>
+    <dt>
+    <a href="../../formelements/value-widgets/Select.html#methodsetSelected">Select::setSelected()</a>
+  </dt>
+  <dd>
+    Sets selected single/multiple options by index/value.
+  </dd>
+    <dt>
+    <a href="../../formelements/value-widgets/Select.html#methodsetSingle">Select::setSingle()</a>
+  </dt>
+  <dd>
+    Set the select to being a single-select.
+  </dd>
+    <dt>
+    <a href="../../formelements/value-widgets/Select.html#methodsetSize">Select::setSize()</a>
+  </dt>
+  <dd>
+    Sets the amount of rows the select should have, especially needed for multi-selects.
+  </dd>
+    <dt>
+    <a href="../../formelements/value-widgets/Select.html#methodvalidate">Select::validate()</a>
+  </dt>
+  <dd>
+    Starts the validation-process for the element.
+  </dd>
+  </dl>
 <h4>Class: <a href="../../formelements/FormElement.html">FormElement</a></h4>
 <dl>
     <dt>
@@ -561,8 +713,8 @@ Source Location: /HtmlForm.FormElement.Label.class.php<br /><br />
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 27]<br />
-Wraps a label for the use in the direct vicinity of a formelement.<br /><br /><p>Each value-widget can have a label, to describe it's purpose, this class gathers the necessary information,  and compile the label with correct linkage and wrapping.</p><p>If you want a logical connection between a label and an element, make sure the element has an id, since that's  what defines the connection here.</p><p>This element should not be inserted manually into a form, but rather be seen as a subwidget automatically provided  the a value-bearing-element. If you implement one yourself, be sure to also use Label.</p><br /><br /><br />
+[line 26]<br />
+Constitutes a Select-replacement made of a list of labeled radiobuttons/checkboxes.<br /><br /><p>Long Selects, especially multiselects, where you select entries by holding ctrl, can be bothersome to handle.  This special, non-canonical class, is a reskin of select functionality using radiobuttons and checkboxes to offer  an alternative, with better usability, while offering largely the same functionality as a Select.  Single selects are build of radiobuttons, while multiselects are build as a list of checkboxes.</p><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
@@ -584,62 +736,23 @@ Wraps a label for the use in the direct vicinity of a formelement.<br /><br /><p
 <div class="tags">
   <hr />
 	<a name="methodget"></a>
-	<h3>static method get <span class="smalllinenumber">[line 61]</span></h3>
+	<h3>static method get <span class="smalllinenumber">[line 43]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code>static <a href="../../formelements/special-widgets/Label.html">Label</a> get(
-<a href="../../formelements/FormElement.html">FormElement</a>
-$inputToLabel)</code>
-    </td></tr></table>
-    </td></tr></table><br />
-	
-		Factory method for Label, returns new instance.<br /><br /><p>Factories are used to make instant chaining possible.</p><br /><br /><br />
-<h4>Tags:</h4>
-<div class="tags">
-<table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><b>return:</b>&nbsp;&nbsp;</td><td>new Label-instance</td>
-  </tr>
-  <tr>
-    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
-  </tr>
-</table>
-</div>
-<br /><br />
-
-	
-        <h4>Parameters:</h4>
-    <div class="tags">
-    <table border="0" cellspacing="0" cellpadding="0">
-          <tr>
-        <td class="type"><a href="../../formelements/FormElement.html">FormElement</a>&nbsp;&nbsp;</td>
-        <td><b>$inputToLabel</b>&nbsp;&nbsp;</td>
-        <td>the element to attach the label to</td>
-      </tr>
-        </table>
-    </div><br />
-        <div class="top">[ <a href="#top">Top</a> ]</div>
-  </div>
-  <hr />
-	<a name="methodgetInline"></a>
-	<h3>static method getInline <span class="smalllinenumber">[line 75]</span></h3>
-	<div class="function">
-    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
-    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code>static <a href="../../formelements/special-widgets/Label.html">Label</a> getInline(
+		<code>static <a href="../../formelements/value-widgets/SelectList.html">SelectList</a> get(
 String
-$caption, String
-$for)</code>
+$name, [String
+$id = ''])</code>
     </td></tr></table>
     </td></tr></table><br />
 	
-		Special factory-method for labels to be displayed inline, and not in a own wrapping element.<br /><br /><br /><br />
+		Factory method for SelectList, returns new instance.<br /><br /><p>Factories are used to make instant chaining possible.</p><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><b>return:</b>&nbsp;&nbsp;</td><td>new inline-label</td>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>new SelectList-instance</td>
   </tr>
   <tr>
     <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
@@ -648,64 +761,28 @@ $for)</code>
 </div>
 <br /><br />
 
-	
+	Overrides <a href="../../formelements/value-widgets/Select.html#methodget">Select::get()</a> (Factory method for Select, returns new instance.)<br /><br />
         <h4>Parameters:</h4>
     <div class="tags">
     <table border="0" cellspacing="0" cellpadding="0">
           <tr>
         <td class="type">String&nbsp;&nbsp;</td>
-        <td><b>$caption</b>&nbsp;&nbsp;</td>
-        <td>the text the label should show</td>
+        <td><b>$name</b>&nbsp;&nbsp;</td>
+        <td>html-name for the element</td>
       </tr>
           <tr>
         <td class="type">String&nbsp;&nbsp;</td>
-        <td><b>$for</b>&nbsp;&nbsp;</td>
-        <td>the id of the element the label should be associated to</td>
+        <td><b>$id</b>&nbsp;&nbsp;</td>
+        <td>html-id for the element</td>
       </tr>
         </table>
     </div><br />
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
 
-  <hr />
-	<a name="method__construct"></a>
-	<h3>constructor __construct <span class="smalllinenumber">[line 46]</span></h3>
-	<div class="function">
-    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
-    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code>Label __construct(
-<a href="../../formelements/FormElement.html">FormElement</a>
-$inputToLabel)</code>
-    </td></tr></table>
-    </td></tr></table><br />
-	
-		Hidden constructor.<br /><br /><p>Get new instances with &quot;get()&quot; instead.</p><br /><br /><br />
-<h4>Tags:</h4>
-<div class="tags">
-<table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
-  </tr>
-</table>
-</div>
-<br /><br />
-
-	Overrides <a href="../../formelements/FormElement.html#method__construct">FormElement::__construct()</a> (General abstract, hidden formelement constructor.)<br /><br />
-        <h4>Parameters:</h4>
-    <div class="tags">
-    <table border="0" cellspacing="0" cellpadding="0">
-          <tr>
-        <td class="type"><a href="../../formelements/FormElement.html">FormElement</a>&nbsp;&nbsp;</td>
-        <td><b>$inputToLabel</b>&nbsp;&nbsp;</td>
-        <td>the element to attach the label to</td>
-      </tr>
-        </table>
-    </div><br />
-        <div class="top">[ <a href="#top">Top</a> ]</div>
-  </div>
   <hr />
 	<a name="methoddoRender"></a>
-	<h3>method doRender <span class="smalllinenumber">[line 120]</span></h3>
+	<h3>method doRender <span class="smalllinenumber">[line 82]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -714,7 +791,7 @@ $inputToLabel)</code>
     </td></tr></table>
     </td></tr></table><br />
 	
-		Compiles and returns the html-fragment for the element.<br /><br /><p>Wrapped in normal mode, barebone if set to inline.</p><br /><br /><br />
+		Compiles and returns the html-fragment for the element.<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
@@ -728,60 +805,7 @@ $inputToLabel)</code>
 </div>
 <br /><br />
 
-	Overrides <a href="../../formelements/FormElement.html#methoddoRender">FormElement::doRender()</a> (Returns the compiled html-code for the element.)<br /><br />
-        <div class="top">[ <a href="#top">Top</a> ]</div>
-  </div>
-  <hr />
-	<a name="methodgetValue"></a>
-	<h3>method getValue <span class="smalllinenumber">[line 106]</span></h3>
-	<div class="function">
-    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
-    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code>null getValue(
-)</code>
-    </td></tr></table>
-    </td></tr></table><br />
-	
-		Since Label doesn't hold any value, this method will always return null.<br /><br /><br /><br />
-<h4>Tags:</h4>
-<div class="tags">
-<table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
-  </tr>
-</table>
-</div>
-<br /><br />
-
-	Overrides <a href="../../formelements/FormElement.html#methodgetValue">FormElement::getValue()</a> (Returns the value of the element if there is any.)<br /><br />
-        <div class="top">[ <a href="#top">Top</a> ]</div>
-  </div>
-  <hr />
-	<a name="methodsetInline"></a>
-	<h3>method setInline <span class="smalllinenumber">[line 92]</span></h3>
-	<div class="function">
-    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
-    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code><a href="../../formelements/special-widgets/Label.html">Label</a> setInline(
-)</code>
-    </td></tr></table>
-    </td></tr></table><br />
-	
-		Sets the element to inline-mode, where no wrapping container is rendered, but only  the pure label-tag.<br /><br /><br /><br />
-<h4>Tags:</h4>
-<div class="tags">
-<table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><b>return:</b>&nbsp;&nbsp;</td><td>method owner</td>
-  </tr>
-  <tr>
-    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
-  </tr>
-</table>
-</div>
-<br /><br />
-
-	
+	Overrides <a href="../../formelements/value-widgets/Select.html#methoddoRender">Select::doRender()</a> (Compiles and returns the html-fragment for the element.)<br /><br />
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
 </div><br />
@@ -790,11 +814,25 @@ $inputToLabel)</code>
 <a name="class_consts"></a>
 <h3>Class Constants</h3>
 <div class="tags">
-	<a name="constWRAPCLASS"></a>
+	<a name="constOPTGROUP_CLASS"></a>
 	<p></p>
-	<h4>WRAPCLASS = <span class="value">&nbsp;'htmlform_label_div'</span></h4>
-	<p>[line 33]</p>
-  css-class for the label wrapper<br /><br />
+	<h4>OPTGROUP_CLASS = <span class="value">&nbsp;'optgroup'</span></h4>
+	<p>[line 29]</p>
+  
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="constOPTION_CLASS"></a>
+	<p></p>
+	<h4>OPTION_CLASS = <span class="value">&nbsp;'option'</span></h4>
+	<p>[line 30]</p>
+  
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="constSELECT_CLASS"></a>
+	<p></p>
+	<h4>SELECT_CLASS = <span class="value">&nbsp;'select'</span></h4>
+	<p>[line 28]</p>
+  
   <br />
 	<div class="top">[ <a href="#top">Top</a> ]</div><br />
 </div><br />

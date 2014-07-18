@@ -16,26 +16,26 @@ require_once 'HtmlFormTools.class.php';
  * Long Selects, especially multiselects, where you select entries by holding ctrl, can be bothersome to handle.
  * This special, non-canonical class, is a reskin of select functionality using radiobuttons and checkboxes to offer
  * an alternative, with better usability, while offering largely the same functionality as a Select.
- * Single selects are build of radiobuttons, while multiselects are build as a list of checkboxes. 
- * 
+ * Single selects are build of radiobuttons, while multiselects are build as a list of checkboxes.
+ *
  * @author Sebastian Schlapkohl
- * @version 0.999 beta
+ * @version 1.0
  * @package formelements
  * @subpackage value-widgets
  */
 class SelectList extends Select {
-	
+
 	const SELECT_CLASS = 'select';
 	const OPTGROUP_CLASS = 'optgroup';
 	const OPTION_CLASS = 'option';
-	
-	
-	
+
+
+
 	// ***
 	/**
 	 * Factory method for SelectList, returns new instance.
 	 * Factories are used to make instant chaining possible.
-	 * 
+	 *
 	 * @param String $name html-name for the element
 	 * @param String $id html-id for the element
 	 * @return SelectList new SelectList-instance
@@ -46,11 +46,11 @@ class SelectList extends Select {
 		return $res;
 	}
 	// ***
-	
-	
-	
+
+
+
 	//---|output----------
-	
+
 	private function printOption($index, $value, $text){
 		return
 			'<div class="'.self::OPTION_CLASS.((count($this->optionCssClasses) > 0) ? ' '.$this->optionCssClasses[(($index - 1) % count($this->optionCssClasses))] : '').'">'
@@ -71,29 +71,29 @@ class SelectList extends Select {
 			.'</div>'
 		;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Compiles and returns the html-fragment for the element.
-	 * 
+	 *
 	 * @return String html-fragment for the element
 	 */
 	public function doRender(){
 		$label = ($this->label != '') ? Label::get($this)->doRender() : '';
-		
+
 		$index = 0;
 		$optGroups = '';
 		$options = '';
 		foreach( $this->options as $value => $text ){
 			$index++;
 			$isInOptGroup = false;
-			
+
 			foreach( $this->optGroups as $optGroupLabel => $optGroupIndices ){
 				$pos = array_search($index, $optGroupIndices);
 				if( $pos !== false ){
 					$isInOptGroup = true;
-				
+
 					if( count($optGroupIndices) > 1 ){
 						if( $pos == 0 ){
 							$optGroups .=
@@ -119,14 +119,14 @@ class SelectList extends Select {
 					}
 				}
 			}
-			
+
 			if( !$isInOptGroup ){
 				$options .=	$this->printOption($index, $value, $text);
 			}
 		}
 
 		$printJavascriptValidationCode = $this->printJavascriptValidationCode();
-	
+
 		return
 			 '<div class="'.$this->printWrapperClasses().'">'
 				.$label

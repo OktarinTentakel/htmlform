@@ -25,7 +25,7 @@ require_once 'HtmlFormTools.class.php';
  * <br><br>
  * The javascript-date-time-picker can be configured via parameters using the according setters.
  * These are the parameters and their defaults:
- * 
+ *
  * var SpanBorderColor = "#cdcdcd";//span border color<br>
  * var SpanBgColor = "#cdcdcd";//span background color<br>
  * var WeekChar=3;//number of character for week day. if 2 then Mo,Tu,We. if 3 then Mon,Tue,Wed.<br>
@@ -50,62 +50,62 @@ require_once 'HtmlFormTools.class.php';
  * var MonthName=["January", "February", "March", "April", "May", "June", "July","August", "September", "October", "November", "December"];<br>
  * var WeekDayName1=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];<br>
  * var WeekDayName2=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
- * 
+ *
  * @author Sebastian Schlapkohl
- * @version 0.999 beta
+ * @version 1.0
  * @package formelements
  * @subpackage value-widgets
  */
 class JsDateTime extends InputText{
-	
+
 	/**
 	 * css-class for the wrapper around the whole element-html-structure
 	 * @var String
 	 */
 	const WRAPPERCLASS = 'htmlform_jsdatetime';
-	
+
 	/**
 	 * css-class for the calendar-button
 	 * @var String
 	 */
 	const BUTTONCLASS = 'htmlform_jsdatetime_btn';
-	
+
 	// ***
 	private $jsConfig;
 	private $printJs;
-	
+
 	private $dateFormat;
 	private $dateSelectionType;
 	private $displayTime;
 	private $timeMode;
 	private $showSeconds;
-	
+
 	/**
 	 * Hidden constructor.
 	 * Get new instances with "get()" instead.
-	 * 
+	 *
 	 * @param String $name html-name for the element
 	 * @param String $id html-id for the element
 	 */
 	protected function __construct($name, $id){
 		parent::__construct($name, $id);
-		
+
 		$this->jsConfig = array();
 		$this->printJs = true;
-		
+
 		$this->dateFormat = 'yyyymmdd';
 		$this->dateSelectionType = 'dropdown';
 		$this->displayTime = false;
 		$this->timeMode = 24;
 		$this->showSeconds = false;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Factory method for JsDateTime, returns new instance.
 	 * Factories are used to make instant chaining possible.
-	 * 
+	 *
 	 * @param String $name html-name for the element
 	 * @param String $id html-id for the element
 	 * @return JsDateTime new JsDateTime-instance
@@ -115,15 +115,15 @@ class JsDateTime extends InputText{
 		return $res;
 	}
 	// ***
-	
-	
-	
+
+
+
 	//---|setter----------
-	
+
 	/**
 	 * Set a configuration object for the element.
 	 * There are always defaults for every parameter, so this set doesn't have to be complete necessarily.
-	 * 
+	 *
 	 * @param Array[String] $jsConfig set of configuration data to replace the current config for the element
 	 * @return JsDateTime method owner
 	 */
@@ -131,12 +131,12 @@ class JsDateTime extends InputText{
 		$this->jsConfig = $jsConfig;
 		return $this;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Set several configuration vars for the element.
-	 * 
+	 *
 	 * @param Array[String] $jsConfigVars set of configuration data to add to the current config for the element
 	 * @return JsDateTime method owner
 	 */
@@ -144,16 +144,16 @@ class JsDateTime extends InputText{
 		foreach( $jsConfigVars as $key => $var ){
 			$this->jsConfig[$key] = $var;
 		}
-		
+
 		return $this;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Set a date format to be used by the picker.
 	 * Default is the iso-format "yyyymmdd", feel free to change that.
-	 * 
+	 *
 	 * @param String $dateFormat the date format to use
 	 * @return JsDateTime method owner
 	 */
@@ -161,97 +161,97 @@ class JsDateTime extends InputText{
 		$this->dateFormat = "$dateFormat";
 		return $this;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Tells the picker to use selects for month-, year-selection and so forth, instead of arrows.
-	 * 
+	 *
 	 * @return JsDateTime method owner
 	 */
 	public function setDropDownSelection(){
 		$this->dateSelectionType = 'dropdown';
 		return $this;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Tells the picker to use arrows for month-, year-selection and so forth, instead of selects.
-	 * 
+	 *
 	 * @return JsDateTime method owner
 	 */
 	public function setArrowSelection(){
 		$this->dateSelectionType = 'arrow';
 		return $this;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Tells the picker to offer time selection as well.
-	 * 
+	 *
 	 * @return JsDateTime method owner
 	 */
 	public function showTime(){
 		$this->displayTime = true;
 		return $this;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Tells the picker to use american AMPM-time-format instead of iso-counting.
-	 * 
+	 *
 	 * @return JsDateTime method owner
 	 */
 	public function setAmPmTime(){
 		$this->timeMode = 12;
 		return $this;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Tells the picker to use 24h-iso-counting for the time.
-	 * 
+	 *
 	 * @return JsDateTime method owner
 	 */
 	public function setIsoTime(){
 		$this->timeMode = 24;
 		return $this;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Tells the picker to include seconds into the time selection.
-	 * 
+	 *
 	 * @return JsDateTime method owner
 	 */
 	public function showSeconds(){
 		$this->showSeconds = true;
 		return $this;
 	}
-	
-	
-	
+
+
+
 	//---|functionality----------
-	
+
 	/**
 	 * Suppresses the javascript-include of the picker sources for this element.
 	 * If you got several pickers on a page you want to include those only with the
 	 * first and not every time.
-	 * 
+	 *
 	 * @return JsDateTime method owner
 	 */
 	public function suppressJsInclude(){
 		$this->printJs = false;
 		return $this;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Configures the picker to offer the selection of a standard American date.
 	 * Date-parts will be separated by a forward slash here.
@@ -263,13 +263,13 @@ class JsDateTime extends InputText{
 		$this->jsConfig['DateSeparator'] = '/';
 		return $this;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Configures the picker to offer the selection of a standard iso-date.
 	 * Date-parts will be separated by a dash here.
-	 * 
+	 *
 	 * @return JsDateTime method owner
 	 */
 	public function setUpAsIsoDate(){
@@ -277,13 +277,13 @@ class JsDateTime extends InputText{
 		$this->jsConfig['DateSeparator'] = '-';
 		return $this;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Configures the picker to offer the selection of a german date.
 	 * Date-parts will be separated by a point here.
-	 * 
+	 *
 	 * @return JsDateTime method owner
 	 */
 	public function setUpAsGermanDate(){
@@ -291,42 +291,42 @@ class JsDateTime extends InputText{
 		$this->jsConfig['DateSeparator'] = '.';
 		return $this;
 	}
-	
-	
-	
+
+
+
 	//---|output----------
 
 	private function printJsConfig(){
 		// Variablenvorbereitung
 		$packagePath = ($this->masterForm->getPackagePath() == '') ? '' : $this->masterForm->getPackagePath().'/';
-		
+
 		$monthNames =
 			(
-				isset($this->jsConfig['MonthName']) 
-				&& is_array($this->jsConfig['MonthName']) 
+				isset($this->jsConfig['MonthName'])
+				&& is_array($this->jsConfig['MonthName'])
 				&& (count($this->jsConfig['MonthName']) == 12)
 			)
 			? $this->jsConfig['MonthName']
 			: array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December')
 		;
-		
+
 		$weekDayNames =
 			(
-				isset($this->jsConfig['WeekDayName']) 
-				&& is_array($this->jsConfig['WeekDayName']) 
+				isset($this->jsConfig['WeekDayName'])
+				&& is_array($this->jsConfig['WeekDayName'])
 				&& (count($this->jsConfig['WeekDayName']) == 7)
 			)
 			? $this->jsConfig['WeekDayName']
 			: array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday')
 		;
-		
+
 		// String-Vorbereitung
 		$monthNamesString = '[';
 		foreach( $monthNames as $name ){
 			$monthNamesString .= '"'.$name.'", ';
 		}
 		$monthNamesString = HtmlFormTools::auto_preg_replace('/(, )$/', '', $monthNamesString, $this->needsUtf8Safety()).']';
-		
+
 		$weekDayNamesString = array();
 		$weekDayNamesString[0] = '[';
 		$weekDayNamesString[1] = '[';
@@ -340,7 +340,7 @@ class JsDateTime extends InputText{
 		}
 		$weekDayNamesString[0] = HtmlFormTools::auto_preg_replace('/(, )$/', '', $weekDayNamesString[0], $this->needsUtf8Safety()).']';
 		$weekDayNamesString[1] = HtmlFormTools::auto_preg_replace('/(, )$/', '', $weekDayNamesString[1], $this->needsUtf8Safety()).']';
-		
+
 		// Rückgabekonstruktion
 		return
 			 '<script type="text/javascript">'
@@ -368,32 +368,32 @@ class JsDateTime extends InputText{
 				.'var MonthName = '.$monthNamesString.';'
 				.'var WeekDayName1 = '.$weekDayNamesString[0].';'
 				.'var WeekDayName2 = '.$weekDayNamesString[1].';'
-				
+
 				.'var packagePath = "'.$packagePath.'";'
 			.'</script>'
 		;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Compiles and returns the html-fragment for the element.
-	 * 
+	 *
 	 * @return String html-fragment for the element
 	 */
 	public function doRender(){
 		$this->cssClasses = self::WRAPPERCLASS.' '.$this->cssClasses;
-	
+
 		$label = ($this->label != '') ? Label::get($this)->doRender() : '';
 		$packagePath = ($this->masterForm->getPackagePath() == '') ? '' : $this->masterForm->getPackagePath().'/';
-		$jsInclude = 
+		$jsInclude =
 			$this->printJs
 				? $this->printJsConfig().'<script src="'.$packagePath.'js/datetimepicker_css.js" type="text/javascript"></script>'
 				: ''
 		;
 
 		$printJavascriptValidationCode = $this->printJavascriptValidationCode();
-	
+
 		return
 			 $jsInclude
 			.'<div class="'.$this->printWrapperClasses().'">'

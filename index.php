@@ -2,18 +2,18 @@
 
 /**
  * This is the general testcase scenario for the HtmlForm-framework.
- * 
+ *
  * Have a look at all the mechanisms and possible values and fool around with the possibilities
  * to get a feeling for the workings.
- * 
+ *
  * This is not, by any means, a well structured, integrated solution, but just a wild bunch of testcases
  * and tryouts, half showcase half test, but it's not very complicated to integrate the framework into
  * your workflows and write a nice wrapper or two.
- * 
+ *
  * I can tell by the code and by having seen quite some wrappers in my time :P
- * 
+ *
  * @author Sebastian Schlapkohl
- * @version 0.999 beta
+ * @version 1.0
  */
 
 /**
@@ -24,7 +24,7 @@ require_once('htmlform/HtmlForm.class.php');
 /**
  * Prepare php-output for utf-8. these are the minimum settings, to make utf-8-mode discoverable
  * for the framework. Without these utf-8 would be quite meaningless. These settings are not automatically
- * applied, since this is a too strong automatism, since it corrupt other values being processed in you apps. 
+ * applied, since this is a too strong automatism, since it corrupt other values being processed in you apps.
  */
 ini_set('default_charset', 'UTF-8');
 ini_set('mbstring.internal_encoding', 'UTF-8');
@@ -866,7 +866,7 @@ if($testForm->hasBeenSent()) {
 	 * Start form validation. It knows its validity-state after this.
 	 */
 	$testForm->validate();
-	
+
 	/**
 	 * Retrieve a complete valueset from the form.
 	 * To get a value: $valueSet->nameofwidget. This ist either null (if value is missing, a string value
@@ -874,7 +874,7 @@ if($testForm->hasBeenSent()) {
 	 */
 	$valueSet = $testForm->getValueSet();
 	if( $testForm->isValid() && ($valueSet->save || $valueSet->imgsave) ){
-		$successContainer = 
+		$successContainer =
 			 '<div id="successcontainer">'
 			 	.'<div class="closer" onclick="document.body.removeChild(getElementById(\'successcontainer\'));">&or;</div>'
 			 	.'<div class="text">'
@@ -897,259 +897,259 @@ if($testForm->hasBeenSent()) {
 		<style type="text/css" media="screen">
 			html, body {
 				margin: 0;
-			
+
 				color: #fff;
 				background-color: #333;
-				
+
 				font-family: arial, sens-serif;
 				font-size: 11px;
 			}
-			
-			
-			
+
+
+
 			.testform{
 				padding: 18px;
 				padding-top: 2px;
 			}
-			
+
 			.testform fieldset{
 				border: 1px solid #37c900;
-				
+
 				padding: 10px;
 				margin-left: auto;
 				margin-right: auto;
 				margin-bottom: 25px;
 			}
-			
+
 			.testform fieldset label{
 				color: #ccc;
 			}
-			
+
 			.testform fieldset input, .testform fieldset select, .select {
 				width: 250px;
 			}
-			
+
 			.testform fieldset .select.windowed {
 				height: 60px;
 				overflow: auto;
 			}
-			
+
 			.testform fieldset .select.windowed .option,
 			.testform fieldset .select.windowed label {
 				height: 20px;
 			}
-			
+
 			.testform fieldset input[type=radio], .testform fieldset input[type=checkbox]{
 				width: auto;
 			}
-			
+
 			.testform fieldset select option.odd,
 			.testform fieldset .select .option.odd {
 				background-color: #afa;
 			}
-			
+
 			.testform fieldset .select .option.odd label {
 				color: #000;
 			}
-			
+
 			.testform fieldset select option.even,
 			.testform fieldset .select .option.even {
 				background-color:#dfd;
 			}
-			
+
 			.testform fieldset .select .option.even label {
 				color: #000;
 			}
-			
+
 			.testform .htmlform_cell{
 				float: left;
-				
+
 				width: 750px;
-				
+
 				margin-left: 15px;
 			}
-			
+
 			.testform .htmlform_alignblock {
 				padding: 10px;
 				margin-bottom: 25px;
-				
+
 				border: 1px solid #37c900;
 			}
-			
+
 			.testform .htmlform_alignblock input[type=submit],
 			.testform .htmlform_alignblock input[type=button],
 			.testform .htmlform_alignblock input[type=reset],
 			.testform .htmlform_alignblock input[type=image] {
 				margin-right: 5px;
 			}
-			
+
 			.testform .htmlform_alignblock input[type=image]{
 				vertical-align: middle;
-				
+
 				border: 1px solid #444;
 			}
-			
+
 			.testform .htmlform_alignblock input[type=image]:hover{
 				border: 1px solid #fff;
 			}
-			
+
 			.testform fieldset .htmlform_row_div{
 				clear: left;
-				
+
 				margin-bottom: 10px;
 			}
-			
+
 			.testform fieldset .htmlform_label_div{
 				float: left;
-				
+
 				width: 360px;
 			}
-			
+
 			.testform fieldset .htmlform_widget_div{
 				float: left;
-				
+
 				width: 360px;
 			}
-			
+
 			.testform .htmlform_alignblock{
 				text-align: right;
 			}
-			
+
 			.testform .htmlform_custom{
 				margin-bottom: 10px;
 			}
-			
+
 			/*.testform .select .optgroup {
-				background-color: 
+				background-color:
 			}*/
-			
-			
-			
+
+
+
 			.htmlform_formheadline{
 				margin-left: 10px;
-				
+
 				color: #fff;
-				
+
 				font-size: 64px;
 			}
-			
+
 			.htmlform_formexplanation{
 				color: #ccc;
-				
+
 				margin: -5px 0px 20px 15px;
-				
+
 				font-size: 16px;
 			}
-			
+
 			.htmlform_messages_div{
 				width: 728px;
-			
+
 				padding: 10px;
 				margin: 10px 0px 5px 14px;
 				border: 1px dotted #37c900;
-				
+
 				background-color: #444;
 			}
-			
+
 			.htmlform_messages_title_div, .htmlform_message_div{
 				margin-bottom: 5px;
 			}
-			
+
 			.htmlform_messages_title_div{
 				color: #e00;
-			
+
 				font-weight: bold;
 			}
-			
+
 			.htmlform_jsdatetime_btn{
 				margin-left: 5px;
-				
+
 				border: 0px;
 			}
-			
+
 			.htmlform_error{
 				background: #e00;
 			}
-			
-			
-			
+
+
+
 			.bordered{
 				border:1px solid #000;
 			}
-			
+
 			#calBorder table {
 				border-spacing: 0px;
 			}
-			
+
 			#successcontainer {
 				position: fixed;
-			
+
 				height: 250px;
 				right: 0px;
 				bottom: 0px;
 				left: 0px;
-				
+
 				border-top: 1px solid #37c900;
-				
+
 				background-color: #333;
 			}
-			
+
 			#successcontainer .closer {
 				position: absolute;;
-				
+
 				height: 20px;
 				top: 0px;
 				left: 0px;
 				right:0px;
-				
+
 				padding-top: 4px;
 				border-bottom: 1px dotted #37c900;
-				
+
 				text-align: center;
 				font-size: 14px;
 				font-weight: bold;
-				
+
 				cursor: pointer;
 			}
-			
+
 			#successcontainer .closer:hover {
 				background-color: #444;
 			}
-			
+
 			#successcontainer .text {
 				position: absolute;
-			
+
 				top: 25px;
 				left: 0px;
 				bottom: 0px;
 				right:0px;
-				
+
 				padding: 0px 10px 5px 10px;
-				
+
 				overflow: auto;
 			}
-			
+
 			#functions {
 				height: 10px;
-				
+
 				padding: 3px 10px;
-				
+
 				text-align: right;
 			}
-			
+
 			#functions a {
 				color: #ccc;
-				
+
 				text-decoration: none;
 			}
-			
+
 			#functions a:hover {
 				color: #fff;
 			}
 		</style>
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 	</head>
-	
+
 	<body>
 		<?=$successContainer?>
 		<div id="functions">

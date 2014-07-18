@@ -2,9 +2,9 @@
 
 /**
  * English error-message-dictionary.
- * 
+ *
  * @author Sebastian Schlapkohl
- * @version 0.999 beta
+ * @version 1.0
  * @package validation
  * @subpackage dictionaries
  */

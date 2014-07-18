@@ -16,17 +16,17 @@ require_once 'HtmlFormTools.class.php';
  * HtmlForm doesn't deal with single radiobuttons but always with groups of them. But nonetheless I still do recommend
  * radiobuttons for binary choices as well, since that's one the use-cases they've been designed for, instead of using
  * a checkbox. Otherwise the buttons excatly behave like you would expect them to. Many options, one choice.
- * 
+ *
  * Setting a title or css-classes for this element will not result in anything. Instead, set titles and classes for the options
  * themselves, by using the appropriate methods.
- * 
+ *
  * @author Sebastian Schlapkohl
- * @version 0.999 beta
+ * @version 1.0
  * @package formelements
  * @subpackage value-widgets
  */
 class InputRadio extends FormElement{
-	
+
 	// ***
 	private $options;
 	private $optionCssClasses;
@@ -34,16 +34,16 @@ class InputRadio extends FormElement{
 	private $selected;
 	private $subDisabled;
 	private $width;
-	
+
 	/**
 	 * Hidden constructor.
 	 * Get new instances with "get()" instead.
-	 * 
+	 *
 	 * @param String $name html-name for the element
 	 */
 	protected function __construct($name){
 		parent::__construct($name, '');
-		
+
 		$this->options = array();
 		$this->optionCssClasses = array();
 		$this->optionTitles = array();
@@ -51,13 +51,13 @@ class InputRadio extends FormElement{
 		$this->subDisabled = array();
 		$this->width = 1;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Factory method for InputRadio, returns new instance.
 	 * Factories are used to make instant chaining possible.
-	 * 
+	 *
 	 * @param String $name html-name for the element
 	 * @return InputRadio new InputRadio-instance
 	 */
@@ -66,17 +66,17 @@ class InputRadio extends FormElement{
 		return $res;
 	}
 	// ***
-	
-	
-	
+
+
+
 	//---|setter----------
-	
+
 	/**
 	 * Sets all available options of the radio-group.
 	 * The options have to be given in the form of an associative array, where keys are the radio-values and
 	 * values are the label-texts for each radiobutton.
 	 * array('val1' => 'nice radiobutton', 'val2' => 'not so nice radiobutton', ...)
-	 * 
+	 *
 	 * @param Array[String] $options the options for the radio-group
 	 * @return InputRadio method owner
 	 */
@@ -84,17 +84,17 @@ class InputRadio extends FormElement{
 		$this->options = $options;
 		return $this;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Sets css-classes to set for the options.
 	 * This could be used for an even-odd-pattern for example. One specialty of this
 	 * functionality: the classes cycle. If you have 4 options for example and you define
 	 * two classes of "even" and "odd", there will be two subsequent groups of "even" and "odd".
-	 * 
+	 *
 	 * The order of the classes is that in which the options have been defined.
-	 * 
+	 *
 	 * @param Array[String] $classes css-classes to apply to the options
 	 * @return Select method owner
 	 */
@@ -102,16 +102,16 @@ class InputRadio extends FormElement{
 		$this->optionCssClasses = $classes;
 		return $this;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Sets html-title to set for the options.
 	 * The same speciality here as with the classes: they cycle, if not enough were defined for all options.
 	 * If you have 4 options and you define two classes, there will be two subsequent groups of of both titles.
-	 * 
+	 *
 	 * The order of the titles is that in which the options have been defined.
-	 * 
+	 *
 	 * @param Array[String] $classes html-titles to apply to the options
 	 * @return Select method owner
 	 */
@@ -119,12 +119,12 @@ class InputRadio extends FormElement{
 		$this->optionTitles = $titles;
 		return $this;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Sets the selected option by its text.
-	 * 
+	 *
 	 * @param String $selected the text of the selected option
 	 * @return InputRadio method owner
 	 */
@@ -134,13 +134,13 @@ class InputRadio extends FormElement{
 			return $this;
 		}
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Set the amount of columns for the radiobutton-display.
 	 * The width defines how many radio-label-pairs will be put into one row.
-	 * 
+	 *
 	 * @param uint $width the amount of radiobuttons next to each other in one row
 	 * @return InputRadio method owner
 	 */
@@ -153,9 +153,9 @@ class InputRadio extends FormElement{
 
 	/**
 	 * Set the element disabled, or set single options disabled.
-	 * 
+	 *
 	 * @param OPTIONAL * $subDisabled single/multiple indices/values to disable, multiple values must be enclosed in an array
-	 * 
+	 *
 	 * @return FormElement method owner
 	 */
 	public function setDisabled(){
@@ -166,18 +166,18 @@ class InputRadio extends FormElement{
 		} else {
 			$this->subDisabled =  is_array($params) ? $params : array($params);
 		}
-		
+
 		return $this;
 	}
-	
-	
-	
+
+
+
 	//---|getter----------
-	
+
 	/**
 	 * Returns the current value of the element.
 	 * An InputRadio always returns a strings, which is taken from the selected option.
-	 * 
+	 *
 	 * @return String the value of the currently selected option
 	 */
 	public function getValue(){
@@ -188,14 +188,14 @@ class InputRadio extends FormElement{
 				return $value;
 			}
 		}
-		
+
 		return null;
 	}
-	
-	
-	
+
+
+
 	//---|questions----------
-	
+
 	private function isSelectedOption($index, $value){
 		return(
 			($index === $this->selected)
@@ -213,16 +213,16 @@ class InputRadio extends FormElement{
 			(in_array("$value", $this->subDisabled, true))
 		);
 	}
-	
-	
-	
+
+
+
 	//---|functionality----------
-	
+
 	/**
 	 * Tries to refill the selecte option from existing data.
 	 * This data can eiter be one of the method-arrays dependent on the
 	 * method the surrounding form uses or a supplied array of name-value-pairs.
-	 * 
+	 *
 	 * @param Array[String]|null $refiller data to use as the refill source
 	 * @param Boolean $condition expression which defines if the refill will take place or not, to make it conditional so to speak
 	 * @return InputRadio method owner
@@ -231,32 +231,32 @@ class InputRadio extends FormElement{
 		if( !is_null($this->masterForm) && !$this->masterForm->hasBeenSent() && empty($refiller) ){
 			$condition = false;
 		}
-	
+
 		if( $condition ){
 			$refiller = $this->determineRefiller($refiller);
-			
+
 			if( isset($refiller[$this->name]) && !is_array($refiller[$this->name]) ){
 				$this->setSelected(''.HtmlFormTools::undoMagicQuotes($refiller[$this->name]));
 			} elseif( $this->masterForm != null && $this->masterForm->hasBeenSent() ) {
 				$this->selected = null;
 			}
 		}
-		
+
 		return $this;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Starts the validation-process for the element.
 	 * Calculates the validity-status, based on the currently selected option, by applying the rules
 	 * of a present validator. If there is none, the element is always valid.
-	 * 
+	 *
 	 * @return Boolean element is currently valid yes/no
 	 */
 	public function validate(){
 		parent::validate();
-		
+
 		if( !is_null($this->validator) ){
 			$vals = '';
 			$valArray = array_keys($this->options);
@@ -268,26 +268,26 @@ class InputRadio extends FormElement{
 					$vals = $this->selected;
 				}
 			}
-			
+
 			$this->validator->setValues($val);
 			$this->isValid = $this->validator->process();
 		}
-		
+
 		return $this->isValid;
 	}
-	
-	
-	
+
+
+
 	//---|output----------
-	
+
 	/**
 	 * Compiles and returns the html-fragment for the element.
-	 * 
+	 *
 	 * @return String html-fragment for the element
 	 */
 	public function doRender(){
 		$label = ($this->label != '') ? Label::get($this)->doRender() : '';
-		
+
 		$index = 0;
 		$options = '';
 		foreach( $this->options as $value => $text ){
@@ -312,7 +312,7 @@ class InputRadio extends FormElement{
 		}
 
 		$printJavascriptValidationCode = $this->printJavascriptValidationCode();
-	
+
 		return
 			 '<div class="'.$this->printWrapperClasses().'">'
 				.$label
